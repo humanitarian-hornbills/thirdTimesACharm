@@ -4,39 +4,80 @@ const axios = require('axios');
 const api = require('./config');
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 let products = [];
 const questions = {};
+const answers = {};
 
 app.get('/products', (req, res) => {
   if (products.length !== 0) {
     res.send(products);
   } else {
-    res.send();
+    res.sendStatus(500);
   }
 });
 
 app.get('/questions/:id', (req, res) => {
-  const productId = req.params.id;
-  if (questions[productId] === undefined) {
-    axios.get(`${api.api}/qa/questions?product_id=${productId}`, {
+  const { id } = req.params;
+  const pQuestions = {};
+  if (questions[id] === undefined) {
+    axios.get(`${api.api}/qa/questions?product_id=${id}`, {
       headers: {
         Authorization: api.TOKEN,
       },
     })
       .then((response) => {
-        questions[productId] = response.data.results;
-        res.send(questions);
+        questions[id] = response.data;
+        pQuestions[id] = questions[id];
+        res.send(pQuestions);
       })
-      .catch((err) => res.send(JSON.stringify(err)));
+      .catch(() => res.sendStatus(404));
   } else {
-    res.send(questions);
+    pQuestions[id] = questions[id];
+    res.send(pQuestions);
   }
 });
+
+app.get('/answers/:questionId', (req, res) => {
+  const { questionId } = req.params;
+  const qAnswers = {};
+  if (!answers[questionId]) {
+    axios.get(`${api.api}/qa/questions/${questionId}/answers`, {
+      headers: {
+        Authorization: api.TOKEN,
+      },
+    })
+      .then((response) => {
+        answers[questionId] = response.data;
+        qAnswers[questionId] = answers[questionId];
+        res.send(qAnswers);
+      })
+      .catch(() => res.sendStatus(404));
+  } else {
+    qAnswers[questionId] = answers[questionId];
+    res.send(qAnswers);
+  }
+});
+
+// app.post('/questions/:id', (req, res) => {
+//   // should receive body parameters body, name, email, id and send same fields into api.api request data
+//   // req.body = {body, name, email, id}
+//   const { id } = req.params;
+//   axios.post(`${api.api}/qa/questions?product_id=${id}`, {data: req.body}, {
+//     headers: {
+//       Authorization: api.TOKEN,
+//     },
+//   })
+//     .then((response) => {
+//       questions[id] = response.data.results;
+//       res.send(questions);
+//     })
+//     .catch(() => res.sendStatus(404));
+// });
 
 app.get('/q', (req, res) => {
   res.send(questions);

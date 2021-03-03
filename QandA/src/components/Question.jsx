@@ -1,7 +1,7 @@
 import React from 'react';
 import AnswersList from './AnswersList.jsx';
 
-const Question = ({ question }) => (
+const Question = ({ question, answersQ }) => (
   <div>
     <div>
       <h1>Q:</h1>
@@ -9,7 +9,7 @@ const Question = ({ question }) => (
     </div>
     <div>
       <h1>A:</h1>
-      <AnswersList answers={question.answers} />
+      <AnswersList answersQ={answersQ} />
     </div>
     <div>
       <p>{question.question_date}</p>

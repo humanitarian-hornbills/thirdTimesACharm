@@ -16,41 +16,47 @@ const QA = () => {
     response[Math.floor(Math.random() * response.length)].id
   );
 
+  const qIds = [];
+  let randomId;
   useEffect(() => {
     axios.get('/products')
       .then((response) => {
         setProducts(response.data);
-        const randomId = randomProduct(response.data);
-        setProduct(randomId);
-        axios.get(`/questions/${randomId}`)
-          .then((res) => {
-            setQuestions(res.data);
-            const questionData = res.data[randomId].results;
-            const qIds = [];
-            questionData.forEach((q) => {
-              qIds.push(q.question_id);
-            });
-            setQuestionsId(qIds);
-          })
-          .catch((err) => {
-            throw err;
-          });
+        randomId = randomProduct(response.data);
+        return setProduct(randomId);
+      })
+      .then(() => axios.get(`questions/${randomId}`))
+      .then((res) => {
+        setQuestions(res.data);
+        const questionData = res.data[randomId].results;
+        questionData.forEach((q) => {
+          qIds.push(q.question_id);
+        });
+        setQuestionsId(qIds);
       })
       .catch((err) => {
         throw err;
       });
   }, []);
 
+  const qAnswers = {};
+  const promises = [];
   const getAnswers = () => {
-    questionsId.forEach((qId) => {
-      axios.get(`./answers/${qId}`)
-        .then((response) => {
-          setAnswers(answers[qId] = response.data[qId]);
-        })
-        .catch((err) => {
-          throw err;
-        });
-    });
+    for (let i = 0; i < questionsId.length; i += 1) {
+      promises.push(
+        axios.get(`./answers/${questionsId[i]}`)
+          .then((response) => {
+            qAnswers[questionsId[i]] = response.data;
+          })
+          .catch((err) => {
+            throw err;
+          }),
+      );
+    }
+    Promise.all(promises)
+      .then(() => {
+        setAnswers(qAnswers);
+      });
   };
 
   if (questionsId.length > 0 && !answered) {
@@ -58,32 +64,31 @@ const QA = () => {
     setAnswered(true);
   }
 
-  // useEffect(() => {
-  //   // questionsId.forEach((question) => {
-  //   //   axios.get(`/answers/${question.question_id}`)
-  //   //     .then((response) => {
-  //   //       setAnswers(response.data);
-  //   //     })
-  //   //     .catch((err) => {
-  //   //       throw err;
-  //   //     });
-  //   // });
-  //   console.log('hi');
-  // }, questionsId);
-
   return (
     <div>
-      {questions[product] !== undefined && console.log(questionsId)}
-      {/* <h1>Questions & Answers</h1>
-      {questions[product] !== undefined
+      {console.log(product)}
+      {/* {answers[questionsId[0]] && console.log(answers)} */}
+      <h1>Questions & Answers</h1>
+      {answers[questionsId[questionsId.length - 1]]
         ? <SearchQuestions />
-        : <div>Loading...</div>
-      }
+        // && (
+        //   <QuestionsList
+        //     questions={questions[product].results}
+        //     questionsId={questionsId}
+        //     answers={answers}
+        //   />
+        // )
+        : <div>Loading...</div>}
       <br />
-      {questions[product] !== undefined
-        ? <QuestionsList questions={questions[product]} />
-        : <div>Loading...</div>
-      } */}
+      {answers[questionsId[questionsId.length - 1]]
+        ? (
+          <QuestionsList
+            questions={questions[product].results}
+            questionsId={questionsId}
+            answers={answers}
+          />
+        )
+        : <div>Loading...</div>}
     </div>
   );
 };

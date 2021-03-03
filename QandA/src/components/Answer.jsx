@@ -6,7 +6,7 @@ const Answer = ({ answer }) => (
     {/* {console.log(JSON.stringify(answer))} */}
     <p>{answer.body}</p>
     {answer.photos.length > 0
-    && <Photos photos={answer.photos} answerId={answer.id} />}
+    && <Photos photos={answer.photos} />}
     <p>
       by {answer.answerer_name}, {answer.date}
     </p>

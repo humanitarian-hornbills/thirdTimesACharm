@@ -1,14 +1,13 @@
 import React from 'react';
 import Answer from './Answer.jsx';
 
-const AnswersList = ({ answers }) => {
-  const answersId = Object.keys(answers);
+const AnswersList = ({ answersQ }) => {
   return (
     <div>
-      {answersId.length > 0
-        ? answersId.map((answerId) => (
+      {answersQ.length > 0
+        ? answersQ.map((answer) => (
           // {/* {console.log(answerId)} */ }
-          <Answer key={answerId} answer={answers[answerId]} />
+          <Answer key={answer.answer_id} answer={answer} />
         ))
         : <button type="button">Add an answer</button>
       }

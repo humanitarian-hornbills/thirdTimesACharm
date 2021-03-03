@@ -54,17 +54,18 @@ app.get('/answers/:questionId', (req, res) => {
       .then((response) => {
         answers[questionId] = response.data;
         qAnswers[questionId] = answers[questionId];
-        res.send(qAnswers);
+        res.send(qAnswers[questionId]);
       })
       .catch(() => res.sendStatus(404));
   } else {
     qAnswers[questionId] = answers[questionId];
-    res.send(qAnswers);
+    res.send(qAnswers[questionId]);
   }
 });
 
 // app.post('/questions/:id', (req, res) => {
-//   // should receive body parameters body, name, email, id and send same fields into api.api request data
+//   // should receive body parameters body,
+// name, email, id and send same fields into api.api request data
 //   // req.body = {body, name, email, id}
 //   const { id } = req.params;
 //   axios.post(`${api.api}/qa/questions?product_id=${id}`, {data: req.body}, {

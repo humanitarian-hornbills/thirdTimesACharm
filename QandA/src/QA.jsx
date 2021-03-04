@@ -53,17 +53,6 @@ const QA = () => {
           }),
       );
     });
-    // for (let i = 0; i < questionsId.length; i += 1) {
-    //   promises.push(
-    //     axios.get(`./answers/${questionsId[i]}`)
-    //       .then((response) => {
-    //         qAnswers[questionsId[i]] = response.data;
-    //       })
-    //       .catch((err) => {
-    //         throw err;
-    //       }),
-    //   );
-    // }
     Promise.all(promises)
       .then(() => {
         setAnswers(qAnswers);
@@ -93,7 +82,7 @@ const QA = () => {
       {answers[questionsId[questionsId.length - 1]]
         ? (
           <QuestionsList
-            questions={questions[product].results}
+            questions={questions[product]}
             questionsId={questionsId}
             answers={answers}
           />

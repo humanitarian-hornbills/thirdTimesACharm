@@ -11,6 +11,7 @@ const QA = () => {
   const [questionsId, setQuestionsId] = useState([]);
   const [answers, setAnswers] = useState({});
   const [answered, setAnswered] = useState(false);
+  const [search, setSearch] = useState('');
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -64,12 +65,16 @@ const QA = () => {
     setAnswered(true);
   }
 
+  const searchQA = (target) => {
+    setSearch(target);
+  };
+
   return (
     <div>
       {/* {answers[questionsId[0]] && console.log(answers)} */}
       <h1>Questions & Answers</h1>
       {answers[questionsId[questionsId.length - 1]]
-        ? <SearchQuestions />
+        ? <SearchQuestions searchQA={searchQA} />
         // && (
         //   <QuestionsList
         //     questions={questions[product].results}

@@ -42,17 +42,28 @@ const QA = () => {
   const qAnswers = {};
   const promises = [];
   const getAnswers = () => {
-    for (let i = 0; i < questionsId.length; i += 1) {
+    questionsId.forEach((qId) => {
       promises.push(
-        axios.get(`./answers/${questionsId[i]}`)
+        axios.get(`./answers/${qId}`)
           .then((response) => {
-            qAnswers[questionsId[i]] = response.data;
+            qAnswers[qId] = response.data;
           })
           .catch((err) => {
             throw err;
           }),
       );
-    }
+    });
+    // for (let i = 0; i < questionsId.length; i += 1) {
+    //   promises.push(
+    //     axios.get(`./answers/${questionsId[i]}`)
+    //       .then((response) => {
+    //         qAnswers[questionsId[i]] = response.data;
+    //       })
+    //       .catch((err) => {
+    //         throw err;
+    //       }),
+    //   );
+    // }
     Promise.all(promises)
       .then(() => {
         setAnswers(qAnswers);
@@ -66,7 +77,6 @@ const QA = () => {
 
   return (
     <div>
-      {console.log(product)}
       {/* {answers[questionsId[0]] && console.log(answers)} */}
       <h1>Questions & Answers</h1>
       {answers[questionsId[questionsId.length - 1]]

@@ -2,10 +2,9 @@ import React from 'react';
 import isInboundary from '../utility/isInboundary.js';
 import $ from 'jquery';
 
-const ScrollBtn = ({ direction, isBoundary, list }) => {
+const ScrollBtn = ({ direction, list }) => {
   const handleScroll = () => {
     const scrollList = $(`#${list}`);
-    console.log(scrollList)
     if (direction === 'left') {
       scrollList.scrollLeft(scrollList.scrollLeft() - 300);
       if (isInboundary(list, direction)) {
@@ -25,14 +24,10 @@ const ScrollBtn = ({ direction, isBoundary, list }) => {
     }
   };
   let scrollBtn = '';
-  if (isBoundary) {
-    if (direction === 'left') {
-      scrollBtn = <div className="scroll-btn-left btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&lt;</span></div>;
-    } else if (direction === 'right') {
-      scrollBtn = <div className="scroll-btn-right btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&gt;</span></div>;
-    }
-  } else {
-    scrollBtn = <div className="scroll-btn-left" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&lt;</span></div>;
+  if (direction === 'left') {
+    scrollBtn = <div className="scroll-btn-left btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&lt;</span></div>;
+  } else if (direction === 'right') {
+    scrollBtn = <div className="scroll-btn-right btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&gt;</span></div>;
   }
 
   return (

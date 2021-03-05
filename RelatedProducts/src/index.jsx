@@ -89,13 +89,11 @@ class App extends React.Component {
     return (
       <div>
         <RelatedList
-          handleScroll={this.handleScroll}
-          handleCompare={this.handleCompare}
+          onCompare={this.handleCompare}
           relatedList={relatedList}
           currentProduct={currentProduct}
         />
         <OutfitList
-          handleScroll={this.handleScroll}
           currentProduct={currentProduct}
           removeFromList={this.removeFromList}
           addToList={this.addToList}

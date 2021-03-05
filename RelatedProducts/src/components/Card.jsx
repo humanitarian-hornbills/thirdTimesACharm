@@ -46,7 +46,7 @@ class Card extends React.Component {
   handleClick(e) {
     const { id } = this.props;
     e.preventDefault();
-    this.props.handleClick(id);
+    this.props.onClick(id);
   }
 
   render() {

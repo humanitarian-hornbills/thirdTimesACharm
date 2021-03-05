@@ -27,7 +27,7 @@ class OutfitList extends React.Component {
     return (
       <div>
         <div className="container">
-          <ScrollBtn direction="left" isBoundary={true} list="outfitList" />
+          <ScrollBtn direction="left" list="outfitList" />
           <div className="list" id="outfitList">
 
             <div className="card" onClick={this.addToList}>
@@ -41,10 +41,10 @@ class OutfitList extends React.Component {
             </div>
 
             {outfitList.map(
-              (item) => <Card handleClick={this.removeFromList} key={item} id={item} list="outfitList" currentProduct={currentProduct} />,
+              (item) => <Card onClick={this.removeFromList} key={item} id={item} list="outfitList" currentProduct={currentProduct} />,
             )}
           </div>
-          <ScrollBtn direction="right" isBoundary={true} list="outfitList" />
+          <ScrollBtn direction="right" list="outfitList" />
         </div>
       </div>
     );

@@ -4,7 +4,7 @@ const axios = require('axios');
 const api = require('./config');
 
 const app = express();
-const PORT = 4000;
+const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());

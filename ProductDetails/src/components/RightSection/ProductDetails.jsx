@@ -7,14 +7,14 @@ import BottomSection from './BottomSection.jsx';
 import TopSection from './TopSection.jsx';
 
 const ProductDetails = ({
-  product, styles, getSelectedStyle, selectedStyleName,
+  product, styles, getSelectedStyle, selectedStyleId, id,
 }) => (
   <>
-    <TopSection product={product} styles={styles} />
+    <TopSection id={id} product={product} styles={styles} selectedStyleId={selectedStyleId} />
     <BottomSection
       styles={styles}
       getSelectedStyle={getSelectedStyle}
-      selectedStyleName={selectedStyleName}
+      selectedStyleId={selectedStyleId}
     />
   </>
 );

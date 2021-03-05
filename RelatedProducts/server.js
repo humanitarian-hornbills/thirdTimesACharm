@@ -47,6 +47,18 @@ app.get('/products/:id/related', (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.get('/reviews/:productId', (req, res) => {
+  const { productId } = req.params;
+  axios.get(`${api.api}/reviews?product_id=${productId}`, {
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  })
+    .then((response) => {
+      res.json(response.data);
+    });
+});
+
 // get all products
 app.get('/products', (req, res) => {
   axios.get(`${api.api}/products`, {

@@ -125,6 +125,7 @@ class NewReview extends React.Component {
           <Nickname updateState={this.updateState} />
           <Email updateState={this.updateState} />
           <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+          <button type="button" onClick={() => { this.props.close(); }}>Cancel</button>
         </section>
       </div>
     );

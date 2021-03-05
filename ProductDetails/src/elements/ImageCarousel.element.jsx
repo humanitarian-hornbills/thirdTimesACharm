@@ -1,13 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   ArrowLeft, ArrowRight, ArrowsFullscreen,
-  // eslint-disable-next-line import/no-extraneous-dependencies
 } from '@styled-icons/bootstrap';
-
-import {
-  ArrowDown,
-  // eslint-disable-next-line import/no-extraneous-dependencies
-} from '@styled-icons/evaicons-solid';
+import { ArrowDown } from '@styled-icons/evaicons-solid';
 
 export const Slider = styled.div`
   position:relative;
@@ -20,41 +15,39 @@ export const Slider = styled.div`
 `;
 
 export const Image = styled.img`
-position: absolute;
-width:700px;
-height:550px;
+width:90%;
+height:80%;
 `;
 export const ThumbnailWrapper = styled.div`
   position:absolute;
   top:15%;
   z-index:9;
-  left:5%;
+  left:10%;
 `;
 
 export const Thumbnail = styled.img`
-&::after{
-  content:" 🦄";
-  position:absolute;
-  left:0;
-  bottom:0;
-  height:5px;
-  width:10005px;
-  background:red;
-
-};
  display: block;
- width:75px;
- height:75px;
- margin:10px;
+ width:60px;
+ height:50px;
+ margin-bottom:20px;
  border: 1px solid black; 
+ cursor:pointer;
+`;
+
+export const Underline = styled.hr`
+ position:absolute;
+ border: 4px solid pink;
+ border-radius:15px;
+ width:55px;
+ margin-top:-25%;
 `;
 
 export const DownArrow = styled(ArrowDown)`
    width:40px;
-   padding-left: 30%;
+   padding-left:18%;
+   margin-top:-20px;
+   cursor:pointer;
 `;
-
-
 
 export const LeftArrow = styled(ArrowLeft)`
   position:absolute;
@@ -65,6 +58,9 @@ export const LeftArrow = styled(ArrowLeft)`
   z-index:10;
   cursor:pointer;
   user-select: none;
+  &:hover{
+    color:white
+  }
 `;
 
 export const RightArrow = styled(ArrowRight)`
@@ -76,6 +72,9 @@ export const RightArrow = styled(ArrowRight)`
   z-index:10;
   cursor:pointer;
   user-select: none;
+  &:hover{
+    color:white
+  }
 `;
 
 export const FullscreenArrow = styled(ArrowsFullscreen)`
@@ -87,4 +86,7 @@ export const FullscreenArrow = styled(ArrowsFullscreen)`
   z-index:10;
   cursor:pointer;
   user-select: none;
+  &:hover{
+    color:white
+  }
 `;

@@ -4,17 +4,17 @@ import BreakdownItem from './BreakdownItem.jsx'
 
 const Breakdown = ({ ratings, selectStars, addStar }) => {
   const sortedArr = [];
-
+  let reviewCount = 0;
   Object.keys(ratings).forEach(key => {
-    // console.log(key)
+    reviewCount += Number(ratings[key]);
     const entry = [Number(key), Number(ratings[key])];
     sortedArr[Math.abs(Number(key) - 5)] = entry;
   });
-
   return (
     <div>
       {sortedArr.map((pair, index) => (
         <BreakdownItem
+          reviewCount={reviewCount}
           addStar={addStar}
           selectStars={selectStars}
           pair={pair}

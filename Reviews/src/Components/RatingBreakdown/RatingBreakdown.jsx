@@ -55,6 +55,7 @@ class RatingBreakdown extends React.Component {
             </>
           )
           : <></>}
+        <p>Rating Breakdown</p>
         <Breakdown
           addStar={this.addStar}
           selectStars={this.props.selectStars}

@@ -24,16 +24,31 @@ class OutfitList extends React.Component {
   }
 
   render() {
+    const { currentImg, outfitList, handleScroll, currentProduct } = this.props;
     return (
-      <div className="container">
-        <button onClick={this.handleScroll} id="left">&lt;&lt;</button>
-        <div className="list" id="outfitList">
-          <button onClick={this.addToList}>Add to list</button>
-          {this.props.outfitList.map(
-            item => <Card handleClick={this.removeFromList} key={item} id={item} />
-          )}
+      <div>
+
+
+        <div className="container">
+          <div className="scroll-btn-left" onClick={this.handleScroll} id="left"><span className="scroll-btn-arrow">&lt;</span></div>
+          <div className="list" id="outfitList">
+
+            <div className="card" onClick={this.addToList}>
+              <div className="addList">
+                <div className="frame">
+                  <img src={currentImg} alt="image" />
+                </div>
+                <div>Add To Outfit List</div>
+                <div id="addSign">+</div>
+              </div>
+            </div>
+
+            {outfitList.map(
+              (item) => <Card handleClick={this.removeFromList} key={item} id={item} list="outfitList" currentProduct={currentProduct} />,
+            )}
+          </div>
+          <div className="scroll-btn-right" onClick={this.handleScroll} id="right"><span className="scroll-btn-arrow">&gt;</span> </div>
         </div>
-        <button onClick={this.handleScroll} id="right">&gt; &gt; </button>
       </div>
     );
   }

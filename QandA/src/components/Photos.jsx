@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Photos = ({ photos, answerId }) => (
+const Photos = ({ photos }) => (
   <div>
-    {photos.map((photo, index) => (
-      <img key={answerId + `-${index}`} src={photo} alt="" width="100" height="100" />
+    {photos.map((photo) => (
+      <img key={photo.id} src={photo.url} alt="" width="100" height="100" />
     ))}
   </div>
 );

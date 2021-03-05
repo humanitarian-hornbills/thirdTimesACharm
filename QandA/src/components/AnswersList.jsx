@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 
-const AnswersList = ({ answers }) => {
-  const answersId = Object.keys(answers);
+const AnswersList = ({ answersQ }) => {
+  const [moreAns, setMoreAns] = useState(2);
+
   return (
     <div>
-      {answersId.length > 0
-        ? answersId.map((answerId) => (
-          // {/* {console.log(answerId)} */ }
-          <Answer key={answerId} answer={answers[answerId]} />
-        ))
-        : <button type="button">Add an answer</button>
-      }
+      {answersQ.map((answer, index) => (index < moreAns
+        && <Answer key={answer.answer_id} answer={answer} />
+      ))}
+      <div>
+        {answersQ.length - moreAns > 0
+        && <button type="button" onClick={() => setMoreAns(moreAns + 2)}>LOAD MORE ANSWERS</button>}
+        <br />
+        <a href="jflda">Add Answer</a>
+      </div>
     </div>
   );
 };

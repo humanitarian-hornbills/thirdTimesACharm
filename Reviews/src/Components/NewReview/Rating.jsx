@@ -11,7 +11,7 @@ class Rating extends React.Component {
   }
 
   onChangeValue(event) {
-    let ratingObj = { rating: Number(event.target.value) };
+    const ratingObj = { rating: Number(event.target.value) };
     this.props.updateState(ratingObj);
   }
 
@@ -19,13 +19,20 @@ class Rating extends React.Component {
     return (
       <>
         Overall Rating
-        <div onChange={this.onChangeValue}>
-          <input type="radio" value="1" name="rating" />
-          <input type="radio" value="2" name="rating" />
-          <input type="radio" value="3" name="rating" />
-          <input type="radio" value="4" name="rating" />
-          <input type="radio" value="5" name="rating" />
-        </div>
+        <form onChange={this.onChangeValue}>
+          <div className="rating noborder">
+            <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
+            <label htmlFor="star1">☆</label>
+            <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
+            <label htmlFor="star2">☆</label>
+            <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
+            <label htmlFor="star3">☆</label>
+            <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
+            <label htmlFor="star4">☆</label>
+            <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
+            <label htmlFor="star5">☆</label>
+          </div>
+        </form>
       </>
     );
   }

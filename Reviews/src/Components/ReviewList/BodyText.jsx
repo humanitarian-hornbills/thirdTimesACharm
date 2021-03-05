@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const BodyText = ({text}) => {
+const BodyText = ({ text }) => {
   const [expand, setExpand] = useState(false);
   const first250 = text.slice(0, 250);
   if (text.length < 250) {

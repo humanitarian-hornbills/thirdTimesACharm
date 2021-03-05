@@ -22,6 +22,7 @@ class ImageComponent extends React.Component {
           onKeyPress={this.handleShowDialog}
           alt="small"
           width="50px"
+          role="presentation"
         />
         {this.state.isOpen && (
           <dialog
@@ -30,6 +31,7 @@ class ImageComponent extends React.Component {
             open
             onClick={this.handleShowDialog}
             onKeyPress={this.handleShowDialog}
+            role="presentation"
           >
             <img
               className="image"
@@ -37,6 +39,7 @@ class ImageComponent extends React.Component {
               onClick={this.handleShowDialog}
               onKeyPress={this.handleShowDialog}
               alt="big"
+              role="presentation"
             />
           </dialog>
         )}

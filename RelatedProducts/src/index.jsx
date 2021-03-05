@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import $ from 'jquery';
 import RelatedList from './components/RelatedList.jsx';
 import OutfitList from './components/OutfitList.jsx';
 import CompareProducts from './components/CompareProducts.jsx';
@@ -43,13 +44,29 @@ class App extends React.Component {
   }
 
   handleScroll(list, id) {
-    const scrollList = document.getElementById(list);
+    const scrollList = $(`#${list}`);
     switch (id) {
       case 'left':
-        scrollList.scrollLeft -= 380;
+        scrollList.scrollLeft(scrollList.scrollLeft() - 300);
+        console.log(scrollList.scrollLeft() - 300)
+        console.log(scrollList.prop('scrollWidth'))
+        if (scrollList.scrollLeft() - 300 <= 0) {
+          scrollList.removeClass('bounce-left');
+          scrollList.outerWidth(scrollList.outerWidth())
+          scrollList.addClass('bounce-left');
+
+        }
         break;
+
       case 'right':
-        scrollList.scrollLeft += 380;
+        scrollList.scrollLeft(scrollList.scrollLeft() + 300);
+        console.log(scrollList.scrollLeft() + scrollList.width() + 300)
+        console.log(scrollList.prop('scrollWidth'))
+        if (scrollList.scrollLeft() + scrollList.width() + 300 >= scrollList.prop('scrollWidth')) {
+          scrollList.removeClass('bounce-left');
+          scrollList.outerWidth(scrollList.outerWidth())
+          scrollList.addClass('bounce-left');
+        }
         break;
     }
   }
@@ -96,7 +113,7 @@ class App extends React.Component {
 
   render() {
     const {
-      relatedList, outfitList, currentImg, currentProduct, compareProduct
+      relatedList, outfitList, currentImg, currentProduct, compareProduct,
     } = this.state;
     return (
       <div>

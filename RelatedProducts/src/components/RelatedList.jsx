@@ -15,7 +15,7 @@ class RelatedList extends React.Component {
   handleScroll(e) {
     const { handleScroll } = this.props;
     e.preventDefault();
-    handleScroll('relatedList', e.target.id);
+    handleScroll('relatedList', e.currentTarget.id);
   }
 
   render() {

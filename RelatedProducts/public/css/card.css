@@ -33,10 +33,10 @@
   position: absolute;
   right:0%;
   color: white;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
   width: 25px;
   height: 25px;
-  opacity: 0.5;
+  opacity: 0.6;
   font-weight: bold;
   font-size: 18px;
   border-radius: 20px;
@@ -51,7 +51,7 @@
 .action:hover,
 .action:focus{
   opacity: 1;
-  transition: 0.8s ease;
+  transition: 0.6s ease;
 }
 .action:active{
   color: black;

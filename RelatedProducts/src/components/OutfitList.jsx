@@ -20,15 +20,13 @@ class OutfitList extends React.Component {
 
   handleScroll(e) {
     e.preventDefault();
-    this.props.handleScroll('outfitList', e.target.id);
+    this.props.handleScroll('outfitList', e.currentTarget.id);
   }
 
   render() {
     const { currentImg, outfitList, handleScroll, currentProduct } = this.props;
     return (
       <div>
-
-
         <div className="container">
           <div className="scroll-btn-left" onClick={this.handleScroll} id="left"><span className="scroll-btn-arrow">&lt;</span></div>
           <div className="list" id="outfitList">

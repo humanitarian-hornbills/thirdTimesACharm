@@ -13,8 +13,6 @@ const QuestionsList = ({
 
   return (
     <>
-      {/* {console.log(questions[0].question_id)} */}
-      {/* {console.log(questions.length - moreQ, questions.length, moreQ)} */}
       {productData
         ? (
           <div>

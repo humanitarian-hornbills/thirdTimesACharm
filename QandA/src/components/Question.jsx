@@ -13,7 +13,11 @@ const Question = ({ question, answersQ }) => (
     </div>
     <div>
       <p>{question.question_date}</p>
-      <p>Helpful? Yes ({question.question_helpfulness})</p>
+      <p>
+        Helpful? Yes (
+        {question.question_helpfulness}
+        )
+      </p>
     </div>
     <br />
   </div>

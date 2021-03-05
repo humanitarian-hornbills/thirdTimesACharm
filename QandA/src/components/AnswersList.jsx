@@ -3,10 +3,10 @@ import Answer from './Answer.jsx';
 
 const AnswersList = ({ answersQ }) => {
   const [moreAns, setMoreAns] = useState(2);
+
   return (
     <div>
       {answersQ.map((answer, index) => (index < moreAns
-        // {/* {console.log(answerId)} */ }
         && <Answer key={answer.answer_id} answer={answer} />
       ))}
       <div>

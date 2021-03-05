@@ -6,7 +6,7 @@ const ReviewList = ({ reviews, reviewCount, markAsHelpful, reportReview }) => {
   const allReviews = reviews;
   const useTheseReviews = allReviews.slice(0, reviewCount);
   return (
-    <div>
+    <div id="reviewList">
       {useTheseReviews.map((review, index) => (
         <ReviewListItem
           markAsHelpful={markAsHelpful}

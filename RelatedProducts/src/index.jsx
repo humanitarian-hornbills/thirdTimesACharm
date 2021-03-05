@@ -5,6 +5,7 @@ import $ from 'jquery';
 import RelatedList from './components/RelatedList.jsx';
 import OutfitList from './components/OutfitList.jsx';
 import CompareProducts from './components/CompareProducts.jsx';
+import isInboundary from './utility/isInboundary.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -45,31 +46,26 @@ class App extends React.Component {
 
   handleScroll(list, id) {
     const scrollList = $(`#${list}`);
-    switch (id) {
-      case 'left':
-        scrollList.scrollLeft(scrollList.scrollLeft() - 300);
-        console.log(scrollList.scrollLeft() - 300)
-        console.log(scrollList.prop('scrollWidth'))
-        if (scrollList.scrollLeft() - 300 <= 0) {
-          scrollList.removeClass('bounce-left');
-          scrollList.outerWidth(scrollList.outerWidth())
-          scrollList.addClass('bounce-left');
-
-        }
-        break;
-
-      case 'right':
-        scrollList.scrollLeft(scrollList.scrollLeft() + 300);
-        console.log(scrollList.scrollLeft() + scrollList.width() + 300)
-        console.log(scrollList.prop('scrollWidth'))
-        if (scrollList.scrollLeft() + scrollList.width() + 300 >= scrollList.prop('scrollWidth')) {
-          scrollList.removeClass('bounce-left');
-          scrollList.outerWidth(scrollList.outerWidth())
-          scrollList.addClass('bounce-left');
-        }
-        break;
+    if (id === 'left') {
+      scrollList.scrollLeft(scrollList.scrollLeft() - 300);
+      if (isInboundary(list, id)) {
+        scrollList.removeClass('bounce-left');
+        scrollList.removeClass('bounce-right');
+        scrollList.outerWidth(scrollList.outerWidth())
+        scrollList.addClass('bounce-left');
+      }
+    } else if (id === 'right') {
+      scrollList.scrollLeft(scrollList.scrollLeft() + 300);
+      if (isInboundary(list, id)) {
+        scrollList.removeClass('bounce-right');
+        scrollList.removeClass('bounce-left');
+        scrollList.outerWidth(scrollList.outerWidth())
+        console.log('aaaaa')
+        scrollList.addClass('bounce-right');
+      }
     }
   }
+
 
 
   addToList() {

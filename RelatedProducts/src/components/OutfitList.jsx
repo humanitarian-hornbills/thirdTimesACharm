@@ -1,12 +1,15 @@
 import React from 'react';
 import Card from './Card.jsx';
+import ScrollBtn from './ScrollBtn.jsx';
 
 class OutfitList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isBoundary: true,
+    };
     this.addToList = this.addToList.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   addToList(e) {
@@ -18,17 +21,13 @@ class OutfitList extends React.Component {
     this.props.removeFromList(id);
   }
 
-  handleScroll(e) {
-    e.preventDefault();
-    this.props.handleScroll('outfitList', e.currentTarget.id);
-  }
 
   render() {
     const { currentImg, outfitList, handleScroll, currentProduct } = this.props;
     return (
       <div>
         <div className="container">
-          <div className="scroll-btn-left" onClick={this.handleScroll} id="left"><span className="scroll-btn-arrow">&lt;</span></div>
+          <ScrollBtn direction="left" isBoundary={true} list="outfitList" />
           <div className="list" id="outfitList">
 
             <div className="card" onClick={this.addToList}>
@@ -45,7 +44,7 @@ class OutfitList extends React.Component {
               (item) => <Card handleClick={this.removeFromList} key={item} id={item} list="outfitList" currentProduct={currentProduct} />,
             )}
           </div>
-          <div className="scroll-btn-right" onClick={this.handleScroll} id="right"><span className="scroll-btn-arrow">&gt;</span> </div>
+          <ScrollBtn direction="right" isBoundary={true} list="outfitList" />
         </div>
       </div>
     );

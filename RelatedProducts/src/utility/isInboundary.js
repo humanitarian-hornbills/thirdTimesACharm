@@ -15,16 +15,3 @@ const isInboundary = (list, direction) => {
 };
 
 export default isInboundary;
-
-        // if (isInboundary(list, id)) {
-        //   scrollList.removeClass('bounce-left');
-        //   scrollList.outerWidth(scrollList.outerWidth())
-        //   scrollList.addClass('bounce-left');
-        // }
-
-
-               // if (isInboundary(list, id)) {
-        //   scrollList.removeClass('bounce-left');
-        //   scrollList.outerWidth(scrollList.outerWidth())
-        //   scrollList.addClass('bounce-left');
-        // }

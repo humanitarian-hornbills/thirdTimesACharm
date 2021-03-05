@@ -20,7 +20,6 @@ class App extends React.Component {
     };
     this.addToList = this.addToList.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
     this.handleCompare = this.handleCompare.bind(this);
   }
 
@@ -43,30 +42,6 @@ class App extends React.Component {
       this.setState({ outfitList });
     }
   }
-
-  handleScroll(list, id) {
-    const scrollList = $(`#${list}`);
-    if (id === 'left') {
-      scrollList.scrollLeft(scrollList.scrollLeft() - 300);
-      if (isInboundary(list, id)) {
-        scrollList.removeClass('bounce-left');
-        scrollList.removeClass('bounce-right');
-        scrollList.outerWidth(scrollList.outerWidth())
-        scrollList.addClass('bounce-left');
-      }
-    } else if (id === 'right') {
-      scrollList.scrollLeft(scrollList.scrollLeft() + 300);
-      if (isInboundary(list, id)) {
-        scrollList.removeClass('bounce-right');
-        scrollList.removeClass('bounce-left');
-        scrollList.outerWidth(scrollList.outerWidth())
-        console.log('aaaaa')
-        scrollList.addClass('bounce-right');
-      }
-    }
-  }
-
-
 
   addToList() {
     let outfitList = [];

@@ -4,7 +4,7 @@ const SearchQuestions = ({ searchQA }) => {
   const [search, setSearch] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-    searchQA(search);
+    searchQA(search.toLowerCase());
     setSearch('');
   };
 

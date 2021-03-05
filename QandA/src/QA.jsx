@@ -87,9 +87,10 @@ const QA = () => {
       {answers[questionsId[questionsId.length - 1]]
         ? (
           <QuestionsList
-            questions={questions[product]}
+            productData={questions[product]}
             questionsId={questionsId}
             answers={answers}
+            search={search}
           />
         )
         : <div>Loading...</div>}

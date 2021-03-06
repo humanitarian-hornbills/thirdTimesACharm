@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import css from './NewReview.css';
 import Rating from './Rating.jsx';
 import Recommend from './Recommend.jsx';
 import Characteristics from './Characteristics.jsx';
-import ReviewSummary from './ReviewSummary.jsx'
-import ReviewBody from './ReviewBody.jsx'
-import AddPhoto from './AddPhoto.jsx'
-import Nickname from './Nickname.jsx'
-import Email from './Email.jsx'
-import DisplayPhotos from './DisplayPhotos.jsx'
+import ReviewSummary from './ReviewSummary.jsx';
+import ReviewBody from './ReviewBody.jsx';
+import AddPhoto from './AddPhoto.jsx';
+import Nickname from './Nickname.jsx';
+import Email from './Email.jsx';
+import DisplayPhotos from './DisplayPhotos.jsx';
+import PhotoModal from '../PhotoModal.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class NewReview extends React.Component {
       photos: [],
       characteristics: {},
       addPhotos: false,
+      rModalPhoto: null,
     };
 
     this.updateState = this.updateState.bind(this);
@@ -31,8 +32,8 @@ class NewReview extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.submitReview = this.submitReview.bind(this);
     this.checkState = this.checkState.bind(this);
+    this.rModalPhoto = this.rModalPhoto.bind(this);
   }
-  // this.props.factors for fit, width, etc
 
   updateState(obj) {
     this.setState(obj);
@@ -70,7 +71,7 @@ class NewReview extends React.Component {
 
   showModal() {
     this.setState({
-      addPhotos: !this.state.addPhotos
+      addPhotos: !this.state.addPhotos,
     });
   }
 
@@ -85,17 +86,36 @@ class NewReview extends React.Component {
     }
   }
 
+  rModalPhoto(src) {
+    const modal = document.getElementById('myModal');
+    const span = document.getElementsByClassName('close')[0];
+    this.setState({
+      rModalPhoto: src,
+    });
+    modal.style.display = 'block';
+    span.onclick = function () {
+      modal.style.display = 'none';
+    };
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+
   render() {
     console.log(this.state);
-    // console.log(this.state);
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
     const allPhotos = this.state.photos;
 
     return (
       <div className={showHideClassName}>
-        <section className="modal-main">
+        <section id="addReviewModal" className="modal-main">
           <h2>Write Your Review</h2>
-          <p>About the {this.props.name}</p>
+          <p>
+            About the
+            {this.props.name}
+          </p>
           <Rating updateState={this.updateState} />
           <Recommend updateState={this.updateState} />
           <Characteristics
@@ -104,24 +124,31 @@ class NewReview extends React.Component {
           />
           <ReviewSummary updateState={this.updateState} />
           <ReviewBody updateState={this.updateState} />
-          {allPhotos.length < 5
-            ? (
-              <button
-                type="button"
-                onClick={() => { this.showModal(); }}
-              >
-                Add Photo
-              </button>
-            )
-            : null}
-          <AddPhoto
-            hide={this.showModal}
-            updateState={this.updateState}
-            show={this.state.addPhotos}
-          />
-          {allPhotos.length
-            ? <DisplayPhotos photos={allPhotos} />
-            : null}
+          <div>
+            {allPhotos.length < 5
+              ? (
+                <button
+                  type="button"
+                  onClick={() => { this.showModal(); }}
+                >
+                  Add Photo
+                </button>
+              )
+              : null}
+            <AddPhoto
+              hide={this.showModal}
+              updateState={this.updateState}
+              show={this.state.addPhotos}
+            />
+            {allPhotos.length
+              ? (
+                <>
+                  <DisplayPhotos photoModal={this.rModalPhoto} photos={allPhotos} />
+                  <PhotoModal src={this.state.rModalPhoto} />
+                </>
+              )
+              : null}
+          </div>
           <Nickname updateState={this.updateState} />
           <Email updateState={this.updateState} />
           <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
@@ -133,50 +160,3 @@ class NewReview extends React.Component {
 }
 
 export default NewReview;
-
-
-// render() {
-//   const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
-//   return (
-//     <div className={showHideClassName}>
-//       <section className="modal-main">
-//         hello!
-//         <Rating updateState={this.updateState} />
-//       </section>
-//     </div>
-//   );
-// }
-// }
-
-
-// render() {
-//   const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
-//   return (
-//     <div className={showHideClassName}>
-//       <section className="modal-main">
-//         <form>
-//           <label>
-//             Overall
-//             <input
-//               name="overall"
-//               type="checkbox"
-//               checked={this.state.isGoing}
-//               onChange={this.handleInputChange}
-//             />
-//           </label>
-//           <br />
-//           <label>
-//             Number of guests:
-//             <input
-//               name="numberOfGuests"
-//               type="number"
-//               value={this.state.numberOfGuests}
-//               onChange={this.handleInputChange}
-//             />
-//           </label>
-//         </form>
-//       </section>
-//     </div>
-//   );
-// }
-// }

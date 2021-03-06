@@ -24,13 +24,15 @@ class ReviewSummary extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Review Summary:
-          <textarea maxLength="60" value={this.state.summary} onChange={this.handleChange} />
-          Limit 60 characters
-        </label>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Review Summary:
+            <textarea maxLength="60" value={this.state.summary} onChange={this.handleChange} />
+            Limit 60 characters
+          </label>
+        </form>
+      </div>
     );
   }
 }

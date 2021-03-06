@@ -21,12 +21,12 @@ class SortForm extends React.Component {
           {this.props.reviewCount}
           &nbsp;Reviews, sorted by&nbsp;
         </span>
-        <span id="sortForm">
-            <select onChange={this.handleSubmit}>
-              <option value="relevant">Relevence</option>
-              <option value="helpful">Helpful</option>
-              <option value="newest">Newest</option>
-            </select>
+        <span>
+          <select id="sortForm" onChange={this.handleSubmit}>
+            <option value="relevant">Relevance</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+          </select>
         </span>
       </div>
     );

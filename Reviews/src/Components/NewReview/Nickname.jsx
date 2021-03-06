@@ -13,7 +13,7 @@ class Nickname extends React.Component {
   }
 
   handleChange(event) {
-    let newName = event.target.value;
+    const newName = event.target.value;
     this.setState({ name: newName });
     this.props.updateState({ name: newName });
   }
@@ -25,13 +25,15 @@ class Nickname extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Nickname:
-          <input maxLength="60" type="text" value={this.state.name} onChange={this.handleChange} />
-          Limit 60 characters
-        </label>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Nickname:
+            <input maxLength="60" type="text" value={this.state.name} onChange={this.handleChange} />
+            Limit 60 characters
+          </label>
+        </form>
+      </div>
     );
   }
 }

@@ -24,13 +24,15 @@ class Email extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Email:
-          <input maxLength="60" type="email" value={this.state.name} onChange={this.handleChange} />
-          Limit 60 characters
-        </label>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Email:
+            <input maxLength="60" type="email" value={this.state.name} onChange={this.handleChange} />
+            Limit 60 characters
+          </label>
+        </form>
+      </div>
     );
   }
 }

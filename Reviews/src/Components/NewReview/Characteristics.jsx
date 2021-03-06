@@ -67,7 +67,6 @@ class Characteristics extends React.Component {
             key={index}
           />
         ))}
-
       </div>
     );
   }

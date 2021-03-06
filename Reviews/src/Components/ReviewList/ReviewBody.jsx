@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import BodyText from './BodyText.jsx';
 
-const ReviewBody = ({ review }) => (
+const ReviewBody = ({ review, photoModal }) => (
   <div>
     <p>
       <b>{review.summary}</b>
     </p>
     <BodyText text={review.body} />
-    <ReviewPhotos photos={review.photos} />
+    <ReviewPhotos photoModal={photoModal} photos={review.photos} />
     {review.recommend
       ? (
         <>

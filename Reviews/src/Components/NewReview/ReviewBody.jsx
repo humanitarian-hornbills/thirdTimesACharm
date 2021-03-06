@@ -24,20 +24,22 @@ class ReviewBody extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Review:
-          <textarea maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
-          {this.state.body.length < 50
-            ? (
-              <p>
-                Minimum required characters left:&nbsp;
-                {50 - this.state.body.length}
-              </p>
-            )
-            : <p>Minimum Reached</p>}
-        </label>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Review:
+            <textarea maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
+            {this.state.body.length < 50
+              ? (
+                <p>
+                  Minimum required characters left:&nbsp;
+                  {50 - this.state.body.length}
+                </p>
+              )
+              : <p>Minimum Reached</p>}
+          </label>
+        </form>
+      </div>
     );
   }
 }

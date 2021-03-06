@@ -3,8 +3,14 @@ font-family: Helvetica, Arial, sans-serif;
 }
 
 #reviewList {
-  height: 600px;
+  height: 650px;
   overflow: auto;
+}
+
+#addReviewModal {
+  height: 700px;
+  overflow: auto;
+  display: block;
 }
 
 div {
@@ -50,12 +56,12 @@ div {
 
 #reviewBox {
   /* Grow to rest of container */
-  width: 50%;
+  width: 60%;
   margin-left: 20px;
   /* Just so it's visible */
 }
 
-/* review modal */
+/* new review modal */
 .modal {
   position: fixed;
   top: 0;
@@ -87,35 +93,6 @@ label {
   float: left;
   padding: 0 1em;
   text-align: center;
-}
-/* image modal  */
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: absolute;
-  /* top:0;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  margin: auto;
-}
-
-.image {
-  width: 400px;
 }
 
 .link {
@@ -314,3 +291,76 @@ position: relative;
   top: -20px;
   font-size: 12px;
 }
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+#sortBox {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+select {
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-bottom: solid black 3px;
+}
+
+option {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#moreReviews, #addReview {
+  height: 50px;
+  width: 200px;
+  border: solid grey 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px;
+  background-color: white;
+}
+
+/* image modal  */
+.pmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #888;
+  /* width: 50%; Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+Img:hover {opacity: 0.7;}

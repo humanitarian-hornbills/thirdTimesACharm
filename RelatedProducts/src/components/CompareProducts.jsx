@@ -1,8 +1,8 @@
 import React from 'react';
 
 const CompareProducts = ({ compareProduct, currentProduct }) => (
-  <div id="compareModal" className="compareModal">
-    <div className="modalContent">
+  <div id="compare-modal" className="compare-modal">
+    <div id="modal-content" className="modal-content">
       <span id="close">&times;</span>
       <div>Compare Products</div>
       <div className="compare">
@@ -17,6 +17,7 @@ const CompareProducts = ({ compareProduct, currentProduct }) => (
           )}
       </div>
     </div>
+
   </div>
 );
 export default CompareProducts;

@@ -44,10 +44,12 @@ class Card extends React.Component {
   }
 
   handleClick(e) {
-    const { id } = this.props;
     e.preventDefault();
+    const { id } = this.props;
     this.props.onClick(id);
   }
+
+
 
   render() {
     const imgSrc = this.state.imgs[0].thumbnail_url || this.state.imgs[0];

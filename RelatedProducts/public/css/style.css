@@ -1,3 +1,6 @@
+body {
+  font-family: sans-serif;
+}
 .scroll-btn-left,
 .scroll-btn-right {
   border: 1px solid black;
@@ -32,7 +35,6 @@
   position: relative;
 }
 
-
 .list::-webkit-scrollbar{
   display:none;
 }
@@ -44,7 +46,6 @@
 }
 
 .bounce-right {
-
   animation: bounce-right 1s ease;
   -webkit-animation: bounce-right 1s ease;
   -moz-animation: bounce-right 1s ease;

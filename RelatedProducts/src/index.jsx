@@ -6,12 +6,13 @@ import RelatedList from './components/RelatedList.jsx';
 import OutfitList from './components/OutfitList.jsx';
 import CompareProducts from './components/CompareProducts.jsx';
 import isInboundary from './utility/isInboundary.js'
+import '../public/css/css.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: 14034,
+      currentProductId: 14807,
       relatedList: [],
       outfitList: [],
       currentImg: '',
@@ -34,13 +35,47 @@ class App extends React.Component {
       });
     axios.get('/products/14034')
       .then((res) => {
-        this.setState({ currentProduct: res.data })
-      })
+        this.setState({ currentProduct: res.data });
+      });
 
     if (localStorage.getItem('outfitList')) {
       const outfitList = localStorage.getItem('outfitList').split(',');
       this.setState({ outfitList });
     }
+  }
+
+  handleCompare(id) {
+    const modal = document.getElementById('compare-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeBtn = document.getElementById('close');
+    axios.get(`./products/${id}`)
+      .then((res) => {
+        this.setState({
+          compareProduct: res.data,
+          currentProduct: this.state.currentProduct,
+        });
+      });
+    modal.style.display = 'block';
+    modalContent.classList.remove('modal-run-out');
+    modal.classList.remove('modal-background-out');
+    modal.classList.add('modal-background-in');
+    modalContent.classList.add('modalContent-in');
+    closeBtn.onclick = () => {
+      modal.classList.remove('modal-background-in');
+      modalContent.classList.remove('modalContent-in');
+      modalContent.classList.add('modal-run-out');
+      modal.classList.add('modal-background-out');
+      setTimeout(() => { modal.style.display = 'none'; }, 1000);
+    };
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('modal-background-in');
+        modalContent.classList.remove('modalContent-in');
+        modalContent.classList.add('modal-run-out');
+        modal.classList.add('modal-background-out');
+        setTimeout(() => { modal.style.display = 'none'; }, 1000);
+      }
+    };
   }
 
   addToList() {
@@ -52,27 +87,6 @@ class App extends React.Component {
     outfitList.push(currentProductId.toString());
     localStorage.setItem('outfitList', outfitList);
     this.setState({ outfitList });
-  }
-
-  handleCompare(id) {
-    const modal = document.getElementById('compareModal');
-    const closeBtn = document.getElementById('close');
-    axios.get(`./products/${id}`)
-      .then((res) => {
-        this.setState({
-          compareProduct: res.data,
-          currentProduct: this.state.currentProduct,
-        });
-      })
-    modal.style.display = "block";
-    closeBtn.onclick = () => {
-      modal.style.display = "none";
-    };
-    window.onclick = (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    };
   }
 
   removeFromList(id) {

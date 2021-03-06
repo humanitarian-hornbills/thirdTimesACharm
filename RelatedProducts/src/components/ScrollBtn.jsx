@@ -29,7 +29,6 @@ const ScrollBtn = ({ direction, list }) => {
   } else if (direction === 'right') {
     scrollBtn = <div className="scroll-btn-right btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&gt;</span></div>;
   }
-
   return (
     <>
       { scrollBtn}

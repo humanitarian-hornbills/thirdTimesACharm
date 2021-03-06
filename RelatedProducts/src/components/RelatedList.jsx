@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card.jsx';
 import ScrollBtn from './ScrollBtn.jsx';
 
-const RelatedList = ({ relatedList, currentProduct, onCompare }) => {
+const RelatedList = ({ onCompare, relatedList, currentProduct }) => {
   const handleCompare = (id) => {
     onCompare(id);
   };

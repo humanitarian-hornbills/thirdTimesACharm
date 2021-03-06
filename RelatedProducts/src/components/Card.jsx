@@ -4,8 +4,6 @@ import Rating from 'react-star-ratings';
 import getRating from '../utility/getRating.js';
 import getSalePrice from '../utility/getSalePrice.js';
 import { FaListUl } from 'react-icons/fa';
-import '../../public/css/css.js';
-
 
 class Card extends React.Component {
   constructor(props) {
@@ -13,6 +11,7 @@ class Card extends React.Component {
     this.state = {
       // name: 'Product name',
       imgs: ['./img/img-test.png'],
+      photos: [],
       rating: 0,
       salePrice: null,
       cardProduct: { name: '', category: '', default_price: '' },
@@ -49,8 +48,6 @@ class Card extends React.Component {
     this.props.onClick(id);
   }
 
-
-
   render() {
     const imgSrc = this.state.imgs[0].thumbnail_url || this.state.imgs[0];
     const { rating, salePrice, cardProduct } = this.state;
@@ -59,7 +56,7 @@ class Card extends React.Component {
         <div className="frame">
           <img src={imgSrc} alt="product image" />
         </div>
-        {this.props.list === 'outfitList' ? <div className="action" onClick={this.handleClick}>&times;</div> : <div className="action" onClick={this.handleClick}><span className="icon"><FaListUl/></span></div>}
+        {this.props.list === 'outfitList' ? <div className="action" onClick={this.handleClick}>&times;</div> : <div className="action" onClick={this.handleClick}><span className="icon"><FaListUl /></span></div>}
         <div className="category">{cardProduct.category}</div>
         <div className="product-name">{cardProduct.name}</div>
         <div className="price">

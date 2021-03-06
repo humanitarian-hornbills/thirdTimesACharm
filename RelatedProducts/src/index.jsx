@@ -25,15 +25,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/products/14034/related')
+    const currentProductId = '14307';
+    axios.get(`/products/${currentProductId}/related`)
       .then((res) => {
         this.setState({ relatedList: res.data });
       });
-    axios.get('/products/14034/styles')
+    axios.get(`/products/${currentProductId}/styles`)
       .then((res) => {
         this.setState({ currentImg: res.data.results[0].photos[0].thumbnail_url });
       });
-    axios.get('/products/14034')
+    axios.get(`/products/${currentProductId}`)
       .then((res) => {
         this.setState({ currentProduct: res.data });
       });
@@ -58,13 +59,17 @@ class App extends React.Component {
     modal.style.display = 'block';
     modalContent.classList.remove('modal-run-out');
     modal.classList.remove('modal-background-out');
+    modalContent.classList.remove('modal-scale-out');
+
     modal.classList.add('modal-background-in');
     modalContent.classList.add('modalContent-in');
+
     closeBtn.onclick = () => {
       modal.classList.remove('modal-background-in');
       modalContent.classList.remove('modalContent-in');
       modalContent.classList.add('modal-run-out');
       modal.classList.add('modal-background-out');
+      // modalContent.classList.add('modal-scale-out');
       setTimeout(() => { modal.style.display = 'none'; }, 1000);
     };
     window.onclick = (e) => {
@@ -72,6 +77,8 @@ class App extends React.Component {
         modal.classList.remove('modal-background-in');
         modalContent.classList.remove('modalContent-in');
         modalContent.classList.add('modal-run-out');
+        // modalContent.classList.add('modal-scale-out');
+
         modal.classList.add('modal-background-out');
         setTimeout(() => { modal.style.display = 'none'; }, 1000);
       }
@@ -84,7 +91,7 @@ class App extends React.Component {
     if (localStorage.getItem('outfitList')) {
       outfitList = localStorage.getItem('outfitList').split(',');
     }
-    outfitList.push(currentProductId.toString());
+    outfitList.unshift(currentProductId.toString());
     localStorage.setItem('outfitList', outfitList);
     this.setState({ outfitList });
   }
@@ -124,4 +131,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-// export default App;

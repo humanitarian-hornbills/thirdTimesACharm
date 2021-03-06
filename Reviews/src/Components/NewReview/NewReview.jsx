@@ -87,7 +87,7 @@ class NewReview extends React.Component {
   }
 
   rModalPhoto(src) {
-    const modal = document.getElementById('myModal');
+    const modal = document.getElementById('pModal');
     const span = document.getElementsByClassName('close')[0];
     this.setState({
       rModalPhoto: src,
@@ -110,7 +110,9 @@ class NewReview extends React.Component {
 
     return (
       <div className={showHideClassName}>
+      {/* <div> */}
         <section id="addReviewModal" className="modal-main">
+        {/* <section id="addReviewModal"> */}
           <h2>Write Your Review</h2>
           <p>
             About the

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const BreakdownItem = ({
   pair, selectStars, addStar, reviewCount,
 }) => {
-  const avg = (Number(pair[1]) / reviewCount) * 100;
+  const avg = (Number(pair[1]) / reviewCount) * 200;
   return (
     <div className="breakdownItem">
       <div className="link" onClick={() => { selectStars(Number(pair[0])); addStar(Number(pair[0])); }} role="presentation">

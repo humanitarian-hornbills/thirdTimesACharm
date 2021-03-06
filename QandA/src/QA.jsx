@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import QuestionsList from './components/QuestionsList.jsx';
 import SearchQuestions from './components/SearchQuestions.jsx';
+
+const Div = styled.div`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  left: 0;
+  right: 0;
+  width: 70%;
+  height: 65%;
+  font-family: sans-serif;
+  padding-left: 20px;
+  `;
 
 const QA = () => {
   const [products, setProducts] = useState([]);
@@ -70,9 +84,9 @@ const QA = () => {
   };
 
   return (
-    <div>
+    <Div>
       {/* {answers[questionsId[0]] && console.log(answers)} */}
-      <h1>Questions & Answers</h1>
+      <strong>Questions & Answers</strong>
       {answers[questionsId[questionsId.length - 1]]
         ? <SearchQuestions searchQA={searchQA} />
         // && (
@@ -94,7 +108,7 @@ const QA = () => {
           />
         )
         : <div>Loading...</div>}
-    </div>
+    </Div>
   );
 };
 

@@ -88,6 +88,7 @@
   margin-right: 5px;
   display: grid;
   grid-template-rows: repeat(5 1fr);
+
 }
 .card:hover{
   border: 1px solid #888;
@@ -104,4 +105,32 @@
 .price>:nth-child(2) {
   margin-left: 5px;
   color:red;
+}
+
+
+.thumbnail-row{
+  margin: 3px 1px;
+  width: 230px;
+  height: 43px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.thumbnail-row::-webkit-scrollbar{
+  display:none;
+}
+
+.hover-thumb {
+  display:inline-block;
+  margin-right: 1px;
+}
+
+.hover-thumb:hover{
+  border-bottom: 2px solid black;
+}
+.hover-thumb img {
+  overflow:hidden;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
 }

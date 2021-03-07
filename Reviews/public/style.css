@@ -3,7 +3,7 @@ font-family: Helvetica, Arial, sans-serif;
 }
 
 #reviewList {
-  height: 650px;
+  height: 580px;
   overflow: auto;
 }
 
@@ -95,7 +95,8 @@ div#ratingBox * {
   /* Grow to rest of container */
   width: 60%;
   margin-left: 20px;
-  margin-top: 80px
+  margin-top: 80px;
+  height: 650px;
   /* Just so it's visible */
 }
 

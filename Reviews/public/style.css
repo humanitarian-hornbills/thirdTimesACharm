@@ -40,6 +40,7 @@ div {
 .factorItem{
   position: relative;
   height: 60px;
+  width: 305px;
   }
 
 .factorItemFactors {
@@ -47,7 +48,7 @@ div {
   position: relative;
   top: -30px;
   font-size: 12px;
-  left: -10px;
+  width: auto;
 }
 
 .smallFactor, .largeFactor, .middleFactor {
@@ -63,6 +64,7 @@ div {
 .largeFactor {
   float: right;
   text-align: right;
+  margin-right: 0;
 }
 .middleFactor {
   text-align:center;
@@ -83,6 +85,10 @@ div {
   width: 25%;
   margin-left: 30px;
   margin-right: 20px;
+}
+
+div#ratingBox * {
+  margin-left: 0;
 }
 
 #reviewBox {
@@ -220,10 +226,13 @@ img {
 .stars-inner {
   position: absolute;
   top: -5px;
-  left: -5px;
   white-space: nowrap;
   overflow: hidden;
   width: 0;
+}
+
+#reviewList .stars-inner {
+  left: -5px;
 }
 
 .stars-inner::before {
@@ -257,24 +266,27 @@ img {
 }
 
 .outerLine, .innerLine {
-  height: 5px
+  height: 5px;
+  margin-left: 5px;
 }
 
 .outerLine {
   background-color: black;
   display: inline-block;
   position: relative;
+  border-radius: 10px
 }
 
 .innerLine {
   background-color: red;
   position: absolute;
   top: -5px;
-  left: -5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #avgRatingNum {
-  font-size: 56px;
+  font-size: 65px;
   font-weight: bold;
 }
 
@@ -283,22 +295,39 @@ img {
 }
 
 #avgRatingStars {
-  position: absolute;
+  position: relative;
+  left: 5px;
+  /* bottom: 2px; */
 }
 
-#ratingSummary {
-
+#avgRecText {
+  font-size: 13px;
 }
 
 #avgRatingBox {
   font-size: 12px;
-  background-color: #2ada71;
+  /* background-color: #2ada71; */
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+#underStarsCount {
+  margin-top: 12px;
+  font-size: 16px;
+
+}
+
+.ratingDivider {
+  height: 1px;
+  width: 300px;
+  background-color: #ebedee;
+  margin-top: 15px;
 }
 
 .factorData {
   display: inline-block;
   position: relative;
-  left: -10px;
+  /* left: -10px; */
 }
 
 .factorLine {

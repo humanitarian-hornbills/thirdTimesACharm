@@ -47,6 +47,7 @@ class RatingBreakdown extends React.Component {
           ratings={this.props.ratings.ratings}
           recommended={this.props.ratings.recommended}
         />
+        <div className="ratingDivider" />
         <h3>RATING BREAKDOWN</h3>
         {this.state.selected.length
           ? (
@@ -65,6 +66,7 @@ class RatingBreakdown extends React.Component {
           selectStars={this.props.selectStars}
           ratings={this.props.ratings.ratings}
         />
+        <div className="ratingDivider" />
         <Factors factors={this.props.ratings.characteristics} />
       </div>
     );

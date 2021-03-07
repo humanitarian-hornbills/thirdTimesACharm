@@ -13,14 +13,14 @@ const ReviewBody = ({ review, photoModal }) => (
     {review.recommend
       ? (
         <>
-          <p>✓ I recommend this product</p>
+          <p className="reviewBody">✓ I recommend this product</p>
         </>
       )
       : <></>}
     {review.response
       ? (
-        <div clasName="response">
-          <p>Response From Seller:</p>
+        <div clasName="response reviewBody">
+          <p><b>Response From Seller:</b></p>
           <p>{review.response}</p>
         </div>
       )

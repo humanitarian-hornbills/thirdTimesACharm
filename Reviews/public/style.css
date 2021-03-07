@@ -36,10 +36,25 @@ div {
   border: none;
 } */
 
+
+.factorItem{
+  position: relative;
+  height: 60px;
+  }
+
+.factorItemFactors {
+  display: flex;
+  position: relative;
+  top: -30px;
+  font-size: 12px;
+  left: -10px;
+}
+
 .smallFactor, .largeFactor, .middleFactor {
   display:inline-block;
-  width:33%;
-  text-align:center;
+  width:auto;
+  margin-top: 0;
+  color: #767677
 }
 .smallFactor {
   float: left;
@@ -49,8 +64,16 @@ div {
   float: right;
   text-align: right;
 }
+.middleFactor {
+  text-align:center;
+  flex-grow: 1;
+}
 
-.factorItemFactors {text-align:justify;}
+.factorName {
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: 14px;
+}
 
 #parent {
   display: flex;
@@ -66,6 +89,7 @@ div {
   /* Grow to rest of container */
   width: 60%;
   margin-left: 20px;
+  margin-top: 80px
   /* Just so it's visible */
 }
 
@@ -222,6 +246,15 @@ img {
 }
 
 /* rating stars lines */
+.starCountNum {
+  font-weight: bolder;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.starCountTot {
+  font-size: 12px;
+}
 
 .outerLine, .innerLine {
   height: 5px
@@ -242,6 +275,7 @@ img {
 
 #avgRatingNum {
   font-size: 56px;
+  font-weight: bold;
 }
 
 #avgRatingNum, #avgRatingStars {
@@ -253,25 +287,28 @@ img {
 }
 
 #ratingSummary {
-  background-color: lawngreen;
+
 }
 
 #avgRatingBox {
   font-size: 12px;
+  background-color: #2ada71;
 }
+
 .factorData {
   display: inline-block;
   position: relative;
-  margin-bottom: 0px;
+  left: -10px;
 }
 
 .factorLine {
   height: 5px;
-  background-color: black;
+  background-color: #ebedee;
   display: flex;
   position: absolute;
   width: 300px;
   justify-content: space-evenly;
+  margin: none;
 }
 
 .breakLine {
@@ -295,15 +332,6 @@ img {
   font-size: 30px;
 }
 
-.factorItem{
-position: relative;
-}
-
-.factorItemFactors {
-  position: relative;
-  top: -20px;
-  font-size: 12px;
-}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -394,11 +422,6 @@ Img:hover {opacity: 0.7;}
   color: gray;
 }
 
-.reviewBody p {
+.reviewBody {
   font-weight: 200;
-  font-size: 30px;
-}
-
-.moreBodyText{
-
 }

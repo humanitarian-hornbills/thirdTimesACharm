@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectedList = ({selected}) => (
+const SelectedList = ({ selected, selectStars, addStar }) => (
   <div>
-    <p>Star Filters Applied</p>
-    {selected.map(star => <p>{star} stars</p>)}
+    <p className="reviewBody">
+      Showing reviews:
+      {' '}
+      {selected.map((star) => (
+        <>
+          <span className="link starCountNum" onClick={() => { selectStars(Number(star)); addStar(Number(star)); }}>
+            {star}
+            {' '}
+            STARS
+          </span>
+          {' '}
+        </>
+      ))}
+    </p>
   </div>
 );
 

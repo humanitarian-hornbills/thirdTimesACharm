@@ -22,9 +22,9 @@ const FactorItem = ({ factor }) => {
         <div className="factorTriangle" style={{ left: avg }} />
       </div>
       <div className="factorItemFactors">
-        <span className="smallFactor">{small}</span>
-        {middle ? <span className="middleFactor">{middle}</span> : <></>}
-        <span className="largeFactor">{large}</span>
+        <div className="smallFactor">{small}</div>
+        {middle ? <div className="middleFactor">{middle}</div> : <div className="middleFactor" />}
+        <div className="largeFactor">{large}</div>
       </div>
     </div>
   );

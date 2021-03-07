@@ -7,7 +7,9 @@ const BodyText = ({ text }) => {
   const first250 = text.slice(0, 250);
   if (text.length < 250) {
     return (
-      <p>{first250}</p>
+      <div className="reviewBody">
+        <p>{first250}</p>
+      </div>
     );
   }
   return (
@@ -15,7 +17,7 @@ const BodyText = ({ text }) => {
       {!expand
         ? (
           <>
-            <p>
+            <p className="reviewBody">
               {first250}
               {' '}
               ...
@@ -25,7 +27,7 @@ const BodyText = ({ text }) => {
         )
         : (
           <>
-            <p>{text}</p>
+            <p className="reviewBody">{text}</p>
           </>
         )}
     </div>

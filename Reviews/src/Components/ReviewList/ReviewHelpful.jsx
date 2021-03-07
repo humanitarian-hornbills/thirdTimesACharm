@@ -15,16 +15,18 @@ const ReviewHelpful = ({ review, markAsHelpful, reportReview }) => {
             <>
               <span className="link" onClick={() => { markAsHelpful(review.review_id); setHClicked(true); }}>Yes</span>
           &nbsp;
-              [
+              (
               {total}
-              ]
+              )
             </>
           )
           : (
             <>
               <span className="link">Yes</span>
           &nbsp;
+              (
               {nextTotal}
+              )
             </>
           )}
         &nbsp;&nbsp;|

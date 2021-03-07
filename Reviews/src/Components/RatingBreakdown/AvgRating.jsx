@@ -15,10 +15,12 @@ const AvgRating = ({ ratings }) => {
 
   return (
     <div id="avgRatingBox">
-      <div id="avgRatingNum">{avgRating}</div>
-      <div id="avgRatingStars">
-        <div className="stars-outer">
-          <div className="stars-inner" style={{ width: starNum }} />
+      <div id="avgRatingNS">
+        <div id="avgRatingNum">{avgRating}</div>
+        <div id="avgRatingStars">
+          <div className="stars-outer">
+            <div className="stars-inner" style={{ width: starNum }} />
+          </div>
         </div>
       </div>
     </div>

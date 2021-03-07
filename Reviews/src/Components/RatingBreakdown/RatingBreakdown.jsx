@@ -47,15 +47,19 @@ class RatingBreakdown extends React.Component {
           ratings={this.props.ratings.ratings}
           recommended={this.props.ratings.recommended}
         />
+        <h3>RATING BREAKDOWN</h3>
         {this.state.selected.length
           ? (
             <>
-              <SelectedList selected={this.state.selected} />
-              <p className="link" onClick={() => { this.clearFilters(); }}>Clear all filters</p>
+              <SelectedList
+                addStar={this.addStar}
+                selectStars={this.props.selectStars}
+                selected={this.state.selected}
+              />
+              <p className="link reviewBody" onClick={() => { this.clearFilters(); }}>Clear all filters</p>
             </>
           )
           : <></>}
-        <h3>RATING BREAKDOWN</h3>
         <Breakdown
           addStar={this.addStar}
           selectStars={this.props.selectStars}

@@ -30,7 +30,7 @@ class NewReview extends React.Component {
 
     this.updateState = this.updateState.bind(this);
     this.updateCharacteristics = this.updateCharacteristics.bind(this);
-    this.showModal = this.showModal.bind(this);
+    this.showAddPhotoModal = this.showAddPhotoModal.bind(this);
     this.submitReview = this.submitReview.bind(this);
     this.rModalPhoto = this.rModalPhoto.bind(this);
     this.clearState = this.clearState.bind(this);
@@ -52,7 +52,7 @@ class NewReview extends React.Component {
     });
   }
 
-  showModal() {
+  showAddPhotoModal() {
     this.setState({
       addPhotos: !this.state.addPhotos,
     });
@@ -183,14 +183,14 @@ class NewReview extends React.Component {
               ? (
                 <button
                   type="button"
-                  onClick={() => { this.showModal(); }}
+                  onClick={() => { this.showAddPhotoModal(); }}
                 >
                   Add Photo
                 </button>
               )
               : null}
             <AddPhoto
-              hide={this.showModal}
+              hide={this.showAddPhotoModal}
               updateState={this.updateState}
               show={this.state.addPhotos}
             />

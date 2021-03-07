@@ -1,41 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Rating extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: null,
-    };
-    this.onChangeValue = this.onChangeValue.bind(this);
-  }
-
-  onChangeValue(event) {
-    const ratingObj = { rating: Number(event.target.value) };
-    this.props.updateState(ratingObj);
-  }
-
-  render() {
-    return (
+const Rating = ({ updateState }) => {
+  const allStars = [];
+  for (let i = 5; i > 0; i -= 1) {
+    allStars.push(
       <>
-        Overall Rating
-        <form onChange={this.onChangeValue}>
-          <div className="rating noborder">
-            <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
-            <label htmlFor="star5">☆</label>
-            <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
-            <label htmlFor="star4">☆</label>
-            <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
-            <label htmlFor="star3">☆</label>
-            <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
-            <label htmlFor="star2">☆</label>
-            <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
-            <label htmlFor="star1">☆</label>
-          </div>
-        </form>
-      </>
+        <input id={`star${i}`} name="star" type="radio" value={i} className="radio-btn hide" />
+        <label htmlFor={`star${i}`}>☆</label>
+      </>,
     );
   }
-}
+  return (
+    <>
+      Overall Rating
+      <form onChange={(e) => { updateState({ rating: Number(e.target.value) }); }}>
+        <div className="rating noborder">
+          {allStars}
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default Rating;

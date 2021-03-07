@@ -40,9 +40,9 @@ class RatingBreakdown extends React.Component {
   render() {
     return (
       <div>
-        <p>
-          Ratings &amp; Reviews
-        </p>
+        <h1>
+          RATINGS &amp; REVIEWS
+        </h1>
         <RatingSummary
           ratings={this.props.ratings.ratings}
           recommended={this.props.ratings.recommended}
@@ -55,7 +55,7 @@ class RatingBreakdown extends React.Component {
             </>
           )
           : <></>}
-        <p>Rating Breakdown</p>
+        <h3>RATING BREAKDOWN</h3>
         <Breakdown
           addStar={this.addStar}
           selectStars={this.props.selectStars}

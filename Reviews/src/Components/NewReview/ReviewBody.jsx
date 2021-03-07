@@ -20,8 +20,8 @@ class ReviewBody extends React.Component {
     return (
       <div>
         <p>Review:</p>
-        <textarea required maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
-        {this.state.body.length < 50
+        <textarea maxLength="1000" value={this.state.body} onChange={this.handleChange} />
+        {this.state.body.length + 1 < 50
           ? (
             <>
               <br />
@@ -42,5 +42,42 @@ class ReviewBody extends React.Component {
 }
 
 export default ReviewBody;
+// class ReviewBody extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       body: 'Why did you like the product or not?',
+//     };
 
-// onfocus="if(this.value == 'Why did you like the product or not?') { this.value = ''; }"
+//     this.handleChange = this.handleChange.bind(this);
+//   }
+
+//   handleChange(event) {
+//     this.setState({ body: event.target.value });
+//     this.props.updateState({ body: event.target.value });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <p>Review:</p>
+//         <textarea maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
+//         {this.state.body.length < 50
+//           ? (
+//             <>
+//               <br />
+//               Minimum required characters left:&nbsp;
+//               {50 - this.state.body.length}
+//             </>
+
+//           )
+//           : (
+//             <>
+//               <br />
+//               Minimum Reached
+//             </>
+//           )}
+//       </div>
+//     );
+//   }
+// }

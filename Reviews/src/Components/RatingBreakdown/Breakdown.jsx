@@ -26,6 +26,7 @@ const Breakdown = ({ ratings, selectStars, addStar }) => {
 };
 
 export default Breakdown;
+
 //   "ratings": {
 //       "1": "5",
 //       "2": "8",

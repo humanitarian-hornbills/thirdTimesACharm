@@ -7,7 +7,7 @@ const ReviewHelpful = ({ review, markAsHelpful, reportReview }) => {
   const total = review.helpfulness;
   const nextTotal = total + 1;
   return (
-    <div>
+    <div className="reviewHelpful">
       <p>
         Helpful? &nbsp;
         {!hClicked
@@ -15,7 +15,9 @@ const ReviewHelpful = ({ review, markAsHelpful, reportReview }) => {
             <>
               <span className="link" onClick={() => { markAsHelpful(review.review_id); setHClicked(true); }}>Yes</span>
           &nbsp;
+              [
               {total}
+              ]
             </>
           )
           : (

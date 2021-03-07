@@ -11,7 +11,7 @@ const BodyText = ({ text }) => {
     );
   }
   return (
-    <>
+    <div className="reviewBody">
       {!expand
         ? (
           <>
@@ -20,7 +20,7 @@ const BodyText = ({ text }) => {
               {' '}
               ...
             </p>
-            <p className="link" onClick={() => { setExpand(true); }}>Show More</p>
+            <p className="link moreBodyText" onClick={() => { setExpand(true); }}>Show More</p>
           </>
         )
         : (
@@ -28,7 +28,7 @@ const BodyText = ({ text }) => {
             <p>{text}</p>
           </>
         )}
-    </>
+    </div>
 
   );
 };

@@ -6,7 +6,7 @@ import BodyText from './BodyText.jsx';
 const ReviewBody = ({ review, photoModal }) => (
   <div>
     <p>
-      <b>{review.summary}</b>
+      <b>{review.summary.toUpperCase()}</b>
     </p>
     <BodyText text={review.body} />
     <ReviewPhotos photoModal={photoModal} photos={review.photos} />

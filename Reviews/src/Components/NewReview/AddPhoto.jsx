@@ -14,7 +14,7 @@ class AddPhoto extends React.Component {
 
   handleChange(event) {
     const photoArr = this.state.photos;
-    photoArr[event.target.name] = event.target.value;
+    photoArr.push(event.target.value);
     this.setState({ photos: photoArr });
   }
 
@@ -26,65 +26,24 @@ class AddPhoto extends React.Component {
   render() {
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
     const photoInputs = [];
-    for (var i = 1; i < 6; i += 1) {
+    for (let i = 1; i < 6; i += 1) {
       photoInputs.push(
         <label htmlFor={`p${i}`}>
-          Photo {i}:
+          Photo
+          {' '}
+          {i}
+          :
           <input id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
-        </label>)
+        </label>,
+      );
     }
     return (
       <div className={showHideClassName}>
-        <section className="modal-main">
+        <section className="modal-addPhotos" width="400">
           <span onClick={() => { this.props.hide(); }} className="pclose">&times;</span>
           Please enter URLs to your photos below
           <form>
-            {/* {photoInputs} */}
-            <label htmlFor="p1">
-              Photo 1:
-              <input
-                id="p1"
-                name="0"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <label htmlFor="p2">
-              Photo 2:
-              <input
-                id="p2"
-                name="1"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <label htmlFor="p3">
-              Photo 3:
-              <input
-                id="p3"
-                name="2"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <label htmlFor="p4">
-              Photo 4:
-              <input
-                id="p4"
-                name="3"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <label htmlFor="p5">
-              Photo 5:
-              <input
-                id="p5"
-                name="4"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
+            {photoInputs}
           </form>
           <button type="button" onClick={this.sendPhotos}>Submit</button>
         </section>

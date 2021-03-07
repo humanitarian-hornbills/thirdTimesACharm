@@ -14,10 +14,6 @@ const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview }) => 
 
 );
 
-ReviewListItem.propTypes = {
-  review: PropTypes.object,
-};
-
 export default ReviewListItem;
 
 // "review_id": 147678,

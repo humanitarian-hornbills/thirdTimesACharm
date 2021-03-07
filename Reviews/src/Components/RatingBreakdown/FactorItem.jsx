@@ -6,11 +6,12 @@ const FactorItem = ({ factor }) => {
   const { value } = factor[name];
   const small = factor[name].edges[0];
   const large = factor[name].edges[1];
+  const middle = factor[name].edges[2];
   const avg = ((value / 5) * 300) - 8.58;
 
   return (
     <div className="factorItem">
-      <p>{name}</p>
+      <p className="factorName">{name}</p>
       <div className="factorData">
         <div className="factorLine">
           <div className="breakLine" />
@@ -21,9 +22,9 @@ const FactorItem = ({ factor }) => {
         <div className="factorTriangle" style={{ left: avg }} />
       </div>
       <div className="factorItemFactors">
-        <div className="smallFactor">{small}</div>
-      &nbsp;
-        <div className="largeFactor">{large}</div>
+        <span className="smallFactor">{small}</span>
+        {middle ? <span className="middleFactor">{middle}</span> : <></>}
+        <span className="largeFactor">{large}</span>
       </div>
     </div>
   );

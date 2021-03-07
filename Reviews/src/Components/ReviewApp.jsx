@@ -5,7 +5,6 @@ import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
-import NewReviewModal from './NewReviewModal.jsx'
 
 class ReviewApp extends React.Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class ReviewApp extends React.Component {
     this.markAsHelpful = this.markAsHelpful.bind(this);
     this.reportReview = this.reportReview.bind(this);
     this.selectStars = this.selectStars.bind(this);
-    this.filterRevs = this.filterRevs.bind(this);
     this.clearStars = this.clearStars.bind(this);
     this.photoModal = this.photoModal.bind(this);
   }
@@ -128,12 +126,12 @@ class ReviewApp extends React.Component {
       modalPhoto: src,
     });
     modal.style.display = 'block';
-    const newSpan = []
+    const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
         modal.style.display = 'none';
       };
-      newSpan.push(span[key])
+      newSpan.push(span[key]);
     });
     window.onclick = function (event) {
       if (event.target === modal) {

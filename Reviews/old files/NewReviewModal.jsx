@@ -18,11 +18,3 @@ const NewReviewModal = (props) => (
 );
 
 export default NewReviewModal;
-
-
-// name={this.state.productName}
-//               factors={factors}
-//               close={this.showModal}
-//               show={this.state.newReview}
-//               sendNewReview={this.sendNewReview}
-//               photoModal={this.photoModal}

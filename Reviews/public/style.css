@@ -3,8 +3,14 @@ font-family: Helvetica, Arial, sans-serif;
 }
 
 #reviewList {
-  height: 600px;
+  height: 580px;
   overflow: auto;
+}
+
+#addReviewModal {
+  height: 700px;
+  overflow: auto;
+  display: inline-block;
 }
 
 div {
@@ -30,12 +36,45 @@ div {
   border: none;
 } */
 
-.smallFactor {
-  float:left
+
+.factorItem{
+  position: relative;
+  height: 60px;
+  width: 305px;
+  }
+
+.factorItemFactors {
+  display: flex;
+  position: relative;
+  top: -30px;
+  font-size: 12px;
+  width: auto;
 }
 
+.smallFactor, .largeFactor, .middleFactor {
+  display:inline-block;
+  width:auto;
+  margin-top: 0;
+  color: #767677
+}
+.smallFactor {
+  float: left;
+  text-align: left;
+}
 .largeFactor {
-  float:right
+  float: right;
+  text-align: right;
+  margin-right: 0;
+}
+.middleFactor {
+  text-align:center;
+  flex-grow: 1;
+}
+
+.factorName {
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: 14px;
 }
 
 #parent {
@@ -48,14 +87,20 @@ div {
   margin-right: 20px;
 }
 
+div#ratingBox * {
+  margin-left: 0;
+}
+
 #reviewBox {
   /* Grow to rest of container */
-  width: 50%;
+  width: 60%;
   margin-left: 20px;
+  margin-top: 80px;
+  height: 650px;
   /* Just so it's visible */
 }
 
-/* review modal */
+/* new review modal */
 .modal {
   position: fixed;
   top: 0;
@@ -65,14 +110,19 @@ div {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal-main {
+.modal-main, .modal-addPhotos {
   position:fixed;
   background: white;
-  width: 80%;
+  width: 800px;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 5px;
+}
+
+.modal-addPhotos {
+  width: 400px;
 }
 
 .display-block {
@@ -87,35 +137,6 @@ label {
   float: left;
   padding: 0 1em;
   text-align: center;
-}
-/* image modal  */
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: absolute;
-  /* top:0;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  margin: auto;
-}
-
-.image {
-  width: 400px;
 }
 
 .link {
@@ -206,10 +227,13 @@ img {
 .stars-inner {
   position: absolute;
   top: -5px;
-  left: -5px;
   white-space: nowrap;
   overflow: hidden;
   width: 0;
+}
+
+#reviewList .stars-inner {
+  left: -5px;
 }
 
 .stars-inner::before {
@@ -232,26 +256,39 @@ img {
 }
 
 /* rating stars lines */
+.starCountNum {
+  font-weight: bolder;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.starCountTot {
+  font-size: 12px;
+}
 
 .outerLine, .innerLine {
-  height: 5px
+  height: 5px;
+  margin-left: 5px;
 }
 
 .outerLine {
   background-color: black;
   display: inline-block;
   position: relative;
+  border-radius: 10px
 }
 
 .innerLine {
   background-color: red;
   position: absolute;
   top: -5px;
-  left: -5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #avgRatingNum {
-  font-size: 56px;
+  font-size: 65px;
+  font-weight: bold;
 }
 
 #avgRatingNum, #avgRatingStars {
@@ -259,29 +296,49 @@ img {
 }
 
 #avgRatingStars {
-  position: absolute;
+  position: relative;
+  left: 5px;
+  /* bottom: 2px; */
 }
 
-#ratingSummary {
-  background-color: lawngreen;
+#avgRecText {
+  font-size: 13px;
 }
 
 #avgRatingBox {
   font-size: 12px;
+  /* background-color: #2ada71; */
+  height: 80px;
+  margin-bottom: 10px;
 }
+
+#underStarsCount {
+  margin-top: 12px;
+  font-size: 16px;
+
+}
+
+.ratingDivider {
+  height: 1px;
+  width: 300px;
+  background-color: #ebedee;
+  margin-top: 15px;
+}
+
 .factorData {
   display: inline-block;
   position: relative;
-  margin-bottom: 0px;
+  /* left: -10px; */
 }
 
 .factorLine {
   height: 5px;
-  background-color: black;
+  background-color: #ebedee;
   display: flex;
   position: absolute;
   width: 300px;
   justify-content: space-evenly;
+  margin: none;
 }
 
 .breakLine {
@@ -294,7 +351,7 @@ img {
 
 .factorTriangle {
   position: relative;
-  top: -6px;
+  top: -11px;
 
 }
 
@@ -305,12 +362,96 @@ img {
   font-size: 30px;
 }
 
-.factorItem{
-position: relative;
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-.factorItemFactors {
-  position: relative;
-  top: -20px;
+#sortBox {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+select {
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-bottom: solid black 3px;
+}
+
+option {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#moreReviews, #addReview {
+  height: 50px;
+  width: 200px;
+  border: solid grey 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px;
+  background-color: white;
+}
+
+/* image modal  */
+.pmodal, .rmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #888;
+  /* width: 50%; Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.pclose, .rclose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.pclose:hover,
+.pclose:focus,
+.rclose:hover,
+.rclose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+Img:hover {opacity: 0.7;}
+
+.text-danger {
   font-size: 12px;
+  color: red;
+}
+
+.reviewHelpful {
+  font-size: 13px;
+}
+
+.nameDate {
+  font-size: 14px;
+  color: gray;
+}
+
+.reviewBody {
+  font-weight: 200;
 }

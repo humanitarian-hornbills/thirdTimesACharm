@@ -9,13 +9,12 @@ class AddPhoto extends React.Component {
       photos: [],
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.sendPhotos = this.sendPhotos.bind(this);
   }
 
   handleChange(event) {
-    const photoArr = this.state.photos
-    photoArr[event.target.name] = event.target.value;
+    const photoArr = this.state.photos;
+    photoArr.push(event.target.value);
     this.setState({ photos: photoArr });
   }
 
@@ -26,57 +25,25 @@ class AddPhoto extends React.Component {
 
   render() {
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
+    const photoInputs = [];
+    for (let i = 1; i < 6; i += 1) {
+      photoInputs.push(
+        <label htmlFor={`p${i}`}>
+          Photo
+          {' '}
+          {i}
+          :
+          <input id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
+        </label>,
+      );
+    }
     return (
       <div className={showHideClassName}>
-        <section className="modal-main">
+        <section className="modal-addPhotos" width="400">
+          <span onClick={() => { this.props.hide(); }} className="pclose">&times;</span>
           Please enter URLs to your photos below
           <form>
-            <label>
-              Photo 1:
-              <input
-                name="0"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Photo 2:
-              <input
-                name="1"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Photo 3:
-              <input
-                name="2"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Photo 4:
-              <input
-                name="3"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Photo 5:
-              <input
-                name="4"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </label>
-            <br />
-            {/* <input type="submit" value="Submit" /> */}
+            {photoInputs}
           </form>
           <button type="button" onClick={this.sendPhotos}>Submit</button>
         </section>

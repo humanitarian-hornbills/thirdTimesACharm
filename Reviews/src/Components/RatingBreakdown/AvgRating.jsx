@@ -20,6 +20,7 @@ const AvgRating = ({ ratings }) => {
         <div className="stars-outer">
           <div className="stars-inner" style={{ width: starNum }} />
         </div>
+        <p id="underStarsCount"><b>{reviewCount}</b> reviews</p>
       </div>
     </div>
   );

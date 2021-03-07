@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewListItem from './ReviewListItem.jsx';
 
-const ReviewList = ({ reviews, reviewCount, markAsHelpful, reportReview }) => {
+const ReviewList = ({ reviews, reviewCount, markAsHelpful, reportReview, photoModal}) => {
   const allReviews = reviews;
   const useTheseReviews = allReviews.slice(0, reviewCount);
   return (
@@ -13,6 +13,7 @@ const ReviewList = ({ reviews, reviewCount, markAsHelpful, reportReview }) => {
           review={review}
           key={index}
           reportReview={reportReview}
+          photoModal={photoModal}
         />
       ))}
     </div>

@@ -4,12 +4,12 @@ import FactorItem from './FactorItem.jsx';
 
 const Factors = ({ factors }) => {
   const factorOptions = {
-    Fit: ['Runs tight', 'Runs long'],
-    Size: ['A size too small', 'A size too wide'],
+    Fit: ['Runs tight', 'Runs long', 'Perfect'],
+    Size: ['A size too small', 'A size too wide', 'Perfect'],
     Comfort: ['Unfomfortable', 'Perfect'],
     Quality: ['Poor', 'Perfect'],
-    Length: ['Runs Short', 'Runs Long'],
-    Width: ['Too narrow', 'Too wide'],
+    Length: ['Runs Short', 'Runs Long', 'Perfect'],
+    Width: ['Too narrow', 'Too wide', 'Perfect'],
   };
   const factorsToUse = [];
 

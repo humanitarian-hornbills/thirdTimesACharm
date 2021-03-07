@@ -26,13 +26,13 @@ class Nickname extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Nickname:
-            <input maxLength="60" type="text" value={this.state.name} onChange={this.handleChange} />
-            Limit 60 characters
-          </label>
-        </form>
+        {/* <form onSubmit={this.handleSubmit}> */}
+        <p>Nickname:</p>
+        <input maxLength="60" type="text" value={this.state.name} required onChange={this.handleChange} />
+        <br />
+        <p>Limit 60 characters</p>
+        {/*
+        </form> */}
       </div>
     );
   }

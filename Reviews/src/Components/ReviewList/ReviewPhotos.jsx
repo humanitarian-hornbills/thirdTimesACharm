@@ -11,23 +11,4 @@ const ReviewPhotos = ({ photos, photoModal }) => {
   );
 };
 
-  // <img
-  //   className="small"
-  //   src={photo.url}
-  //   onClick={this.handleShowDialog}
-  //   onKeyPress={this.handleShowDialog}
-  //   alt="small"
-  //   width="50px"
-  //   role="presentation"
-  // />;
-
 export default ReviewPhotos;
-
-// const ReviewPhotos = ({ photos }) => {
-//   const allPhotos = photos.map((photo) => <ImageComponent src={photo.url} />);
-//   return (
-//     <>
-//       {allPhotos}
-//     </>
-//   );
-// };

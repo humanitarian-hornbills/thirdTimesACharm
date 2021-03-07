@@ -9,7 +9,6 @@ class ReviewSummary extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -17,21 +16,13 @@ class ReviewSummary extends React.Component {
     this.props.updateState({ summary: event.target.value });
   }
 
-  handleSubmit(event) {
-    this.props.updateState(this.state);
-    event.preventDefault();
-  }
-
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Review Summary:
-            <textarea maxLength="60" value={this.state.summary} onChange={this.handleChange} />
-            Limit 60 characters
-          </label>
-        </form>
+        <p>Review Summary:</p>
+        <textarea maxLength="60" value={this.state.summary} onChange={this.handleChange} />
+        <br />
+        Limit 60 characters
       </div>
     );
   }

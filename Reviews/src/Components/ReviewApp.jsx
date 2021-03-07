@@ -34,7 +34,6 @@ class ReviewApp extends React.Component {
     this.filterRevs = this.filterRevs.bind(this);
     this.clearStars = this.clearStars.bind(this);
     this.photoModal = this.photoModal.bind(this);
-    this.reviewModal = this.reviewModal.bind(this);
   }
 
   componentDidMount() {
@@ -124,28 +123,18 @@ class ReviewApp extends React.Component {
 
   photoModal(src) {
     const modal = document.getElementById('pModal');
-    const span = document.getElementsByClassName('close')[0];
+    const span = document.getElementsByClassName('pclose');
     this.setState({
       modalPhoto: src,
     });
     modal.style.display = 'block';
-    span.onclick = function () {
-      modal.style.display = 'none';
-    };
-    window.onclick = function (event) {
-      if (event.target === modal) {
+    const newSpan = []
+    Object.keys(span).forEach((key) => {
+      span[key].onclick = () => {
         modal.style.display = 'none';
-      }
-    };
-  }
-
-  reviewModal() {
-    const modal = document.getElementById('rModal');
-    const span = document.getElementsByClassName('rclose')[0];
-    modal.style.display = 'block';
-    span.onclick = function () {
-      modal.style.display = 'none';
-    };
+      };
+      newSpan.push(span[key])
+    });
     window.onclick = function (event) {
       if (event.target === modal) {
         modal.style.display = 'none';
@@ -260,14 +249,6 @@ class ReviewApp extends React.Component {
               photoModal={this.photoModal}
             />
             <PhotoModal src={this.state.modalPhoto} />
-            {/* <NewReviewModal
-              name={this.state.productName}
-              factors={factors}
-              close={this.showModal}
-              show={this.state.newReview}
-              sendNewReview={this.sendNewReview}
-              photoModal={this.photoModal}
-            /> */}
           </div>
         </div>
       );

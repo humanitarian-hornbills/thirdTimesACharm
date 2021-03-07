@@ -7,11 +7,11 @@ const FactorItem = ({ factor }) => {
   const small = factor[name].edges[0];
   const large = factor[name].edges[1];
   const avg = ((value / 5) * 300) - 8.58;
-  console.log(value)
+
   return (
     <div className="factorItem">
       <p>{name}</p>
-      <div clasName="factorData">
+      <div className="factorData">
         <div className="factorLine">
           <div className="breakLine" />
           <div className="breakLine" />

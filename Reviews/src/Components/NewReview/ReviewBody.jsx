@@ -9,7 +9,6 @@ class ReviewBody extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -17,28 +16,26 @@ class ReviewBody extends React.Component {
     this.props.updateState({ body: event.target.value });
   }
 
-  handleSubmit(event) {
-    this.props.updateState(this.state);
-    event.preventDefault();
-  }
-
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Review:
-            <textarea maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
-            {this.state.body.length < 50
-              ? (
-                <p>
-                  Minimum required characters left:&nbsp;
-                  {50 - this.state.body.length}
-                </p>
-              )
-              : <p>Minimum Reached</p>}
-          </label>
-        </form>
+        <p>Review:</p>
+        <textarea required maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
+        {this.state.body.length < 50
+          ? (
+            <>
+              <br />
+              Minimum required characters left:&nbsp;
+              {50 - this.state.body.length}
+            </>
+
+          )
+          : (
+            <>
+              <br />
+              Minimum Reached
+            </>
+          )}
       </div>
     );
   }

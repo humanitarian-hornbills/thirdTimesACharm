@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Rating from 'react-star-ratings';
+import { FaListUl } from 'react-icons/fa';
 import getRating from '../utility/getRating.js';
 import getSalePrice from '../utility/getSalePrice.js';
-import { FaListUl } from 'react-icons/fa';
 import HoverThumbnails from './HoverThumbnails.jsx';
 
 class Card extends React.Component {
@@ -40,8 +40,8 @@ class Card extends React.Component {
           coverImg: images,
         });
         axios.get(`/products/${id}`)
-          .then((res) => {
-            this.setState({ cardProduct: res.data });
+          .then((response) => {
+            this.setState({ cardProduct: response.data });
           });
         getRating(id, (average) => {
           this.setState({ rating: average || 0 });
@@ -64,18 +64,19 @@ class Card extends React.Component {
   }
 
   changeImg(img) {
-    this.setState({ coverImg: [img] })
+    this.setState({ coverImg: [img] });
   }
 
   render() {
-    const imgSrc = this.state.coverImg[0].thumbnail_url || this.state.coverImg[0];
     const {
       imgs,
       rating,
+      coverImg,
       salePrice,
       cardProduct,
       thumbnailVisible,
     } = this.state;
+    const imgSrc = coverImg[0].thumbnail_url || coverImg[0];
     return (
       <div
         className="card"
@@ -85,13 +86,36 @@ class Card extends React.Component {
         <div className="frame">
           <img src={imgSrc} alt="product" />
         </div>
-        {this.props.list === 'outfitList' ? <div className="action" onClick={this.handleClick}>&times;</div> : <div className="action" onClick={this.handleClick}><span className="icon"><FaListUl /></span></div>}
-        <HoverThumbnails images={imgs} isVisible={thumbnailVisible} changeImg={this.changeImg} />
+        {this.props.list === 'outfitList'
+          ? <div className="action" onClick={this.handleClick} onKeyDown={this.handleClick} role="button" tabIndex={0} aria-label="close">&times;</div>
+          : <div className="action compare" onClick={this.handleClick} onKeyDown={this.handleClick} role="button" tabIndex={0} aria-label="compare"><span className="icon"><FaListUl /></span></div>}
+        <HoverThumbnails
+          images={imgs}
+          isVisible={thumbnailVisible}
+          changeImg={this.changeImg}
+        />
         <div className="category">{cardProduct.category}</div>
         <div className="product-name">{cardProduct.name}</div>
         <div className="price">
-          {salePrice ? <span className="sale">${cardProduct.default_price}</span> : <span>${cardProduct.default_price}</span>}
-          {salePrice && <span>${salePrice}</span>}
+          {salePrice
+            ? (
+              <span className="sale">
+                $
+                {cardProduct.default_price}
+              </span>
+            )
+            : (
+              <span>
+                $
+                {cardProduct.default_price}
+              </span>
+            )}
+          {salePrice && (
+          <span>
+            $
+            {salePrice}
+          </span>
+          )}
         </div>
         <div className="rating">
           <Rating

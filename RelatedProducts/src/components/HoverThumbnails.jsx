@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const HoverThumbnails = ({ images, isVisible, changeImg }) => {
   if (isVisible === false) {
@@ -13,8 +13,8 @@ const HoverThumbnails = ({ images, isVisible, changeImg }) => {
     changeImg(img);
   };
 
-  const thumbNails = images.map((img) => (
-    <div className="hover-thumb" onMouseEnter={() => { handleOnMouseEnter(img); }}><img src={img.thumbnail_url} alt="thumb" /></div>
+  const thumbNails = images.map((img, index) => (
+    <div className="hover-thumb" onMouseEnter={() => { handleOnMouseEnter(img); }} key={img.thumbnail_url}><img src={img.thumbnail_url} alt="thumb" /></div>
   ));
   return (
     <div className="thumbnail-row" onMouseLeave={() => { handleOnMouseLeave(images[0]); }}>

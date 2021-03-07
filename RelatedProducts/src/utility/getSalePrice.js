@@ -1,7 +1,5 @@
 const getSalePrice = (styleArr) => {
-
   const originalPrice = Number(styleArr[0].original_price);
-  console.log(originalPrice)
   let min = originalPrice;
   styleArr.forEach((obj) => {
     if (obj.sale_price !== null && Number(obj.sale_price) < min) {

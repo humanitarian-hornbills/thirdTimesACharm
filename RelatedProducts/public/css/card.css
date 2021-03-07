@@ -47,7 +47,9 @@
   margin: 5px -8px;
   position: absolute;
   font-size: 1rem;
-
+}
+.compare{
+  border-radius: 2px;
 }
 .action:hover,
 .action:focus{
@@ -94,6 +96,12 @@
   border: 1px solid #888;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+}
+.category,
+.product-name,
+.price,
+.rating{
+  margin-left: 5px;
 }
 
 .category {

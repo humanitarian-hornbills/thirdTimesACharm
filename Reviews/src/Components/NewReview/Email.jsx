@@ -6,7 +6,9 @@ const Email = ({ updateState }) => (
     <p>Email:</p>
     <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); }} />
     <br />
-    Limit 60 characters
+    <div className="rUnderText">
+      Limit 60 characters
+    </div>
   </div>
 );
 

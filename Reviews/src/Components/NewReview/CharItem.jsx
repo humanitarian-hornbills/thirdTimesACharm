@@ -26,9 +26,7 @@ class CharItem extends React.Component {
             </div>
           ))}
         </section>
-        {/* <br />
-        <br />
-        <br /> */}
+
         <div className="factorItemFactors">
           <div className="smallFactor">{options[1]}</div>
           {options[3] === 'Perfect' ? <div className="middleFactor">{options[3]}</div> : <div className="middleFactor" />}

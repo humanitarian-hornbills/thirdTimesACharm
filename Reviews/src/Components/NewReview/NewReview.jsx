@@ -176,10 +176,13 @@ class NewReview extends React.Component {
           />
           <div className="text-danger">{this.state.errors.characteristics}</div>
           <div className="reviewDivider" />
-          <ReviewSummary updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.summary}</div>
-          <ReviewBody updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.body}</div>
+          <h3 class="rSectionTitle">YOUR REVIEW</h3>
+          <div id="newReviewText">
+            <ReviewSummary updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.summary}</div>
+            <ReviewBody updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.body}</div>
+          </div>
           <div>
             {allPhotos.length < 5
               ? (
@@ -206,11 +209,14 @@ class NewReview extends React.Component {
               : null}
           </div>
           <div className="reviewDivider" />
-          <Nickname updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.name}</div>
-          <Email updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.email}</div>
-          <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+          <h3 class="rSectionTitle">PERSONAL INFO</h3>
+          <div id="rPerInfo">
+            <Nickname updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.name}</div>
+            <Email updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.email}</div>
+          </div>
+            <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
           </div>
         </section>
       </div>

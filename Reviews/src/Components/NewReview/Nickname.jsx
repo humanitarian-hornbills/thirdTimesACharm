@@ -11,8 +11,9 @@ const Nickname = ({ updateState }) => (
         updateState({ name: e.target.value });
       }}
     />
-    <br />
-    <p>Limit 60 characters</p>
+    <div className="rUnderText">
+      Limit 60 characters
+    </div>
   </div>
 );
 

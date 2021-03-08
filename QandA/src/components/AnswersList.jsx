@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 
 const AnswersList = ({ answersQ, search, foundInQ }) => {
-  // const [filteredAns, setFilteredAns] = useState(answersQ);
   const [moreAns, setMoreAns] = useState(2);
   const [sortedAns, setSortedAns] = useState(answersQ);
-  // const [filtered, setFiltered] = useState(answersQ.length);
 
   const filterAns = answersQ.filter((answer) => {
     if (search.length < 3 || foundInQ) {
@@ -16,16 +14,17 @@ const AnswersList = ({ answersQ, search, foundInQ }) => {
     return false;
   });
 
-  const sorted = [];
-  for (let i = filterAns.length - 1; i >= 0; i -= 1) {
+  const seller = [];
+
+  for (let i = 0; i < filterAns.length - 1; i += 1) {
     const currentAns = filterAns[i];
     if (currentAns.answerer_name.toLowerCase() === 'seller') {
-      sorted.unshift(currentAns);
-    } else {
-      sorted.push(currentAns);
+      seller.push(currentAns);
+      filterAns.splice(i, 1);
     }
   }
 
+  const sorted = [...seller, ...filterAns];
   if (JSON.stringify(sortedAns) !== JSON.stringify(sorted)) {
     setSortedAns(sorted);
     setMoreAns(2);

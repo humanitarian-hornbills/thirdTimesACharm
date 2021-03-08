@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import AnswersList from './AnswersList.jsx';
+
+const H2 = styled.h2`
+  margin: 0;
+  `;
 
 const Question = ({
   question, answersQ, findInQ, search,
@@ -20,11 +25,11 @@ const Question = ({
   return (
     <div>
       <div>
-        <h2>
+        <H2>
           Q:
           {' '}
           {question.question_body}
-        </h2>
+        </H2>
       </div>
       <div>
         <p>
@@ -35,7 +40,7 @@ const Question = ({
       </div>
       <div>
         <div>
-          <h2>A:</h2>
+          <H2>A:</H2>
         </div>
         <div>
           <AnswersList answersQ={answersQ} search={search} foundInQ={foundInQ} />

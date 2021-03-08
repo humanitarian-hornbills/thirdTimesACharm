@@ -4,20 +4,22 @@ import Question from './Question.jsx';
 
 const QuestionsDiv = styled.div`
   overflow: scroll;
-  height: 95%;
+  max-height: 90%;
+  margin: 0;
+  margin-top: 20px;
   `;
 
 const Button = styled.button`
   width: auto;
   height: 50px;
-  margin: auto 10px;
+  margin-top: 20px;
   margin-left: 0;
   font-size: 1.2rem;
   padding: 10px;
   `;
 
 const QuestionsList = ({
-  productData, answers, search,
+  productData, answers, search, showQModal, setShowQModal
 }) => {
   let questions;
   if (productData) {
@@ -51,33 +53,34 @@ const QuestionsList = ({
     <>
       {productData
         ? (
-          <QuestionsDiv>
-            {filtered.map((question, index) => {
-              if (answers[question.question_id]) {
-                answersQ = answers[question.question_id].results;
-              }
-              return (index < moreQ
-                && (
-                  <Question
-                    key={question.question_id}
-                    question={question}
-                    answersQ={answersQ}
-                    findInQ={false}
-                    search={search}
-                  />
-                )
-              );
-            })}
+          <>
+            {filtered
+              && (
+                <QuestionsDiv>
+                  {filtered.map((question, index) => {
+                    if (answers[question.question_id]) {
+                      answersQ = answers[question.question_id].results;
+                    }
+                    return (index < moreQ
+                      && (
+                        <Question
+                          key={question.question_id}
+                          question={question}
+                          answersQ={answersQ}
+                          findInQ={false}
+                          search={search}
+                        />
+                      )
+                    );
+                  })}
+                </QuestionsDiv>
+              )}
             <div>
-              <div>
-                {(filtered.length - moreQ > 0)
+              {(filtered.length - moreQ > 0)
                 && <Button type="button" onClick={() => setMoreQ(filtered.length)}>MORE ANSWERED QUESTIONS</Button>}
-              </div>
-              <div>
-                <Button type="button">ADD A QUESTION +</Button>
-              </div>
+              <Button type="button" onClick={() => setShowQModal((prev) => !prev)}>ADD A QUESTION +</Button>
             </div>
-          </QuestionsDiv>
+          </>
         )
         : <div>This product does not exist. </div>}
     </>

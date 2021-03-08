@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import QuestionsList from './components/QuestionsList.jsx';
 import SearchQuestions from './components/SearchQuestions.jsx';
+import QuestionModal from './components/QuestionModal.jsx';
 
 const Div = styled.div`
   position: absolute;
@@ -18,6 +19,15 @@ const Div = styled.div`
   padding-left: 20px;
   `;
 
+const Global = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  `;
+
 const QA = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
@@ -26,6 +36,7 @@ const QA = () => {
   const [answers, setAnswers] = useState({});
   const [answered, setAnswered] = useState(false);
   const [search, setSearch] = useState('');
+  const [showQModal, setShowQModal] = useState(false);
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -84,31 +95,38 @@ const QA = () => {
   };
 
   return (
-    <Div>
-      {/* {answers[questionsId[0]] && console.log(answers)} */}
-      <strong>Questions & Answers</strong>
-      {answers[questionsId[questionsId.length - 1]]
-        ? <SearchQuestions searchQA={searchQA} />
-        // && (
-        //   <QuestionsList
-        //     questions={questions[product].results}
-        //     questionsId={questionsId}
-        //     answers={answers}
-        //   />
-        // )
-        : <div>Loading...</div>}
-      <br />
-      {answers[questionsId[questionsId.length - 1]]
-        ? (
-          <QuestionsList
-            productData={questions[product]}
-            questionsId={questionsId}
-            answers={answers}
-            search={search}
-          />
-        )
-        : <div>Loading...</div>}
-    </Div>
+    <>
+      <Div>
+        {/* {answers[questionsId[0]] && console.log(product)} */}
+        <strong>Questions & Answers</strong>
+        {answers[questionsId[questionsId.length - 1]]
+          ? <SearchQuestions searchQA={searchQA} />
+          // && (
+          //   <QuestionsList
+          //     questions={questions[product].results}
+          //     questionsId={questionsId}
+          //     answers={answers}
+          //   />
+          // )
+          : <div>Loading...</div>}
+        <br />
+        {answers[questionsId[questionsId.length - 1]]
+          ? (
+            <QuestionsList
+              productData={questions[product]}
+              questionsId={questionsId}
+              answers={answers}
+              search={search}
+              showQModal={showQModal}
+              setShowQModal={setShowQModal}
+            />
+          )
+          : <div>Loading...</div>}
+      </Div>
+      {showQModal
+        && <QuestionModal showQModal={showQModal} setShowQModal={setShowQModal} />}
+      <Global />
+    </>
   );
 };
 

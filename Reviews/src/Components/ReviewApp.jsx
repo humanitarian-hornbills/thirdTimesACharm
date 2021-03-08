@@ -4,6 +4,7 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
+import PhotoModal from './PhotoModal.jsx';
 
 class ReviewApp extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class ReviewApp extends React.Component {
       newReview: false,
       starsSelected: [],
       currentSort: 'relevant',
+      modalPhoto: null,
     };
 
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
@@ -28,8 +30,8 @@ class ReviewApp extends React.Component {
     this.markAsHelpful = this.markAsHelpful.bind(this);
     this.reportReview = this.reportReview.bind(this);
     this.selectStars = this.selectStars.bind(this);
-    this.filterRevs = this.filterRevs.bind(this);
     this.clearStars = this.clearStars.bind(this);
+    this.photoModal = this.photoModal.bind(this);
   }
 
   componentDidMount() {
@@ -117,6 +119,27 @@ class ReviewApp extends React.Component {
     });
   }
 
+  photoModal(src) {
+    const modal = document.getElementById('pModal');
+    const span = document.getElementsByClassName('pclose');
+    this.setState({
+      modalPhoto: src,
+    });
+    modal.style.display = 'block';
+    const newSpan = [];
+    Object.keys(span).forEach((key) => {
+      span[key].onclick = () => {
+        modal.style.display = 'none';
+      };
+      newSpan.push(span[key]);
+    });
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+
   seeMoreReviews() {
     const newCount = this.state.reviewCount + 2;
     this.setState({
@@ -202,16 +225,18 @@ class ReviewApp extends React.Component {
               reviews={reviews}
               markAsHelpful={this.markAsHelpful}
               reportReview={this.reportReview}
+              photoModal={this.photoModal}
             />
             {allReviews.length > reviewCount
-              ? <button className="link" type="button" onClick={this.seeMoreReviews}>More Reviews</button>
+              ? <button id="moreReviews" className="link" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
               : <></>}
             <button
+              id="addReview"
               type="button"
               className="link"
               onClick={() => { this.showModal(); }}
             >
-              Add Review
+              ADD REVIEW
             </button>
             <NewReview
               name={this.state.productName}
@@ -219,7 +244,9 @@ class ReviewApp extends React.Component {
               close={this.showModal}
               show={this.state.newReview}
               sendNewReview={this.sendNewReview}
+              photoModal={this.photoModal}
             />
+            <PhotoModal src={this.state.modalPhoto} />
           </div>
         </div>
       );

@@ -33,7 +33,7 @@ class CharItem extends React.Component {
         <br />
         <div className="factorItemFactors">
           <div className="smallFactor">{options[1]}</div>
-          {options[3] ? <div className="middleFactor">{options[3]}</div> : <div className="middleFactor" />}
+          {options[3] === 'Perfect' ? <div className="middleFactor">{options[3]}</div> : <div className="middleFactor" />}
           <div className="largeFactor">{options[5]}</div>
           </div>
           {/* <br />

@@ -19,25 +19,21 @@ class CharItem extends React.Component {
     return (
       <div className="charItem">
         <p>{name}</p>
-        <section onChange={this.onChangeValue}>
+        <section className="radioRow" onChange={this.onChangeValue}>
           {Object.keys(options).map((key) => (
-            <div>
-              {/* <label>
-                {options[key]}
-                <br /> */}
-                <input type="radio" value={key} name={name} />
-              {/* </label> */}
+            <div >
+              <input type="radio" value={key} name={name} />
             </div>
           ))}
         </section>
+        {/* <br />
         <br />
+        <br /> */}
         <div className="factorItemFactors">
           <div className="smallFactor">{options[1]}</div>
           {options[3] === 'Perfect' ? <div className="middleFactor">{options[3]}</div> : <div className="middleFactor" />}
           <div className="largeFactor">{options[5]}</div>
-          </div>
-          {/* <br />
-        <br /> */}
+        </div>
       </div>
     );
   }

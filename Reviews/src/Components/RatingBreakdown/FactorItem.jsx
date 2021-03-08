@@ -19,6 +19,7 @@ const FactorItem = ({ factor }) => {
           <div className="breakLine" />
           <div className="breakLine" />
         </div>
+        {/* <div className="factorTriangle" style={{ left: calc( ((value / 5)  * var(--factorLine-width)) - 8.58 )}} /> */}
         <div className="factorTriangle" style={{ left: avg }} />
       </div>
       <div className="factorItemFactors">

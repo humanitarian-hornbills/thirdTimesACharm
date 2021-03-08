@@ -428,7 +428,7 @@ img {
 
 .ratingDivider {
   height: 1px;
-  width: 300px;
+  width: 100%;
   background-color: #ebedee;
   margin-top: 15px;
 }
@@ -436,6 +436,7 @@ img {
 .factorData {
   display: inline-block;
   position: relative;
+  width: 100%;
   /* left: -10px; */
 }
 
@@ -444,7 +445,7 @@ img {
   background-color: #ebedee;
   display: flex;
   position: absolute;
-  width: 300px;
+  width: 100%;
   justify-content: space-evenly;
   margin: none;
 }
@@ -568,4 +569,21 @@ Img:hover {opacity: 0.7;}
 
 .reviewBody {
   font-weight: 200;
+}
+
+.charItem {
+  width: 45%;
+  position: relative;
+  display: inline-block;
+}
+
+.charItem section {
+  justify-content: space-evenly;
+}
+
+.charItem section div {
+  display: inline-block;
+  width: fit-content;
+  justify-content: space-evenly;
+  position: relative;
 }

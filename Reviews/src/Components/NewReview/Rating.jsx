@@ -12,14 +12,15 @@ const Rating = ({ updateState }) => {
     );
   }
   return (
-    <>
-      Overall Rating
+    <div id="rRating">
+      YOUR OVERALL RATING
+      <p>Please Select</p>
       <form onChange={(e) => { updateState({ rating: Number(e.target.value) }); }}>
         <div className="rating noborder">
           {allStars}
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

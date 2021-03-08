@@ -17,10 +17,11 @@ class ReviewApp extends React.Component {
       ratings: {},
       loaded: false,
       displayedReviews: [],
-      newReview: false,
+      newReview: true,
       starsSelected: [],
       currentSort: 'relevant',
       modalPhoto: null,
+      prodUrl: null,
     };
 
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
@@ -46,6 +47,7 @@ class ReviewApp extends React.Component {
         this.setState({
           reviews: data.data.results,
           productName: data.data.name,
+          prodUrl: data.data.prodUrl,
         });
         this.getSort('relevant');
       });
@@ -245,6 +247,7 @@ class ReviewApp extends React.Component {
               show={this.state.newReview}
               sendNewReview={this.sendNewReview}
               photoModal={this.photoModal}
+              prodUrl={this.state.prodUrl}
             />
             <PhotoModal src={this.state.modalPhoto} />
           </div>

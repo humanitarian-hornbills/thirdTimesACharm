@@ -18,7 +18,7 @@ class ReviewBody extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="rBody">
         <p>Review:</p>
         <textarea maxLength="1000" value={this.state.body} onChange={this.handleChange} />
         {this.state.body.length + 1 < 50

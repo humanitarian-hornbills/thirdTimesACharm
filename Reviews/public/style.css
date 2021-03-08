@@ -7,11 +7,7 @@ font-family: Helvetica, Arial, sans-serif;
   overflow: auto;
 }
 
-#addReviewModal {
-  height: 700px;
-  overflow: auto;
-  display: inline-block;
-}
+
 
 div {
   /* border: solid black;
@@ -21,6 +17,9 @@ div {
 
 .reviewListItem {
   border-bottom: solid black 1px;
+  /* margin-bottom: 30px; */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .breakdownItem div {
@@ -101,6 +100,23 @@ div#ratingBox * {
 }
 
 /* new review modal */
+#addReviewModal {
+  height: 700px;
+  overflow: auto;
+  display: inline-block;
+}
+
+#allNewReviewForms {
+  margin: auto;
+  width: 800px
+}
+
+.reviewDivider {
+  width: 100%;
+  height: 2px;
+  background-color: #ebedee;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -113,7 +129,7 @@ div#ratingBox * {
 .modal-main, .modal-addPhotos {
   position:fixed;
   background: white;
-  width: 800px;
+  width: 1000px;
   height: auto;
   top:50%;
   left:50%;
@@ -133,11 +149,79 @@ div#ratingBox * {
   display: none;
 }
 
+#newReviewTop {
+
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  text-align: center;
+}
+
+#newReviewTopData {
+  display: flex;
+  align-items: center;
+  height: 200px;
+  background-color: #ebedee;
+  margin-bottom: 20px;
+}
+
+#rProdPhoto {
+  width:auto;
+  flex: 1;
+}
+
+#rProdPhoto img {
+  max-width:200px;
+  max-height: 180px;
+}
+
+#rProdTitle {
+  /* float: left; */
+  width: auto;
+  font-size: 20px;
+  font-weight: bold;
+  flex: 1
+}
+
+#rProdPhoto, #rProdTitle {
+  vertical-align: middle;
+}
+
 label {
   float: left;
   padding: 0 1em;
   text-align: center;
 }
+
+#newReviewTopTitle {
+  text-align: left;
+}
+
+#newReviewRateRec {
+  display: flex;
+}
+
+#rRating, #rRec {
+  flex: 1
+}
+
+#rRating p {
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+#recRadios {
+  margin-top: 20px;
+  /* align-items: center; */
+  display: block;
+}
+
+#recRadios div {
+  /* bottom: 20px; */
+    vertical-align: middle;
+}
+
 
 .link {
   text-decoration: underline;
@@ -149,7 +233,9 @@ img {
 }
 
 .response {
-  background-color: lightslategray;
+  background-color: #ebedee;
+  width: 75%;
+  padding:10px;
 }
 
 
@@ -173,7 +259,7 @@ img {
 }
 
 .rating {
-  width: 90px;
+  width: 150px;
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: center;
@@ -181,6 +267,7 @@ img {
 }
 
 .rating > label {
+  left: -20px;
   float: right;
   display: inline;
   padding: 0;
@@ -189,12 +276,14 @@ img {
   width: 1.1em;
   cursor: pointer;
   color: #000;
+  font-size: 25px;
 }
 
 .rating > label:hover,
 .rating > label:hover ~ label,
 .rating > input.radio-btn:checked ~ label {
   color: transparent;
+  font-size: 25px;
 }
 
 .rating > label:hover:before,
@@ -202,6 +291,7 @@ img {
 .rating > input.radio-btn:checked ~ label:before,
 .rating > input.radio-btn:checked ~ label:before {
   content: "\2605";
+  font-size: 25px;
   position: absolute;
   left: 0;
   color: #FFD700;
@@ -363,9 +453,9 @@ img {
 }
 
 
-*, *:before, *:after {
+/* *, *:before, *:after {
   box-sizing: border-box;
-}
+} */
 
 #sortBox {
   font-family: Helvetica, Arial, sans-serif;
@@ -400,7 +490,7 @@ option {
 .pmodal, .rmodal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -413,10 +503,17 @@ option {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 5% auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
+  /* max-height: */
+  max-width: 520px;
   /* width: 50%; Could be more or less, depending on screen size */
+}
+
+.pModalPhoto {
+  max-height: 700px;
+  max-width: 500px;
 }
 
 /* The Close Button */

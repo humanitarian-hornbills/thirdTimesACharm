@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Nickname = ({ updateState }) => (
-  <div>
+  <div id="rName">
     <p>Nickname:</p>
     <input
       maxLength="60"

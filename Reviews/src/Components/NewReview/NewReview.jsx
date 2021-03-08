@@ -10,6 +10,7 @@ import Nickname from './Nickname.jsx';
 import Email from './Email.jsx';
 import DisplayPhotos from './DisplayPhotos.jsx';
 import PhotoModal from '../PhotoModal.jsx';
+import NewReviewTop from './NewReviewTop.jsx'
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -159,21 +160,22 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-          <span role="close" onClick={() => { this.props.close(); this.clearState(); }} className="rclose">&times;</span>
-          <h2>Write Your Review</h2>
-          <p>
-            About the&nbsp;
-            {this.props.name}
-          </p>
-          <Rating updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.rating}</div>
-          <Recommend updateState={this.updateState} />
-          <div className="text-danger">{this.state.errors.recommend}</div>
+        <span role="close" onClick={() => { this.props.close(); this.clearState(); }} className="rclose">&times;</span>
+          <div id="allNewReviewForms">
+          <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name}/>
+          <div id="newReviewRateRec">
+            <Rating updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.rating}</div>
+            <Recommend updateState={this.updateState} />
+            <div className="text-danger">{this.state.errors.recommend}</div>
+          </div>
+          {/* <div className="reviewDivider" /> */}
           <Characteristics
             factors={this.props.factors}
             updateCharacteristics={this.updateCharacteristics}
           />
           <div className="text-danger">{this.state.errors.characteristics}</div>
+          <div className="reviewDivider" />
           <ReviewSummary updateState={this.updateState} />
           <div className="text-danger">{this.state.errors.summary}</div>
           <ReviewBody updateState={this.updateState} />
@@ -203,11 +205,13 @@ class NewReview extends React.Component {
               )
               : null}
           </div>
+          <div className="reviewDivider" />
           <Nickname updateState={this.updateState} />
           <div className="text-danger">{this.state.errors.name}</div>
           <Email updateState={this.updateState} />
           <div className="text-danger">{this.state.errors.email}</div>
           <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+          </div>
         </section>
       </div>
     );

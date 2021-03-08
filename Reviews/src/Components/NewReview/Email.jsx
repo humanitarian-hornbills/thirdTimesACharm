@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Email = ({ updateState }) => (
-  <div>
+  <div id="rEmail">
     <p>Email:</p>
     <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); }} />
     <br />

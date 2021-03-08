@@ -1,38 +1,79 @@
-import React from 'react';
-import Style from './Style.jsx'
-import StyledQuanityAndSize from './StyledQuanityAndSize.jsx'
-
+import React, { useState } from 'react';
+import Style from './Style.jsx';
+import StyledQuanityAndSize from './StyledQuanityAndSize.jsx';
+import {
+  AddToBag, Bag, StarButton, AddPlus, FavStar, StyleValue, StyleLegend,
+} from '../../elements/RightSection/BottomSection.element.jsx';
 
 // eslint-disable-next-line react/prop-types
-const BottomSection = ({ styles, getSelectedStyle, selectedStyleName }) => {
-
+const BottomSection = ({ styles, getSelectedStyle, selectedStyleId }) => {
+  const [clicked, setClicked] = useState(false);
+  const [likeClicked, setLikeClicked] = useState(false);
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
   }
+  const getClicked = (click) => {
+    setClicked(!click);
+  };
 
+  const getLikeClicked = (click) => {
+    setLikeClicked(!click);
+  }
+  const styledThumbnails = styles.map(
+    (item, index) => (
+      <Style
+        key={index}
+        style={item}
+        getSelectedStyle={getSelectedStyle}
+        getClicked={getClicked}
+        selectedStyleId={selectedStyleId}
+        getLikeClicked={getLikeClicked}
 
-  const styledColor = styles.map((item, index) => {
-    return <Style key={index} style={item} getSelectedStyle={getSelectedStyle} selectedStyleName={selectedStyleName} />
-  })
+      />
+    ),
+  );
+  console.log(likeClicked);
+  const styledQuanityAndSize = styles.map(
+    (item, index) => (
+      <StyledQuanityAndSize
+        key={index}
+        style={item}
+        getSelectedStyle={getSelectedStyle}
+        selectedStyleId={selectedStyleId}
+        clicked={clicked}
+      />
+    ),
+  );
 
-  const styledQuanityAndSize = styles.map((item, index) => {
-    return <StyledQuanityAndSize key={index} style={item} getSelectedStyle={getSelectedStyle} selectedStyleName={selectedStyleName} />
-  })
-
-
+  const selectedStyleName = styles.filter((item) => item.style_id === selectedStyleId);
   return (
-    <div className="styles_info">
-      <h4> STYLE ><span style={{ fontWeight: 'normal' }}> SELECTED STYLE</span> </h4>
-      <div className="style" style={{ display: 'flex', height: 50 }}>
-        {styledColor}
-
+    <>
+      <StyleLegend>
+        style:
+        {
+          selectedStyleName.length !== 0 && (
+            <StyleValue color={selectedStyleName[0].name}>
+              {selectedStyleName[0].name.toUpperCase()}
+            </StyleValue>
+          )
+        }
+      </StyleLegend>
+      <div className="style" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {styledThumbnails}
       </div>
-      {styledQuanityAndSize}
-      <div className="add_to_bag">
-        <p> ADD TO BAG</p>
-        <span> star </span>
+      <div>
+        {styledQuanityAndSize}
+        <AddToBag>
+          <Bag onClick={() => setClicked(true)}>
+            ADD TO BAG
+            <AddPlus />
+          </Bag>
+          <StarButton onClick={() => setLikeClicked(!likeClicked)}>
+            <FavStar likeClicked={likeClicked} />
+          </StarButton>
+        </AddToBag>
       </div>
-    </div >
+    </ >
   );
 };
 

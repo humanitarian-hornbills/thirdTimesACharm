@@ -6,7 +6,7 @@ const AvgRec = ({ recommended }) => {
   // const avgRec
   total = Math.floor(total * 100);
   return (
-    <div>
+    <div id="avgRecText">
       {total}
       % of reviews recommended this product
     </div>

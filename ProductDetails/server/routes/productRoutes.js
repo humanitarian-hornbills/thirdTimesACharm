@@ -4,9 +4,24 @@ const router = express.Router();
 const axios = require('axios');
 
 const api = require('../../config');
+router.get('/products', (req, res) => {
+
+  axios.get(`${api.api}/products`, {
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  })
+    .then((response) => {
+      const { data } = response;
+      res.status(200).send(data);
+    })
+    .catch(() => res.status(400).send('Could\'n find the productss your you are looking for '));
+});
 
 router.get('/products/:id', (req, res) => {
   const { id } = req.params;
+
+
   axios.get(`${api.api}/products/${id}`, {
     headers: {
       Authorization: api.TOKEN,
@@ -47,10 +62,10 @@ router.get('/reviews/:id', (req, res) => {
         sum += result.rating;
         return sum;
       });
-      const aveRating = Math.floor(sum / results.length);
+      const aveRating = sum / results.length;
       res.status(200).send(aveRating.toString());
     })
-    .catch(() => res.sendStatus(400));
+    .catch((err) => res.sendStatus(400).send(err));
 });
 
 module.exports = router;

@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const Quantity = ({ quantity, quantityValue }) => (
-
-  quantityValue ? <option>{quantityValue}</option> : <option>{quantity}</option>
-
+const Quantity = ({ value }) => (
+  <option value={value}>
+    {value}
+  </option>
 );
 
 export default Quantity;

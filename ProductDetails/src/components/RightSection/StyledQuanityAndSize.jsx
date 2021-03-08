@@ -4,26 +4,26 @@
 import React, { useState, useEffect } from 'react';
 import Quantity from './Quantity.jsx';
 import Size from './Size.jsx';
-import { QuantitySize } from '../../elements/RightSection/BottomSection.element.jsx';
+import { QuantitySize, SizeSelect, QuanitySelect } from '../../elements/RightSection/BottomSection.element.jsx';
 // eslint-disable-next-line react/prop-types
-const StyledQuanityAndSize = ({ style, selectedStyleName }) => {
-  // eslint-disable-next-line react/prop-types
-  const [sizeValue, setSizeValue] = useState('');
-  const [quantityValue, setQuantityValue] = useState('');
+const StyledQuanityAndSize = ({
+  style, selectedStyleId, clicked,
+}) => {
+  const [sizeValue, setSizeValue] = useState(0);
+  const [quantityValue, setQuantityValue] = useState(0);
+
   const { skus } = style;
-
   const listOfQuantityAndSize = Object.keys(skus);
-
-  const quantity = listOfQuantityAndSize.map(
-    (item, index) => style.name === selectedStyleName
-            && (
-            <Quantity key={index} quantity={skus[item].quantity} quantityValue={quantityValue} />
-            ),
-  );
-
   const size = listOfQuantityAndSize.map(
-    (item, index) => style.name === selectedStyleName
-            && <Size key={index} size={skus[item].size} />,
+    (item, index) => (
+      style.style_id === selectedStyleId) && skus[item].quantity !== 0
+      && (
+        <Size
+          key={index}
+          size={skus[item].size}
+          skusid={item}
+        />
+      ),
   );
   useEffect(() => {
     // eslint-disable-next-line no-restricted-syntax
@@ -34,24 +34,73 @@ const StyledQuanityAndSize = ({ style, selectedStyleName }) => {
     }
   }, [sizeValue]);
 
-  console.log(sizeValue);
-  console.log(quantityValue);
+  let quantity = '';
+  if (quantityValue !== 0) {
+    const array = [];
+    if (quantityValue < 15) {
+      for (let i = 1; i < quantityValue; i += 1) {
+        array.push(i);
+      }
+      quantity = array.map((num, index) => (
+        <Quantity
+          value={num}
+          key={index}
+        />
+      ));
+    } else {
+      let i = 1;
+      while (i < 16) {
+        array.push(i);
+        i += 1;
+      }
+      quantity = array.map((num, index) => (
+        <Quantity
+          value={num}
+          key={index}
+        />
+      ));
+    }
+  } else {
+    quantity = listOfQuantityAndSize.map(
+      (item, index) => (
+        (style.style_id === selectedStyleId && skus[item].quantity !== 0)
+        && (
+          <Quantity
+            key={index}
+            value={skus[item].quantity}
+          />
+        )
+      ),
+    );
+  }
 
   return (
     <>
       {
-                style.name === selectedStyleName && (
-                <QuantitySize>
-                  <select name="size" onChange={(e) => setSizeValue(e.target.value)} value={sizeValue}>
-                    <option value="0">  SELECT SIZE</option>
-                    {size}
-                  </select>
-                  <select name="quantity">
-                    {quantity}
-                  </select>
-                </QuantitySize>
-                )
-            }
+        style.style_id === selectedStyleId && (
+          <QuantitySize>
+            <SizeSelect
+              name="size"
+              onChange={(e) => setSizeValue(e.target.value)}
+              value={sizeValue}
+              clicked={clicked}
+              sizeValue={sizeValue === 0}
+              required
+            >
+              {
+                clicked && sizeValue === 0 ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
+              }
+              {size}
+            </SizeSelect>
+            <QuanitySelect name="quantity" disabled={sizeValue === 0}>
+              {
+                sizeValue === 0 && quantityValue === 0 && <option value="0">  - </option>
+              }
+              {quantity}
+            </QuanitySelect>
+          </QuantitySize>
+        )
+      }
     </>
   );
 };

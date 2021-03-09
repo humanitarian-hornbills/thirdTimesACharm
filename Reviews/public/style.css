@@ -2,6 +2,9 @@
 body {
 font-family: Helvetica, Arial, sans-serif;
 }
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 .link {
   text-decoration: underline;
@@ -132,7 +135,7 @@ div {
   top: 0;
   left: 0;
   width:100%;
-  height: 100%;
+  height: 200%;
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -147,8 +150,15 @@ div {
   padding: 5px;
 }
 
+/* new review add photo modal  */
 .modal-addPhotos {
+  position: absolute;
   width: 400px;
+  /* margin-top: 30%; */
+}
+
+.modal-addPhotos h3 {
+  margin-top: 0;
 }
 
 .display-block {
@@ -157,6 +167,17 @@ div {
 
 .display-none {
   display: none;
+}
+
+#newReviewPhotoInputs {
+  width: fit-content;
+  height: fit-content;
+  margin: 15px auto
+}
+
+.newReviewPhotoInput {
+  height: 30px;
+  margin-bottom: 2px;
 }
 
 #newReviewTop {
@@ -280,7 +301,7 @@ input[type='radio']:checked {
   font-size: 12px;
 }
 
-h3 {
+.modal-main > h3 {
   margin-bottom: 0;
 }
 
@@ -314,7 +335,7 @@ textarea{
   flex: 1;
 }
 
-#rEmail input, #rName input {
+input {
 height: 30px;
 font-size: 18px;
 }
@@ -328,6 +349,7 @@ font-size: 18px;
   border: solid black 2px;
   margin: 0 2px;
 }
+
 
 
 /* new rating stars */
@@ -567,9 +589,7 @@ font-size: 18px;
   font-size: 30px;
 }
 
- *, *:before, *:after {
-  box-sizing: border-box;
-}
+
 
 #sortBox {
   font-family: Helvetica, Arial, sans-serif;
@@ -609,7 +629,7 @@ option {
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  height: 200%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -621,13 +641,16 @@ option {
   margin: 5% auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  /* max-height: */
+  width: fit-content;
   max-width: 520px;
-  /* width: 50%; Could be more or less, depending on screen size */
+}
+
+#addReviewModal .modal-content {
+  margin: 60% auto; /* 15% from the top and centered */
 }
 
 .pModalPhoto {
-  max-height: 700px;
+  max-height: 550px;
   max-width: 500px;
 }
 

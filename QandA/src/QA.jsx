@@ -5,6 +5,7 @@ import axios from 'axios';
 import QuestionsList from './components/QuestionsList.jsx';
 import SearchQuestions from './components/SearchQuestions.jsx';
 import QuestionModal from './components/QuestionModal.jsx';
+import AnswerModal from './components/AnswerModal.jsx';
 
 const Div = styled.div`
   position: absolute;
@@ -37,6 +38,9 @@ const QA = () => {
   const [answered, setAnswered] = useState(false);
   const [search, setSearch] = useState('');
   const [showQModal, setShowQModal] = useState(false);
+  const [showAnsModal, setShowAnsModal] = useState(false);
+  const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
+  const [clickedReport, setClickedReport] = useState([]);
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -116,15 +120,22 @@ const QA = () => {
               productData={questions[product]}
               questionsId={questionsId}
               answers={answers}
+              setAnswers={setAnswers}
               search={search}
-              showQModal={showQModal}
               setShowQModal={setShowQModal}
+              setShowAnsModal={setShowAnsModal}
+              clickedAnsHelpful={clickedAnsHelpful}
+              setClickedAnsHelpful={setClickedAnsHelpful}
+              clickedReport={clickedReport}
+              setClickedReport={setClickedReport}
             />
           )
           : <div>Loading...</div>}
       </Div>
       {showQModal
-        && <QuestionModal showQModal={showQModal} setShowQModal={setShowQModal} />}
+        && <QuestionModal showModal={showQModal} setShowModal={setShowQModal} />}
+      {showAnsModal
+        && <AnswerModal showModal={showAnsModal} setShowModal={setShowAnsModal} />}
       <Global />
     </>
   );

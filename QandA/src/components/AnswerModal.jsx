@@ -29,14 +29,15 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
   align-items: center;
   line-height: 1.8;
   `;
 
-const QuestionInput = styled.input`
-min-width: 300px;
-min-height: 100px;
-`;
+const AnswerInput = styled.input`
+  min-width: 300px;
+  min-height: 100px;
+  `;
 
 const CloseModalBtn = styled(MdClose)`
   cursor: pointer;
@@ -49,14 +50,14 @@ const CloseModalBtn = styled(MdClose)`
   z-index: 10px;
   `;
 
-const QuestionModal = ({ showModal, setShowModal }) => {
+const AnswerModal = ({ showModal, setShowModal }) => {
   const showMdoal = 5;
   return (
     <Background>
       <ModalWrapper aria-label="Close button">
         <ModalContent>
-          <h1>Ask Your Question</h1>
-          <h3>About the product</h3>
+          <h1>Submit Your Answer</h1>
+          <h3>Product: Question</h3>
           * required fields
           <p>
             <br />
@@ -79,7 +80,7 @@ const QuestionModal = ({ showModal, setShowModal }) => {
           </p>
           <p>
             <br />
-            <QuestionInput type="text" placeholder="Your question here" />
+            <AnswerInput type="text" placeholder="Your answer here" />
           </p>
           <br />
           <button type="button">Submit</button>
@@ -90,4 +91,4 @@ const QuestionModal = ({ showModal, setShowModal }) => {
   );
 };
 
-export default QuestionModal;
+export default AnswerModal;

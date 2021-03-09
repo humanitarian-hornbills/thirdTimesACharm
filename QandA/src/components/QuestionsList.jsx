@@ -14,12 +14,14 @@ const Button = styled.button`
   height: 50px;
   margin-top: 20px;
   margin-left: 0;
+  margin-right: 20px;
   font-size: 1.2rem;
   padding: 10px;
   `;
 
 const QuestionsList = ({
-  productData, answers, search, showQModal, setShowQModal
+  productData, answers, setAnswers, search, setShowQModal, setShowAnsModal,
+  clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
 }) => {
   let questions;
   if (productData) {
@@ -67,8 +69,14 @@ const QuestionsList = ({
                           key={question.question_id}
                           question={question}
                           answersQ={answersQ}
+                          setAnswers={setAnswers}
                           findInQ={false}
                           search={search}
+                          setShowAnsModal={setShowAnsModal}
+                          clickedAnsHelpful={clickedAnsHelpful}
+                          setClickedAnsHelpful={setClickedAnsHelpful}
+                          clickedReport={clickedReport}
+                          setClickedReport={setClickedReport}
                         />
                       )
                     );

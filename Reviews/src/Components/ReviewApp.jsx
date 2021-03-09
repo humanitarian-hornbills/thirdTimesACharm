@@ -251,7 +251,7 @@ class ReviewApp extends React.Component {
               sendClickData={this.sendClickData}
             />
             {allReviews.length > reviewCount
-              ? <button className="userButton" type="button" onClick={() => {this.seeMoreReviews; this.sendClickData('show more review button clicked')}}>MORE REVIEWS</button>
+              ? <button className="userButton" type="button" onClick={() => {this.seeMoreReviews(); this.sendClickData('show more review button clicked')}}>MORE REVIEWS</button>
               : <></>}
             <button
               className="userButton"

@@ -9,7 +9,7 @@
   /* background-color: black;
   background-color: rgba(0, 0, 0, 0.5); */
   padding-top: 10%;
-  z-index: 1;  /*sit on top */
+  z-index: 5;  /*sit on top */
 }
 
 #modal-content {

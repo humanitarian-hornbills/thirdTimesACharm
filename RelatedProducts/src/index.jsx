@@ -108,7 +108,7 @@ class App extends React.Component {
       relatedList, outfitList, currentImg, currentProduct, compareProduct,
     } = this.state;
     return (
-      <div>
+      <div className="related-products">
         <RelatedList
           onCompare={this.handleCompare}
           relatedList={relatedList}

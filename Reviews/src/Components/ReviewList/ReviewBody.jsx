@@ -19,12 +19,12 @@ const ReviewBody = ({ review, photoModal }) => (
       : <></>}
     {review.response
       ? (
-        <div clasName="response reviewBody">
+        <div className="response reviewBody">
           <p><b>Response From Seller:</b></p>
           <p>{review.response}</p>
         </div>
       )
-      : <></>}
+      : <div></div>}
   </div>
 );
 

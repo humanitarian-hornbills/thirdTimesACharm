@@ -4,34 +4,40 @@ import PropTypes from 'prop-types';
 class CharItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      checked: null,
+    };
     this.onChangeValue = this.onChangeValue.bind(this);
   }
 
   onChangeValue(event) {
     const { charId } = this.props;
     const charArr = [charId, Number(event.target.value)];
+    this.setState({
+      checked: this.props.options[event.target.value]
+    })
     this.props.updateCharacteristics(charArr);
   }
 
   render() {
     const {name, options} = this.props;
     return (
-      <div>
-        <p>{name}</p>
-        <section onChange={this.onChangeValue}>
+      <div className="charItem">
+        <p>{name.toUpperCase()} <sup class="redA">*</sup></p>
+        <div className="checkCharVal">{this.state.checked}</div>
+        <section className="radioRow" onChange={this.onChangeValue}>
           {Object.keys(options).map((key) => (
-            <>
-              <label>
-                {options[key]}
-                <br />
-                <input type="radio" value={key} name={name} />
-              </label>
-            </>
+            <div >
+              <input type="radio" value={key} name={name} />
+            </div>
           ))}
         </section>
-        <br />
-        <br />
+
+        <div className="factorItemFactors">
+          <div className="smallFactor">{options[1]}</div>
+          {options[3] === 'Perfect' ? <div className="middleFactor">{options[3]}</div> : <div className="middleFactor" />}
+          <div className="largeFactor">{options[5]}</div>
+        </div>
       </div>
     );
   }

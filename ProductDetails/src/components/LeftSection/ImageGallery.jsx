@@ -5,7 +5,7 @@ import axios from 'axios';
 import ImageCarousel from './ImageCarousel.jsx';
 
 // eslint-disable-next-line react/prop-types
-const ImageGallery = ({ getStyles, id, getSelectedStyle }) => {
+const ImageGallery = ({ getStyles, id, getSelectedStyle, getCurMainImageIndex, getFullScreenClicked }) => {
   const [styles, setStyles] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ImageGallery = ({ getStyles, id, getSelectedStyle }) => {
   }, []);
   return (
     <div className="image_gallery">
-      <ImageCarousel styles={styles} />
+      <ImageCarousel styles={styles} getCurMainImageIndex={getCurMainImageIndex} getFullScreenClicked={getFullScreenClicked} />
     </div>
   );
 };

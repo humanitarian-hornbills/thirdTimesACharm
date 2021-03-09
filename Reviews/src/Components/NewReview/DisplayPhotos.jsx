@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const DisplayPhotos = ({ photos, photoModal }) => {
   const allPhotos = photos.map((photo) => (
-    <img
+    <img className="rNewPhoto"
       onClick={() => { photoModal(photo); }}
       src={photo}
       style={{ width: 50 }}
@@ -11,9 +11,9 @@ const DisplayPhotos = ({ photos, photoModal }) => {
     />
   ));
   return (
-    <>
+    <div >
       {allPhotos}
-    </>
+    </div>
   );
 };
 

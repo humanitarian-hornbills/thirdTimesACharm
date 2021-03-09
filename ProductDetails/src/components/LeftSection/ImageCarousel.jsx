@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import {
   Underline,
-  LeftArrow, RightArrow, Image, Thumbnail, ThumbnailWrapper, Slider, FullscreenArrow, DownArrow,
-  // eslint-disable-next-line import/extensions
+  LeftArrow, RightArrow, Image, Thumbnail, ThumbnailWrapper,
+  Slider, FullscreenArrow, DownArrow, UpArrow, ImageWrapper, ImageUnderline,
 } from '../../elements/ImageCarousel.element.jsx';
 
-const ImageCarousel = ({ styles }) => {
+const ImageCarousel = ({ styles, getCurMainImageIndex, getFullScreenClicked }) => {
   const [current, setCurrent] = useState(0);
-  const [curThumbnail, setCurThumbnail] = useState(0);
+  const [isLastImage, setIsLastImage] = useState(false);
+  const [isFirstImage, setIsFirstImage] = useState(true);
 
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
@@ -26,14 +27,34 @@ const ImageCarousel = ({ styles }) => {
   };
 
   const downSlide = () => {
-    setCurThumbnail((previous) => previous + 1);
+    setCurrent(current === length ? length : current + 1);
+    if (current === length) {
+      setIsLastImage(true);
+    }
+  };
+
+  const upSlide = () => {
+    setCurrent(current === 0 ? 0 : current - 1);
+    if (current === 0) {
+      setIsFirstImage(true);
+    }
+  };
+  const handleOnClick = () => {
+    getCurMainImageIndex(current);
+    getFullScreenClicked(true);
   };
 
   const imageUrl = styles.map((item, index) => {
     const { url } = item.photos[0];
     return (
       index === current && (
-        <Image key={index} src={url} alt="Women dress" />
+        <ImageWrapper key={index}>
+          <FullscreenArrow onClick={handleOnClick} />
+          <LeftArrow onClick={preSlide} />
+          <RightArrow onClick={nextSlide} />
+          <Image key={index} src={url} />
+          <ImageUnderline />
+        </ImageWrapper>
       )
     );
   });
@@ -41,23 +62,24 @@ const ImageCarousel = ({ styles }) => {
   const thumbnailUrl = styles.map((item, index) => {
     const { url } = item.photos[0];
     return (
-      <>
+      <div key={index}>
         <Thumbnail key={index} src={url} alt="Women dress" onClick={() => setCurrent(index)} />
-        { index === current && <Underline />}
-      </>
+        { index === current && !isLastImage
+          && <Underline />}
+      </div>
     );
   });
 
   return (
     <Slider>
-      <FullscreenArrow />
-      <LeftArrow onClick={preSlide} />
-      <RightArrow onClick={nextSlide} />
       {imageUrl}
       {/* {thumbnailUrl} */}
-      <ThumbnailWrapper>
+      <ThumbnailWrapper hasArrow={styles.length > 7}>
+        {styles.length > 7 && isLastImage
+        && <UpArrow onClick={upSlide} disabled={isFirstImage} />}
         {thumbnailUrl}
-        {styles.length > 7 && <DownArrow onClick={downSlide} />}
+        {styles.length > 7 && isFirstImage
+        && <DownArrow onClick={downSlide} disabled={isLastImage} />}
       </ThumbnailWrapper>
     </Slider>
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nickname = ({ updateState }) => (
-  <div>
-    <p>Nickname:</p>
+const Nickname = ({ updateState, error }) => (
+  <div id="rName">
+    <p>NICKNAME: <sup class="redA">*</sup></p>
     <input
       maxLength="60"
       type="text"
@@ -11,8 +11,10 @@ const Nickname = ({ updateState }) => (
         updateState({ name: e.target.value });
       }}
     />
-    <br />
-    <p>Limit 60 characters</p>
+    <div className="rUnderText">
+      Limit 60 characters
+    </div>
+    <div className="text-danger">{error}</div>
   </div>
 );
 

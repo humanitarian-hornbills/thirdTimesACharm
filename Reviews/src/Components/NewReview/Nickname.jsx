@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Nickname = ({ updateState, error }) => (
   <div id="rName">
-    <p>Nickname: <sup class="redA">*</sup></p>
+    <p>NICKNAME: <sup class="redA">*</sup></p>
     <input
       maxLength="60"
       type="text"

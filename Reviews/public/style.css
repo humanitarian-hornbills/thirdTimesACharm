@@ -219,6 +219,7 @@ label {
 #rRating p {
   margin-bottom: 2px;
   font-size: 12px;
+  color: #767677;
 }
 
 #recRadios {
@@ -648,4 +649,9 @@ font-size: 18px;
 .redA {
   margin: 0;
   color: red
+}
+
+.rNewPhoto {
+  border: solid black 2px;
+  margin: 0 2px;
 }

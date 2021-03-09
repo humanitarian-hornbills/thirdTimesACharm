@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Email = ({ updateState, error }) => (
   <div id="rEmail">
-    <p>Email: <sup class="redA">*</sup></p>
+    <p>EMAIL: <sup class="redA">*</sup></p>
     <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); }} />
     <br />
     <div className="rUnderText">

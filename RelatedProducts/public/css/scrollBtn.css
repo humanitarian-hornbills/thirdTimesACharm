@@ -1,0 +1,91 @@
+.bounce-right {
+  animation: bounce-right 1s ease;
+  -webkit-animation: bounce-right 1s ease;
+  -moz-animation: bounce-right 1s ease;
+  -o-animation: bounce-right 1s ease;
+}
+.scroll-btn-left,
+.scroll-btn-right {
+  border: 1px solid black;
+  width: 30px;
+  height: 50px;
+  border-radius: 5px;
+  font-weight: bold;
+  top:30%;
+  font-size: 25px;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+}
+.scroll-btn-right {
+  right: 0%;
+}
+
+.scroll-btn-arrow{
+  position: absolute;
+  margin: 10px 5px;
+}
+
+.scroll-btn-left:hover,
+.scroll-btn-right:hover{
+  color: white;
+  background-color: #888;
+  opacity: 0.8;
+  transition: 0.8s ease;
+  cursor: pointer;
+}
+
+
+@keyframes bounce-right {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateX(-30px);
+  }
+  60% {
+    -webkit-transform: translatex(-15px);
+  }
+}
+@-webkit-keyframes bounce-right {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateX(-30px);
+  }
+  60% {
+    -webkit-transform: translatex(-15px);
+  }
+}
+
+.bounce-left {
+
+  animation: bounce-left 1s ease;
+  -webkit-animation: bounce-left 1s ease;
+  -moz-animation: bounce-left 1s ease;
+  -o-animation: bounce-left 1s ease;
+}
+
+@keyframes bounce-left {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateX(30px);
+  }
+  60% {
+    -webkit-transform: translatex(15px);
+  }
+}
+@-webkit-keyframes bounce-left {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateX(30px);
+  }
+  60% {
+    -webkit-transform: translatex(15px);
+  }
+}

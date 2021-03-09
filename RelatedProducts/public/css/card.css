@@ -5,7 +5,7 @@
   height: 300px;
   object-fit: cover;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
 }
 .frame {
   position: relative;
@@ -41,13 +41,15 @@
   font-weight: bold;
   font-size: 18px;
   border-radius: 20px;
-
+  z-index: 1;
 }
 .action>.icon {
   margin: 5px -8px;
   position: absolute;
   font-size: 1rem;
-
+}
+.compare{
+  border-radius: 2px;
 }
 .action:hover,
 .action:focus{
@@ -83,16 +85,25 @@
 
 .card{
   min-width: 230px;
+  background-color: white;
   position: relative;
   height: 400px;
   margin-right: 5px;
   display: grid;
   grid-template-rows: repeat(5 1fr);
+
 }
 .card:hover{
   border: 1px solid #888;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  height: 430px;
+}
+.category,
+.product-name,
+.price,
+.rating{
+  margin-left: 5px;
 }
 
 .category {
@@ -104,4 +115,32 @@
 .price>:nth-child(2) {
   margin-left: 5px;
   color:red;
+}
+
+
+.thumbnail-row{
+  margin: 3px 1px;
+  width: 230px;
+  height: 43px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.thumbnail-row::-webkit-scrollbar{
+  display:none;
+}
+
+.hover-thumb {
+  display:inline-block;
+  margin-right: 1px;
+}
+
+.hover-thumb:hover{
+  border-bottom: 2px solid black;
+}
+.hover-thumb img {
+  overflow:hidden;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
 }

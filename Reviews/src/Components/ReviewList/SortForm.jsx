@@ -8,7 +8,7 @@ const SortForm = ({ getSort, reviewCount, sendClickData }) => (
       &nbsp;Reviews, sorted by&nbsp;
     </span>
     <span>
-      <select id="sortForm" onChange={(e) => {getSort(e.target.value); sendClickData('sortBox') }}>
+      <select id="sortForm" onChange={(e) => {getSort(e.target.value); sendClickData(`sort reviews as ${e.target.value}`) }}>
         <option value="relevant">Relevance</option>
         <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>

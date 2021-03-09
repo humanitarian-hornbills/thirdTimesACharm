@@ -4,12 +4,12 @@ import ReviewTop from './ReviewTop.jsx'
 import ReviewBody from './ReviewBody.jsx'
 import ReviewHelpful from './ReviewHelpful.jsx'
 
-const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview }) => (
+const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview, sendClickData }) => (
 
   <div className="reviewListItem">
     <ReviewTop review={review} />
-    <ReviewBody review={review} photoModal={photoModal}/>
-    <ReviewHelpful reportReview={reportReview} markAsHelpful={markAsHelpful} review={review} />
+    <ReviewBody review={review} photoModal={photoModal} sendClickData={sendClickData} />
+    <ReviewHelpful sendClickData={sendClickData} reportReview={reportReview} markAsHelpful={markAsHelpful} review={review} />
   </div>
 
 );

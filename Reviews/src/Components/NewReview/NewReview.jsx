@@ -82,8 +82,11 @@ class NewReview extends React.Component {
       delete newReview.errors;
       delete newReview.rModalPhoto;
       this.props.sendNewReview(newReview);
+      this.props.sendClickData('new review submitted')
       this.clearState();
       this.props.close();
+    } else {
+      this.props.sendClickData('new review not sent - had errors')
     }
   }
 
@@ -162,14 +165,15 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-        <span role="close" onClick={() => { this.props.close(); this.clearState(); }} className="rclose">&times;</span>
+        <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window')}} className="rclose">&times;</span>
           <div id="allNewReviewForms">
           <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name}/>
           <div id="newReviewRateRec">
-            <Rating error={this.state.errors.rating} updateState={this.updateState} />
-            <Recommend error={this.state.errors.recommend} updateState={this.updateState} />
+            <Rating sendClickData={this.props.sendClickData} error={this.state.errors.rating} updateState={this.updateState} />
+            <Recommend sendClickData={this.props.sendClickData} error={this.state.errors.recommend} updateState={this.updateState} />
           </div>
           <Characteristics
+            sendClickData={this.props.sendClickData}
             factors={this.props.factors}
             updateCharacteristics={this.updateCharacteristics}
           />
@@ -177,8 +181,8 @@ class NewReview extends React.Component {
           <div className="reviewDivider" />
           <h3 className="rSectionTitle">YOUR REVIEW</h3>
           <div id="newReviewText">
-            <ReviewSummary error={this.state.errors.summary} updateState={this.updateState} />
-            <ReviewBody error={this.state.errors.body} updateState={this.updateState} />
+            <ReviewSummary sendClickData={this.props.sendClickData} error={this.state.errors.summary} updateState={this.updateState} />
+            <ReviewBody sendClickData={this.props.sendClickData} error={this.state.errors.body} updateState={this.updateState} />
           </div>
           <div>
             {allPhotos.length < 5
@@ -186,13 +190,14 @@ class NewReview extends React.Component {
                 <button
                 className="userButton"
                   type="button"
-                  onClick={() => { this.showAddPhotoModal(); }}
+                  onClick={() => { this.showAddPhotoModal(); this.props.sendClickData('add photo to new review')}}
                 >
                   Add Photo
                 </button>
               )
               : null}
             <AddPhoto
+              sendClickData={this.props.sendClickData}
               hide={this.showAddPhotoModal}
               updateState={this.updateState}
               show={this.state.addPhotos}
@@ -200,7 +205,7 @@ class NewReview extends React.Component {
             {allPhotos.length
               ? (
                 <>
-                  <DisplayPhotos photoModal={this.rModalPhoto} photos={allPhotos} />
+                  <DisplayPhotos sendClickData={this.props.sendClickData} photoModal={this.rModalPhoto} photos={allPhotos} />
                   <PhotoModal src={this.state.rModalPhoto} />
                 </>
               )
@@ -209,8 +214,8 @@ class NewReview extends React.Component {
           <div className="reviewDivider" />
           <h3 className="rSectionTitle">PERSONAL INFO</h3>
           <div id="rPerInfo">
-            <Nickname error={this.state.errors.name} updateState={this.updateState} />
-            <Email error={this.state.errors.email} updateState={this.updateState} />
+            <Nickname sendClickData={this.props.sendClickData} error={this.state.errors.name} updateState={this.updateState} />
+            <Email sendClickData={this.props.sendClickData} error={this.state.errors.email} updateState={this.updateState} />
           </div>
             <button className="userButton" type="button" onClick={() => { this.submitReview(); }}>Submit</button>
           </div>

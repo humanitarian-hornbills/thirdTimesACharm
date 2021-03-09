@@ -117,7 +117,7 @@ app.post('/interactions', (req, res) => {
   axios({
     method: 'post',
     url: `${keys.api}/interactions`,
-    params: clickData,
+    data: clickData,
     headers: {
       Authorization: keys.TOKEN,
       // 'Content-Type': 'application/json'

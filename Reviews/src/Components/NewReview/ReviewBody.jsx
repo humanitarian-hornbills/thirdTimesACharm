@@ -14,6 +14,7 @@ class ReviewBody extends React.Component {
   handleChange(event) {
     this.setState({ body: event.target.value });
     this.props.updateState({ body: event.target.value });
+    this.props.sendClickData('new review body updated')
   }
 
   render() {

@@ -17,7 +17,7 @@ class ReviewApp extends React.Component {
       ratings: {},
       loaded: false,
       displayedReviews: [],
-      newReview: true,
+      newReview: false,
       starsSelected: [],
       currentSort: 'relevant',
       modalPhoto: null,
@@ -131,13 +131,16 @@ class ReviewApp extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
+        this.sendClickData('close photo modal with X')
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
     });
-    window.onclick = function (event) {
+    window.onclick = (event) => {
       if (event.target === modal) {
+        this.sendClickData('close photo modal by clicking outside of modal');
         modal.style.display = 'none';
+
       }
     };
   }
@@ -203,7 +206,6 @@ class ReviewApp extends React.Component {
   sendClickData(ele) {
     let currentTime = new Date()
     currentTime = currentTime.toISOString()
-    // let currentTime = Date.now()
     const clickObj = {
       element: ele,
       widget: 'reviews',
@@ -234,6 +236,7 @@ class ReviewApp extends React.Component {
               starsSelected={this.state.starsSelected}
               ratings={this.state.ratings}
               selectStars={this.selectStars}
+              sendClickData={this.sendClickData}
             />
           </div>
           <div id="reviewBox">
@@ -245,15 +248,16 @@ class ReviewApp extends React.Component {
               markAsHelpful={this.markAsHelpful}
               reportReview={this.reportReview}
               photoModal={this.photoModal}
+              sendClickData={this.sendClickData}
             />
             {allReviews.length > reviewCount
-              ? <button className="userButton" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
+              ? <button className="userButton" type="button" onClick={() => {this.seeMoreReviews; this.sendClickData('show more review button clicked')}}>MORE REVIEWS</button>
               : <></>}
             <button
               className="userButton"
               type="button"
               className="userButton"
-              onClick={() => { this.showModal(); }}
+              onClick={() => { this.sendClickData('add review button clicked'); this.showModal(); }}
             >
               ADD REVIEW
             </button>
@@ -265,6 +269,7 @@ class ReviewApp extends React.Component {
               sendNewReview={this.sendNewReview}
               photoModal={this.photoModal}
               prodUrl={this.state.prodUrl}
+              sendClickData={this.sendClickData}
             />
             <PhotoModal src={this.state.modalPhoto} />
           </div>

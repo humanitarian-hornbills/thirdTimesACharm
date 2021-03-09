@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ReviewSummary = ({ updateState, error }) => (
+const ReviewSummary = ({ updateState, error, sendClickData }) => (
   <div id="rSummary">
     <p className="rTextTitle">REVIEW SUMMARY: <sup className="redA">*</sup></p>
-    <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { updateState({ summary: e.target.value }); }} />
+    <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { updateState({ summary: e.target.value }); sendClickData('new review summary updated')}} />
     <br />
     <div className="rUnderText">
     Limit 60 characters

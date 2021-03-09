@@ -17,6 +17,7 @@ class CharItem extends React.Component {
       checked: this.props.options[event.target.value]
     })
     this.props.updateCharacteristics(charArr);
+    this.props.sendClickData(`selected ${this.props.options[event.target.value]} for ${this.props.name} characteristic`)
   }
 
   render() {

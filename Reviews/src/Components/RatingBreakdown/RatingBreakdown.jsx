@@ -56,8 +56,9 @@ class RatingBreakdown extends React.Component {
                 addStar={this.addStar}
                 selectStars={this.props.selectStars}
                 selected={this.state.selected}
+                sendClickData={this.props.sendClickData}
               />
-              <p className="link reviewBody" onClick={() => { this.clearFilters(); }}>Clear all filters</p>
+              <p className="link reviewBody" onClick={() => { this.clearFilters(); this.props.sendClickData('clear rating filters')} }>Clear all filters</p>
             </>
           )
           : <></>}
@@ -65,6 +66,7 @@ class RatingBreakdown extends React.Component {
           addStar={this.addStar}
           selectStars={this.props.selectStars}
           ratings={this.props.ratings.ratings}
+          sendClickData={this.props.sendClickData}
         />
         <div className="ratingDivider" />
         <Factors factors={this.props.ratings.characteristics} />

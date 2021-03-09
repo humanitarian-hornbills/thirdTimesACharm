@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Rating = ({ updateState, error }) => {
+const Rating = ({ updateState, error, sendClickData }) => {
   const allStars = [];
   for (let i = 5; i > 0; i -= 1) {
     allStars.push(
@@ -15,7 +15,7 @@ const Rating = ({ updateState, error }) => {
     <div id="rRating">
       YOUR OVERALL RATING <sup className="redA">*</sup>
       <p>Please Select</p>
-      <form onChange={(e) => { updateState({ rating: Number(e.target.value) }); }}>
+      <form onChange={(e) => { updateState({ rating: Number(e.target.value)}); sendClickData(`new review rating set as ${e.target.value}`)}}>
         <div className="rating noborder">
           {allStars}
         </div>

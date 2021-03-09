@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BreakdownItem from './BreakdownItem.jsx'
 
-const Breakdown = ({ ratings, selectStars, addStar }) => {
+const Breakdown = ({ ratings, selectStars, addStar, sendClickData }) => {
   const sortedArr = [];
   let reviewCount = 0;
   Object.keys(ratings).forEach(key => {
@@ -19,6 +19,7 @@ const Breakdown = ({ ratings, selectStars, addStar }) => {
           selectStars={selectStars}
           pair={pair}
           key={pair[0]}
+          sendClickData={sendClickData}
         />
       ))}
     </div>

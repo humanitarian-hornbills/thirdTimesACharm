@@ -40,12 +40,12 @@ class AddPhoto extends React.Component {
     return (
       <div className={showHideClassName}>
         <section className="modal-addPhotos" width="400">
-          <span onClick={() => { this.props.hide(); }} className="pclose">&times;</span>
+          <span onClick={() => { this.props.hide(); this.props.sendClickData('close new review add photo modal') }} className="pclose">&times;</span>
           Please enter URLs to your photos below
           <form>
             {photoInputs}
           </form>
-          <button type="button" onClick={this.sendPhotos}>Submit</button>
+          <button type="button" onClick={() => {this.sendPhotos; this.props.sendClickData('submit photos to new review')}}>Submit</button>
         </section>
       </div>
     );

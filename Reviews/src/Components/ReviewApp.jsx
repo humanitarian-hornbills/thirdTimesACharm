@@ -17,7 +17,7 @@ class ReviewApp extends React.Component {
       ratings: {},
       loaded: false,
       displayedReviews: [],
-      newReview: true,
+      newReview: false,
       starsSelected: [],
       currentSort: 'relevant',
       modalPhoto: null,

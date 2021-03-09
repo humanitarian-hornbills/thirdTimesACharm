@@ -17,23 +17,21 @@ const OutfitList = ({ currentProduct, removeFromList, addToList, outfitList, cur
   );
 
   return (
-    <div>
-      <div className="container">
-        <ScrollBtn direction="left" list="outfitList" />
-        <div className="list" id="outfitList">
-          <div className="card" onClick={handleAddToList} onKeyDown={handleAddToList} role="button" tabIndex={0}>
-            <div className="addList">
-              <div className="frame">
-                <img src={currentImg} alt="outfit list" />
-              </div>
-              <div>Add To Outfit List</div>
-              <div id="addSign">+</div>
+    <div className="container" id="outfit-list">
+      <ScrollBtn direction="left" list="outfitList" />
+      <div className="list" id="outfitList">
+        <div className="card" onClick={handleAddToList} onKeyDown={handleAddToList} role="button" tabIndex={0}>
+          <div className="addList">
+            <div className="frame">
+              <img src={currentImg} alt="outfit list" />
             </div>
+            <div>Add To Outfit List</div>
+            <div id="addSign">+</div>
           </div>
-          {list}
         </div>
-        <ScrollBtn direction="right" list="outfitList" />
+        {list}
       </div>
+      <ScrollBtn direction="right" list="outfitList" />
     </div>
   );
 };

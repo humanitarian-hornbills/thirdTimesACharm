@@ -7,9 +7,9 @@ import Size from './Size.jsx';
 import { QuantitySize, SizeSelect, QuanitySelect } from '../../elements/RightSection/BottomSection.element.jsx';
 // eslint-disable-next-line react/prop-types
 const StyledQuanityAndSize = ({
-  style, selectedStyleId, clicked,
+  style, selectedStyleId, clicked, getSizeQuantitySelected, getLikeClicked, getClicked, getErrorMessageShowed
 }) => {
-  const [sizeValue, setSizeValue] = useState(0);
+  const [sizeValue, setSizeValue] = useState('0');
   const [quantityValue, setQuantityValue] = useState(0);
 
   const { skus } = style;
@@ -26,7 +26,6 @@ const StyledQuanityAndSize = ({
       ),
   );
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-syntax
     for (const key in skus) {
       if (skus[key].size === sizeValue) {
         setQuantityValue(skus[key].quantity);
@@ -74,6 +73,14 @@ const StyledQuanityAndSize = ({
     );
   }
 
+  const onHandleChange = (e) => {
+    setSizeValue(e.target.value);
+    getSizeQuantitySelected(Number(e.target.value) !== 0);
+    getClicked(false);
+    getLikeClicked(false);
+    getErrorMessageShowed(false);
+  };
+
   return (
     <>
       {
@@ -81,20 +88,20 @@ const StyledQuanityAndSize = ({
           <QuantitySize>
             <SizeSelect
               name="size"
-              onChange={(e) => setSizeValue(e.target.value)}
+              onChange={onHandleChange}
               value={sizeValue}
               clicked={clicked}
-              sizeValue={sizeValue === 0}
+              sizeValue={sizeValue === '0'}
               required
             >
               {
-                clicked && sizeValue === 0 ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
+                clicked && sizeValue === '0' ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
               }
               {size}
             </SizeSelect>
-            <QuanitySelect name="quantity" disabled={sizeValue === 0}>
+            <QuanitySelect name="quantity" disabled={sizeValue === '0'}>
               {
-                sizeValue === 0 && quantityValue === 0 && <option value="0">  - </option>
+                (sizeValue === '0') && <option value="0">  - </option>
               }
               {quantity}
             </QuanitySelect>

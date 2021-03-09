@@ -6,7 +6,7 @@ const ScrollBtn = ({ direction, list }) => {
   const handleScroll = () => {
     const scrollList = $(`#${list}`);
     if (direction === 'left') {
-      scrollList.scrollLeft(scrollList.scrollLeft() - 300);
+      scrollList.scrollLeft(scrollList.scrollLeft() - 230);
       if (isInboundary(list, direction)) {
         scrollList.removeClass('bounce-left');
         scrollList.removeClass('bounce-right');
@@ -14,7 +14,7 @@ const ScrollBtn = ({ direction, list }) => {
         scrollList.addClass('bounce-left');
       }
     } else if (direction === 'right') {
-      scrollList.scrollLeft(scrollList.scrollLeft() + 300);
+      scrollList.scrollLeft(scrollList.scrollLeft() + 230);
       if (isInboundary(list, direction)) {
         scrollList.removeClass('bounce-right');
         scrollList.removeClass('bounce-left');

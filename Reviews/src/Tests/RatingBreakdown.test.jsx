@@ -58,12 +58,12 @@ const testMeta = {
 
 test('averages ratings', () => {
   const wrapper = shallow(<AvgRating ratings={testMeta.ratings} />);
-  expect(wrapper.find('div').text()).toContain('2.90');
+  expect(wrapper.find('.stars-inner').width).toEqual(2.90);
 });
 
 test('averages recs', () => {
   const wrapper = shallow(<AvgRec recommended={testMeta.recommended} />);
-  expect(wrapper.find('div').text()).toContain('87% of reviews recommended this product');
+  expect(wrapper.find('div').text()).toContain('87% of reviewers recommended this product');
 });
 
 test('adds breakdowns for each star', () => {

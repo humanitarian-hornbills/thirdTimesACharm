@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, './public')));
 // 14932
 app.get('/reviews', (req, res) => {
   const prodId = req.query.id;
-  // console.log(prodId)
   axios({
     method: 'get',
     url: `${keys.api}/reviews/?product_id=${prodId}&count=100&sort=relevant`,
@@ -50,10 +49,6 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-// const reviewDataObj = {
-//   name: response2.data.name,
-//   results: response1.data.results,
-
 app.get('/meta', (req, res) => {
   const prodId = req.query.id;
   axios({
@@ -70,6 +65,7 @@ app.get('/meta', (req, res) => {
 
 app.post('/newReview', (req, res) => {
   const newReview = req.body;
+  console.log(newReview)
   axios({
     method: 'post',
     url: `${keys.api}/reviews`,
@@ -113,6 +109,24 @@ app.put('/report', (req, res) => {
     .then((response) => {
       console.log(response);
     });
+});
+
+app.post('/interactions', (req, res) => {
+  const clickData = req.query;
+  console.log(clickData);
+  axios({
+    method: 'post',
+    url: `${keys.api}/interactions`,
+    params: clickData,
+    headers: {
+      Authorization: keys.TOKEN,
+      // 'Content-Type': 'application/json'
+    },
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch(err => console.log(err));
 });
 
 app.listen(port, () => {

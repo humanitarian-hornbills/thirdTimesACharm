@@ -28,7 +28,7 @@ class AddPhoto extends React.Component {
     const photoInputs = [];
     for (let i = 1; i < 6; i += 1) {
       photoInputs.push(
-        <label htmlFor={`p${i}`}>
+        <label htmlFor={`p${i}`} key={i}>
           Photo
           {' '}
           {i}

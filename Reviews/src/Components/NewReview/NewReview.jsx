@@ -79,6 +79,8 @@ class NewReview extends React.Component {
     if (this.validate()) {
       const newReview = this.state;
       delete newReview.addPhotos;
+      delete newReview.errors;
+      delete newReview.rModalPhoto;
       this.props.sendNewReview(newReview);
       this.clearState();
       this.props.close();
@@ -173,7 +175,7 @@ class NewReview extends React.Component {
           />
           <div className="text-danger">{this.state.errors.characteristics}</div>
           <div className="reviewDivider" />
-          <h3 class="rSectionTitle">YOUR REVIEW</h3>
+          <h3 className="rSectionTitle">YOUR REVIEW</h3>
           <div id="newReviewText">
             <ReviewSummary error={this.state.errors.summary} updateState={this.updateState} />
             <ReviewBody error={this.state.errors.body} updateState={this.updateState} />
@@ -182,7 +184,7 @@ class NewReview extends React.Component {
             {allPhotos.length < 5
               ? (
                 <button
-                  class="userButton"
+                className="userButton"
                   type="button"
                   onClick={() => { this.showAddPhotoModal(); }}
                 >
@@ -205,12 +207,12 @@ class NewReview extends React.Component {
               : null}
           </div>
           <div className="reviewDivider" />
-          <h3 class="rSectionTitle">PERSONAL INFO</h3>
+          <h3 className="rSectionTitle">PERSONAL INFO</h3>
           <div id="rPerInfo">
             <Nickname error={this.state.errors.name} updateState={this.updateState} />
             <Email error={this.state.errors.email} updateState={this.updateState} />
           </div>
-            <button class="userButton" type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+            <button className="userButton" type="button" onClick={() => { this.submitReview(); }}>Submit</button>
           </div>
         </section>
       </div>

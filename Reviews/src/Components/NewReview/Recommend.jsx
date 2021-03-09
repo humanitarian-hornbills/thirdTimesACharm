@@ -13,7 +13,7 @@ const Recommend = ({ updateState, error }) => {
 
   return (
     <div id="rRec">
-      WOULD YOU RECOMMEND THIS PRODUCT? <sup class="redA">*</sup>
+      WOULD YOU RECOMMEND THIS PRODUCT? <sup className="redA">*</sup>
       <div id="recRadios" onChange={(e) => { onChangeValue(e); }}>
         <div id="yes">
           <input type="radio" value="1" name="recommend" />

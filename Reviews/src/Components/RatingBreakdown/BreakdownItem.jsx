@@ -13,7 +13,7 @@ const BreakdownItem = ({ pair, selectStars, addStar, reviewCount }) => {
         <div className="innerLine" style={{ width: avg }} />
       </div>
       &nbsp;
-      <div class="starCountTot">{pair[1]}</div>
+      <div className="starCountTot">{pair[1]}</div>
     </div>
   );
 };

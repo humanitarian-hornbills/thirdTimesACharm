@@ -19,9 +19,9 @@ class ReviewBody extends React.Component {
   render() {
     return (
       <div id="rBody">
-        <p class="rTextTitle">YOUR REVIEW: <sup class="redA">*</sup></p>
+        <p className="rTextTitle">YOUR REVIEW: <sup className="redA">*</sup></p>
         <textarea maxLength="1000" placeholder='Why did you like the product or not?' onChange={this.handleChange} />
-        {this.state.body.length + 1 < 50
+        {this.state.body.length < 50
           ? (
             <div className="rUnderText">
               Minimum required characters left:&nbsp;

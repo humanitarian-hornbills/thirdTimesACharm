@@ -5,15 +5,15 @@ const Rating = ({ updateState, error }) => {
   const allStars = [];
   for (let i = 5; i > 0; i -= 1) {
     allStars.push(
-      <>
+      <React.Fragment key={i}>
         <input id={`star${i}`} name="star" type="radio" value={i} className="radio-btn hide" />
         <label htmlFor={`star${i}`}>☆</label>
-      </>,
+      </React.Fragment>,
     );
   }
   return (
     <div id="rRating">
-      YOUR OVERALL RATING <sup class="redA">*</sup>
+      YOUR OVERALL RATING <sup className="redA">*</sup>
       <p>Please Select</p>
       <form onChange={(e) => { updateState({ rating: Number(e.target.value) }); }}>
         <div className="rating noborder">

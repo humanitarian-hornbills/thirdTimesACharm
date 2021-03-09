@@ -200,6 +200,23 @@ class ReviewApp extends React.Component {
     axios.put('/report', { id: revId });
   }
 
+  sendClickData(ele) {
+    let currentTime = new Date()
+    currentTime = currentTime.toISOString()
+    // let currentTime = Date.now()
+    const clickObj = {
+      element: ele,
+      widget: 'reviews',
+      time: currentTime
+    }
+    console.log(clickObj)
+    axios({
+      method: 'post',
+      url: '/interactions',
+      params: clickObj,
+    })
+  }
+
   render() {
     console.log(this.state);
     if (this.state.loaded) {
@@ -220,7 +237,7 @@ class ReviewApp extends React.Component {
             />
           </div>
           <div id="reviewBox">
-            <SortForm reviewCount={allReviews.length} getSort={this.getSort} />
+            <SortForm reviewCount={allReviews.length} getSort={this.getSort} sendClickData={this.sendClickData}/>
             <ReviewList
               seeMoreReviews={this.seeMoreReviews}
               reviewCount={reviewCount}
@@ -233,7 +250,7 @@ class ReviewApp extends React.Component {
               ? <button className="userButton" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
               : <></>}
             <button
-              class="userButton"
+              className="userButton"
               type="button"
               className="userButton"
               onClick={() => { this.showModal(); }}

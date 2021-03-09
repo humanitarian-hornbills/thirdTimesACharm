@@ -230,12 +230,12 @@ class ReviewApp extends React.Component {
               photoModal={this.photoModal}
             />
             {allReviews.length > reviewCount
-              ? <button id="moreReviews" className="link" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
+              ? <button className="userButton" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
               : <></>}
             <button
-              id="addReview"
+              class="userButton"
               type="button"
-              className="link"
+              className="userButton"
               onClick={() => { this.showModal(); }}
             >
               ADD REVIEW

@@ -5,7 +5,7 @@ class ReviewBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: 'Why did you like the product or not?',
+      body: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,8 +19,8 @@ class ReviewBody extends React.Component {
   render() {
     return (
       <div id="rBody">
-        <p class="rTextTitle">Review:</p>
-        <textarea maxLength="1000" value={this.state.body} onChange={this.handleChange} />
+        <p class="rTextTitle">YOUR REVIEW: <sup class="redA">*</sup></p>
+        <textarea maxLength="1000" placeholder='Why did you like the product or not?' onChange={this.handleChange} />
         {this.state.body.length + 1 < 50
           ? (
             <div className="rUnderText">
@@ -30,11 +30,11 @@ class ReviewBody extends React.Component {
 
           )
           : (
-            <>
-              <br />
+            <div className="rUnderText">
               Minimum Reached
-            </>
+            </div>
           )}
+        <div className="text-danger">{this.props.error}</div>
       </div>
     );
   }

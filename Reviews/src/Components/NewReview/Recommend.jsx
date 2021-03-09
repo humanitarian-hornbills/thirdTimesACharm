@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Recommend = ({ updateState }) => {
+const Recommend = ({ updateState, error }) => {
   const onChangeValue = (event) => {
     let rec = true;
     if (event.target.value === '0') {
@@ -13,7 +13,7 @@ const Recommend = ({ updateState }) => {
 
   return (
     <div id="rRec">
-      WOULD YOU RECOMMEND THIS PRODUCT?
+      WOULD YOU RECOMMEND THIS PRODUCT? <sup class="redA">*</sup>
       <div id="recRadios" onChange={(e) => { onChangeValue(e); }}>
         <div id="yes">
           <input type="radio" value="1" name="recommend" />
@@ -30,6 +30,7 @@ const Recommend = ({ updateState }) => {
         </span>
         </div>
       </div>
+      <div className="text-danger">{error}</div>
     </div>
   );
 };

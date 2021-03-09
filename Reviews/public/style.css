@@ -8,6 +8,13 @@ font-family: Helvetica, Arial, sans-serif;
 }
 
 
+img {
+  cursor: pointer;
+}
+
+Img:hover {
+  opacity: 0.7;
+}
 
 div {
   /* border: solid black;
@@ -150,7 +157,6 @@ div#ratingBox * {
 }
 
 #newReviewTop {
-
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -171,13 +177,17 @@ div#ratingBox * {
   flex: 1;
 }
 
+#rProdPhoto img:hover {
+  opacity: 1;
+  cursor: auto;
+}
+
 #rProdPhoto img {
   max-width:200px;
   max-height: 180px;
 }
 
 #rProdTitle {
-  /* float: left; */
   width: auto;
   font-size: 20px;
   font-weight: bold;
@@ -213,7 +223,6 @@ label {
 
 #recRadios {
   margin-top: 20px;
-  /* align-items: center; */
   display: block;
   margin-left: 0;
 }
@@ -246,9 +255,6 @@ input[type='radio']:checked {
   cursor: pointer;
 }
 
-img {
-  cursor: pointer;
-}
 
 .response {
   background-color: #ebedee;
@@ -461,7 +467,6 @@ img {
 .factorTriangle {
   position: relative;
   top: -11px;
-
 }
 
 .factorTriangle::before {
@@ -493,7 +498,7 @@ option {
   font-weight: bold;
 }
 
-#moreReviews, #addReview {
+.userButton {
   height: 50px;
   width: 200px;
   border: solid grey 2px;
@@ -502,6 +507,7 @@ option {
   font-weight: bold;
   margin: 5px;
   background-color: white;
+  cursor: pointer;
 }
 
 /* image modal  */
@@ -551,8 +557,6 @@ option {
   cursor: pointer;
 }
 
-Img:hover {opacity: 0.7;}
-
 .text-danger {
   font-size: 12px;
   color: red;
@@ -577,6 +581,7 @@ Img:hover {opacity: 0.7;}
   display: inline-block;
   margin-right: 33px;
   height: 100px;
+  margin-bottom: 25px;
 }
 
 .charItem .radioRow {
@@ -594,6 +599,11 @@ Img:hover {opacity: 0.7;}
 
 .charItem .factorItemFactors {
   top: 33px
+}
+
+.checkCharVal {
+  height: 12px;
+  font-size: 12px;
 }
 
 h3 {
@@ -617,6 +627,7 @@ textarea{
 
 .rUnderText {
   font-size: 12px;
+  color: #767677;
 }
 
 #rPerInfo {
@@ -629,3 +640,12 @@ textarea{
   flex: 1;
 }
 
+#rEmail input, #rName input {
+height: 30px;
+font-size: 18px;
+}
+
+.redA {
+  margin: 0;
+  color: red
+}

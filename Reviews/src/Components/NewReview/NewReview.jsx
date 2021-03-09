@@ -137,7 +137,7 @@ class NewReview extends React.Component {
       isValid = false;
       errors.summary = 'Please make sure you leave a review summary';
     }
-    if (!input.recommend) {
+    if (input.recommend === null) {
       isValid = false;
       errors.recommend = 'Please make sure you mark if you recommend this product';
     }
@@ -164,12 +164,9 @@ class NewReview extends React.Component {
           <div id="allNewReviewForms">
           <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name}/>
           <div id="newReviewRateRec">
-            <Rating updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.rating}</div>
-            <Recommend updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.recommend}</div>
+            <Rating error={this.state.errors.rating} updateState={this.updateState} />
+            <Recommend error={this.state.errors.recommend} updateState={this.updateState} />
           </div>
-          {/* <div className="reviewDivider" /> */}
           <Characteristics
             factors={this.props.factors}
             updateCharacteristics={this.updateCharacteristics}
@@ -178,15 +175,14 @@ class NewReview extends React.Component {
           <div className="reviewDivider" />
           <h3 class="rSectionTitle">YOUR REVIEW</h3>
           <div id="newReviewText">
-            <ReviewSummary updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.summary}</div>
-            <ReviewBody updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.body}</div>
+            <ReviewSummary error={this.state.errors.summary} updateState={this.updateState} />
+            <ReviewBody error={this.state.errors.body} updateState={this.updateState} />
           </div>
           <div>
             {allPhotos.length < 5
               ? (
                 <button
+                  class="userButton"
                   type="button"
                   onClick={() => { this.showAddPhotoModal(); }}
                 >
@@ -211,12 +207,10 @@ class NewReview extends React.Component {
           <div className="reviewDivider" />
           <h3 class="rSectionTitle">PERSONAL INFO</h3>
           <div id="rPerInfo">
-            <Nickname updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.name}</div>
-            <Email updateState={this.updateState} />
-            <div className="text-danger">{this.state.errors.email}</div>
+            <Nickname error={this.state.errors.name} updateState={this.updateState} />
+            <Email error={this.state.errors.email} updateState={this.updateState} />
           </div>
-            <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+            <button class="userButton" type="button" onClick={() => { this.submitReview(); }}>Submit</button>
           </div>
         </section>
       </div>

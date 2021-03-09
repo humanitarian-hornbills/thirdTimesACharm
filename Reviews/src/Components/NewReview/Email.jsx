@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Email = ({ updateState }) => (
+const Email = ({ updateState, error }) => (
   <div id="rEmail">
-    <p>Email:</p>
+    <p>Email: <sup class="redA">*</sup></p>
     <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); }} />
     <br />
     <div className="rUnderText">
       Limit 60 characters
     </div>
+    <div className="text-danger">{error}</div>
   </div>
 );
 

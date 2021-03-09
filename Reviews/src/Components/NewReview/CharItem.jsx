@@ -4,13 +4,18 @@ import PropTypes from 'prop-types';
 class CharItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      checked: null,
+    };
     this.onChangeValue = this.onChangeValue.bind(this);
   }
 
   onChangeValue(event) {
     const { charId } = this.props;
     const charArr = [charId, Number(event.target.value)];
+    this.setState({
+      checked: this.props.options[event.target.value]
+    })
     this.props.updateCharacteristics(charArr);
   }
 
@@ -18,7 +23,8 @@ class CharItem extends React.Component {
     const {name, options} = this.props;
     return (
       <div className="charItem">
-        <p>{name}</p>
+        <p>{name.toUpperCase()} <sup class="redA">*</sup></p>
+        <div className="checkCharVal">{this.state.checked}</div>
         <section className="radioRow" onChange={this.onChangeValue}>
           {Object.keys(options).map((key) => (
             <div >

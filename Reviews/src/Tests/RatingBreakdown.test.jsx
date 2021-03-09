@@ -58,7 +58,8 @@ const testMeta = {
 
 test('averages ratings', () => {
   const wrapper = shallow(<AvgRating ratings={testMeta.ratings} />);
-  expect(wrapper.find('.stars-inner').width).toEqual(2.90);
+  .find('.stars-inner')
+  expect(wrapper.find('.stars-inner').width).toEqual(217.5);
 });
 
 test('averages recs', () => {

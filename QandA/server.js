@@ -136,10 +136,15 @@ app.post('/answer/:id', (req, res) => {
 });
 
 app.put('/helpfulQ', (req, res) => {
+  // expects the following body format:
+  //   {
+  //     "qId": 153126,
+  //     "productId": 14932
+
+  // }
   const { qId, productId } = req.body;
-  console.log(qId, productId);
   const pQuestions = {};
-  axios.put(`${api.api}/qa/questions/${qId}/helpful`, {
+  axios.put(`${api.api}/qa/questions/${qId}/helpful`, {}, {
     headers: {
       Authorization: api.TOKEN,
     },
@@ -154,6 +159,96 @@ app.put('/helpfulQ', (req, res) => {
           questions[productId] = response.data;
           pQuestions[productId] = questions[productId];
           res.send(pQuestions);
+        })
+        .catch(() => res.sendStatus(404));
+    })
+    .catch(() => res.sendStatus(404));
+});
+
+app.put('/helpfulAns', (req, res) => {
+  // expects the following body format:
+  //   {
+  //     "ansId": 153126,
+  //     "qId": 14932
+
+  // }
+  const { ansId, qId } = req.body;
+  const qAnswers = {};
+  axios.put(`${api.api}/qa/answers/${ansId}/helpful`, {}, {
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  })
+    .then(() => {
+      axios.get(`${api.api}/qa/questions/${qId}/answers`, {
+        headers: {
+          Authorization: api.TOKEN,
+        },
+      })
+        .then((response) => {
+          answers[qId] = response.data;
+          qAnswers[qId] = answers[qId];
+          res.send(qAnswers[qId]);
+        })
+        .catch(() => res.sendStatus(404));
+    })
+    .catch(() => res.sendStatus(404));
+});
+
+app.put('/reportQ', (req, res) => {
+  // expects the following body format:
+  //   {
+  //     "qId": 153126,
+  //     "productId": 14932
+
+  // }
+  const { qId, productId } = req.body;
+  const pQuestions = {};
+  axios.put(`${api.api}/qa/questions/${qId}/report`, {}, {
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  })
+    .then(() => {
+      axios.get(`${api.api}/qa/questions?product_id=${productId}`, {
+        headers: {
+          Authorization: api.TOKEN,
+        },
+      })
+        .then((response) => {
+          questions[productId] = response.data;
+          pQuestions[productId] = questions[productId];
+          res.send(pQuestions);
+        })
+        .catch(() => res.sendStatus(404));
+    })
+    .catch(() => res.sendStatus(404));
+});
+
+app.put('/reportAns', (req, res) => {
+  // expects the following body format:
+  //   {
+  //     "ansId": 153126,
+  //     "qId": 14932
+
+  // }
+  const { ansId, qId } = req.body;
+  const qAnswers = {};
+  axios.put(`${api.api}/qa/answers/${ansId}/report`, {}, {
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  })
+    .then(() => {
+      axios.get(`${api.api}/qa/questions/${qId}/answers`, {
+        headers: {
+          Authorization: api.TOKEN,
+        },
+      })
+        .then((response) => {
+          answers[qId] = response.data;
+          qAnswers[qId] = answers[qId];
+          res.send(qAnswers[qId]);
         })
         .catch(() => res.sendStatus(404));
     })

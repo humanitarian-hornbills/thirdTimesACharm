@@ -19,7 +19,6 @@ inBoundary.isInboundaryOp = (list, direction) => {
   const scrollList = $(`#${list}`);
   if (direction === 'left') {
     if (scrollList.scrollLeft() < 0) {
-      console.log(scrollList.scrollLeft())
       return true;
     }
     return false;

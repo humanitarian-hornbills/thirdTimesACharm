@@ -2,7 +2,7 @@ import { shallow, mount, render } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 import ReviewApp from '../Components/ReviewApp.jsx';
-import ImageComponent from '../Components/ImageComponent.jsx'
+import PhotoModal from '../Components/PhotoModal.jsx';
 
 const sampleReview = {
   review_id: 147757,
@@ -35,14 +35,6 @@ function setup() {
   return { wrapper, props };
 }
 
-test('changes size of photo', () => {
-  const wrapper = mount(<ImageComponent src="https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png" />);
-  wrapper
-    .find('img')
-    .simulate('click');
-
-  expect(wrapper.state().isOpen).toBe(true);
-});
 
 test('ReviewApp has buttons', () => {
   const wrapper = mount(<ReviewApp productId={14932} />);

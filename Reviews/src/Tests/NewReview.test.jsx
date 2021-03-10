@@ -1,10 +1,16 @@
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
+import jest from 'jest';
 import sinon from 'sinon';
 import AddPhoto from '../Components/NewReview/AddPhoto.jsx';
 import Characteristics from '../Components/NewReview/Characteristics.jsx';
 import CharItem from '../Components/NewReview/CharItem.jsx';
 import NewReview from '../Components/NewReview/NewReview.jsx';
+import DisplayPhotos from '../Components/NewReview/DisplayPhotos.jsx';
+import Email from '../Components/NewReview/Email.jsx';
+
+const nEmail = new Email()
+const updateState = nEmail.props.updateState
 
 const sampleCharacteristics = [['Fit', 50013], ['Length', 50014],
   ['Comfort', 50015], ['Quality', 50016]];
@@ -16,6 +22,8 @@ const sampleOptions = {
   4: 'Runs slightly long',
   5: 'Runs long',
 }
+
+const samplePhotos = ['https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png', 'https://www.liveabout.com/thmb/0DNrjC90zr2BXxMwrhhrDQeOYFs=/2332x1312/smart/filters:no_upscale()/NoMeGusta-5a314fde96f7d00037ef5d65.jpg', 'https://i.pinimg.com/originals/32/3f/d8/323fd8b794e9c1ab4f52de7e6b018852.jpg']
 
 test('adds photos', () => {
   const wrapper = shallow(<AddPhoto />);
@@ -46,6 +54,21 @@ test('there should be a characteristic input for each characteristic', () => {
 
 test('CharItem renders correct text', () => {
   const wrapper = shallow(<CharItem options={sampleOptions} name={sampleCharacteristics[0][0]} />);
-  expect(wrapper.find('p').text()).toContain('Fit');
-  expect(wrapper.find('label').first().text()).toContain('Runs tight');
+  expect(wrapper.find('p').text()).toContain('FIT');
+  expect(wrapper.find('.smallFactor').text()).toContain('Runs tight');
 })
+
+test('display photos displays all the photos', () => {
+  const wrapper = shallow(<DisplayPhotos photos={samplePhotos} />)
+  expect(wrapper.find('img')).toHaveLength(3);
+})
+
+test('Email component updates email address', () => {
+  const wrapper = shallow(<Email updateState={updateState}/>)
+  const nextWrapper = shallow(<NewReview />)
+
+  wrapper.find('input')
+  .simulate('change', { target: { value: 'abc' } });
+  expect(nextWrapper.state('email')).toEqual('a');
+})
+//wrapper.find("input").instance().value = "abc";

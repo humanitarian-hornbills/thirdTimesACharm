@@ -1,23 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectedList = ({ selected, selectStars, addStar }) => (
-  <div>
-    <p className="reviewBody">
-      Showing reviews:
-      {' '}
-      {selected.map((star) => (
-        <>
-          <span className="link starCountNum" onClick={() => { selectStars(Number(star)); addStar(Number(star)); }}>
-            {star}
+const SelectedList = ({ selected, selectStars, addStar, sendClickData }) => {
+  let count = 0
+  return (
+    <div>
+      <p className="reviewBody">
+        Showing reviews:
+        {' '}
+        {selected.map((star) => (
+          <React.Fragment key={count++}>
+            <span className="link starCountNum" onClick={() => { selectStars(Number(star)); addStar(Number(star));
+            sendClickData(`filter ${star} star reviews`)}}>
+              {star}
+              {' '}
+              STARS
+            </span>
             {' '}
-            STARS
-          </span>
-          {' '}
-        </>
-      ))}
-    </p>
-  </div>
-);
+          </React.Fragment>
+        ))}
+      </p>
+    </div>
+  );
 
+}
 export default SelectedList;

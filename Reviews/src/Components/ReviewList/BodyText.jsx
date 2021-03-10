@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const BodyText = ({ text }) => {
+const BodyText = ({ text, sendClickData }) => {
   const [expand, setExpand] = useState(false);
   const first250 = text.slice(0, 250);
   if (text.length < 250) {
@@ -22,7 +22,7 @@ const BodyText = ({ text }) => {
               {' '}
               ...
             </p>
-            <p className="link moreBodyText" onClick={() => { setExpand(true); }}>Show More</p>
+            <p className="link moreBodyText" onClick={() => { setExpand(true); sendClickData('show full review')}}>Show More</p>
           </>
         )
         : (

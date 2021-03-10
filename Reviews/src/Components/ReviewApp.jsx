@@ -5,6 +5,9 @@ import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
+import styled from 'styled-components';
+import CoolButton from './CoolButton.jsx'
+
 
 class ReviewApp extends React.Component {
   constructor(props) {
@@ -131,13 +134,16 @@ class ReviewApp extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
+        this.sendClickData('close photo modal with X')
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
     });
-    window.onclick = function (event) {
+    window.onclick = (event) => {
       if (event.target === modal) {
+        this.sendClickData('close photo modal by clicking outside of modal');
         modal.style.display = 'none';
+
       }
     };
   }
@@ -200,6 +206,22 @@ class ReviewApp extends React.Component {
     axios.put('/report', { id: revId });
   }
 
+  sendClickData(ele) {
+    let currentTime = new Date()
+    currentTime = currentTime.toISOString()
+    const clickObj = {
+      element: ele,
+      widget: 'reviews',
+      time: currentTime
+    }
+    console.log(clickObj)
+    axios({
+      method: 'post',
+      url: '/interactions',
+      params: clickObj,
+    })
+  }
+
   render() {
     console.log(this.state);
     if (this.state.loaded) {
@@ -217,10 +239,11 @@ class ReviewApp extends React.Component {
               starsSelected={this.state.starsSelected}
               ratings={this.state.ratings}
               selectStars={this.selectStars}
+              sendClickData={this.sendClickData}
             />
           </div>
           <div id="reviewBox">
-            <SortForm reviewCount={allReviews.length} getSort={this.getSort} />
+            <SortForm reviewCount={allReviews.length} getSort={this.getSort} sendClickData={this.sendClickData}/>
             <ReviewList
               seeMoreReviews={this.seeMoreReviews}
               reviewCount={reviewCount}
@@ -228,18 +251,15 @@ class ReviewApp extends React.Component {
               markAsHelpful={this.markAsHelpful}
               reportReview={this.reportReview}
               photoModal={this.photoModal}
+              sendClickData={this.sendClickData}
             />
+            <div id="mainButtons">
             {allReviews.length > reviewCount
-              ? <button className="userButton" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
+              ?
+              <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name={'MORE REVIEWS'} text={'show more review button clicked'}/>
               : <></>}
-            <button
-              class="userButton"
-              type="button"
-              className="userButton"
-              onClick={() => { this.showModal(); }}
-            >
-              ADD REVIEW
-            </button>
+              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name={'add review'} text={'add review button clicked'}/>
+            </div>
             <NewReview
               name={this.state.productName}
               factors={factors}
@@ -248,6 +268,7 @@ class ReviewApp extends React.Component {
               sendNewReview={this.sendNewReview}
               photoModal={this.photoModal}
               prodUrl={this.state.prodUrl}
+              sendClickData={this.sendClickData}
             />
             <PhotoModal src={this.state.modalPhoto} />
           </div>

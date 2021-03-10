@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nickname = ({ updateState, error }) => (
+const Nickname = ({ updateState, error, sendClickData }) => (
   <div id="rName">
-    <p>NICKNAME: <sup class="redA">*</sup></p>
+    <p>NICKNAME: <sup className="redA">*</sup></p>
     <input
       maxLength="60"
       type="text"
       onChange={(e) => {
         updateState({ name: e.target.value });
+        sendClickData('new review nickname updated')
       }}
     />
     <div className="rUnderText">

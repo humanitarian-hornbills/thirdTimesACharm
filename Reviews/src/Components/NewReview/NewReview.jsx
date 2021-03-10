@@ -11,6 +11,7 @@ import Email from './Email.jsx';
 import DisplayPhotos from './DisplayPhotos.jsx';
 import PhotoModal from '../PhotoModal.jsx';
 import NewReviewTop from './NewReviewTop.jsx'
+import CoolButton from '../CoolButton.jsx'
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -79,9 +80,14 @@ class NewReview extends React.Component {
     if (this.validate()) {
       const newReview = this.state;
       delete newReview.addPhotos;
+      delete newReview.errors;
+      delete newReview.rModalPhoto;
       this.props.sendNewReview(newReview);
+      this.props.sendClickData('new review submitted')
       this.clearState();
       this.props.close();
+    } else {
+      this.props.sendClickData('new review not sent - missing data')
     }
   }
 
@@ -95,12 +101,14 @@ class NewReview extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
+        this.props.sendClickData('close new review photo modal with X')
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
     });
     window.onclick = (event) => {
       if (event.target === modal) {
+        this.props.sendClickData('close new review photo modal by clicking outside of modal')
         modal.style.display = 'none';
       }
     };
@@ -160,57 +168,53 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-        <span role="close" onClick={() => { this.props.close(); this.clearState(); }} className="rclose">&times;</span>
+          <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window') }} className="rclose">&times;</span>
           <div id="allNewReviewForms">
-          <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name}/>
-          <div id="newReviewRateRec">
-            <Rating error={this.state.errors.rating} updateState={this.updateState} />
-            <Recommend error={this.state.errors.recommend} updateState={this.updateState} />
-          </div>
-          <Characteristics
-            factors={this.props.factors}
-            updateCharacteristics={this.updateCharacteristics}
-          />
-          <div className="text-danger">{this.state.errors.characteristics}</div>
-          <div className="reviewDivider" />
-          <h3 class="rSectionTitle">YOUR REVIEW</h3>
-          <div id="newReviewText">
-            <ReviewSummary error={this.state.errors.summary} updateState={this.updateState} />
-            <ReviewBody error={this.state.errors.body} updateState={this.updateState} />
-          </div>
-          <div>
-            {allPhotos.length < 5
-              ? (
-                <button
-                  class="userButton"
-                  type="button"
-                  onClick={() => { this.showAddPhotoModal(); }}
-                >
-                  Add Photo
-                </button>
-              )
-              : null}
-            <AddPhoto
-              hide={this.showAddPhotoModal}
-              updateState={this.updateState}
-              show={this.state.addPhotos}
+            <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name} />
+            <div id="newReviewRateRec">
+              <Rating sendClickData={this.props.sendClickData} error={this.state.errors.rating} updateState={this.updateState} />
+              <Recommend sendClickData={this.props.sendClickData} error={this.state.errors.recommend} updateState={this.updateState} />
+            </div>
+            <Characteristics
+              sendClickData={this.props.sendClickData}
+              factors={this.props.factors}
+              updateCharacteristics={this.updateCharacteristics}
             />
-            {allPhotos.length
-              ? (
-                <>
-                  <DisplayPhotos photoModal={this.rModalPhoto} photos={allPhotos} />
-                  <PhotoModal src={this.state.rModalPhoto} />
-                </>
-              )
-              : null}
-          </div>
-          <div className="reviewDivider" />
-          <h3 class="rSectionTitle">PERSONAL INFO</h3>
-          <div id="rPerInfo">
-            <Nickname error={this.state.errors.name} updateState={this.updateState} />
-            <Email error={this.state.errors.email} updateState={this.updateState} />
-          </div>
-            <button class="userButton" type="button" onClick={() => { this.submitReview(); }}>Submit</button>
+            <div className="text-danger">{this.state.errors.characteristics}</div>
+            <div className="reviewDivider" />
+            <h3 className="rSectionTitle">YOUR REVIEW</h3>
+            <div id="newReviewText">
+              <ReviewSummary sendClickData={this.props.sendClickData} error={this.state.errors.summary} updateState={this.updateState} />
+              <ReviewBody sendClickData={this.props.sendClickData} error={this.state.errors.body} updateState={this.updateState} />
+            </div>
+            <div>
+              {allPhotos.length < 5
+                ? (
+                  <CoolButton sendClickData={this.props.sendClickData} func={this.showAddPhotoModal} name={'ADD PHOTO(S)'} text={'add photo to new review'} />
+                )
+                : <></>}
+              <AddPhoto
+                sendClickData={this.props.sendClickData}
+                hide={this.showAddPhotoModal}
+                updateState={this.updateState}
+                show={this.state.addPhotos}
+              />
+              {allPhotos.length
+                ? (
+                  <>
+                    <DisplayPhotos sendClickData={this.props.sendClickData} photoModal={this.rModalPhoto} photos={allPhotos} />
+                    <PhotoModal src={this.state.rModalPhoto} />
+                  </>
+                )
+                : null}
+            </div>
+            <div className="reviewDivider" />
+            <h3 className="rSectionTitle">PERSONAL INFO</h3>
+            <div id="rPerInfo">
+              <Nickname sendClickData={this.props.sendClickData} error={this.state.errors.name} updateState={this.updateState} />
+              <Email sendClickData={this.props.sendClickData} error={this.state.errors.email} updateState={this.updateState} />
+            </div>
+            <CoolButton func={this.submitReview} name={'submit'} />
           </div>
         </section>
       </div>

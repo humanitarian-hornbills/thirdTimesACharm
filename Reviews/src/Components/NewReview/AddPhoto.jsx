@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import css from './NewReview.css';
+import CoolButton from '../CoolButton.jsx'
 
 class AddPhoto extends React.Component {
   constructor(props) {
@@ -15,11 +15,13 @@ class AddPhoto extends React.Component {
   handleChange(event) {
     const photoArr = this.state.photos;
     photoArr.push(event.target.value);
+    this.props.sendClickData('add photo to new review add photo form')
     this.setState({ photos: photoArr });
   }
 
   sendPhotos() {
     this.props.updateState(this.state);
+    this.props.sendClickData('submit photos to new review')
     this.props.hide();
   }
 
@@ -28,24 +30,30 @@ class AddPhoto extends React.Component {
     const photoInputs = [];
     for (let i = 1; i < 6; i += 1) {
       photoInputs.push(
-        <label htmlFor={`p${i}`}>
-          Photo
-          {' '}
-          {i}
-          :
-          <input id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
-        </label>,
+        <div className="newReviewPhotoInput" key={i}>
+          <label htmlFor={`p${i}`} >
+            Photo
+            {' '}
+            {i}
+            :
+            {' '}
+            <input id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
+          </label>
+        </div>,
       );
     }
     return (
       <div className={showHideClassName}>
-        <section className="modal-addPhotos" width="400">
-          <span onClick={() => { this.props.hide(); }} className="pclose">&times;</span>
-          Please enter URLs to your photos below
+        <section className="modal-addPhotos">
+          <span onClick={() => { this.props.hide(); this.props.sendClickData('close new review add photo modal') }} className="pclose">&times;</span>
+          <h3 className="rSectionTitle">ADD PHOTOS</h3>
+          <div>ENTER THE URLs TO YOUR IMAGES BELOW</div>
+          <div id="newReviewPhotoInputs">
           <form>
             {photoInputs}
           </form>
-          <button type="button" onClick={this.sendPhotos}>Submit</button>
+          </div>
+          <CoolButton func={this.sendPhotos} name={'submit'}/>
         </section>
       </div>
     );

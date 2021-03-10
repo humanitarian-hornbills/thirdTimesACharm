@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CharItem from './CharItem.jsx';
 
-const Characteristics = ({updateCharacteristics, factors}) => {
+const Characteristics = ({updateCharacteristics, factors, sendClickData}) => {
   const chars = {
     Fit: {
       1: 'Runs tight',
@@ -57,6 +57,7 @@ const Characteristics = ({updateCharacteristics, factors}) => {
           updateCharacteristics={updateCharacteristics}
           charId={factor[1]}
           key={index}
+          sendClickData={sendClickData}
         />
       ))}
     </div>

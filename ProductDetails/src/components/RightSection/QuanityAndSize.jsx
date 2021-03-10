@@ -97,7 +97,6 @@ const StyledQuanityAndSize = ({
     setQuantityValue(Number(e.target.value));
     if (e.target.value !== 0 && sizeValue !== '0') {
       setSizeQuantitySelected(Number(e.target.value));
-      setLikeClicked(false);
       setErrorMesShowed(false);
     }
   }

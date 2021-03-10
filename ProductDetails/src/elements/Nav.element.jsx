@@ -16,7 +16,6 @@ justify-self:end;
 width:80%;
 border:1px solid black;
 margin-top:5%;
-height:25%;
 padding:5px;
 border: 1px solid #DFDFDF;
 color:#4b5666;
@@ -40,7 +39,7 @@ cursor:pointer;
 `;
 export const Cart = styled(ShoppingBag)`
 height:30px;
-margin-top:12.5%;
+margin-top:15.5%;
 color:#167a92;
 `;
 

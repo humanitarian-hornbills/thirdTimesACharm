@@ -12,8 +12,7 @@ body {
 .list {
   display: flex;
   overflow-x:hidden;
-  /* white-space: nowrap; */
-  /* scroll-behavior: smooth; */
+  scroll-behavior: smooth;
   margin-top: 20px;
 }
 
@@ -49,4 +48,3 @@ body {
   /* margin-top: 400px; */
   /* z-index: 1; */
 }
-

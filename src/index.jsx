@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReviewApp from '../Reviews/src/Components/ReviewApp.jsx';
 import Products from '../ProductDetails/src/components/Products.jsx';
 import RelatedProducts from '../RelatedProducts/src/components/RelatedProducts.jsx';
+import QA from '../QandA/src/QA.jsx';
 
 const id = 14936;
 
@@ -10,6 +11,7 @@ const App = () => (
   <>
     <Products />
     <RelatedProducts />
+    <QA />
     <ReviewApp productId={id} />
   </>
 )

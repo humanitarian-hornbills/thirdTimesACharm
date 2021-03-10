@@ -122,7 +122,7 @@ class Card extends React.Component {
             rating={rating}
             starRatedColor="RGB(253, 204, 13)"
             starDimension="20px"
-            starSpacing="1px"
+            starSpacing="9px"
           />
         </div>
       </div>

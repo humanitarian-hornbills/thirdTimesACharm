@@ -1,22 +1,18 @@
 import React from 'react';
-import { GiftIcon, PersonIcon } from '../../elements/IconList.element.jsx';
+import { GiftIcon, PersonIcon, IconWrapper } from '../../elements/IconList.element.jsx';
 
 const IconList = () => (
-  <>
-    <>
-      <GiftIcon />
-      <span style={{ position: 'inlineBlock' }}>registry</span>
-    </>
+  <IconWrapper>
 
-    <>
+    <GiftIcon />
+    <span>registry</span>
 
-      <PersonIcon />
-      <span>
-        Sign in/ Sign up
+    <PersonIcon />
+    <span>
+      Sign in/ Sign up
+    </span>
 
-      </span>
-    </>
-  </>
+  </IconWrapper>
 );
 
 export default IconList;

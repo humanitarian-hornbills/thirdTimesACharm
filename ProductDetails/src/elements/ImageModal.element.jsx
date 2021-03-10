@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Modal = styled.div`
 position:fixed;
@@ -15,22 +15,43 @@ z-index:2;
 `;
 
 export const BigImage = styled.div`
-width: 60%;
-height: 50%;
+position:relative;
+max-width: 600px;
+height: 600px;
 overflow:hidden;
-
-margin-left:5%;
+margin-top:5%;
 `;
 
 export const Image = styled.img`
- max-width: 100%;
- max-height: 100%;
- border-radius:10px;
+ width: 100%;
+min-height: 100%;  
+border-radius:5px;
+object-fit:cover;
+
+&:hover{
+    cursor:crosshair;
+}
+${({ clicked }) => clicked && css`
+transform:scale(2.5);
+
+`}
+`;
+
+export const ThumbnailsWrapper = styled.div`
+   display: flex; 
+ margin-top: -150%;
+  margin-left: 40%;
+  z-index:10;
+`;
+
+export const Thumbnail = styled.img`
+width:30px;
+height:20px;
+border-radius:50%;
 `;
 
 export const Close = styled.button`
 color:#5c5c5f;
-margin-left:92%;
 width:50px;
 height:50px;
 margin-top:1%;
@@ -40,6 +61,11 @@ background-color:#DFDFDF;
 border: 1px solid #DFDFDF;
 outline:none;
 opacity:.4;
+&:hover{
+    background-color: rgba(0,0,0,0.9);
+    border: 1px solid rgba(0,0,0,0.9);
+    color:white;
+}
 &:active{
      transform: translateY(4px);
  };

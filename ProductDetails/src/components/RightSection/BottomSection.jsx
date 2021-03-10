@@ -9,11 +9,13 @@ import {
 // eslint-disable-next-line react/prop-types
 const BottomSection = ({
   styles, getSelectedStyle, selectedStyleId, getQuantitySizeSelected,
+  getMainCurrent,
 }) => {
   const [clicked, setClicked] = useState(false);
   const [likeClicked, setLikeClicked] = useState(false);
-  const [sizeQuantitySelected, setSizeQuantitySelcted] = useState(false);
+  const [sizeQuantitySelected, setSizeQuantitySelcted] = useState(0);
   const [errorMesShowed, setErrorMesShowed] = useState(false);
+
 
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
@@ -26,8 +28,8 @@ const BottomSection = ({
     setLikeClicked(click);
   };
 
-  const getSizeQuantitySelected = (selected) => {
-    setSizeQuantitySelcted(selected);
+  const getSizeQuantitySelected = (quantity) => {
+    setSizeQuantitySelcted(quantity);
   };
 
   const getErrorMessageShowed = (messageShowed) => {
@@ -37,19 +39,22 @@ const BottomSection = ({
   const styledThumbnails = styles.map(
     (item, index) => (
       <StyleThumbnails
-        key={index}
+        key={item.style_id}
+        index={index}
         style={item}
         getSelectedStyle={getSelectedStyle}
         getClicked={getClicked}
         selectedStyleId={selectedStyleId}
-
+        getMainCurrent={getMainCurrent}
+        getLikeClicked={getLikeClicked}
+        getErrorMessageShowed={getErrorMessageShowed}
       />
     ),
   );
   const styledQuanityAndSize = styles.map(
-    (item, index) => (
+    (item) => (
       <QuanityAndSize
-        key={index}
+        key={item.style_id}
         style={item}
         getSelectedStyle={getSelectedStyle}
         selectedStyleId={selectedStyleId}
@@ -69,20 +74,17 @@ const BottomSection = ({
       setClicked(true);
     }
   };
-  if (clicked && sizeQuantitySelected) {
-    getQuantitySizeSelected(1);
+  if (clicked && sizeQuantitySelected !== 0) {
+    getQuantitySizeSelected(sizeQuantitySelected);
+    setSizeQuantitySelcted(0);
     setClicked(false);
   }
   const handleClickLike = () => {
     setLikeClicked(!likeClicked);
-    console.log('0' + likeClicked)
-    if (!sizeQuantitySelected) {
+    if (sizeQuantitySelected !== 0) {
       setErrorMesShowed(true);
     }
-    console.log('1' + likeClicked)
-  }
-  let index = 0;
-  console.log(`${index++} ` + errorMesShowed)
+  };
 
   return (
     <>
@@ -107,16 +109,16 @@ const BottomSection = ({
           </Bag>
           <StarButton
             onClick={handleClickLike}
-            sizeQuantitySelected={sizeQuantitySelected}
+            sizeQuantitySelected={sizeQuantitySelected !== 0}
             disabled={errorMesShowed}
           >
             <FavStar
               likeClicked={likeClicked}
-              sizeQuantitySelected={sizeQuantitySelected}
+              sizeQuantitySelected={sizeQuantitySelected !== 0}
             />
           </StarButton>
           {
-            !sizeQuantitySelected && likeClicked
+            ((sizeQuantitySelected === 0 && likeClicked) || errorMesShowed)
             && (
               <ErrorMessage>
                 Please select your Size to add this item to your wish list.

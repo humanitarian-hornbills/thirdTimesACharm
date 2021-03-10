@@ -10,12 +10,12 @@ font-family: Helvetica, Arial, sans-serif;
   text-decoration: underline;
   cursor: pointer;
 }
-
+/*
 label {
   float: left;
   padding: 0 1em;
   text-align: center;
-}
+} */
 
 .parent {
   display: flex;
@@ -43,11 +43,11 @@ div#ratingBox * {
   overflow: auto;
 }
 
-img {
+div.parent img {
   cursor: pointer;
 }
 
-img:hover {
+div.parent img:hover {
   opacity: 0.7;
 }
 
@@ -320,7 +320,7 @@ input[type='radio']:checked {
   flex: 1;
 }
 
-textarea{
+#newReviewText textarea{
   width: 90%;
   height: 100px;
   resize: none;
@@ -341,7 +341,7 @@ textarea{
   flex: 1;
 }
 
-input {
+#rPerInfo input, #newReviewPhotoInputs input {
 height: 30px;
 font-size: 18px;
 }
@@ -607,14 +607,14 @@ font-size: 18px;
   text-decoration: none;
 }
 
-select {
+#sortForm {
   border: none;
   font-size: 15px;
   font-weight: bold;
   border-bottom: solid black 3px;
 }
 
-option {
+#sortForm option {
   font-size: 15px;
   font-weight: bold;
 }
@@ -635,7 +635,7 @@ option {
 .pmodal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -651,9 +651,9 @@ option {
 
 
 /* Modal Content/Box */
-.modal-content {
+div.parent .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 5% auto;
   padding: 10px;
   border: 1px solid #888;
   width: fit-content;
@@ -661,7 +661,7 @@ option {
 }
 
 #addReviewModal .modal-content {
-  margin: 60% auto; /* 15% from the top and centered */
+  margin: 60% auto;
 }
 
 .pModalPhoto {

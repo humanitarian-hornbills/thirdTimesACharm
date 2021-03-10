@@ -8,7 +8,7 @@ import QuestionModal from './components/QuestionModal.jsx';
 import AnswerModal from './components/AnswerModal.jsx';
 
 const Div = styled.div`
-  position: absolute;
+  // position: absolute;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
@@ -25,7 +25,7 @@ const Global = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    // font-family: sans-serif;
   }
   `;
 
@@ -199,4 +199,6 @@ const QA = () => {
   );
 };
 
-ReactDOM.render(<QA />, document.getElementById('app'));
+export default QA
+
+// ReactDOM.render(<QA />, document.getElementById('app'));

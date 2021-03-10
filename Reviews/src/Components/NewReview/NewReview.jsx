@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import css from './NewReview.css';
 import Rating from './Rating.jsx';
 import Recommend from './Recommend.jsx';
 import Characteristics from './Characteristics.jsx';
-import ReviewSummary from './ReviewSummary.jsx'
-import ReviewBody from './ReviewBody.jsx'
-import AddPhoto from './AddPhoto.jsx'
-import Nickname from './Nickname.jsx'
-import Email from './Email.jsx'
-import DisplayPhotos from './DisplayPhotos.jsx'
+import ReviewSummary from './ReviewSummary.jsx';
+import ReviewBody from './ReviewBody.jsx';
+import AddPhoto from './AddPhoto.jsx';
+import Nickname from './Nickname.jsx';
+import Email from './Email.jsx';
+import DisplayPhotos from './DisplayPhotos.jsx';
+import PhotoModal from '../PhotoModal.jsx';
+import NewReviewTop from './NewReviewTop.jsx'
+import CoolButton from '../CoolButton.jsx'
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -24,15 +26,18 @@ class NewReview extends React.Component {
       photos: [],
       characteristics: {},
       addPhotos: false,
+      rModalPhoto: null,
+      errors: {},
     };
 
     this.updateState = this.updateState.bind(this);
     this.updateCharacteristics = this.updateCharacteristics.bind(this);
-    this.showModal = this.showModal.bind(this);
+    this.showAddPhotoModal = this.showAddPhotoModal.bind(this);
     this.submitReview = this.submitReview.bind(this);
-    this.checkState = this.checkState.bind(this);
+    this.rModalPhoto = this.rModalPhoto.bind(this);
+    this.clearState = this.clearState.bind(this);
+    this.validate = this.validate.bind(this);
   }
-  // this.props.factors for fit, width, etc
 
   updateState(obj) {
     this.setState(obj);
@@ -49,83 +54,168 @@ class NewReview extends React.Component {
     });
   }
 
-  checkState() {
-    const currState = this.state;
-    let okToSubmit = true;
-    if (
-      !currState.rating
-      || currState.body.length < 50
-      || !currState.summary
-      || currState.recommend === null
-      || !currState.name
-      || currState.email.indexOf('@') === -1
-      || currState.email.indexOf('.') === -1
-      || Object.keys(currState.characteristics).length !== this.props.factors.length
-    ) {
-      okToSubmit = false;
-    }
-
-    return okToSubmit;
+  showAddPhotoModal() {
+    this.setState({
+      addPhotos: !this.state.addPhotos,
+    });
   }
 
-  showModal() {
+  clearState() {
     this.setState({
-      addPhotos: !this.state.addPhotos
+      rating: null,
+      summary: '',
+      body: '',
+      recommend: null,
+      name: '',
+      email: '',
+      photos: [],
+      characteristics: {},
+      addPhotos: false,
+      rModalPhoto: null,
+      errors: {},
     });
   }
 
   submitReview() {
-    if (!this.checkState()) {
-      alert('please make sure all forms are filled out');
-    } else {
+    if (this.validate()) {
       const newReview = this.state;
       delete newReview.addPhotos;
+      delete newReview.errors;
+      delete newReview.rModalPhoto;
       this.props.sendNewReview(newReview);
+      this.props.sendClickData('new review submitted')
+      this.clearState();
       this.props.close();
+    } else {
+      this.props.sendClickData('new review not sent - missing data')
     }
+  }
+
+  rModalPhoto(src) {
+    const modal = document.getElementById('pModal');
+    const span = document.getElementsByClassName('pclose');
+    this.setState({
+      rModalPhoto: src,
+    });
+    modal.style.display = 'block';
+    const newSpan = [];
+    Object.keys(span).forEach((key) => {
+      span[key].onclick = () => {
+        this.props.sendClickData('close new review photo modal with X')
+        modal.style.display = 'none';
+      };
+      newSpan.push(span[key]);
+    });
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        this.props.sendClickData('close new review photo modal by clicking outside of modal')
+        modal.style.display = 'none';
+      }
+    };
+  }
+
+  validate() {
+    const input = this.state;
+    const errors = {};
+    let isValid = true;
+    if (!input.name) {
+      isValid = false;
+      errors.name = 'Please enter your name.';
+    }
+    if (!input.email) {
+      isValid = false;
+      errors.email = 'Please enter your email Address.';
+    }
+    if (typeof input.email !== 'undefined') {
+      const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern.test(input.email)) {
+        isValid = false;
+        errors.email = 'Please enter valid email address.';
+      }
+    }
+    if (!input.rating) {
+      isValid = false;
+      errors.rating = 'Please add your overall rating.';
+    }
+    if (!input.body || input.body.length < 50) {
+      isValid = false;
+      errors.body = 'Pleae make sure your summary is at least 50 characters long.';
+    }
+    if (!input.summary) {
+      isValid = false;
+      errors.summary = 'Please make sure you leave a review summary';
+    }
+    if (input.recommend === null) {
+      isValid = false;
+      errors.recommend = 'Please make sure you mark if you recommend this product';
+    }
+    if (Object.keys(input.characteristics).length < this.props.factors.length) {
+      isValid = false;
+      errors.characteristics = 'Please make sure you fill out every characteristic rating';
+    }
+
+    this.setState({
+      errors,
+    });
+
+    return isValid;
   }
 
   render() {
     console.log(this.state);
-    // console.log(this.state);
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
     const allPhotos = this.state.photos;
-
     return (
       <div className={showHideClassName}>
-        <section className="modal-main">
-          <h2>Write Your Review</h2>
-          <p>About the {this.props.name}</p>
-          <Rating updateState={this.updateState} />
-          <Recommend updateState={this.updateState} />
-          <Characteristics
-            factors={this.props.factors}
-            updateCharacteristics={this.updateCharacteristics}
-          />
-          <ReviewSummary updateState={this.updateState} />
-          <ReviewBody updateState={this.updateState} />
-          {allPhotos.length < 5
-            ? (
-              <button
-                type="button"
-                onClick={() => { this.showModal(); }}
-              >
-                Add Photo
-              </button>
-            )
-            : null}
-          <AddPhoto
-            hide={this.showModal}
-            updateState={this.updateState}
-            show={this.state.addPhotos}
-          />
-          {allPhotos.length
-            ? <DisplayPhotos photos={allPhotos} />
-            : null}
-          <Nickname updateState={this.updateState} />
-          <Email updateState={this.updateState} />
-          <button type="button" onClick={() => { this.submitReview(); }}>Submit</button>
-          <button type="button" onClick={() => { this.props.close(); }}>Cancel</button>
+        <section id="addReviewModal" className="modal-main">
+          <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window') }} className="rclose">&times;</span>
+          <div id="allNewReviewForms">
+            <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name} />
+            <div id="newReviewRateRec">
+              <Rating sendClickData={this.props.sendClickData} error={this.state.errors.rating} updateState={this.updateState} />
+              <Recommend sendClickData={this.props.sendClickData} error={this.state.errors.recommend} updateState={this.updateState} />
+            </div>
+            <Characteristics
+              sendClickData={this.props.sendClickData}
+              factors={this.props.factors}
+              updateCharacteristics={this.updateCharacteristics}
+            />
+            <div className="text-danger">{this.state.errors.characteristics}</div>
+            <div className="reviewDivider" />
+            <h3 className="rSectionTitle">YOUR REVIEW</h3>
+            <div id="newReviewText">
+              <ReviewSummary sendClickData={this.props.sendClickData} error={this.state.errors.summary} updateState={this.updateState} />
+              <ReviewBody sendClickData={this.props.sendClickData} error={this.state.errors.body} updateState={this.updateState} />
+            </div>
+            <div>
+              {allPhotos.length < 5
+                ? (
+                  <CoolButton sendClickData={this.props.sendClickData} func={this.showAddPhotoModal} name={'ADD PHOTO(S)'} text={'add photo to new review'} />
+                )
+                : <></>}
+              <AddPhoto
+                sendClickData={this.props.sendClickData}
+                hide={this.showAddPhotoModal}
+                updateState={this.updateState}
+                show={this.state.addPhotos}
+              />
+              {allPhotos.length
+                ? (
+                  <>
+                    <DisplayPhotos sendClickData={this.props.sendClickData} photoModal={this.rModalPhoto} photos={allPhotos} />
+                    <PhotoModal src={this.state.rModalPhoto} />
+                  </>
+                )
+                : null}
+            </div>
+            <div className="reviewDivider" />
+            <h3 className="rSectionTitle">PERSONAL INFO</h3>
+            <div id="rPerInfo">
+              <Nickname sendClickData={this.props.sendClickData} error={this.state.errors.name} updateState={this.updateState} />
+              <Email sendClickData={this.props.sendClickData} error={this.state.errors.email} updateState={this.updateState} />
+            </div>
+            <CoolButton func={this.submitReview} name={'submit'} />
+          </div>
         </section>
       </div>
     );
@@ -133,50 +223,3 @@ class NewReview extends React.Component {
 }
 
 export default NewReview;
-
-
-// render() {
-//   const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
-//   return (
-//     <div className={showHideClassName}>
-//       <section className="modal-main">
-//         hello!
-//         <Rating updateState={this.updateState} />
-//       </section>
-//     </div>
-//   );
-// }
-// }
-
-
-// render() {
-//   const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
-//   return (
-//     <div className={showHideClassName}>
-//       <section className="modal-main">
-//         <form>
-//           <label>
-//             Overall
-//             <input
-//               name="overall"
-//               type="checkbox"
-//               checked={this.state.isGoing}
-//               onChange={this.handleInputChange}
-//             />
-//           </label>
-//           <br />
-//           <label>
-//             Number of guests:
-//             <input
-//               name="numberOfGuests"
-//               type="number"
-//               value={this.state.numberOfGuests}
-//               onChange={this.handleInputChange}
-//             />
-//           </label>
-//         </form>
-//       </section>
-//     </div>
-//   );
-// }
-// }

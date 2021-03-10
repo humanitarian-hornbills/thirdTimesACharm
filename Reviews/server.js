@@ -14,10 +14,9 @@ app.use(express.static(path.join(__dirname, './public')));
 // 14932
 app.get('/reviews', (req, res) => {
   const prodId = req.query.id;
-  // console.log(prodId)
   axios({
     method: 'get',
-    url: `${keys.api}/reviews/?product_id=${prodId}&count=10&sort=relevant`,
+    url: `${keys.api}/reviews/?product_id=${prodId}&count=100&sort=relevant`,
     headers: {
       Authorization: keys.TOKEN,
     },
@@ -31,11 +30,21 @@ app.get('/reviews', (req, res) => {
         },
       })
         .then((response2) => {
-          const reviewDataObj = {
-            name: response2.data.name,
-            results: response1.data.results,
-          };
-          res.send(reviewDataObj);
+          axios({
+            method: 'get',
+            url: `${keys.api}/products/${prodId}/styles/?product_id=${prodId}`,
+            headers: {
+              Authorization: keys.TOKEN,
+            },
+          })
+            .then((response3) => {
+              const reviewDataObj = {
+                name: response2.data.name,
+                results: response1.data.results,
+                prodUrl: response3.data.results[0].photos[0].url,
+              };
+              res.send(reviewDataObj);
+            });
         });
     });
 });
@@ -56,6 +65,7 @@ app.get('/meta', (req, res) => {
 
 app.post('/newReview', (req, res) => {
   const newReview = req.body;
+  console.log(newReview)
   axios({
     method: 'post',
     url: `${keys.api}/reviews`,
@@ -99,6 +109,24 @@ app.put('/report', (req, res) => {
     .then((response) => {
       console.log(response);
     });
+});
+
+app.post('/interactions', (req, res) => {
+  const clickData = req.query;
+  console.log(clickData);
+  axios({
+    method: 'post',
+    url: `${keys.api}/interactions`,
+    data: clickData,
+    headers: {
+      Authorization: keys.TOKEN,
+      // 'Content-Type': 'application/json'
+    },
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch(err => console.log(err));
 });
 
 app.listen(port, () => {

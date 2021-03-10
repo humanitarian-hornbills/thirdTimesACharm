@@ -1,16 +1,17 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Underline,
-  LeftArrow, RightArrow, Image, Thumbnail, ThumbnailWrapper, Slider, FullscreenArrow, DownArrow,
-  // eslint-disable-next-line import/extensions
+  LeftArrow, RightArrow, Image,
+  FullscreenArrow, ImageWrapper,
 } from '../../elements/ImageCarousel.element.jsx';
 
-const ImageCarousel = ({ styles }) => {
-  const [current, setCurrent] = useState(0);
-  const [curThumbnail, setCurThumbnail] = useState(0);
-
+const ImageCarousel = ({
+  styles,
+  getCurMainImageIndex,
+  getFullScreenClicked, mainCurrent,
+  getMainCurrent,
+}) => {
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
   }
@@ -18,49 +19,40 @@ const ImageCarousel = ({ styles }) => {
   const length = styles.length - 1;
 
   const preSlide = () => {
-    setCurrent(current === 0 ? length : current - 1);
+    getMainCurrent(mainCurrent === 0 ? length : mainCurrent - 1);
   };
 
   const nextSlide = () => {
-    setCurrent(current === length ? 0 : current + 1);
+    getMainCurrent(mainCurrent === length ? 0 : mainCurrent + 1);
   };
 
-  const downSlide = () => {
-    setCurThumbnail((previous) => previous + 1);
+  const handleOnExpandClick = () => {
+    getCurMainImageIndex(mainCurrent);
+    getFullScreenClicked(true);
   };
 
   const imageUrl = styles.map((item, index) => {
     const { url } = item.photos[0];
     return (
-      index === current && (
-        <Image key={index} src={url} alt="Women dress" />
+      index === mainCurrent && (
+        <Image key={item.style_id} src={url} onClick={handleOnExpandClick} alt="styles" />
+
       )
     );
   });
-
-  const thumbnailUrl = styles.map((item, index) => {
-    const { url } = item.photos[0];
-    return (
-      <>
-        <Thumbnail key={index} src={url} alt="Women dress" onClick={() => setCurrent(index)} />
-        { index === current && <Underline />}
-      </>
-    );
-  });
-
   return (
-    <Slider>
-      <FullscreenArrow />
-      <LeftArrow onClick={preSlide} />
-      <RightArrow onClick={nextSlide} />
+    <ImageWrapper>
+      <FullscreenArrow onClick={handleOnExpandClick} />
+      {
+        mainCurrent !== 0
+        && <LeftArrow onClick={preSlide} />
+      }
+      {
+        mainCurrent !== length
+        && <RightArrow onClick={nextSlide} />
+      }
       {imageUrl}
-      {/* {thumbnailUrl} */}
-      <ThumbnailWrapper>
-        {thumbnailUrl}
-        {styles.length > 7 && <DownArrow onClick={downSlide} />}
-      </ThumbnailWrapper>
-    </Slider>
-
+    </ImageWrapper>
   );
 };
 

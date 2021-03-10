@@ -1,11 +1,18 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line import/extensions
 import ImageCarousel from './ImageCarousel.jsx';
 
-// eslint-disable-next-line react/prop-types
-const ImageGallery = ({ getStyles, id, getSelectedStyle }) => {
+const ImageGallery = ({
+  getStyles,
+  id, getSelectedStyle,
+  getCurMainImageIndex,
+  getFullScreenClicked,
+  mainCurrent,
+  getMainCurrent,
+}) => {
   const [styles, setStyles] = useState([]);
 
   useEffect(() => {
@@ -21,9 +28,15 @@ const ImageGallery = ({ getStyles, id, getSelectedStyle }) => {
       });
   }, []);
   return (
-    <div className="image_gallery">
-      <ImageCarousel styles={styles} />
-    </div>
+
+    <ImageCarousel
+      styles={styles}
+      getCurMainImageIndex={getCurMainImageIndex}
+      getFullScreenClicked={getFullScreenClicked}
+      mainCurrent={mainCurrent}
+      getMainCurrent={getMainCurrent}
+    />
+
   );
 };
 

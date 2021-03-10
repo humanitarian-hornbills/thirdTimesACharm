@@ -8,6 +8,7 @@ const router = require('./routes/productRoutes');
 
 const PORT = 3000;
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
 
 app.use(router);
 

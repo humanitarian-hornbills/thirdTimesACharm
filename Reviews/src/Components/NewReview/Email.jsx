@@ -1,38 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Email extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ email: event.target.value });
-    this.props.updateState({ email: event.target.value });
-  }
-
-  handleSubmit(event) {
-    this.props.updateState(this.state);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Email:
-          <input maxLength="60" type="email" value={this.state.name} onChange={this.handleChange} />
-          Limit 60 characters
-        </label>
-      </form>
-    );
-  }
-}
+const Email = ({ updateState, error, sendClickData }) => (
+  <div id="rEmail">
+    <p>EMAIL: <sup className="redA">*</sup></p>
+    <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); sendClickData('new review email address updated')}} />
+    <br />
+    <div className="rUnderText">
+      Limit 60 characters
+    </div>
+    <div className="text-danger">{error}</div>
+  </div>
+);
 
 export default Email;
+
+// class Email extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       email: '',
+//     };
+
+//     this.handleChange = this.handleChange.bind(this);
+//   }
+
+//   handleChange(event) {
+//     this.setState({ email: event.target.value });
+//     this.props.updateState({ email: event.target.value });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <p>Email:</p>
+//         <input maxLength="60" type="email" value={this.state.email} onChange={this.handleChange} />
+//         <br />
+//         Limit 60 characters
+//       </div>
+//     );
+//   }
+// }

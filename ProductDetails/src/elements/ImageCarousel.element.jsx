@@ -1,92 +1,74 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import {
-  ArrowLeft, ArrowRight, ArrowsFullscreen,
+  ArrowLeftCircle, ArrowRightCircle, ArrowsAngleExpand,
 } from '@styled-icons/bootstrap';
-import { ArrowDown } from '@styled-icons/evaicons-solid';
 
-export const Slider = styled.div`
-  position:relative;
-  display:flex;
-  height:85vh;
-  //margin:10%;
-  justify-content:center;
-  align-items:center;
-  margin-left:10%;
+export const ImageWrapper = styled.div`
+position:relative;
+ max-width: 600px;
+ height: 500px;
+ box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ overflow:hidden;
 `;
 
 export const Image = styled.img`
-width:90%;
-height:80%;
-`;
-export const ThumbnailWrapper = styled.div`
-  position:absolute;
-  top:15%;
-  z-index:9;
-  left:10%;
+ width: 100%;
+ min-height: 100%;  
+border-radius:5px;
+object-fit:cover;
+cursor:pointer;
 `;
 
-export const Thumbnail = styled.img`
- display: block;
- width:60px;
- height:50px;
- margin-bottom:20px;
- border: 1px solid black; 
- cursor:pointer;
+export const ImageUnderline = styled.hr`
+position: absolute;
+border: 1px solid #DFDFDF;
+width:${(props) => (props.top ? '80%' : '44%')};
+border-radius: 5px;
+top:${(props) => (props.top ? '4%' : '85%')};
+margin-left:${({ image }) => (image ? '13.5%' : '4%')};
 `;
+export const LeftArrow = styled(ArrowLeftCircle)`
+position: absolute;
+width: 40px;
+top: 50%;
 
-export const Underline = styled.hr`
- position:absolute;
- border: 4px solid pink;
- border-radius:15px;
- width:55px;
- margin-top:-25%;
-`;
+font-size:3rem;
 
-export const DownArrow = styled(ArrowDown)`
-   width:40px;
-   padding-left:18%;
-   margin-top:-20px;
-   cursor:pointer;
-`;
-
-export const LeftArrow = styled(ArrowLeft)`
-  position:absolute;
-  width:40px;
-  top:50%;
-  left:30%;
-  font-size:3rem;
-  z-index:10;
-  cursor:pointer;
-  user-select: none;
+cursor: pointer;
+user-select: none;
+transition: 0.6s ease;
+color:#4b5666;
   &:hover{
-    color:white
-  }
+  color: white
+}
+margin-left:1%;
 `;
 
-export const RightArrow = styled(ArrowRight)`
-  position:absolute;
-  width:40px;
-  top:50%;
-  right:10%;
-  font-size:3rem;
-  z-index:10;
-  cursor:pointer;
-  user-select: none;
+export const RightArrow = styled(ArrowRightCircle)`
+position: absolute;
+width: 40px;
+top: 50%;
+font-size: 3rem;
+cursor: pointer;
+user-select: none;
+transition: 0.6s ease;
+color:#4b5666;
   &:hover{
-    color:white
-  }
+  color: white
+}
+margin-left:${({ modal }) => (modal ? '92%' : '92%')};
 `;
 
-export const FullscreenArrow = styled(ArrowsFullscreen)`
-  position:absolute;
-  width:15px;
-  top:15%;
-  right:10%;
-  font-size:3rem;
-  z-index:10;
-  cursor:pointer;
-  user-select: none;
+export const FullscreenArrow = styled(ArrowsAngleExpand)`
+position: absolute;
+width: 20px;
+font-size:3rem;
+cursor: pointer;
+user-select:none;
+color:#4b5666;
   &:hover{
-    color:white
-  }
+  color: white
+}
+margin-left: 90%;
+margin-top: 5%;
 `;

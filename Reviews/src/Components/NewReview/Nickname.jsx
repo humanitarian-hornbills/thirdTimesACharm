@@ -1,39 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Nickname extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    let newName = event.target.value;
-    this.setState({ name: newName });
-    this.props.updateState({ name: newName });
-  }
-
-  handleSubmit(event) {
-    this.props.updateState(this.state);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Nickname:
-          <input maxLength="60" type="text" value={this.state.name} onChange={this.handleChange} />
-          Limit 60 characters
-        </label>
-      </form>
-    );
-  }
-}
+const Nickname = ({ updateState, error, sendClickData }) => (
+  <div id="rName">
+    <p>NICKNAME: <sup className="redA">*</sup></p>
+    <input
+      maxLength="60"
+      type="text"
+      onChange={(e) => {
+        updateState({ name: e.target.value });
+        sendClickData('new review nickname updated')
+      }}
+    />
+    <div className="rUnderText">
+      Limit 60 characters
+    </div>
+    <div className="text-danger">{error}</div>
+  </div>
+);
 
 export default Nickname;
+
+// class Nickname extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       name: '',
+//     };
+
+//     this.handleChange = this.handleChange.bind(this);
+
+//   }
+
+//   handleChange(event) {
+//     const newName = event.target.value;
+//     this.setState({ name: newName });
+//     this.props.updateState({ name: newName });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <p>Nickname:</p>
+//         <input maxLength="60" type="text" onChange={this.handleChange} />
+//         <br />
+//         <p>Limit 60 characters</p>
+//       </div>
+//     );
+//   }
+// }

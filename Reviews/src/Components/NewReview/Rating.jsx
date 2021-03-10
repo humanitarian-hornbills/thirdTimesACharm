@@ -1,41 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Rating extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: null,
-    };
-    this.onChangeValue = this.onChangeValue.bind(this);
-  }
-
-  onChangeValue(event) {
-    const ratingObj = { rating: Number(event.target.value) };
-    this.props.updateState(ratingObj);
-  }
-
-  render() {
-    return (
-      <>
-        Overall Rating
-        <form onChange={this.onChangeValue}>
-          <div className="rating noborder">
-            <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" />
-            <label htmlFor="star1">☆</label>
-            <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" />
-            <label htmlFor="star2">☆</label>
-            <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" />
-            <label htmlFor="star3">☆</label>
-            <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" />
-            <label htmlFor="star4">☆</label>
-            <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" />
-            <label htmlFor="star5">☆</label>
-          </div>
-        </form>
-      </>
+const Rating = ({ updateState, error, sendClickData }) => {
+  const allStars = [];
+  for (let i = 5; i > 0; i -= 1) {
+    allStars.push(
+      <React.Fragment key={i}>
+        <input id={`star${i}`} name="star" type="radio" value={i} className="radio-btn hide" />
+        <label htmlFor={`star${i}`}>☆</label>
+      </React.Fragment>,
     );
   }
-}
+  return (
+    <div id="rRating">
+      YOUR OVERALL RATING <sup className="redA">*</sup>
+      <p>Please Select</p>
+      <form onChange={(e) => { updateState({ rating: Number(e.target.value)}); sendClickData(`new review rating set as ${e.target.value}`)}}>
+        <div className="rating noborder">
+          {allStars}
+        </div>
+      </form>
+      <div className="text-danger">{error}</div>
+    </div>
+  );
+};
 
 export default Rating;

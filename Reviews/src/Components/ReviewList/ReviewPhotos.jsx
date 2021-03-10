@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImageComponent from '../ImageComponent.jsx'
 
-const ReviewPhotos = ({ photos }) => {
-  const allPhotos = photos.map((photo) => <ImageComponent src={photo.url} />);
+const ReviewPhotos = ({ photos, photoModal, sendClickData }) => {
+  let count = 0;
+  const allPhotos = photos.map((photo) => (
+    <img
+    alt=""
+      onClick={() => { photoModal(photo.url); sendClickData('expand review photo')}}
+      src={photo.url}
+      style={{ width: 50 }}
+      key = {count++}
+    />
+  ));
   return (
     <>
       {allPhotos}

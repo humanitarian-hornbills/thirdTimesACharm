@@ -3,28 +3,28 @@ import PropTypes from 'prop-types';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import BodyText from './BodyText.jsx';
 
-const ReviewBody = ({ review }) => (
+const ReviewBody = ({ review, photoModal, sendClickData }) => (
   <div>
     <p>
-      <b>{review.summary}</b>
+      <b>{review.summary.toUpperCase()}</b>
     </p>
-    <BodyText text={review.body} />
-    <ReviewPhotos photos={review.photos} />
+    <BodyText sendClickData={sendClickData} text={review.body} />
+    <ReviewPhotos sendClickData={sendClickData} photoModal={photoModal} photos={review.photos} />
     {review.recommend
       ? (
         <>
-          <p>✓ I recommend this product</p>
+          <p className="reviewBody">✓ I recommend this product</p>
         </>
       )
       : <></>}
     {review.response
       ? (
-        <div clasName="response">
-          <p>Response From Seller:</p>
+        <div className="response reviewBody">
+          <p><b>Response From Seller:</b></p>
           <p>{review.response}</p>
         </div>
       )
-      : <></>}
+      : <div></div>}
   </div>
 );
 

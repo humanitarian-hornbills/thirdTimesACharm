@@ -1,27 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Slogan, Feature, SloganFeature } from '../../elements/ProductInfo.element.jsx';
 
 const ProductInfo = ({ product }) => {
-// eslint-disable-next-line react/prop-types
+  // eslint-disable-next-line react/prop-types
   const { features } = product;
   let feature = [];
   if (features) {
-    // eslint-disable-next-line react/prop-types
     feature = features.map((item, key) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <div key={key}>{item.feature}</div>
+      <li key={key}>{item.feature}</li>
     ));
   }
 
   return (
-    <div className="slogan_features">
-      <div className="slogan">
-        <p>{product.slogan}</p>
-      </div>
-      <div className="feature">
-        {feature}
-      </div>
-    </div>
+    <SloganFeature>
+      <Slogan>{product.slogan}</Slogan>
+      <Feature>
+        <ul>
+          {feature}
+        </ul>
+      </Feature>
+    </SloganFeature>
   );
 };
 

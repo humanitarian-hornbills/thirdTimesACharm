@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import Photos from './Photos.jsx';
 
-const Answer = ({ answer }) => {
+const Button = styled.button`
+border: none;
+background: white;
+font-size: .95rem;
+&:hover {
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}
+`;
+
+const Answer = ({
+  answersQ, answer, setAnswers, clickedAnsHelpful, setClickedAnsHelpful,
+  clickedReport, setClickedReport,
+}) => {
   let readableDate = new Date(answer.date);
   const options = {
     year: 'numeric', month: 'long', day: 'numeric',
@@ -12,7 +26,7 @@ const Answer = ({ answer }) => {
     <div>
       <p>{answer.body}</p>
       {answer.photos.length > 0
-      && <Photos photos={answer.photos} />}
+        && <Photos photos={answer.photos} />}
       <p>
         by
         {' '}
@@ -22,9 +36,19 @@ const Answer = ({ answer }) => {
         {readableDate}
       </p>
       <p>
-        Helpful? Yes(
+        Helpful?
+        {' '}
+        <Button onClick={() => console.log('Helpfulness clicked')}>
+          Yes
+        </Button>
+        (
         {answer.helpfulness}
-        ) | Report
+        ) |
+        {' '}
+        <Button onClick={() => alert('Report functionality is currently in beta development')}>
+          Report
+        </Button>
+        {/* {console.log(clickedAnsHelpful, clickedReport)} */}
       </p>
     </div>
   );

@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImageComponent from '../ImageComponent.jsx'
 
-const DisplayPhotos = ({ photos }) => {
-  const allPhotos = photos.map((photo) => <ImageComponent src={photo} />,
-  // <img id="myImg" src={photo} alt="tempPhoto" width="50px" height="50px" />)
-  );
-
+const DisplayPhotos = ({ photos, photoModal, sendClickData }) => {
+  let id = 0
+  const allPhotos = photos.map((photo) => (
+    <img className="rNewPhoto"
+      onClick={() => { photoModal(photo); sendClickData('new review added photo expanded')}}
+      src={photo}
+      style={{ width: 50 }}
+      alt=""
+      key={id++}
+    />
+  ));
   return (
-    <>
+    <div >
       {allPhotos}
-    </>
+    </div>
   );
 };
 

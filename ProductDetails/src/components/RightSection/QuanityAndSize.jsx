@@ -7,9 +7,16 @@ import Size from './Size.jsx';
 import { QuantitySize, SizeSelect, QuanitySelect } from '../../elements/RightSection/BottomSection.element.jsx';
 // eslint-disable-next-line react/prop-types
 const StyledQuanityAndSize = ({
-  style, selectedStyleId, clicked,
+  style,
+  selectedStyleId,
+  bagClicked,
+  setSizeQuantitySelected,
+  setLikeClicked,
+  setErrorMesShowed
+
 }) => {
-  const [sizeValue, setSizeValue] = useState(0);
+  const [sizeValue, setSizeValue] = useState('0');
+  const [totalQuantity, setTotalQuantityValue] = useState(0);
   const [quantityValue, setQuantityValue] = useState(0);
 
   const { skus } = style;
@@ -26,19 +33,18 @@ const StyledQuanityAndSize = ({
       ),
   );
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-syntax
     for (const key in skus) {
       if (skus[key].size === sizeValue) {
-        setQuantityValue(skus[key].quantity);
+        setTotalQuantityValue(skus[key].quantity);
       }
     }
   }, [sizeValue]);
 
   let quantity = '';
-  if (quantityValue !== 0) {
+  if (totalQuantity !== 0) {
     const array = [];
-    if (quantityValue < 15) {
-      for (let i = 1; i < quantityValue; i += 1) {
+    if (totalQuantity < 15) {
+      for (let i = 1; i < totalQuantity; i += 1) {
         array.push(i);
       }
       quantity = array.map((num, index) => (
@@ -74,6 +80,28 @@ const StyledQuanityAndSize = ({
     );
   }
 
+  const sizeChange = (e) => {
+    setSizeValue(e.target.value);
+    if (e.target.value !== '0') {
+      if (quantityValue === 0) {
+        setSizeQuantitySelected(1);
+      } else {
+        setSizeQuantitySelected(quantityValue);
+      }
+    }
+    setLikeClicked(false);
+    setErrorMesShowed(false);
+  }
+
+  const onQuantityChange = (e) => {
+    setQuantityValue(Number(e.target.value));
+    if (e.target.value !== 0 && sizeValue !== '0') {
+      setSizeQuantitySelected(Number(e.target.value));
+      setLikeClicked(false);
+      setErrorMesShowed(false);
+    }
+  }
+
   return (
     <>
       {
@@ -81,20 +109,20 @@ const StyledQuanityAndSize = ({
           <QuantitySize>
             <SizeSelect
               name="size"
-              onChange={(e) => setSizeValue(e.target.value)}
               value={sizeValue}
-              clicked={clicked}
-              sizeValue={sizeValue === 0}
+              onChange={sizeChange}
+              bagClicked={bagClicked}
+              checkSizeValue={sizeValue === '0'}
               required
             >
               {
-                clicked && sizeValue === 0 ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
+                bagClicked && sizeValue === '0' ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
               }
               {size}
             </SizeSelect>
-            <QuanitySelect name="quantity" disabled={sizeValue === 0}>
+            <QuanitySelect name="quantity" disabled={sizeValue === '0'} quantityValue={quantityValue} onChange={onQuantityChange}>
               {
-                sizeValue === 0 && quantityValue === 0 && <option value="0">  - </option>
+                (sizeValue === '0') && <option value="0">  - </option>
               }
               {quantity}
             </QuanitySelect>

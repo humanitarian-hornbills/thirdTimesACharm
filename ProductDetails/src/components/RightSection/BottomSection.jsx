@@ -1,51 +1,69 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import Style from './Style.jsx';
-import StyledQuanityAndSize from './StyledQuanityAndSize.jsx';
+import StyleThumbnails from './StyleThumbnails.jsx';
+import QuanityAndSize from './QuanityAndSize.jsx';
 import {
-  AddToBag, Bag, StarButton, AddPlus, FavStar, StyleValue, StyleLegend,
+  AddToBag, Bag, StarButton, FavStar, StyleValue, StyleLegend, ErrorMessage,
 } from '../../elements/RightSection/BottomSection.element.jsx';
 
 // eslint-disable-next-line react/prop-types
-const BottomSection = ({ styles, getSelectedStyle, selectedStyleId }) => {
-  const [clicked, setClicked] = useState(false);
+const BottomSection = ({
+  styles, getSelectedStyle, selectedStyleId, getQuantitySizeSelected,
+  getMainCurrent,
+}) => {
+  const [bagClicked, setBagClicked] = useState(false);
   const [likeClicked, setLikeClicked] = useState(false);
+  const [sizeQuantitySelected, setSizeQuantitySelected] = useState(0);
+  const [errorMesShowed, setErrorMesShowed] = useState(false);
+
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
   }
-  const getClicked = (click) => {
-    setClicked(!click);
-  };
 
-  const getLikeClicked = (click) => {
-    setLikeClicked(!click);
-  }
   const styledThumbnails = styles.map(
     (item, index) => (
-      <Style
-        key={index}
+      <StyleThumbnails
+        key={item.style_id}
+        index={index}
         style={item}
         getSelectedStyle={getSelectedStyle}
-        getClicked={getClicked}
+        setBagClicked={setBagClicked}
         selectedStyleId={selectedStyleId}
-        getLikeClicked={getLikeClicked}
-
+        getMainCurrent={getMainCurrent}
+        setLikeClicked={setLikeClicked}
+        setErrorMesShowed={setErrorMesShowed}
+        setSizeQuantitySelected={setSizeQuantitySelected}
       />
     ),
   );
-  console.log(likeClicked);
   const styledQuanityAndSize = styles.map(
-    (item, index) => (
-      <StyledQuanityAndSize
-        key={index}
+    (item) => (
+      <QuanityAndSize
+        key={item.style_id}
         style={item}
         getSelectedStyle={getSelectedStyle}
         selectedStyleId={selectedStyleId}
-        clicked={clicked}
+        bagClicked={bagClicked}
+        setSizeQuantitySelected={setSizeQuantitySelected}
+        setErrorMesShowed={setErrorMesShowed}
+        setLikeClicked={setLikeClicked}
       />
     ),
   );
 
   const selectedStyleName = styles.filter((item) => item.style_id === selectedStyleId);
+
+  const handleBagAdd = () => {
+    setBagClicked(!bagClicked);
+    getQuantitySizeSelected(sizeQuantitySelected);
+  };
+
+  const handleClickLike = () => {
+    if (sizeQuantitySelected === 0) {
+      setErrorMesShowed(true);
+    }
+    setLikeClicked(!likeClicked);
+  };
   return (
     <>
       <StyleLegend>
@@ -64,13 +82,28 @@ const BottomSection = ({ styles, getSelectedStyle, selectedStyleId }) => {
       <div>
         {styledQuanityAndSize}
         <AddToBag>
-          <Bag onClick={() => setClicked(true)}>
+          <Bag type="submit" onClick={handleBagAdd}>
             ADD TO BAG
-            <AddPlus />
           </Bag>
-          <StarButton onClick={() => setLikeClicked(!likeClicked)}>
-            <FavStar likeClicked={likeClicked} />
+          <StarButton
+            type="submit"
+            onClick={handleClickLike}
+            sizeQuantitySelected={sizeQuantitySelected !== 0}
+            disabled={errorMesShowed}
+          >
+            <FavStar
+              likeClicked={likeClicked}
+              sizeQuantitySelected={sizeQuantitySelected !== 0}
+            />
           </StarButton>
+          {
+            (errorMesShowed)
+            && (
+              <ErrorMessage>
+                Please select your Size to add this item to your wish list.
+              </ErrorMessage>
+            )
+          }
         </AddToBag>
       </div>
     </ >

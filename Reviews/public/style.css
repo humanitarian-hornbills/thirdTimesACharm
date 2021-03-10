@@ -1,39 +1,23 @@
+/* general app css */
 body {
 font-family: Helvetica, Arial, sans-serif;
 }
-
-div {
-  /* border: solid black;
-  border-width: 2px; */
-  margin: 5px;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-.reviewListItem {
-  border-bottom: solid black 1px;
+.link {
+  text-decoration: underline;
+  cursor: pointer;
 }
-
-.breakdownItem div {
-  display: inline-block;
-}
-
-.breakdownItem {
-  display: flex;
-  align-items: center;
-}
-
-/* .noborder, .stars-outer, .stars-inner, .line-outer, .line-inner, .link{
-  border: none;
+/*
+label {
+  float: left;
+  padding: 0 1em;
+  text-align: center;
 } */
 
-.smallFactor {
-  float:left
-}
-
-.largeFactor {
-  float:right
-}
-
-#parent {
+.parent {
   display: flex;
 }
 
@@ -43,31 +27,143 @@ div {
   margin-right: 20px;
 }
 
-#reviewBox {
-  /* Grow to rest of container */
-  width: 50%;
-  margin-left: 20px;
-  /* Just so it's visible */
+div#ratingBox * {
+  margin-left: 0;
 }
 
-/* review modal */
+#reviewBox {
+  width: 60%;
+  margin-left: 20px;
+  margin-top: 80px;
+  height: 650px;
+}
+
+#reviewList {
+  height: 580px;
+  overflow: auto;
+}
+
+div.parent img {
+  cursor: pointer;
+}
+
+div.parent img:hover {
+  opacity: 0.7;
+}
+
+div.parent div {
+  margin: 5px;
+}
+
+.reviewListItem {
+  border-bottom: solid black 1px;
+  /* margin-bottom: 30px; */
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* rating breakdown widget */
+.breakdownItem div {
+  display: inline-block;
+}
+
+.breakdownItem {
+  display: flex;
+  align-items: center;
+}
+
+.factorItem{
+  position: relative;
+  height: 60px;
+  width: 305px;
+  }
+
+.factorItemFactors {
+  display: flex;
+  position: relative;
+  top: -30px;
+  font-size: 12px;
+  width: auto;
+}
+
+.smallFactor, .largeFactor, .middleFactor {
+  display:inline-block;
+  width:auto;
+  margin-top: 0;
+  color: #767677
+}
+.smallFactor {
+  float: left;
+  text-align: left;
+}
+.largeFactor {
+  float: right;
+  text-align: right;
+  margin-right: 0;
+}
+.middleFactor {
+  text-align:center;
+  flex-grow: 1;
+}
+
+.factorName {
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+#rChars {
+  margin-bottom: 25px;
+}
+
+/* new review modal */
+#addReviewModal {
+  height: 700px;
+  overflow: auto;
+  display: inline-block;
+}
+
+#allNewReviewForms {
+  margin: auto;
+  width: 800px
+}
+
+.reviewDivider {
+  width: 100%;
+  height: 2px;
+  background-color: #ebedee;
+  margin-top: 5px;
+}
+
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width:100%;
-  height: 100%;
+  height: 200%;
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal-main {
+.modal-main, .modal-addPhotos {
   position:fixed;
   background: white;
-  width: 80%;
+  width: 1000px;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 5px;
+}
+
+/* new review add photo modal  */
+.modal-addPhotos {
+  position: absolute;
+  width: 400px;
+  /* margin-top: 30%; */
+}
+
+.modal-addPhotos h3 {
+  margin-top: 0;
 }
 
 .display-block {
@@ -78,63 +174,189 @@ div {
   display: none;
 }
 
-label {
-  float: left;
-  padding: 0 1em;
+#newReviewPhotoInputs {
+  width: fit-content;
+  height: fit-content;
+  margin: 15px auto
+}
+
+.newReviewPhotoInput {
+  height: 30px;
+  margin-bottom: 2px;
+}
+
+#newReviewTop {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
   text-align: center;
 }
-/* image modal  */
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
+
+#newReviewTopData {
+  display: flex;
+  align-items: center;
+  height: 200px;
+  background-color: #ebedee;
+  margin-bottom: 20px;
 }
 
-#myImg:hover {opacity: 0.7;}
+#rProdPhoto {
+  width:auto;
+  flex: 1;
+}
 
-.modal-content {
-  margin: auto;
+#rProdPhoto img:hover {
+  opacity: 1;
+  cursor: auto;
+}
+
+#rProdPhoto img {
+  max-width:200px;
+  max-height: 180px;
+}
+
+#rProdTitle {
+  width: auto;
+  font-size: 20px;
+  font-weight: bold;
+  flex: 1
+}
+
+#rProdPhoto, #rProdTitle {
+  vertical-align: middle;
+}
+
+
+#newReviewTopTitle {
+  text-align: left;
+}
+
+#newReviewRateRec {
+  display: flex;
+}
+
+#rRating, #rRec {
+  flex: 1
+}
+
+#rRating p {
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: #767677;
+}
+
+#recRadios {
+  margin-top: 20px;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  margin-left: 0;
 }
 
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: absolute;
-  /* top:0;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  margin: auto;
-}
-
-.image {
-  width: 400px;
-}
-
-.link {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-img {
-  cursor: pointer;
-}
-
-.response {
-  background-color: lightslategray;
-}
-
-
-#sortBox span {
+#recRadios div span, #recRadios div input{
   display: inline-block;
+  vertical-align: middle;
 }
 
-.nameDate {
-  float: right;
-  border: none
+#no {
+  margin-top: 20px;
 }
+
+#recRadios div span {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+input[type='radio'] {
+  height: 20px;
+  width: 20px;
+}
+
+input[type='radio']:checked {
+  background-color: red;
+}
+
+.charItem {
+  width: 45%;
+  position: relative;
+  display: inline-block;
+  margin-right: 33px;
+  height: 120px;
+  margin-bottom: 25px;
+}
+
+
+.charItem .radioRow {
+  position: absolute;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+}
+
+.charItem .radioRow div {
+  display: inline-block;
+  width: 25px;
+  position: relative;
+}
+
+.charItem .factorItemFactors {
+  top: 33px
+}
+
+.checkCharVal {
+  height: 12px;
+  font-size: 12px;
+}
+
+.modal-main > h3 {
+  margin-bottom: 0;
+}
+
+#newReviewText {
+  display: flex;
+}
+
+
+#rBody, #rSummary {
+  flex: 1;
+}
+
+#newReviewText textarea{
+  width: 90%;
+  height: 100px;
+  resize: none;
+}
+
+.rUnderText {
+  font-size: 12px;
+  color: #767677;
+}
+
+#rPerInfo {
+  display: flex;
+}
+
+#rEmail, #rName {
+  display: inline-block;
+  width:fit-content;
+  flex: 1;
+}
+
+#rPerInfo input, #newReviewPhotoInputs input {
+height: 30px;
+font-size: 18px;
+}
+
+.redA {
+  margin: 0;
+  color: red
+}
+
+.rNewPhoto {
+  border: solid black 2px;
+  margin: 0 2px;
+}
+
+
 
 /* new rating stars */
 .hide {
@@ -147,7 +369,7 @@ img {
 }
 
 .rating {
-  width: 90px;
+  width: 150px;
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: center;
@@ -155,6 +377,7 @@ img {
 }
 
 .rating > label {
+  left: -20px;
   float: right;
   display: inline;
   padding: 0;
@@ -163,12 +386,14 @@ img {
   width: 1.1em;
   cursor: pointer;
   color: #000;
+  font-size: 25px;
 }
 
 .rating > label:hover,
 .rating > label:hover ~ label,
 .rating > input.radio-btn:checked ~ label {
   color: transparent;
+  font-size: 25px;
 }
 
 .rating > label:hover:before,
@@ -176,6 +401,7 @@ img {
 .rating > input.radio-btn:checked ~ label:before,
 .rating > input.radio-btn:checked ~ label:before {
   content: "\2605";
+  font-size: 25px;
   position: absolute;
   left: 0;
   color: #FFD700;
@@ -185,6 +411,37 @@ img {
 .checked {
   color: orange;
 }
+
+/* review list  */
+.response {
+  background-color: #ebedee;
+  width: 75%;
+  padding:10px;
+}
+
+#sortBox span {
+  display: inline-block;
+}
+
+.nameDate {
+  float: right;
+  border: none
+}
+
+.reviewHelpful {
+  font-size: 13px;
+}
+
+.nameDate {
+  font-size: 14px;
+  color: gray;
+}
+
+.reviewBody {
+  font-weight: 200;
+}
+
+
 
 /* rating overview stars */
 .stars-outer {
@@ -201,15 +458,18 @@ img {
 .stars-inner {
   position: absolute;
   top: -5px;
-  left: -5px;
   white-space: nowrap;
   overflow: hidden;
   width: 0;
 }
 
+#reviewList .stars-inner {
+  left: -5px;
+}
+
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: black;
+  color: red;
 }
 
 .attribution {
@@ -227,26 +487,39 @@ img {
 }
 
 /* rating stars lines */
+.starCountNum {
+  font-weight: bolder;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.starCountTot {
+  font-size: 12px;
+}
 
 .outerLine, .innerLine {
-  height: 5px
+  height: 5px;
+  margin-left: 5px;
 }
 
 .outerLine {
   background-color: black;
   display: inline-block;
   position: relative;
+  border-radius: 10px
 }
 
 .innerLine {
   background-color: red;
   position: absolute;
   top: -5px;
-  left: -5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #avgRatingNum {
-  font-size: 56px;
+  font-size: 65px;
+  font-weight: bold;
 }
 
 #avgRatingNum, #avgRatingStars {
@@ -254,29 +527,50 @@ img {
 }
 
 #avgRatingStars {
-  position: absolute;
+  position: relative;
+  left: 5px;
+  /* bottom: 2px; */
 }
 
-#ratingSummary {
-  background-color: lawngreen;
+#avgRecText {
+  font-size: 13px;
 }
 
 #avgRatingBox {
   font-size: 12px;
+  /* background-color: #2ada71; */
+  height: 80px;
+  margin-bottom: 10px;
 }
+
+#underStarsCount {
+  margin-top: 12px;
+  font-size: 16px;
+
+}
+
+.ratingDivider {
+  height: 1px;
+  width: 100%;
+  background-color: #ebedee;
+  margin-top: 15px;
+}
+
 .factorData {
   display: inline-block;
   position: relative;
-  margin-bottom: 0px;
+  width: 100%;
+  /* left: -10px; */
 }
 
 .factorLine {
   height: 5px;
-  background-color: black;
+  background-color: #ebedee;
   display: flex;
   position: absolute;
-  width: 300px;
+  width: 100%;
   justify-content: space-evenly;
+  margin: none;
 }
 
 .breakLine {
@@ -289,8 +583,9 @@ img {
 
 .factorTriangle {
   position: relative;
-  top: -6px;
-
+  top: -11px;
+  width:fit-content;
+  margin: 0;
 }
 
 .factorTriangle::before {
@@ -300,12 +595,160 @@ img {
   font-size: 30px;
 }
 
-.factorItem{
-position: relative;
+
+
+#sortBox {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.factorItemFactors {
-  position: relative;
-  top: -20px;
+#sortBox .link {
+  text-decoration: none;
+}
+
+#sortForm {
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-bottom: solid black 3px;
+}
+
+#sortForm option {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.userButton {
+  height: 50px;
+  width: 200px;
+  border: solid grey 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* image modal  */
+.pmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#addReviewModal .pmodal {
+  height: auto;
+}
+
+
+/* Modal Content/Box */
+div.parent .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: fit-content;
+  max-width: 520px;
+}
+
+#addReviewModal .modal-content {
+  margin: 60% auto;
+}
+
+.pModalPhoto {
+  max-height: 550px;
+  max-width: 500px;
+}
+
+/* The Close Button */
+.pclose, .rclose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.pclose:hover,
+.pclose:focus,
+.rclose:hover,
+.rclose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.text-danger {
   font-size: 12px;
+  color: red;
+}
+
+#mainButtons {
+  display: flex;
+  width: fit-content;
+}
+
+.acontainer, #moreRevBtn {
+  flex-grow: 1;
+}
+
+
+.acontainer {
+  width: 200px;
+  height: 50px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acenter {
+  width: 200px;
+  height: 50px;
+  position: absolute;
+}
+
+.abtn {
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.abtn:hover {
+  transition: 1s ease-in-out;
+  background: red;
+}
+
+.abtn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.abtn span {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
 }

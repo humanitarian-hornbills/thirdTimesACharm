@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Slogan, Feature } from '../../elements/ProductInfo.element.jsx';
+import { Slogan, Feature, SloganFeature } from '../../elements/ProductInfo.element.jsx';
 
 const ProductInfo = ({ product }) => {
   // eslint-disable-next-line react/prop-types
@@ -13,20 +13,14 @@ const ProductInfo = ({ product }) => {
   }
 
   return (
-    <div
-      className="slogan_features"
-      style={{
-        display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
-      }}
-    >
+    <SloganFeature>
       <Slogan>{product.slogan}</Slogan>
       <Feature>
-        features
         <ul>
           {feature}
         </ul>
       </Feature>
-    </div>
+    </SloganFeature>
   );
 };
 

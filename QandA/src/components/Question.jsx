@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import AnswersList from './AnswersList.jsx';
 
+const H2 = styled.h2`
+  margin: 0;
+  `;
+
+const Button = styled.button`
+  border: none;
+  background: white;
+  font-size: .95rem;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+  `;
+
 const Question = ({
-  question, answersQ, findInQ, search,
+  question, answersQ, setAnswers, findInQ, search, setShowAnsModal,
+  clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
 }) => {
   const [foundInQ, setFoundInQ] = useState(findInQ);
   // let readableDate = new Date(question.question_date);
@@ -18,31 +34,48 @@ const Question = ({
   }
 
   return (
-    <div>
-      <div>
-        <h2>
-          Q:
-          {' '}
-          {question.question_body}
-        </h2>
-      </div>
-      <div>
-        <p>
-          Helpful? Yes (
-          {question.question_helpfulness}
-          ) | Add Answer
-        </p>
-      </div>
+    <>
       <div>
         <div>
-          <h2>A:</h2>
+          <H2>
+            Q:
+            {' '}
+            {question.question_body}
+          </H2>
         </div>
         <div>
-          <AnswersList answersQ={answersQ} search={search} foundInQ={foundInQ} />
+          <span>
+            Helpful?
+            {' '}
+            <Button onClick={() => console.log(question.question_helpfulness + 1)}>Yes</Button>
+            {' '}
+            (
+            {question.question_helpfulness}
+            ) |
+            {' '}
+            <Button onClick={() => setShowAnsModal((prev) => !prev)}>Add Answer</Button>
+          </span>
+        </div>
+      </div>
+      <div>
+        <div>
+          <H2>A:</H2>
+        </div>
+        <div>
+          <AnswersList
+            answersQ={answersQ}
+            setAnswers={setAnswers}
+            search={search}
+            foundInQ={foundInQ}
+            clickedAnsHelpful={clickedAnsHelpful}
+            setClickedAnsHelpful={setClickedAnsHelpful}
+            clickedReport={clickedReport}
+            setClickedReport={setClickedReport}
+          />
         </div>
       </div>
       <br />
-    </div>
+    </>
   );
 };
 

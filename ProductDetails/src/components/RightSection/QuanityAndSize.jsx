@@ -7,9 +7,16 @@ import Size from './Size.jsx';
 import { QuantitySize, SizeSelect, QuanitySelect } from '../../elements/RightSection/BottomSection.element.jsx';
 // eslint-disable-next-line react/prop-types
 const StyledQuanityAndSize = ({
-  style, selectedStyleId, clicked, getSizeQuantitySelected, getLikeClicked, getClicked, getErrorMessageShowed
+  style,
+  selectedStyleId,
+  clicked,
+  getSizeQuantitySelected,
+  getLikeClicked,
+  getClicked,
+  getErrorMessageShowed,
 }) => {
   const [sizeValue, setSizeValue] = useState('0');
+  const [totalQuantity, setTotalQuantityValue] = useState(0);
   const [quantityValue, setQuantityValue] = useState(0);
 
   const { skus } = style;
@@ -28,16 +35,16 @@ const StyledQuanityAndSize = ({
   useEffect(() => {
     for (const key in skus) {
       if (skus[key].size === sizeValue) {
-        setQuantityValue(skus[key].quantity);
+        setTotalQuantityValue(skus[key].quantity);
       }
     }
   }, [sizeValue]);
 
   let quantity = '';
-  if (quantityValue !== 0) {
+  if (totalQuantity !== 0) {
     const array = [];
-    if (quantityValue < 15) {
-      for (let i = 1; i < quantityValue; i += 1) {
+    if (totalQuantity < 15) {
+      for (let i = 1; i < totalQuantity; i += 1) {
         array.push(i);
       }
       quantity = array.map((num, index) => (
@@ -73,13 +80,24 @@ const StyledQuanityAndSize = ({
     );
   }
 
-  const onHandleChange = (e) => {
+  const onSizeChange = (e) => {
     setSizeValue(e.target.value);
-    getSizeQuantitySelected(Number(e.target.value) !== 0);
     getClicked(false);
     getLikeClicked(false);
     getErrorMessageShowed(false);
   };
+
+  const onQuantityChange = (e) => {
+    setQuantityValue(e.target.value);
+  };
+
+  if (Number(sizeValue) !== 0) {
+    if (Number(quantityValue) === 0) {
+      getSizeQuantitySelected(1);
+    } else {
+      getSizeQuantitySelected(Number(quantityValue));
+    }
+  }
 
   return (
     <>
@@ -88,7 +106,7 @@ const StyledQuanityAndSize = ({
           <QuantitySize>
             <SizeSelect
               name="size"
-              onChange={onHandleChange}
+              onChange={onSizeChange}
               value={sizeValue}
               clicked={clicked}
               sizeValue={sizeValue === '0'}
@@ -99,7 +117,7 @@ const StyledQuanityAndSize = ({
               }
               {size}
             </SizeSelect>
-            <QuanitySelect name="quantity" disabled={sizeValue === '0'}>
+            <QuanitySelect name="quantity" disabled={sizeValue === '0'} quantityValue={quantityValue} onChange={onQuantityChange}>
               {
                 (sizeValue === '0') && <option value="0">  - </option>
               }

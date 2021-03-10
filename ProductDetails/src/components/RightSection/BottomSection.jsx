@@ -11,30 +11,14 @@ const BottomSection = ({
   styles, getSelectedStyle, selectedStyleId, getQuantitySizeSelected,
   getMainCurrent,
 }) => {
-  const [clicked, setClicked] = useState(false);
+  const [bagClicked, setBagClicked] = useState(false);
   const [likeClicked, setLikeClicked] = useState(false);
-  const [sizeQuantitySelected, setSizeQuantitySelcted] = useState(0);
+  const [sizeQuantitySelected, setSizeQuantitySelected] = useState(0);
   const [errorMesShowed, setErrorMesShowed] = useState(false);
-
 
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
   }
-  const getClicked = (click) => {
-    setClicked(click);
-  };
-
-  const getLikeClicked = (click) => {
-    setLikeClicked(click);
-  };
-
-  const getSizeQuantitySelected = (quantity) => {
-    setSizeQuantitySelcted(quantity);
-  };
-
-  const getErrorMessageShowed = (messageShowed) => {
-    setErrorMesShowed(messageShowed);
-  };
 
   const styledThumbnails = styles.map(
     (item, index) => (
@@ -43,11 +27,12 @@ const BottomSection = ({
         index={index}
         style={item}
         getSelectedStyle={getSelectedStyle}
-        getClicked={getClicked}
+        setBagClicked={setBagClicked}
         selectedStyleId={selectedStyleId}
         getMainCurrent={getMainCurrent}
-        getLikeClicked={getLikeClicked}
-        getErrorMessageShowed={getErrorMessageShowed}
+        setLikeClicked={setLikeClicked}
+        setErrorMesShowed={setErrorMesShowed}
+        setSizeQuantitySelected={setSizeQuantitySelected}
       />
     ),
   );
@@ -58,11 +43,10 @@ const BottomSection = ({
         style={item}
         getSelectedStyle={getSelectedStyle}
         selectedStyleId={selectedStyleId}
-        clicked={clicked}
-        getSizeQuantitySelected={getSizeQuantitySelected}
-        getLikeClicked={getLikeClicked}
-        getClicked={getClicked}
-        getErrorMessageShowed={getErrorMessageShowed}
+        bagClicked={bagClicked}
+        setSizeQuantitySelected={setSizeQuantitySelected}
+        setErrorMesShowed={setErrorMesShowed}
+        setLikeClicked={setLikeClicked}
       />
     ),
   );
@@ -70,22 +54,16 @@ const BottomSection = ({
   const selectedStyleName = styles.filter((item) => item.style_id === selectedStyleId);
 
   const handleBagAdd = () => {
-    if (!clicked) {
-      setClicked(true);
-    }
-  };
-  if (clicked && sizeQuantitySelected !== 0) {
+    setBagClicked(!bagClicked);
     getQuantitySizeSelected(sizeQuantitySelected);
-    setSizeQuantitySelcted(0);
-    setClicked(false);
-  }
-  const handleClickLike = () => {
-    setLikeClicked(!likeClicked);
-    if (sizeQuantitySelected !== 0) {
-      setErrorMesShowed(true);
-    }
   };
 
+  const handleClickLike = () => {
+    if (sizeQuantitySelected === 0) {
+      setErrorMesShowed(true);
+    }
+    setLikeClicked(!likeClicked);
+  };
   return (
     <>
       <StyleLegend>
@@ -104,10 +82,11 @@ const BottomSection = ({
       <div>
         {styledQuanityAndSize}
         <AddToBag>
-          <Bag onClick={handleBagAdd}>
+          <Bag type="submit" onClick={handleBagAdd}>
             ADD TO BAG
           </Bag>
           <StarButton
+            type="submit"
             onClick={handleClickLike}
             sizeQuantitySelected={sizeQuantitySelected !== 0}
             disabled={errorMesShowed}
@@ -118,7 +97,7 @@ const BottomSection = ({
             />
           </StarButton>
           {
-            ((sizeQuantitySelected === 0 && likeClicked) || errorMesShowed)
+            (errorMesShowed)
             && (
               <ErrorMessage>
                 Please select your Size to add this item to your wish list.

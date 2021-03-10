@@ -29,7 +29,7 @@ const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent }) => {
         index < 7
         && (
           <Thumbnails key={item.style_id} curImage={mainCurrent === index}>
-            <Thumbnail key={item.style_id} src={url} alt="Women dress" onClick={() => getMainCurrent(index)} />
+            <Thumbnail key={item.style_id} src={url} alt="styles" onClick={() => getMainCurrent(index)} />
             {index === mainCurrent
               && <Underline />}
           </Thumbnails>
@@ -45,7 +45,7 @@ const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent }) => {
         index >= 7
         && (
           <Thumbnails key={item.style_id} curImage={mainCurrent === index}>
-            <Thumbnail key={item.style_id} src={url} alt="Women dress" onClick={() => getMainCurrent(index)} />
+            <Thumbnail key={item.style_id} src={url} alt="styles" onClick={() => getMainCurrent(index)} />
             {index === mainCurrent
               && <Underline />}
           </Thumbnails>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 
@@ -49,8 +49,37 @@ const CloseModalBtn = styled(MdClose)`
   z-index: 10px;
   `;
 
-const QuestionModal = ({ showModal, setShowModal }) => {
-  const showMdoal = 5;
+const QuestionModal = ({
+  showModal, setShowModal, addQuestion,
+}) => {
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [questionContent, setQuestionContent] = useState('');
+
+  const handleClick = (event) => {
+    const validate = [false, false, false];
+    if (nickname.length > 0 && nickname.length < 60) {
+      validate[0] = true;
+      if (email.includes('@') && email.includes('.')) {
+        if (email.length > 5 && email.length < 60) {
+          validate[1] = true;
+          if (questionContent.length > 0 && questionContent.length < 1000) {
+            validate[2] = true;
+            event.preventDefault();
+            addQuestion(nickname, email, questionContent);
+            setNickname('');
+            setEmail('');
+            setQuestionContent('');
+            setShowModal((prev) => !prev);
+          }
+        }
+      }
+    }
+    if (validate.includes(false)) {
+      alert('Maximum nickname and email length: 60 characters            Maximum question length: 1000 characters');
+    }
+  };
+
   return (
     <Background>
       <ModalWrapper aria-label="Close button">
@@ -62,7 +91,7 @@ const QuestionModal = ({ showModal, setShowModal }) => {
             <br />
             What is your nickname*:
             {' '}
-            <input type="text" placeholder="Example: jackson11!" />
+            <input type="text" placeholder="Example: jackson11!" value={nickname} onChange={(event) => setNickname(event.target.value)} />
             <br />
             <small>
               For privacy reasons, do not use your full name or email addresss.
@@ -71,7 +100,7 @@ const QuestionModal = ({ showModal, setShowModal }) => {
           <p>
             Your email*:
             {' '}
-            <input type="text" placeholder="Why did you like this product or not?" />
+            <input type="text" placeholder="Why did you like this product or not?" value={email} onChange={(event) => setEmail(event.target.value)} />
             <br />
             <small>
               For authentication reasons, you will not be emailed.
@@ -79,10 +108,10 @@ const QuestionModal = ({ showModal, setShowModal }) => {
           </p>
           <p>
             <br />
-            <QuestionInput type="text" placeholder="Your question here" />
+            <QuestionInput type="text" placeholder="Your question here" value={questionContent} onChange={(event) => setQuestionContent(event.target.value)} />
           </p>
           <br />
-          <button type="button">Submit</button>
+          <button type="button" onClick={(event) => handleClick(event)}>Submit</button>
         </ModalContent>
         <CloseModalBtn onClick={() => setShowModal((prev) => !prev)} />
       </ModalWrapper>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, {createGlobalStyle} from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import QuestionsList from './components/QuestionsList.jsx';
@@ -41,6 +41,7 @@ const QA = () => {
   const [showAnsModal, setShowAnsModal] = useState(false);
   const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
   const [clickedReport, setClickedReport] = useState([]);
+  const [targetQ, setTargetQ] = useState(null);
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -48,14 +49,9 @@ const QA = () => {
 
   const qIds = [];
   let randomId;
-  useEffect(() => {
-    axios.get('/products')
-      .then((response) => {
-        setProducts(response.data);
-        randomId = randomProduct(response.data);
-        return setProduct(randomId);
-      })
-      .then(() => axios.get(`questions/${randomId}`))
+
+  const getQuestions = () => {
+    axios.get(`questions/${randomId}`)
       .then((res) => {
         setQuestions(res.data);
         const questionData = res.data[randomId].results;
@@ -67,6 +63,30 @@ const QA = () => {
       .catch((err) => {
         throw err;
       });
+  };
+
+  useEffect(() => {
+    axios.get('/products')
+      .then((response) => {
+        setProducts(response.data);
+        randomId = randomProduct(response.data);
+        return setProduct(randomId);
+      })
+      .then(() => {
+        getQuestions();
+      })
+      // axios.get(`questions/${randomId}`))
+      // .then((res) => {
+      //   setQuestions(res.data);
+      //   const questionData = res.data[randomId].results;
+      //   questionData.forEach((q) => {
+      //     qIds.push(q.question_id);
+      //   });
+      //   setQuestionsId(qIds);
+      // })
+      .catch((err) => {
+        throw err;
+      });
   }, []);
 
   const qAnswers = {};
@@ -74,7 +94,7 @@ const QA = () => {
   const getAnswers = () => {
     questionsId.forEach((qId) => {
       promises.push(
-        axios.get(`./answers/${qId}`)
+        axios.get(`/answers/${qId}`)
           .then((response) => {
             qAnswers[qId] = response.data;
           })
@@ -98,10 +118,35 @@ const QA = () => {
     setSearch(target);
   };
 
+  const addQuestion = (nickname, email, content) => {
+    axios.post('/question', {
+      body: content, name: nickname, email, product_id: product,
+    })
+      .then(() => {
+        // getQuestions();
+        console.log('success posting question');
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
+  const addAnswer = (qId, nickname, email, content, photos) => {
+    axios.post(`/answer/${qId}`, {
+      body: content, name: nickname, email, photos,
+    })
+      .then(() => {
+        console.log('success posting answer');
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
   return (
     <>
       <Div>
-        {/* {answers[questionsId[0]] && console.log(product)} */}
+        {answers[questionsId[0]] && console.log(product)}
         <strong>Questions & Answers</strong>
         {answers[questionsId[questionsId.length - 1]]
           ? <SearchQuestions searchQA={searchQA} />
@@ -128,14 +173,27 @@ const QA = () => {
               setClickedAnsHelpful={setClickedAnsHelpful}
               clickedReport={clickedReport}
               setClickedReport={setClickedReport}
+              setTargetQ={setTargetQ}
             />
           )
           : <div>Loading...</div>}
       </Div>
       {showQModal
-        && <QuestionModal showModal={showQModal} setShowModal={setShowQModal} />}
+        && (
+          <QuestionModal
+            showModal={showQModal}
+            setShowModal={setShowQModal}
+            addQuestion={addQuestion}
+          />
+        )}
       {showAnsModal
-        && <AnswerModal showModal={showAnsModal} setShowModal={setShowAnsModal} />}
+        && (
+          <AnswerModal
+            showModal={showAnsModal}
+            setShowModal={setShowAnsModal}
+            addAnswer={addAnswer}
+          />
+        )}
       <Global />
     </>
   );

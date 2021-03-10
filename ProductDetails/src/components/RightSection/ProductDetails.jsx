@@ -7,7 +7,13 @@ import BottomSection from './BottomSection.jsx';
 import TopSection from './TopSection.jsx';
 
 const ProductDetails = ({
-  product, styles, getSelectedStyle, selectedStyleId, id, getQuantitySizeSelected,
+  product,
+  styles,
+  getSelectedStyle,
+  selectedStyleId,
+  id,
+  getQuantitySizeSelected,
+  getMainCurrent,
 }) => (
   <>
     <TopSection id={id} product={product} styles={styles} selectedStyleId={selectedStyleId} />
@@ -16,6 +22,7 @@ const ProductDetails = ({
       getSelectedStyle={getSelectedStyle}
       selectedStyleId={selectedStyleId}
       getQuantitySizeSelected={getQuantitySizeSelected}
+      getMainCurrent={getMainCurrent}
     />
   </>
 );

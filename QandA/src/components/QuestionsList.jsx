@@ -12,11 +12,15 @@ const QuestionsDiv = styled.div`
 const Button = styled.button`
   width: auto;
   height: 50px;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-left: 0;
   margin-right: 20px;
   font-size: 1.2rem;
   padding: 10px;
+  background: white;
+  &:hover {
+    cursor: pointer;
+  }
   `;
 
 const QuestionsList = ({
@@ -56,8 +60,8 @@ const QuestionsList = ({
       {productData
         ? (
           <>
-            {filtered
-              && (
+            {filtered.length > 0
+              ? (
                 <QuestionsDiv>
                   {filtered.map((question, index) => {
                     if (answers[question.question_id]) {
@@ -81,8 +85,11 @@ const QuestionsList = ({
                       )
                     );
                   })}
+                  {console.log(filtered)}
                 </QuestionsDiv>
-              )}
+              )
+              : <div>There are no such questions for this product...</div>
+            }
             <div>
               {(filtered.length - moreQ > 0)
                 && <Button type="button" onClick={() => setMoreQ(filtered.length)}>MORE ANSWERED QUESTIONS</Button>}

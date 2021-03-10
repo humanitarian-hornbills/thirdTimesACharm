@@ -3,6 +3,11 @@ import Input from '../elements/Input.jsx';
 
 const SearchQuestions = ({ searchQA }) => {
   const [search, setSearch] = useState('');
+
+  if (search.length >= 3) {
+    searchQA(search.toLowerCase());
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     searchQA(search.toLowerCase());

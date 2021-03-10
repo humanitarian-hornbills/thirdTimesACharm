@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import css from './NewReview.css';
+import CoolButton from '../CoolButton.jsx'
 
 class AddPhoto extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class AddPhoto extends React.Component {
             {photoInputs}
           </form>
           </div>
-          <button className="userButton" type="button" onClick={this.sendPhotos}>Submit</button>
+          <CoolButton func={this.sendPhotos} name={'submit'}/>
         </section>
       </div>
     );

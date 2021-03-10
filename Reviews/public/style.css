@@ -463,7 +463,7 @@ font-size: 18px;
 
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: black;
+  color: red;
 }
 
 .attribution {
@@ -676,3 +676,64 @@ option {
   color: red;
 }
 
+#mainButtons {
+  display: flex;
+  width: fit-content;
+}
+
+.container, #moreRevBtn {
+  flex-grow: 1;
+}
+
+
+.container {
+  width: 200px;
+  height: 50px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 200px;
+  height: 50px;
+  position: absolute;
+}
+
+.btn {
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: red;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn span {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}

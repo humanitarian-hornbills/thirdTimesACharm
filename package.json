@@ -46,10 +46,14 @@
     "@types/eslint-scope": "^3.7.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "jquery": "^3.6.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-icons": "^4.2.0",
+    "react-star-ratings": "^2.3.0",
     "sinon": "^9.2.4",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "styled-icons": "^10.29.0"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/enzyme.config.js"

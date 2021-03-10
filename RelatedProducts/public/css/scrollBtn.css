@@ -16,6 +16,7 @@
   position: absolute;
   background-color: white;
   z-index: 1;
+  transition: 2s;
 }
 .scroll-btn-right {
   right: 0%;
@@ -23,7 +24,7 @@
 
 .scroll-btn-arrow{
   position: absolute;
-  margin: 10px 5px;
+  padding: 10px 8px;
 }
 
 .scroll-btn-left:hover,

@@ -10,7 +10,7 @@ const RelatedList = ({ onCompare, relatedList, currentProduct }) => {
     <Card onClick={handleCompare} key={item} id={item} list="relatedList" currentProduct={currentProduct} />
   ));
   return (
-    <div className="container" id="related-list">
+    <div className="container " id="related-list">
       <ScrollBtn direction="left" list="relatedList" />
       <div className="list" id="relatedList">
         {list}

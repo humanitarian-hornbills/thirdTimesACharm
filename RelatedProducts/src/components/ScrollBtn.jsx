@@ -32,9 +32,9 @@ const ScrollBtn = ({ direction, list }) => {
     }
   };
   let scrollBtn = '';
-  if (direction === 'left') {
+  if (direction === 'left' && !inBoundary.isInboundaryOp(list, 'left')) {
     scrollBtn = <div className="scroll-btn-left btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&lt;</span></div>;
-  } else if (direction === 'right') {
+  } else if (direction === 'right' && !inBoundary.isInboundaryOp(list, 'right')) {
     scrollBtn = <div className="scroll-btn-right btn-disable" onClick={handleScroll} onKeyDown={handleScroll} role="button" tabIndex={0}><span className="scroll-btn-arrow">&gt;</span></div>;
   }
   return (

@@ -597,6 +597,10 @@ font-size: 18px;
   font-weight: bold;
 }
 
+#sortBox .link {
+  text-decoration: none;
+}
+
 select {
   border: none;
   font-size: 15px;

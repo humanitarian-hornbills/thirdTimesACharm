@@ -232,7 +232,7 @@ class ReviewApp extends React.Component {
         [key, this.state.ratings.characteristics[key].id]
       ));
       return (
-        <div id="parent">
+        <div className="parent">
           <div id="ratingBox">
             <RatingBreakdown
               clearStars={this.clearStars}

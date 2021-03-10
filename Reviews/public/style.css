@@ -1,12 +1,47 @@
+/* general app css */
 body {
 font-family: Helvetica, Arial, sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+label {
+  float: left;
+  padding: 0 1em;
+  text-align: center;
+}
+
+#parent {
+  display: flex;
+}
+
+#ratingBox {
+  width: 25%;
+  margin-left: 30px;
+  margin-right: 20px;
+}
+
+div#ratingBox * {
+  margin-left: 0;
+}
+
+#reviewBox {
+  width: 60%;
+  margin-left: 20px;
+  margin-top: 80px;
+  height: 650px;
 }
 
 #reviewList {
   height: 580px;
   overflow: auto;
 }
-
 
 img {
   cursor: pointer;
@@ -17,8 +52,6 @@ Img:hover {
 }
 
 div {
-  /* border: solid black;
-  border-width: 2px; */
   margin: 5px;
 }
 
@@ -29,6 +62,7 @@ div {
   padding-bottom: 20px;
 }
 
+/* rating breakdown widget */
 .breakdownItem div {
   display: inline-block;
 }
@@ -37,11 +71,6 @@ div {
   display: flex;
   align-items: center;
 }
-
-/* .noborder, .stars-outer, .stars-inner, .line-outer, .line-inner, .link{
-  border: none;
-} */
-
 
 .factorItem{
   position: relative;
@@ -83,29 +112,6 @@ div {
   font-size: 14px;
 }
 
-#parent {
-  display: flex;
-}
-
-#ratingBox {
-  width: 25%;
-  margin-left: 30px;
-  margin-right: 20px;
-}
-
-div#ratingBox * {
-  margin-left: 0;
-}
-
-#reviewBox {
-  /* Grow to rest of container */
-  width: 60%;
-  margin-left: 20px;
-  margin-top: 80px;
-  height: 650px;
-  /* Just so it's visible */
-}
-
 /* new review modal */
 #addReviewModal {
   height: 700px;
@@ -129,7 +135,7 @@ div#ratingBox * {
   top: 0;
   left: 0;
   width:100%;
-  height: 100%;
+  height: 200%;
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -144,8 +150,15 @@ div#ratingBox * {
   padding: 5px;
 }
 
+/* new review add photo modal  */
 .modal-addPhotos {
+  position: absolute;
   width: 400px;
+  /* margin-top: 30%; */
+}
+
+.modal-addPhotos h3 {
+  margin-top: 0;
 }
 
 .display-block {
@@ -154,6 +167,17 @@ div#ratingBox * {
 
 .display-none {
   display: none;
+}
+
+#newReviewPhotoInputs {
+  width: fit-content;
+  height: fit-content;
+  margin: 15px auto
+}
+
+.newReviewPhotoInput {
+  height: 30px;
+  margin-bottom: 2px;
 }
 
 #newReviewTop {
@@ -198,11 +222,6 @@ div#ratingBox * {
   vertical-align: middle;
 }
 
-label {
-  float: left;
-  padding: 0 1em;
-  text-align: center;
-}
 
 #newReviewTopTitle {
   text-align: left;
@@ -251,27 +270,87 @@ input[type='radio']:checked {
   background-color: red;
 }
 
-.link {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-
-.response {
-  background-color: #ebedee;
-  width: 75%;
-  padding:10px;
-}
-
-
-#sortBox span {
+.charItem {
+  width: 45%;
+  position: relative;
   display: inline-block;
+  margin-right: 33px;
+  height: 100px;
+  margin-bottom: 25px;
 }
 
-.nameDate {
-  float: right;
-  border: none
+.charItem .radioRow {
+  position: absolute;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
 }
+
+.charItem .radioRow div {
+  display: inline-block;
+  width: 25px;
+  position: relative;
+}
+
+.charItem .factorItemFactors {
+  top: 33px
+}
+
+.checkCharVal {
+  height: 12px;
+  font-size: 12px;
+}
+
+.modal-main > h3 {
+  margin-bottom: 0;
+}
+
+#newReviewText {
+  display: flex;
+}
+
+
+#rBody, #rSummary {
+  flex: 1;
+}
+
+textarea{
+  width: 90%;
+  height: 100px;
+  resize: none;
+}
+
+.rUnderText {
+  font-size: 12px;
+  color: #767677;
+}
+
+#rPerInfo {
+  display: flex;
+}
+
+#rEmail, #rName {
+  display: inline-block;
+  width:fit-content;
+  flex: 1;
+}
+
+input {
+height: 30px;
+font-size: 18px;
+}
+
+.redA {
+  margin: 0;
+  color: red
+}
+
+.rNewPhoto {
+  border: solid black 2px;
+  margin: 0 2px;
+}
+
+
 
 /* new rating stars */
 .hide {
@@ -327,6 +406,37 @@ input[type='radio']:checked {
   color: orange;
 }
 
+/* review list  */
+.response {
+  background-color: #ebedee;
+  width: 75%;
+  padding:10px;
+}
+
+#sortBox span {
+  display: inline-block;
+}
+
+.nameDate {
+  float: right;
+  border: none
+}
+
+.reviewHelpful {
+  font-size: 13px;
+}
+
+.nameDate {
+  font-size: 14px;
+  color: gray;
+}
+
+.reviewBody {
+  font-weight: 200;
+}
+
+
+
 /* rating overview stars */
 .stars-outer {
   display: inline-block;
@@ -353,7 +463,7 @@ input[type='radio']:checked {
 
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: black;
+  color: red;
 }
 
 .attribution {
@@ -468,6 +578,8 @@ input[type='radio']:checked {
 .factorTriangle {
   position: relative;
   top: -11px;
+  width:fit-content;
+  margin: 0;
 }
 
 .factorTriangle::before {
@@ -477,9 +589,7 @@ input[type='radio']:checked {
   font-size: 30px;
 }
 
- *, *:before, *:after {
-  box-sizing: border-box;
-}
+
 
 #sortBox {
   font-family: Helvetica, Arial, sans-serif;
@@ -519,7 +629,7 @@ option {
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  height: 200%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -531,13 +641,16 @@ option {
   margin: 5% auto; /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  /* max-height: */
+  width: fit-content;
   max-width: 520px;
-  /* width: 50%; Could be more or less, depending on screen size */
+}
+
+#addReviewModal .modal-content {
+  margin: 60% auto; /* 15% from the top and centered */
 }
 
 .pModalPhoto {
-  max-height: 700px;
+  max-height: 550px;
   max-width: 500px;
 }
 
@@ -563,95 +676,64 @@ option {
   color: red;
 }
 
-.reviewHelpful {
-  font-size: 13px;
+#mainButtons {
+  display: flex;
+  width: fit-content;
 }
 
-.nameDate {
-  font-size: 14px;
-  color: gray;
+.container, #moreRevBtn {
+  flex-grow: 1;
 }
 
-.reviewBody {
-  font-weight: 200;
-}
 
-.charItem {
-  width: 45%;
+.container {
+  width: 200px;
+  height: 50px;
   position: relative;
-  display: inline-block;
-  margin-right: 33px;
-  height: 100px;
-  margin-bottom: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.charItem .radioRow {
+.center {
+  width: 200px;
+  height: 50px;
   position: absolute;
-  justify-content: space-between;
-  width: 100%;
-  display: flex;
 }
 
-.charItem .radioRow div {
-  display: inline-block;
-  width: 25px;
-  position: relative;
+.btn {
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  transition: 1s ease-in-out;
 }
 
-.charItem .factorItemFactors {
-  top: 33px
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
 }
 
-.checkCharVal {
-  height: 12px;
-  font-size: 12px;
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: red;
 }
 
-h3 {
-  margin-bottom: 0;
+.btn:hover svg {
+  stroke-dashoffset: -480;
 }
 
-#newReviewText {
-  display: flex;
-}
-
-
-#rBody, #rSummary {
-  flex: 1;
-}
-
-textarea{
-  width: 90%;
-  height: 100px;
-  resize: none;
-}
-
-.rUnderText {
-  font-size: 12px;
-  color: #767677;
-}
-
-#rPerInfo {
-  display: flex;
-}
-
-#rEmail, #rName {
-  display: inline-block;
-  width:fit-content;
-  flex: 1;
-}
-
-#rEmail input, #rName input {
-height: 30px;
-font-size: 18px;
-}
-
-.redA {
-  margin: 0;
-  color: red
-}
-
-.rNewPhoto {
-  border: solid black 2px;
-  margin: 0 2px;
+.btn span {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
 }

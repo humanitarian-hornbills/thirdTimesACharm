@@ -5,6 +5,9 @@ import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
+import styled from 'styled-components';
+import CoolButton from './CoolButton.jsx'
+
 
 class ReviewApp extends React.Component {
   constructor(props) {
@@ -250,17 +253,13 @@ class ReviewApp extends React.Component {
               photoModal={this.photoModal}
               sendClickData={this.sendClickData}
             />
+            <div id="mainButtons">
             {allReviews.length > reviewCount
-              ? <button className="userButton" type="button" onClick={() => {this.seeMoreReviews; this.sendClickData('show more review button clicked')}}>MORE REVIEWS</button>
+              ?
+              <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name={'MORE REVIEWS'} text={'show more review button clicked'}/>
               : <></>}
-            <button
-              className="userButton"
-              type="button"
-              className="userButton"
-              onClick={() => { this.sendClickData('add review button clicked'); this.showModal(); }}
-            >
-              ADD REVIEW
-            </button>
+              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name={'add review'} text={'add review button clicked'}/>
+            </div>
             <NewReview
               name={this.state.productName}
               factors={factors}

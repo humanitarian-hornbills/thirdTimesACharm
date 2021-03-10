@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.12.13",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
     "css-loader": "^5.1.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -47,7 +48,8 @@
     "express": "^4.17.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "sinon": "^9.2.4"
+    "sinon": "^9.2.4",
+    "styled-components": "^5.2.1"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/enzyme.config.js"

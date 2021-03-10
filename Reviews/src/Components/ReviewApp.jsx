@@ -21,6 +21,7 @@ class ReviewApp extends React.Component {
       starsSelected: [],
       currentSort: 'relevant',
       modalPhoto: null,
+      prodUrl: null,
     };
 
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
@@ -46,6 +47,7 @@ class ReviewApp extends React.Component {
         this.setState({
           reviews: data.data.results,
           productName: data.data.name,
+          prodUrl: data.data.prodUrl,
         });
         this.getSort('relevant');
       });
@@ -228,12 +230,12 @@ class ReviewApp extends React.Component {
               photoModal={this.photoModal}
             />
             {allReviews.length > reviewCount
-              ? <button id="moreReviews" className="link" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
+              ? <button className="userButton" type="button" onClick={this.seeMoreReviews}>MORE REVIEWS</button>
               : <></>}
             <button
-              id="addReview"
+              class="userButton"
               type="button"
-              className="link"
+              className="userButton"
               onClick={() => { this.showModal(); }}
             >
               ADD REVIEW
@@ -245,6 +247,7 @@ class ReviewApp extends React.Component {
               show={this.state.newReview}
               sendNewReview={this.sendNewReview}
               photoModal={this.photoModal}
+              prodUrl={this.state.prodUrl}
             />
             <PhotoModal src={this.state.modalPhoto} />
           </div>

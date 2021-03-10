@@ -17,7 +17,7 @@ app.get('/reviews', (req, res) => {
   // console.log(prodId)
   axios({
     method: 'get',
-    url: `${keys.api}/reviews/?product_id=${prodId}&count=10&sort=relevant`,
+    url: `${keys.api}/reviews/?product_id=${prodId}&count=100&sort=relevant`,
     headers: {
       Authorization: keys.TOKEN,
     },
@@ -31,14 +31,28 @@ app.get('/reviews', (req, res) => {
         },
       })
         .then((response2) => {
-          const reviewDataObj = {
-            name: response2.data.name,
-            results: response1.data.results,
-          };
-          res.send(reviewDataObj);
+          axios({
+            method: 'get',
+            url: `${keys.api}/products/${prodId}/styles/?product_id=${prodId}`,
+            headers: {
+              Authorization: keys.TOKEN,
+            },
+          })
+            .then((response3) => {
+              const reviewDataObj = {
+                name: response2.data.name,
+                results: response1.data.results,
+                prodUrl: response3.data.results[0].photos[0].url,
+              };
+              res.send(reviewDataObj);
+            });
         });
     });
 });
+
+// const reviewDataObj = {
+//   name: response2.data.name,
+//   results: response1.data.results,
 
 app.get('/meta', (req, res) => {
   const prodId = req.query.id;

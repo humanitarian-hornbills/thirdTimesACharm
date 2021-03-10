@@ -49,8 +49,7 @@ const Characteristics = ({updateCharacteristics, factors}) => {
   };
 
   return (
-    <div>
-      Characteristics
+    <div id="rChars">
       {factors.map((factor, index) => (
         <CharItem
           options={chars[factor[0]]}

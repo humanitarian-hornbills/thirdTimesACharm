@@ -26,6 +26,7 @@ const Button = styled.button`
 const QuestionsList = ({
   productData, answers, setAnswers, search, setShowQModal, setShowAnsModal,
   clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
+  setTargetQ,
 }) => {
   let questions;
   if (productData) {
@@ -81,6 +82,7 @@ const QuestionsList = ({
                           setClickedAnsHelpful={setClickedAnsHelpful}
                           clickedReport={clickedReport}
                           setClickedReport={setClickedReport}
+                          setTargetQ={setTargetQ}
                         />
                       )
                     );

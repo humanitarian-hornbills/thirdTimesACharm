@@ -50,8 +50,35 @@ const CloseModalBtn = styled(MdClose)`
   z-index: 10px;
   `;
 
-const AnswerModal = ({ showModal, setShowModal }) => {
-  const showMdoal = 5;
+const AnswerModal = ({ showModal, setShowModal, addAnswer, }) => {
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [questionContent, setQuestionContent] = useState('');
+
+  const handleClick = (event) => {
+    const validate = [false, false, false];
+    if (nickname.length > 0 && nickname.length < 60) {
+      validate[0] = true;
+      if (email.includes('@') && email.includes('.')) {
+        if (email.length > 5 && email.length < 60) {
+          validate[1] = true;
+          if (questionContent.length > 0 && questionContent.length < 1000) {
+            validate[2] = true;
+            event.preventDefault();
+            addAnswer(nickname, email, questionContent);
+            setNickname('');
+            setEmail('');
+            setQuestionContent('');
+            setShowModal((prev) => !prev);
+          }
+        }
+      }
+    }
+    if (validate.includes(false)) {
+      alert('Maximum nickname and email length: 60 characters            Maximum question length: 1000 characters');
+    }
+  };
+
   return (
     <Background>
       <ModalWrapper aria-label="Close button">

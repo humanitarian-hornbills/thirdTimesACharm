@@ -19,6 +19,7 @@ const Button = styled.button`
 const Question = ({
   question, answersQ, setAnswers, findInQ, search, setShowAnsModal,
   clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
+  setTargetQ,
 }) => {
   const [foundInQ, setFoundInQ] = useState(findInQ);
   // let readableDate = new Date(question.question_date);
@@ -53,7 +54,13 @@ const Question = ({
             {question.question_helpfulness}
             ) |
             {' '}
-            <Button onClick={() => setShowAnsModal((prev) => !prev)}>Add Answer</Button>
+            <Button onClick={() => {
+              setTargetQ(question.question_id);
+              setShowAnsModal((prev) => !prev);
+            }}
+            >
+              Add Answer
+            </Button>
           </span>
         </div>
       </div>

@@ -17,7 +17,7 @@ const OutfitList = ({ currentProduct, removeFromList, addToList, outfitList, cur
   );
 
   return (
-    <div className="container" id="outfit-list">
+    <div className="container " id="outfit-list">
       <ScrollBtn direction="left" list="outfitList" />
       <div className="list" id="outfitList">
         <div className="card" onClick={handleAddToList} onKeyDown={handleAddToList} role="button" tabIndex={0}>

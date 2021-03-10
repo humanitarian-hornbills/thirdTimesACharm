@@ -11,26 +11,40 @@ body {
 }
 .list {
   display: flex;
-  overflow-x: scroll;
+  overflow-x:hidden;
   scroll-behavior: smooth;
   margin-top: 20px;
 }
 
 .related-products {
   display: grid;
-  grid-template-columns:10% 80% 10%;
+  grid-template-columns:1fr 1170px 1fr;
   grid-template-rows: 400px 400px;
   /* z-index: 1; */
 }
+@media (min-width: 1410px) {
+  .related-products{
+    grid-template-columns: 1fr 1405px 1fr;
+  }
+}
+@media (max-width: 1180px) {
+  .related-products{
+    grid-template-columns: 1fr 935px 1fr;
+  }
+}
+@media (max-width: 945px) {
+  .related-products{
+    grid-template-columns: 1fr 700px 1fr;
+  }
+}
 #related-list {
   /* position: relative; */
-  grid-area: 1/2/1/2;
+  grid-area: 1/2/2/3;
   z-index: 2;
   justify-content: center;
 }
 #outfit-list {
-  grid-area: 2/2/3/2;
+  grid-area: 2/2/3/3;
   /* margin-top: 400px; */
   /* z-index: 1; */
 }
-

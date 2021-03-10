@@ -9,11 +9,11 @@ import { QuantitySize, SizeSelect, QuanitySelect } from '../../elements/RightSec
 const StyledQuanityAndSize = ({
   style,
   selectedStyleId,
-  clicked,
-  getSizeQuantitySelected,
-  getLikeClicked,
-  getClicked,
-  getErrorMessageShowed,
+  bagClicked,
+  setSizeQuantitySelected,
+  setLikeClicked,
+  setErrorMesShowed
+
 }) => {
   const [sizeValue, setSizeValue] = useState('0');
   const [totalQuantity, setTotalQuantityValue] = useState(0);
@@ -80,22 +80,25 @@ const StyledQuanityAndSize = ({
     );
   }
 
-  const onSizeChange = (e) => {
+  const sizeChange = (e) => {
     setSizeValue(e.target.value);
-    getClicked(false);
-    getLikeClicked(false);
-    getErrorMessageShowed(false);
-  };
+    if (e.target.value !== '0') {
+      if (quantityValue === 0) {
+        setSizeQuantitySelected(1);
+      } else {
+        setSizeQuantitySelected(quantityValue);
+      }
+    }
+    setLikeClicked(false);
+    setErrorMesShowed(false);
+  }
 
   const onQuantityChange = (e) => {
-    setQuantityValue(e.target.value);
-  };
-
-  if (Number(sizeValue) !== 0) {
-    if (Number(quantityValue) === 0) {
-      getSizeQuantitySelected(1);
-    } else {
-      getSizeQuantitySelected(Number(quantityValue));
+    setQuantityValue(Number(e.target.value));
+    if (e.target.value !== 0 && sizeValue !== '0') {
+      setSizeQuantitySelected(Number(e.target.value));
+      setLikeClicked(false);
+      setErrorMesShowed(false);
     }
   }
 
@@ -106,14 +109,14 @@ const StyledQuanityAndSize = ({
           <QuantitySize>
             <SizeSelect
               name="size"
-              onChange={onSizeChange}
               value={sizeValue}
-              clicked={clicked}
-              sizeValue={sizeValue === '0'}
+              onChange={sizeChange}
+              bagClicked={bagClicked}
+              checkSizeValue={sizeValue === '0'}
               required
             >
               {
-                clicked && sizeValue === '0' ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
+                bagClicked && sizeValue === '0' ? <option value="0"> PLEASE SELECT SIZE </option> : <option value="0">  SELECT SIZE</option>
               }
               {size}
             </SizeSelect>

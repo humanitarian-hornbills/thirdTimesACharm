@@ -3,6 +3,11 @@ import Input from '../elements/Input.jsx';
 
 const SearchQuestions = ({ searchQA }) => {
   const [search, setSearch] = useState('');
+
+  if (search.length >= 3) {
+    searchQA(search.toLowerCase());
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     searchQA(search.toLowerCase());
@@ -13,7 +18,6 @@ const SearchQuestions = ({ searchQA }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <Input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." value={search} onChange={(event) => setSearch(event.target.value)} />
-        {/* <button type="submit">Search</button> */}
       </form>
     </div>
   );

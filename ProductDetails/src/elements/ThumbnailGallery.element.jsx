@@ -10,7 +10,7 @@ export const ThumbnailWrapper = styled.div`
 export const Thumbnails = styled.div`
 overflow-x: auto;
 overflow-y: hidden;
-overflow: ${(props) => props.curImage && 'hidden'};
+overflow: hidden;
 `;
 export const Thumbnail = styled.img`
  display: block;
@@ -19,7 +19,7 @@ export const Thumbnail = styled.img`
  margin-bottom:20px;
  cursor:pointer;
  padding:2px;
- border: 1px solid ${(props) => (props.curImage ? 'black' : ' #DFDFDF')};
+ border: 1px solid black;
  transition:transform .5s ease;
  &:hover{
   transform: scale(1.5);

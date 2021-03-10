@@ -4,8 +4,8 @@ const router = express.Router();
 const axios = require('axios');
 
 const api = require('../../config');
-router.get('/products', (req, res) => {
 
+router.get('/products', (req, res) => {
   axios.get(`${api.api}/products`, {
     headers: {
       Authorization: api.TOKEN,
@@ -20,7 +20,6 @@ router.get('/products', (req, res) => {
 
 router.get('/products/:id', (req, res) => {
   const { id } = req.params;
-
 
   axios.get(`${api.api}/products/${id}`, {
     headers: {
@@ -66,6 +65,27 @@ router.get('/reviews/:id', (req, res) => {
       res.status(200).send(aveRating.toString());
     })
     .catch((err) => res.sendStatus(400).send(err));
+});
+
+router.post('/interactions', (req, res) => {
+  console.log(req.body)
+  const { element, widget, time } = req.body;
+
+  axios.post(`${api.api}/interactions`, {
+    params: {
+      element,
+      widget,
+      time,
+    },
+    headers: {
+      Authorization: api.TOKEN,
+    },
+  }).then((response) => {
+    console.log(response);
+  })
+    .catch((error) => {
+      // console.log(error);
+    });
 });
 
 module.exports = router;

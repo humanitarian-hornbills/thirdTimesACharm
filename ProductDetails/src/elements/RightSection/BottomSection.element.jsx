@@ -52,16 +52,16 @@ flex: 3;
 margin-right:10px;
 cursor: pointer;
 border-radius: 2px;
-border:1px solid ${(props) => (props.clicked && props.sizeValue ? 'red' : '#4b5666')}; 
+border:1px solid ${(props) => (props.bagClicked && props.checkSizeValue ? 'red' : '#4b5666')}; 
 padding:15px 12px;
 text-align:start;
 letter-spacing:.06rem;
 appearance: none;
-color:${(props) => props.clicked && props.sizeValue && 'red'};
+color:${(props) => props.bagClicked && props.checkSizeValue && 'red'};
 &:focus {
   outline: none;
 };
-${({ clicked, sizeValue }) => clicked && sizeValue && css`
+${({ bagClicked, checkSizeValue }) => bagClicked && checkSizeValue && css`
 animation: ${shake} 1s ease both;
 `}
 background-color:white;

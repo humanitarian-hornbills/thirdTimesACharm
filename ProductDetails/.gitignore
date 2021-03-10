@@ -3,3 +3,4 @@ config.js
 
 /public/bundle.js
 /coverage
+fec-individual-key-pair.pem

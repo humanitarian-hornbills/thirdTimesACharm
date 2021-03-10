@@ -4,7 +4,7 @@ import Question from './Question.jsx';
 
 const QuestionsDiv = styled.div`
   overflow: scroll;
-  max-height: 90%;
+  max-height: 500px;
   margin: 0;
   margin-top: 20px;
   `;

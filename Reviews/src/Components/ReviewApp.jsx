@@ -7,7 +7,7 @@ import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
 import styled from 'styled-components';
 import CoolButton from './CoolButton.jsx'
-
+import '../../public/css.js'
 
 class ReviewApp extends React.Component {
   constructor(props) {

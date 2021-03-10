@@ -25,17 +25,6 @@ const Style = ({
     setLikeClicked(false);
     setErrorMesShowed(false);
     setSizeQuantitySelected(0);
-    axios.post('/interactions', {
-      element: 'SelectedStyled',
-      widget: 'StyleThumbnails',
-      time: '1:07am PST',
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (

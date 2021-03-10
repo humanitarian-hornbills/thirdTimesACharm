@@ -125,7 +125,6 @@ app.post('/interactions', (req, res) => {
     data: clickData,
     headers: {
       Authorization: api.TOKEN,
-      // 'Content-Type': 'application/json'
     },
   })
     .then((response) => {

@@ -727,7 +727,7 @@ div.parent .modal-content {
   transition: 1s ease-in-out;
 }
 
-svg {
+.abtn svg {
   position: absolute;
   left: 0;
   top: 0;

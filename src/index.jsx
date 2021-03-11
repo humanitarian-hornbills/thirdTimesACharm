@@ -15,12 +15,12 @@ const App = () => (
     <QA />
     <FadeInSection productId={id} />
   </>
-)
+);
 
-ReactDOM.render (
+ReactDOM.render(
   <App />,
-  document.getElementById('app')
-)
+  document.getElementById('app'),
+);
 
 // ReactDOM.render(
 //   <Products productId={id} />,

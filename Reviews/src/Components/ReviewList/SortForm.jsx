@@ -17,4 +17,6 @@ const SortForm = ({ getSort, reviewCount, sendClickData }) => (
   </div>
 );
 
+
+
 export default SortForm;

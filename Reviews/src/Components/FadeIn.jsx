@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReviewApp from './ReviewApp.jsx';
 import '../../public/css.js';
 
-const FadeInSection = (props) => {
+const FadeInSection = ({ productId }) => {
   const [isVisible, setVisible] = useState(true);
   const domRef = React.useRef();
   useEffect(() => {
@@ -18,9 +18,13 @@ const FadeInSection = (props) => {
       className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
       ref={domRef}
     >
-      <ReviewApp productId={props.productId} />
+      <ReviewApp productId={productId} />
     </div>
   );
+};
+
+FadeInSection.propTypes = {
+  productId: PropTypes.number.isRequired,
 };
 
 export default FadeInSection;

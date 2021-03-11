@@ -242,7 +242,7 @@ class NewReview extends React.Component {
                 updateState={this.updateState}
               />
             </div>
-            <CoolButton func={this.submitReview} name="submit" />
+            <CoolButton func={this.submitReview} name="SUBMIT" />
           </div>
         </section>
       </div>

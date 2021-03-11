@@ -53,7 +53,7 @@ class AddPhoto extends React.Component {
               {photoInputs}
             </form>
           </div>
-          <CoolButton func={this.sendPhotos} name="submit" />
+          <CoolButton func={this.sendPhotos} name="SUBMIT" />
         </section>
       </div>
     );

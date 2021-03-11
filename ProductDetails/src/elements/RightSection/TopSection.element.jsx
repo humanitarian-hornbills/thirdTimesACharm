@@ -13,7 +13,7 @@ margin-right:1%;
 
 export const Category = styled.h3`
 text-transform: uppercase;
-margin-top:10px;
+margin:10px 0px;
 margin-bottom:0px;
 font:1.3rem/normal Avenir Medium,sans-seri;
 color:#DFDFDF;
@@ -25,8 +25,10 @@ margin-top:1px;
 letter-spacing:.12rem;
 `;
 
+
+
 export const OriginalPrice = styled.h4`
-margin-top: 1px;
+margin: 5px auto;
 font:1rem/normal Avenir Medium,sans-seri;
 text-decoration: ${(props) => props.checkSale && 'line-through'};
 color:${(props) => props.checkSale && ' rgb(128,128,128)'};

@@ -8,6 +8,7 @@
     "webpack": "webpack -w",
     "start": "nodemon server.js",
     "forever": "forever start server.js",
+    "stop":"forever stop server.js",
     "coverage": "jest --collectCoverage"
   },
   "repository": {

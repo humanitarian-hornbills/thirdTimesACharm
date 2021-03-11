@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,7 +20,15 @@ const BodyText = ({ text, sendClickData }) => {
               {first250}
               ...
               {' '}
-              <span className="link moreBodyText" onClick={() => { setExpand(true); sendClickData('show full review text'); }}>Show More</span>
+              <span
+                role="button"
+                tabIndex="0"
+                className="link moreBodyText"
+                onClick={() => { setExpand(true); sendClickData('show full review text'); }}
+                onKeyPress={() => { setExpand(true); sendClickData('show full review text'); }}
+              >
+                Show More
+              </span>
             </p>
           </>
         )
@@ -33,6 +40,11 @@ const BodyText = ({ text, sendClickData }) => {
     </div>
 
   );
+};
+
+BodyText.propTypes = {
+  text: PropTypes.string.isRequired,
+  sendClickData: PropTypes.func.isRequired,
 };
 
 export default BodyText;

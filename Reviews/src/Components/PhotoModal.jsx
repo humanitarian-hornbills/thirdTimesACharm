@@ -11,7 +11,11 @@ const PhotoModal = ({ src }) => (
 );
 
 PhotoModal.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
+};
+
+PhotoModal.defaultProps = {
+  src: '',
 };
 
 export default PhotoModal;

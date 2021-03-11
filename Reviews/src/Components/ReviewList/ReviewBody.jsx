@@ -24,20 +24,22 @@ const ReviewBody = ({ review, photoModal, sendClickData }) => (
           <p>{review.response}</p>
         </div>
       )
-      : <div></div>}
+      : <div />}
   </div>
 );
 
 ReviewBody.propTypes = {
-  review: PropTypes.object,
+  // review: PropTypes.objectOf(),
   summary: PropTypes.string,
   body: PropTypes.string,
+  sendClickData: PropTypes.func.isRequired,
+  photoModal: PropTypes.func.isRequired,
 };
 
 ReviewBody.defaultProps = {
   summary: '',
   body: '',
-  review: {},
+  // review: {},
 };
 
 export default ReviewBody;

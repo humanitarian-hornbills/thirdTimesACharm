@@ -1,3 +1,5 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
@@ -32,6 +34,7 @@ class Products extends React.Component {
       quantitySizeSelected: 0,
       mainCurrent: 0,
       shoppingCart: false,
+      clickElement: '',
     };
     this.getStyles = this.getStyles.bind(this);
     this.getSelectedStyle = this.getSelectedStyle.bind(this);
@@ -40,6 +43,7 @@ class Products extends React.Component {
     this.getQuantitySizeSelected = this.getQuantitySizeSelected.bind(this);
     this.getMainCurrent = this.getMainCurrent.bind(this);
     this.getShoppingCartStatus = this.getShoppingCartStatus.bind(this);
+    this.getClickInteraction = this.getClickInteraction.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +67,24 @@ class Products extends React.Component {
                 category, default_price, description, features, name, slogan,
               },
             });
+          });
+      }).then(() => {
+        let currentTime = new Date();
+        currentTime = currentTime.toISOString();
+        axios({
+          method: 'post',
+          url: '/interactions',
+          params: {
+            element: this.state.clickElement,
+            widget: 'overview',
+            time: currentTime,
+          },
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
           });
       })
       .catch((err) => {
@@ -98,6 +120,12 @@ class Products extends React.Component {
     this.setState({ shoppingCart: status });
   }
 
+
+  // eslint-disable-next-line class-methods-use-this
+  getClickInteraction(ele) {
+    this.setState({ clickElement: ele });
+  }
+
   render() {
     return (
       <Wrapper>
@@ -126,6 +154,7 @@ class Products extends React.Component {
               styles={this.state.styles}
               getMainCurrent={this.getMainCurrent}
               mainCurrent={this.state.mainCurrent}
+              getClickInteraction={this.getClickInteraction}
             />
           )}
         </Thumbnails>

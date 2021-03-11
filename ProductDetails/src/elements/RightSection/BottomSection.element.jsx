@@ -17,7 +17,7 @@ font-weight: 'normal';
 padding-left: 10px;
 font: 1rem/normal Avenir Book,sans-serif;
 letter-spacing:.06rem;
-color:#5c5c5f;
+color: v;
 `;
 export const StyleLegend = styled.h4`
 font:1rem/normal Avenir Medium,sans-seri;

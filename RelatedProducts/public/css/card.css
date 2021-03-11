@@ -104,6 +104,8 @@
 .price,
 .rating{
   margin-left: 5px;
+  direction: ltr;
+  text-align: left;
 }
 
 .category {

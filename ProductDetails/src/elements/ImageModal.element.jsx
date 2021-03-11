@@ -10,7 +10,7 @@ background-color: rgba(0,0,0,1);
 display:flex;
 align-items:cener;
 justify-content:center;
-z-index:2;
+z-index:10;
 
 `;
 

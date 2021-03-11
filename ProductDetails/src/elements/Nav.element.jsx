@@ -4,7 +4,7 @@ import { ShoppingBag } from '@styled-icons/boxicons-regular';
 
 export const Logo = styled.h1`
 grid-area: 1 / 1 / 2 / 2;
-margin-top:2%;
+margin-top:-5%;
 letter-spacing:0.1rem;
 font:2.5rem/1 Avenir Book,sans-serif;
 font-weight:bold;
@@ -15,14 +15,14 @@ grid-area: 1 / 3 / 2 / 4;
 justify-self:end;
 width:80%;
 border:1px solid black;
-margin-top:5%;
-height:25%;
+margin-top:-8%;
 padding:5px;
 border: 1px solid #DFDFDF;
 color:#4b5666;
 letter-spacing:.06rem;
 font: 1rem/normal Avenir Book,sans-serif;
 text-align: left;
+height:35px;
 
 `;
 
@@ -40,13 +40,14 @@ cursor:pointer;
 `;
 export const Cart = styled(ShoppingBag)`
 height:30px;
-margin-top:12.5%;
 color:#167a92;
+margin-top:-26%;
 `;
 
 export const QuanityTag = styled.div`
 display: inline-block;
 height:20px;
+margin-top:-36%;
 width:20px;
 border-radius:50%;
 color:white;

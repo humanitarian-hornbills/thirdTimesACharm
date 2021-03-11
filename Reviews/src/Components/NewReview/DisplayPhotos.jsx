@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const DisplayPhotos = ({ photos, photoModal, sendClickData }) => {
-  let id = 0
+  let id = 0;
   const allPhotos = photos.map((photo) => (
-    <img className="rNewPhoto"
-      onClick={() => { photoModal(photo); sendClickData('new review added photo expanded')}}
+    <img
+      className="rNewPhoto"
+      onClick={() => { photoModal(photo); sendClickData('new review added photo expanded'); }}
       src={photo}
       style={{ width: 50 }}
       alt=""
@@ -13,7 +14,7 @@ const DisplayPhotos = ({ photos, photoModal, sendClickData }) => {
     />
   ));
   return (
-    <div >
+    <div>
       {allPhotos}
     </div>
   );

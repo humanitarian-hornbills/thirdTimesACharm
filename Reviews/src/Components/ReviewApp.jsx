@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
-import styled from 'styled-components';
-import CoolButton from './CoolButton.jsx'
-import '../../public/css.js'
+import CoolButton from './CoolButton.jsx';
+import '../../public/css.js';
 
 class ReviewApp extends React.Component {
   constructor(props) {
@@ -134,7 +134,7 @@ class ReviewApp extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
-        this.sendClickData('close photo modal with X')
+        this.sendClickData('close photo modal with X');
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
@@ -143,7 +143,6 @@ class ReviewApp extends React.Component {
       if (event.target === modal) {
         this.sendClickData('close photo modal by clicking outside of modal');
         modal.style.display = 'none';
-
       }
     };
   }
@@ -207,19 +206,19 @@ class ReviewApp extends React.Component {
   }
 
   sendClickData(ele) {
-    let currentTime = new Date()
-    currentTime = currentTime.toISOString()
+    let currentTime = new Date();
+    currentTime = currentTime.toISOString();
     const clickObj = {
       element: ele,
       widget: 'reviews',
-      time: currentTime
-    }
-    console.log(clickObj)
+      time: currentTime,
+    };
+    console.log(clickObj);
     axios({
       method: 'post',
       url: '/interactions',
       params: clickObj,
-    })
+    });
   }
 
   render() {
@@ -243,7 +242,7 @@ class ReviewApp extends React.Component {
             />
           </div>
           <div id="reviewBox">
-            <SortForm reviewCount={allReviews.length} getSort={this.getSort} sendClickData={this.sendClickData}/>
+            <SortForm reviewCount={allReviews.length} getSort={this.getSort} sendClickData={this.sendClickData} />
             <ReviewList
               seeMoreReviews={this.seeMoreReviews}
               reviewCount={reviewCount}
@@ -254,11 +253,10 @@ class ReviewApp extends React.Component {
               sendClickData={this.sendClickData}
             />
             <div id="mainButtons">
-            {allReviews.length > reviewCount
-              ?
-              <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name={'MORE REVIEWS'} text={'show more review button clicked'}/>
-              : <></>}
-              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name={'add review'} text={'add review button clicked'}/>
+              {allReviews.length > reviewCount
+                ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
+                : <></>}
+              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="add review" text="add review button clicked" />
             </div>
             <NewReview
               name={this.state.productName}

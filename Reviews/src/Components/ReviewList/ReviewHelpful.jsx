@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ReviewHelpful = ({ review, markAsHelpful, reportReview, sendClickData }) => {
+const ReviewHelpful = ({
+  review, markAsHelpful, reportReview, sendClickData,
+}) => {
   const [hClicked, setHClicked] = useState(false);
   const [rClicked, setRClicked] = useState(false);
   const total = review.helpfulness;
@@ -13,7 +15,7 @@ const ReviewHelpful = ({ review, markAsHelpful, reportReview, sendClickData }) =
         {!hClicked
           ? (
             <>
-              <span className="link" onClick={() => { markAsHelpful(review.review_id); setHClicked(true); sendClickData('mark review as helpful')}}>Yes</span>
+              <span className="link" onClick={() => { markAsHelpful(review.review_id); setHClicked(true); sendClickData('mark review as helpful'); }}>Yes</span>
           &nbsp;
               (
               {total}
@@ -32,7 +34,7 @@ const ReviewHelpful = ({ review, markAsHelpful, reportReview, sendClickData }) =
         &nbsp;&nbsp;|
         &nbsp;&nbsp;
         {!rClicked
-          ? <span className="link" onClick={() => { reportReview(review.review_id); setRClicked(true); sendClickData('report review')}}>Report</span>
+          ? <span className="link" onClick={() => { reportReview(review.review_id); setRClicked(true); sendClickData('report review'); }}>Report</span>
           : <span className="link">Report</span>}
 
       </p>

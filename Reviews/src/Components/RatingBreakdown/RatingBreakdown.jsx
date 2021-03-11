@@ -58,7 +58,7 @@ class RatingBreakdown extends React.Component {
                 selected={this.state.selected}
                 sendClickData={this.props.sendClickData}
               />
-              <p className="link reviewBody" onClick={() => { this.clearFilters(); this.props.sendClickData('clear rating filters')} }>Clear all filters</p>
+              <p className="link reviewBody" onClick={() => { this.clearFilters(); this.props.sendClickData('clear rating filters'); }}>Clear all filters</p>
             </>
           )
           : <></>}

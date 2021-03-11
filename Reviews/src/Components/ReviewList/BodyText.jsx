@@ -19,10 +19,9 @@ const BodyText = ({ text, sendClickData }) => {
           <>
             <p className="reviewBody">
               {first250}
-              {' '}
               ...
-
-            <span className="link moreBodyText" onClick={() => { setExpand(true); sendClickData('show full review text')}}>Show More</span>
+              {' '}
+              <span className="link moreBodyText" onClick={() => { setExpand(true); sendClickData('show full review text'); }}>Show More</span>
             </p>
           </>
         )

@@ -5,8 +5,16 @@ import Products from '../ProductDetails/src/components/Products.jsx';
 import RelatedProducts from '../RelatedProducts/src/components/RelatedProducts.jsx';
 import QA from '../QandA/src/QA.jsx';
 import FadeInSection from '../Reviews/src/Components/FadeIn.jsx';
+import {createGlobalStyle} from 'styled-components';
 
 const id = 14936;
+
+export const GlobalStyle = createGlobalStyle`
+  #app>div{
+    box-sizing: border-box;
+    margin: 30px 10%;
+  }
+`;
 
 const App = () => (
   <>
@@ -14,6 +22,7 @@ const App = () => (
     <RelatedProducts />
     <QA />
     <FadeInSection productId={id} />
+    <GlobalStyle />
   </>
 );
 

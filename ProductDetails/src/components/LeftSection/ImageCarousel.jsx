@@ -11,6 +11,7 @@ const ImageCarousel = ({
   getCurMainImageIndex,
   getFullScreenClicked, mainCurrent,
   getMainCurrent,
+  getClickInteraction
 }) => {
   if (!Array.isArray(styles) || styles.length <= 0) {
     return null;
@@ -29,6 +30,7 @@ const ImageCarousel = ({
   const handleOnExpandClick = () => {
     getCurMainImageIndex(mainCurrent);
     getFullScreenClicked(true);
+    getClickInteraction('Image');
   };
 
   const imageUrl = styles.map((item, index) => {

@@ -124,9 +124,9 @@ app.post('/interactions', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response.data);
+      res.send('Success')
     })
-    .catch((err) => console.log(err));
+    .catch(err => res.send(err));
 });
 
 // momo server

@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import StyleThumbnails from './StyleThumbnails.jsx';
 import QuanityAndSize from './QuanityAndSize.jsx';
 import {
-  AddToBag, Bag, StarButton, FavStar, StyleValue, StyleLegend, ErrorMessage,
+  AddToBag,
+   Bag, StarButton, FavStar, StyleValue,
+    StyleLegend, ErrorMessage, ThumbnailsWrapper,
 } from '../../elements/RightSection/BottomSection.element.jsx';
 
 // eslint-disable-next-line react/prop-types
 const BottomSection = ({
   styles, getSelectedStyle, selectedStyleId, getQuantitySizeSelected,
-  getMainCurrent,
+  getMainCurrent, getClickInteraction,
 }) => {
   const [bagClicked, setBagClicked] = useState(false);
   const [likeClicked, setLikeClicked] = useState(false);
@@ -33,6 +35,7 @@ const BottomSection = ({
         setLikeClicked={setLikeClicked}
         setErrorMesShowed={setErrorMesShowed}
         setSizeQuantitySelected={setSizeQuantitySelected}
+        getClickInteraction={getClickInteraction}
       />
     ),
   );
@@ -47,6 +50,7 @@ const BottomSection = ({
         setSizeQuantitySelected={setSizeQuantitySelected}
         setErrorMesShowed={setErrorMesShowed}
         setLikeClicked={setLikeClicked}
+        getClickInteraction={getClickInteraction}
       />
     ),
   );
@@ -56,6 +60,7 @@ const BottomSection = ({
   const handleBagAdd = () => {
     setBagClicked(!bagClicked);
     getQuantitySizeSelected(sizeQuantitySelected);
+    getClickInteraction('AddToBag');
   };
 
   const handleClickLike = () => {
@@ -63,6 +68,7 @@ const BottomSection = ({
       setErrorMesShowed(true);
     }
     setLikeClicked(!likeClicked);
+    getClickInteraction('StarButton');
   };
   return (
     <>
@@ -76,9 +82,9 @@ const BottomSection = ({
           )
         }
       </StyleLegend>
-      <div className="style" style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <ThumbnailsWrapper>
         {styledThumbnails}
-      </div>
+      </ThumbnailsWrapper>
       <div>
         {styledQuanityAndSize}
         <AddToBag>

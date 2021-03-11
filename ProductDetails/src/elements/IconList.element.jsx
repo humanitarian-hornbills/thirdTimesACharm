@@ -6,13 +6,12 @@ import { Person } from '@styled-icons/ionicons-outline/Person'
 export const IconWrapper = styled.div`
 
 font:1rem/normal Avenir Book,sans-serif;
-letter-spacing:0.03rem;
+cursor:pointer;
 color:#167a92;
 &:hover{
     color:black;
   }
 `;
-
 
 export const GiftIcon = styled(Gift)`
   color:#167a92;

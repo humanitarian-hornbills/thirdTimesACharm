@@ -15,6 +15,10 @@ const ProductInfo = ({ product }) => {
   return (
     <SloganFeature>
       <Slogan>{product.slogan}</Slogan>
+      <div style={{
+        height: 56, width: 3, backgroundColor: '#26262c', borderRadius: 30,
+      }}
+      />
       <Feature>
         <ul>
           {feature}

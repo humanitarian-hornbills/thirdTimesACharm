@@ -5,6 +5,7 @@ margin:0 auto;
 display:grid;
 grid-template-columns:0.5fr 0.5fr 4fr 2.5fr 1fr;
 grid-template-rows: 0.5 0.5fr 0.5fr 3fr 1fr;
+row-gap:50px;
 
 `;
 
@@ -47,5 +48,5 @@ justify-self: start;
 export const Info = styled.div`
 grid-area: 4 / 2 / 5 / 5;
 justify-self: center;
-align-self: end;
+align-self:center;
 `;

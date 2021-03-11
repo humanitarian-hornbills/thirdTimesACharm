@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState, useEffect, getClickInteraction } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line import/extensions
 import ImageCarousel from './ImageCarousel.jsx';
@@ -12,6 +12,7 @@ const ImageGallery = ({
   getFullScreenClicked,
   mainCurrent,
   getMainCurrent,
+  getClickInteraction,
 }) => {
   const [styles, setStyles] = useState([]);
 

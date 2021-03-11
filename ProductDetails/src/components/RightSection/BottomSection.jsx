@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import StyleThumbnails from './StyleThumbnails.jsx';
 import QuanityAndSize from './QuanityAndSize.jsx';
 import {
-  AddToBag, Bag, StarButton, FavStar, StyleValue, StyleLegend, ErrorMessage,
+  AddToBag,
+   Bag, StarButton, FavStar, StyleValue,
+    StyleLegend, ErrorMessage, ThumbnailsWrapper,
 } from '../../elements/RightSection/BottomSection.element.jsx';
 
 // eslint-disable-next-line react/prop-types
@@ -80,9 +82,9 @@ const BottomSection = ({
           )
         }
       </StyleLegend>
-      <div className="style" style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <ThumbnailsWrapper>
         {styledThumbnails}
-      </div>
+      </ThumbnailsWrapper>
       <div>
         {styledQuanityAndSize}
         <AddToBag>

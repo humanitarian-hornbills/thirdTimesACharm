@@ -40,9 +40,6 @@ class RatingBreakdown extends React.Component {
   render() {
     return (
       <div>
-        <h1>
-          RATINGS &amp; REVIEWS
-        </h1>
         <RatingSummary
           ratings={this.props.ratings.ratings}
           recommended={this.props.ratings.recommended}

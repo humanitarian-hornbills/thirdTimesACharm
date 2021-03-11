@@ -243,48 +243,53 @@ class ReviewApp extends React.Component {
         [key, ratings.characteristics[key].id]
       ));
       return (
-        <div className="parent">
-          <div id="ratingBox">
-            <RatingBreakdown
-              clearStars={this.clearStars}
-              starsSelected={starsSelected}
-              ratings={ratings}
-              selectStars={this.selectStars}
-              sendClickData={this.sendClickData}
-            />
-          </div>
-          <div id="reviewBox">
-            <SortForm
-              reviewCount={allReviews.length}
-              getSort={this.getSort}
-              sendClickData={this.sendClickData}
-            />
-            <ReviewList
-              seeMoreReviews={this.seeMoreReviews}
-              reviewCount={reviewCount}
-              reviews={displayedReviews}
-              markAsHelpful={this.markAsHelpful}
-              reportReview={this.reportReview}
-              photoModal={this.photoModal}
-              sendClickData={this.sendClickData}
-            />
-            <div id="mainButtons">
-              {allReviews.length > reviewCount
-                ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
-                : <></>}
-              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
+        <div>
+          <h1>
+            RATINGS &amp; REVIEWS
+          </h1>
+          <div className="parent">
+            <div id="ratingBox">
+              <RatingBreakdown
+                clearStars={this.clearStars}
+                starsSelected={starsSelected}
+                ratings={ratings}
+                selectStars={this.selectStars}
+                sendClickData={this.sendClickData}
+              />
             </div>
-            <NewReview
-              name={productName}
-              factors={factors}
-              close={this.showModal}
-              show={newReview}
-              sendNewReview={this.sendNewReview}
-              photoModal={this.photoModal}
-              prodUrl={prodUrl}
-              sendClickData={this.sendClickData}
-            />
-            <PhotoModal src={modalPhoto} />
+            <div id="reviewBox">
+              <SortForm
+                reviewCount={allReviews.length}
+                getSort={this.getSort}
+                sendClickData={this.sendClickData}
+              />
+              <ReviewList
+                seeMoreReviews={this.seeMoreReviews}
+                reviewCount={reviewCount}
+                reviews={displayedReviews}
+                markAsHelpful={this.markAsHelpful}
+                reportReview={this.reportReview}
+                photoModal={this.photoModal}
+                sendClickData={this.sendClickData}
+              />
+              <div id="mainButtons">
+                {allReviews.length > reviewCount
+                  ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
+                  : <></>}
+                <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
+              </div>
+              <NewReview
+                name={productName}
+                factors={factors}
+                close={this.showModal}
+                show={newReview}
+                sendNewReview={this.sendNewReview}
+                photoModal={this.photoModal}
+                prodUrl={prodUrl}
+                sendClickData={this.sendClickData}
+              />
+              <PhotoModal src={modalPhoto} />
+            </div>
           </div>
         </div>
       );

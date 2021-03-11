@@ -7,6 +7,7 @@
     "test": "jest",
     "webpack": "webpack -w",
     "start": "nodemon server.js",
+    "forever": "forever start server.js",
     "coverage": "jest --collectCoverage"
   },
   "repository": {
@@ -46,6 +47,7 @@
     "@types/eslint-scope": "^3.7.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "forever": "^3.0.4",
     "jquery": "^3.6.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

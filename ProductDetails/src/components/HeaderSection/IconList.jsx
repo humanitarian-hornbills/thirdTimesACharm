@@ -5,7 +5,7 @@ const IconList = () => (
   <>
     <IconWrapper>
       <GiftIcon />
-      <span>registry</span>
+      <span>Registry</span>
     </IconWrapper>
     <IconWrapper>
       <PersonIcon />

@@ -4,6 +4,7 @@ import ReviewApp from '../Reviews/src/Components/ReviewApp.jsx';
 import Products from '../ProductDetails/src/components/Products.jsx';
 import RelatedProducts from '../RelatedProducts/src/components/RelatedProducts.jsx';
 import QA from '../QandA/src/QA.jsx';
+import FadeInSection from '../Reviews/src/Components/FadeIn.jsx';
 
 const id = 14936;
 
@@ -12,7 +13,7 @@ const App = () => (
     <Products />
     <RelatedProducts />
     <QA />
-    <ReviewApp productId={id} />
+    <FadeInSection productId={id} />
   </>
 )
 

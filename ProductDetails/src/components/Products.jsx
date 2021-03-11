@@ -168,6 +168,7 @@ class Products extends React.Component {
               getFullScreenClicked={this.getFullScreenClicked}
               mainCurrent={this.state.mainCurrent}
               getMainCurrent={this.getMainCurrent}
+              getClickInteraction={this.getClickInteraction}
             />
           )}
         </Image>
@@ -183,6 +184,7 @@ class Products extends React.Component {
                 id={this.state.id}
                 getQuantitySizeSelected={this.getQuantitySizeSelected}
                 getMainCurrent={this.getMainCurrent}
+                getClickInteraction={this.getClickInteraction}
               />
             )}
         </Detail>

@@ -9,7 +9,7 @@ import {
 // eslint-disable-next-line react/prop-types
 const BottomSection = ({
   styles, getSelectedStyle, selectedStyleId, getQuantitySizeSelected,
-  getMainCurrent,
+  getMainCurrent, getClickInteraction,
 }) => {
   const [bagClicked, setBagClicked] = useState(false);
   const [likeClicked, setLikeClicked] = useState(false);
@@ -33,6 +33,7 @@ const BottomSection = ({
         setLikeClicked={setLikeClicked}
         setErrorMesShowed={setErrorMesShowed}
         setSizeQuantitySelected={setSizeQuantitySelected}
+        getClickInteraction={getClickInteraction}
       />
     ),
   );
@@ -47,6 +48,7 @@ const BottomSection = ({
         setSizeQuantitySelected={setSizeQuantitySelected}
         setErrorMesShowed={setErrorMesShowed}
         setLikeClicked={setLikeClicked}
+        getClickInteraction={getClickInteraction}
       />
     ),
   );
@@ -56,6 +58,7 @@ const BottomSection = ({
   const handleBagAdd = () => {
     setBagClicked(!bagClicked);
     getQuantitySizeSelected(sizeQuantitySelected);
+    getClickInteraction('AddToBag');
   };
 
   const handleClickLike = () => {
@@ -63,6 +66,7 @@ const BottomSection = ({
       setErrorMesShowed(true);
     }
     setLikeClicked(!likeClicked);
+    getClickInteraction('StarButton');
   };
   return (
     <>

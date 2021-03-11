@@ -118,7 +118,6 @@ app.put('/report', (req, res) => {
 
 app.post('/interactions', (req, res) => {
   const clickData = req.query;
-  console.log(clickData);
   axios({
     method: 'post',
     url: `${api.api}/interactions`,
@@ -128,9 +127,9 @@ app.post('/interactions', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response);
+      res.send('Success')
     })
-    .catch(err => console.log(err));
+    .catch(err => res.send(err));
 });
 
 

@@ -14,7 +14,7 @@ const HoverThumbnails = ({ images, isVisible, changeImg }) => {
   };
 
   const thumbNails = images.map((img, index) => (
-    <div className="hover-thumb" onMouseEnter={() => { handleOnMouseEnter(img); }} key={`${img.thumbnail_url}index`}><img src={img.thumbnail_url} alt="thumb" /></div>
+    <div className="hover-thumb" onMouseEnter={() => { handleOnMouseEnter(img); }} key={img.thumbnail_url}><img src={img.thumbnail_url} alt="thumb" /></div>
   ));
   return (
     <div className="thumbnail-row" onMouseLeave={() => { handleOnMouseLeave(images[0]); }}>

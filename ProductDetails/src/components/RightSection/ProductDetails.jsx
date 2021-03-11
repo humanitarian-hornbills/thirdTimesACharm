@@ -14,6 +14,7 @@ const ProductDetails = ({
   id,
   getQuantitySizeSelected,
   getMainCurrent,
+  getClickInteraction
 }) => (
   <>
     <TopSection id={id} product={product} styles={styles} selectedStyleId={selectedStyleId} />
@@ -23,6 +24,7 @@ const ProductDetails = ({
       selectedStyleId={selectedStyleId}
       getQuantitySizeSelected={getQuantitySizeSelected}
       getMainCurrent={getMainCurrent}
+      getClickInteraction={getClickInteraction}
     />
   </>
 );

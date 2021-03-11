@@ -5,7 +5,7 @@ import {
 } from '../../elements/ThumbnailGallery.element.jsx';
 
 // eslint-disable-next-line react/prop-types
-const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent }) => {
+const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent, getClickInteraction }) => {
   const length = styles.length - 1;
   const [upShow, setUpShow] = useState(false);
   const [downShow, setDownShow] = useState(false);
@@ -22,6 +22,13 @@ const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent }) => {
     setDownShow(false);
   };
 
+
+  const handleThumbnailClick = (index) => {
+    getMainCurrent(index);
+    getClickInteraction('Thumbnail');
+  };
+
+
   const thumbnailUrFirst7 = styles.map((item, index) => {
     const { url } = item.photos[0];
     return (
@@ -29,7 +36,7 @@ const ThumbnailGallery = ({ styles, mainCurrent, getMainCurrent }) => {
         index < 7
         && (
           <Thumbnails key={item.style_id} curImage={mainCurrent === index}>
-            <Thumbnail key={item.style_id} src={url} alt="styles" onClick={() => getMainCurrent(index)} />
+            <Thumbnail key={item.style_id} src={url} alt="styles" onClick={() => handleThumbnailClick(index)} />
             {index === mainCurrent
               && <Underline />}
           </Thumbnails>

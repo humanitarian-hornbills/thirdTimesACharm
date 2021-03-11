@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CoolButton from '../CoolButton.jsx'
+import CoolButton from '../CoolButton.jsx';
 
 class AddPhoto extends React.Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class AddPhoto extends React.Component {
   handleChange(event) {
     const photoArr = this.state.photos;
     photoArr.push(event.target.value);
-    this.props.sendClickData('add photo to new review add photo form')
+    this.props.sendClickData('add photo to new review add photo form');
     this.setState({ photos: photoArr });
   }
 
   sendPhotos() {
     this.props.updateState(this.state);
-    this.props.sendClickData('submit photos to new review')
+    this.props.sendClickData('submit photos to new review');
     this.props.hide();
   }
 
@@ -31,7 +31,7 @@ class AddPhoto extends React.Component {
     for (let i = 1; i < 6; i += 1) {
       photoInputs.push(
         <div className="newReviewPhotoInput" key={i}>
-          <label htmlFor={`p${i}`} >
+          <label htmlFor={`p${i}`}>
             Photo
             {' '}
             {i}
@@ -45,15 +45,15 @@ class AddPhoto extends React.Component {
     return (
       <div className={showHideClassName}>
         <section className="modal-addPhotos">
-          <span onClick={() => { this.props.hide(); this.props.sendClickData('close new review add photo modal') }} className="pclose">&times;</span>
+          <span onClick={() => { this.props.hide(); this.props.sendClickData('close new review add photo modal'); }} className="pclose">&times;</span>
           <h3 className="rSectionTitle">ADD PHOTOS</h3>
           <div>ENTER THE URLs TO YOUR IMAGES BELOW</div>
           <div id="newReviewPhotoInputs">
-          <form>
-            {photoInputs}
-          </form>
+            <form>
+              {photoInputs}
+            </form>
           </div>
-          <CoolButton func={this.sendPhotos} name={'submit'}/>
+          <CoolButton func={this.sendPhotos} name="SUBMIT" />
         </section>
       </div>
     );

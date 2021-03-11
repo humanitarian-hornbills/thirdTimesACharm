@@ -3,13 +3,21 @@ import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 
 const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  // width: 800px;
+  // height: 500px;
+  // background: rgba(0, 0, 0, 0.8);
+  // position: fixed;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
   position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 200%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9
   `;
 
 const ModalWrapper = styled.div`
@@ -20,9 +28,12 @@ const ModalWrapper = styled.div`
   color: #000;
   display: grid;
   grid-template-columns: 1fr;
-  position: relative;
+  position: fixed;
   z-index: 10;
   border-radius: 10px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
   `;
 
 const ModalContent = styled.div`

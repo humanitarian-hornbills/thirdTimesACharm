@@ -12,7 +12,8 @@ const StyledQuanityAndSize = ({
   bagClicked,
   setSizeQuantitySelected,
   setLikeClicked,
-  setErrorMesShowed
+  setErrorMesShowed,
+  getClickInteraction,
 
 }) => {
   const [sizeValue, setSizeValue] = useState('0');
@@ -91,16 +92,17 @@ const StyledQuanityAndSize = ({
     }
     setLikeClicked(false);
     setErrorMesShowed(false);
-  }
+    getClickInteraction('SizeSelect');
+  };
 
   const onQuantityChange = (e) => {
     setQuantityValue(Number(e.target.value));
     if (e.target.value !== 0 && sizeValue !== '0') {
       setSizeQuantitySelected(Number(e.target.value));
-      setLikeClicked(false);
       setErrorMesShowed(false);
     }
-  }
+    getClickInteraction('QuanitySelect');
+  };
 
   return (
     <>

@@ -14,14 +14,17 @@ class ReviewBody extends React.Component {
   handleChange(event) {
     this.setState({ body: event.target.value });
     this.props.updateState({ body: event.target.value });
-    this.props.sendClickData('new review body updated')
+    this.props.sendClickData('new review body updated');
   }
 
   render() {
     return (
       <div id="rBody">
-        <p className="rTextTitle">YOUR REVIEW: <sup className="redA">*</sup></p>
-        <textarea maxLength="1000" placeholder='Why did you like the product or not?' onChange={this.handleChange} />
+        <p className="rTextTitle">
+          YOUR REVIEW:
+          <sup className="redA">*</sup>
+        </p>
+        <textarea maxLength="1000" placeholder="Why did you like the product or not?" onChange={this.handleChange} />
         {this.state.body.length < 50
           ? (
             <div className="rUnderText">

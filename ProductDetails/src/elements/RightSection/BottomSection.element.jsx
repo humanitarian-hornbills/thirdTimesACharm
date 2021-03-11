@@ -4,9 +4,9 @@ import { HeartFill } from '@styled-icons/bootstrap';
 
 export const SelectedStyled = styled.img`
 border-radius: 50%;
-margin:auto 10px;
-height:65px;
-width:65px;
+margin:5px 5px;
+height:75px;
+width:75px;
 cursor:pointer;
 border:3px solid ${(props) => (props.curSelected ? 'black' : '#DFDFDF')}; 
 padding:5px;
@@ -17,17 +17,25 @@ font-weight: 'normal';
 padding-left: 10px;
 font: 1rem/normal Avenir Book,sans-serif;
 letter-spacing:.06rem;
-color:#5c5c5f;
+color: v;
 `;
 export const StyleLegend = styled.h4`
 font:1rem/normal Avenir Medium,sans-seri;
 letter-spacing:0.06rem;
 color:#26262c;
+margin-top:40px;
 `;
 export const QuantitySize = styled.div`
 display:flex;
 flex-wrap: wrap;
 margin-top:7.5%;
+`;
+
+export const ThumbnailsWrapper = styled.div`
+display: flex;
+ flex-wrap: wrap;
+  margin-top: 5px
+
 `;
 
 const shake = keyframes`

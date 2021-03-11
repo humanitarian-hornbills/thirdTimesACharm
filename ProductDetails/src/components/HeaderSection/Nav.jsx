@@ -19,7 +19,6 @@ const Nav = ({ quantitySizeSelected, getShoppingCartStatus }) => (
       )}
     </ShoppingCart>
   </>
-
 );
 
 export default Nav;

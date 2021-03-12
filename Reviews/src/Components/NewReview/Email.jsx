@@ -16,4 +16,14 @@ const Email = ({ updateState, error, sendClickData }) => (
   </div>
 );
 
+Email.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Email.defaultProps = {
+  error: '',
+};
+
 export default Email;

@@ -44,7 +44,8 @@ class NewReview extends React.Component {
   }
 
   updateCharacteristics(arr) {
-    const updateChar = this.state.characteristics;
+    const { characteristics } = this.state;
+    const updateChar = characteristics;
     const key = arr[0];
     const val = arr[1];
     updateChar[key] = val;
@@ -55,8 +56,9 @@ class NewReview extends React.Component {
   }
 
   showAddPhotoModal() {
+    const { addPhotos } = this.state;
     this.setState({
-      addPhotos: !this.state.addPhotos,
+      addPhotos: !addPhotos,
     });
   }
 
@@ -77,21 +79,23 @@ class NewReview extends React.Component {
   }
 
   submitReview() {
+    const { sendNewReview, close, sendClickData } = this.props;
     if (this.validate()) {
       const newReview = this.state;
       delete newReview.addPhotos;
       delete newReview.errors;
       delete newReview.rModalPhoto;
-      this.props.sendNewReview(newReview);
-      this.props.sendClickData('new review submitted');
+      sendNewReview(newReview);
+      sendClickData('new review submitted');
       this.clearState();
-      this.props.close();
+      close();
     } else {
-      this.props.sendClickData('new review not sent - missing data');
+      sendClickData('new review not sent - missing data');
     }
   }
 
   rModalPhoto(src) {
+    const { sendClickData } = this.props;
     const modal = document.getElementById('pModal');
     const span = document.getElementsByClassName('pclose');
     this.setState({
@@ -101,14 +105,14 @@ class NewReview extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
-        this.props.sendClickData('close new review photo modal with X');
+        sendClickData('close new review photo modal with X');
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
     });
     window.onclick = (event) => {
       if (event.target === modal) {
-        this.props.sendClickData('close new review photo modal by clicking outside of modal');
+        sendClickData('close new review photo modal by clicking outside of modal');
         modal.style.display = 'none';
       }
     };
@@ -149,7 +153,8 @@ class NewReview extends React.Component {
       isValid = false;
       errors.recommend = 'Please make sure you mark if you recommend this product';
     }
-    if (Object.keys(input.characteristics).length < this.props.factors.length) {
+    const { factors } = this.props;
+    if (Object.keys(input.characteristics).length < factors.length) {
       isValid = false;
       errors.characteristics = 'Please make sure you fill out every characteristic rating';
     }
@@ -163,75 +168,81 @@ class NewReview extends React.Component {
 
   render() {
     console.log(this.state);
-    const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
-    const allPhotos = this.state.photos;
+    const {
+      show, close, sendClickData, prodUrl, name, factors,
+    } = this.props;
+    const {
+      photos, errors, addPhotos, rModalPhoto,
+    } = this.state;
+    const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+    const allPhotos = photos;
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
           <span
             role="button"
             tabIndex="0"
-            onKeyPress={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }}
-            onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }}
+            onKeyPress={() => { close(); this.clearState(); sendClickData('close new review window'); }}
+            onClick={() => { close(); this.clearState(); sendClickData('close new review window'); }}
             className="rclose"
           >
             &times;
           </span>
           <div id="allNewReviewForms">
-            <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name} />
+            <NewReviewTop prodUrl={prodUrl} name={name} />
             <div id="newReviewRateRec">
               <Rating
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.rating}
+                sendClickData={sendClickData}
+                error={errors.rating}
                 updateState={this.updateState}
               />
               <Recommend
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.recommend}
+                sendClickData={sendClickData}
+                error={errors.recommend}
                 updateState={this.updateState}
               />
             </div>
             <Characteristics
-              sendClickData={this.props.sendClickData}
-              factors={this.props.factors}
+              sendClickData={sendClickData}
+              factors={factors}
               updateCharacteristics={this.updateCharacteristics}
             />
-            <div className="text-danger">{this.state.errors.characteristics}</div>
+            <div className="text-danger">{errors.characteristics}</div>
             <div className="reviewDivider" />
             <h3 className="rSectionTitle">YOUR REVIEW</h3>
             <div id="newReviewText">
               <ReviewSummary
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.summary}
+                sendClickData={sendClickData}
+                error={errors.summary}
                 updateState={this.updateState}
               />
               <ReviewBody
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.body}
+                sendClickData={sendClickData}
+                error={errors.body}
                 updateState={this.updateState}
               />
             </div>
             <div>
               {allPhotos.length < 5
                 ? (
-                  <CoolButton sendClickData={this.props.sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
+                  <CoolButton sendClickData={sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
                 )
                 : <></>}
               <AddPhoto
-                sendClickData={this.props.sendClickData}
+                sendClickData={sendClickData}
                 hide={this.showAddPhotoModal}
                 updateState={this.updateState}
-                show={this.state.addPhotos}
+                show={addPhotos}
               />
               {allPhotos.length
                 ? (
                   <>
                     <DisplayPhotos
-                      sendClickData={this.props.sendClickData}
+                      sendClickData={sendClickData}
                       photoModal={this.rModalPhoto}
                       photos={allPhotos}
                     />
-                    <PhotoModal src={this.state.rModalPhoto} />
+                    <PhotoModal src={rModalPhoto} />
                   </>
                 )
                 : null}
@@ -240,13 +251,13 @@ class NewReview extends React.Component {
             <h3 className="rSectionTitle">PERSONAL INFO</h3>
             <div id="rPerInfo">
               <Nickname
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.name}
+                sendClickData={sendClickData}
+                error={errors.name}
                 updateState={this.updateState}
               />
               <Email
-                sendClickData={this.props.sendClickData}
-                error={this.state.errors.email}
+                sendClickData={sendClickData}
+                error={errors.email}
                 updateState={this.updateState}
               />
             </div>
@@ -257,5 +268,25 @@ class NewReview extends React.Component {
     );
   }
 }
+
+NewReview.propTypes = {
+  show: PropTypes.bool.isRequired,
+  close: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  prodUrl: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  factors: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ),
+  ).isRequired,
+};
+
+NewReview.defaultProps = {
+  prodUrl: '',
+};
 
 export default NewReview;

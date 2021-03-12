@@ -38,4 +38,14 @@ const Recommend = ({ updateState, error, sendClickData }) => {
   );
 };
 
+Recommend.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Recommend.defaultProps = {
+  error: '',
+};
+
 export default Recommend;

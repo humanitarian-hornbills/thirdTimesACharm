@@ -27,4 +27,14 @@ const Rating = ({ updateState, error, sendClickData }) => {
   );
 };
 
+Rating.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Rating.defaultProps = {
+  error: '',
+};
+
 export default Rating;

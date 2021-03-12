@@ -124,7 +124,7 @@ app.post('/interactions', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response.data);
+      console.log(response.config.data);
       res.send(response.data);
     })
     .catch((err) => res.send(err));

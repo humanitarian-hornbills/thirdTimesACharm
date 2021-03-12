@@ -1,17 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const NewReviewTop = (props) => (
+const NewReviewTop = ({ name, prodUrl }) => (
   <div id="newReviewTop">
     <h2 id="newReviewTopTitle">WRITE YOUR REVIEW</h2>
     <div id="newReviewTopData">
       <div id="rProdTitle">
-        {props.name.toUpperCase()}
+        {name.toUpperCase()}
       </div>
       <div id="rProdPhoto">
-        <img src={props.prodUrl} />
+        <img alt="" src={prodUrl} />
       </div>
     </div>
   </div>
 );
+
+NewReviewTop.propTypes = {
+  name: PropTypes.string.isRequired,
+  prodUrl: PropTypes.string.isRequired,
+};
 
 export default NewReviewTop;

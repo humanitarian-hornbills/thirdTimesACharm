@@ -243,7 +243,7 @@ class ReviewApp extends React.Component {
         [key, ratings.characteristics[key].id]
       ));
       return (
-        <div className="parent">
+        <div className="parent" id="reviews">
           <div id="ratingBox">
             <RatingBreakdown
               clearStars={this.clearStars}

@@ -41,7 +41,7 @@ const QA = ({ product }) => {
   const [showAnsModal, setShowAnsModal] = useState(false);
   const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
   const [clickedReport, setClickedReport] = useState([]);
-  const [targetQ, setTargetQ] = useState(null);
+  const [targetQ, setTargetQ] = useState({});
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -122,12 +122,12 @@ const QA = ({ product }) => {
       });
   };
 
-  const addAnswer = (qId, nickname, email, content, photos) => {
-    axios.post(`/answer/${qId}`, {
-      body: content, name: nickname, email, photos,
+  const addAnswer = (name, email, body, photos) => {
+    axios.post(`/answer/${targetQ.question_id}`, {
+      body, name, email, photos,
     })
       .then(() => {
-        console.log('success posting answer');
+        console.log('success posting answer', targetQ.question_id);
       })
       .catch((err) => {
         throw err;
@@ -184,6 +184,7 @@ const QA = ({ product }) => {
             showModal={showAnsModal}
             setShowModal={setShowAnsModal}
             productName={productName}
+            targetQ={targetQ}
             addAnswer={addAnswer}
           />
         )}

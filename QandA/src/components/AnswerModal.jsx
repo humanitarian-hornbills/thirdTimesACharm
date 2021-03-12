@@ -4,19 +4,20 @@ import {
 } from '../elements/Modal.jsx';
 
 const AnswerModal = ({
-  showModal, setShowModal, productName, addAnswer,
+  showModal, setShowModal, productName, targetQ, addAnswer,
 }) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [answerContent, setAnswerContent] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   const handleClick = (event) => {
     event.preventDefault();
-    // addAnswer(nickname, email, questionContent);
-    console.log('Work in progress');
+    addAnswer(nickname, email, answerContent, photos);
     setNickname('');
     setEmail('');
     setAnswerContent('');
+    setPhotos([]);
     setShowModal((prev) => !prev);
   };
 
@@ -24,8 +25,8 @@ const AnswerModal = ({
     <Background>
       <ModalWrapper aria-label="Close button">
         <ModalContent>
-          <h1>Ask Your Question</h1>
-          <h3>{`About ${productName}`}</h3>
+          <h1>Submit Your Answer</h1>
+          <h3>{`${productName}: ${targetQ.question_body}`}</h3>
           * required fields
           <Form onSubmit={(event) => handleClick(event)}>
             <span>
@@ -43,7 +44,7 @@ const AnswerModal = ({
               For authentication reasons, you will not be emailed.
             </small>
             <br />
-            <textarea placeholder="Your question here" value={answerContent} onChange={(event) => setAnswerContent(event.target.value)} rows="5" cols="50" maxLength="1000" required />
+            <textarea placeholder="Your answer here" value={answerContent} onChange={(event) => setAnswerContent(event.target.value)} rows="5" cols="50" maxLength="1000" required />
             <button type="submit">Submit</button>
           </Form>
         </ModalContent>

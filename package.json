@@ -10,8 +10,13 @@
     "start": "nodemon server.js",
     "forever": "forever start server.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "stop":"forever stop server.js",
     "coverage": "jest --collectCoverage"
+=======
+    "coverage": "jest --collectCoverage",
+    "stop": "forever stopall"
+>>>>>>> c367b970bce318d1623b435dbcadfa8aa99caefa
 =======
     "coverage": "jest --collectCoverage",
     "stop": "forever stopall"

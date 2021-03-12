@@ -123,6 +123,7 @@ class Products extends React.Component {
     this.setState({ clickElement: ele });
   }
 
+
   render() {
     return (
       <Wrapper>
@@ -134,6 +135,8 @@ class Products extends React.Component {
           <Nav
             quantitySizeSelected={this.state.quantitySizeSelected}
             getShoppingCartStatus={this.getShoppingCartStatus}
+            getSearchId={this.getSearchId}
+            id={this.state.id}
           />
         </Header>
         {this.state.fullScreenClicked ? (

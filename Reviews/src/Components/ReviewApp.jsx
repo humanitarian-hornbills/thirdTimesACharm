@@ -248,7 +248,7 @@ class ReviewApp extends React.Component {
           <h1>
             RATINGS &amp; REVIEWS
           </h1>
-          <div className="parent">
+          <div className="parent" id="reviews">
             <div id="ratingBox">
               <RatingBreakdown
                 clearStars={this.clearStars}

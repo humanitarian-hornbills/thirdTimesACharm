@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
 import Input from '../elements/Input.jsx';
 
-const SearchQuestions = ({ searchQA }) => {
-  const [search, setSearch] = useState('');
-
-  if (search.length >= 3) {
-    searchQA(search.toLowerCase());
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    searchQA(search.toLowerCase());
-    setSearch('');
-  };
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." value={search} onChange={(event) => setSearch(event.target.value)} />
-      </form>
-    </div>
-  );
-};
+const SearchQuestions = ({ search, setSearch }) => (
+  <div>
+    <Input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." value={search} onChange={(event) => setSearch(event.target.value.toLowerCase())} />
+  </div>
+);
 
 export default SearchQuestions;

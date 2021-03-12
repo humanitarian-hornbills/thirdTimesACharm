@@ -17,7 +17,11 @@ const NewReviewTop = ({ name, prodUrl }) => (
 
 NewReviewTop.propTypes = {
   name: PropTypes.string.isRequired,
-  prodUrl: PropTypes.string.isRequired,
+  prodUrl: PropTypes.string,
+};
+
+NewReviewTop.defaultProps = {
+  prodUrl: '',
 };
 
 export default NewReviewTop;

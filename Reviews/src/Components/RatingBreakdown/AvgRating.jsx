@@ -30,4 +30,24 @@ const AvgRating = ({ ratings }) => {
   );
 };
 
+AvgRating.propTypes = {
+  ratings: PropTypes.shape({
+    1: PropTypes.string,
+    2: PropTypes.string,
+    3: PropTypes.string,
+    4: PropTypes.string,
+    5: PropTypes.string,
+  }),
+};
+
+AvgRating.defaultProps = {
+  ratings: PropTypes.shape({
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+  }),
+};
+
 export default AvgRating;

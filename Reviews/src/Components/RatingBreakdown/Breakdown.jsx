@@ -12,7 +12,7 @@ const Breakdown = ({ ratings, selectStars, addStar, sendClickData }) => {
   });
   return (
     <div>
-      {sortedArr.map((pair, index) => (
+      {sortedArr.map((pair) => (
         <BreakdownItem
           reviewCount={reviewCount}
           addStar={addStar}
@@ -23,8 +23,30 @@ const Breakdown = ({ ratings, selectStars, addStar, sendClickData }) => {
         />
       ))}
     </div>
-
   );
+};
+
+Breakdown.propTypes = {
+  selectStars: PropTypes.func.isRequired,
+  addStar: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  ratings: PropTypes.shape({
+    1: PropTypes.string,
+    2: PropTypes.string,
+    3: PropTypes.string,
+    4: PropTypes.string,
+    5: PropTypes.string,
+  }),
+};
+
+Breakdown.defaultProps = {
+  ratings: PropTypes.shape({
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+  }),
 };
 
 export default Breakdown;

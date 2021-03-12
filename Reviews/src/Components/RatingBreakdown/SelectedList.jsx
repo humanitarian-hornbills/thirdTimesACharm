@@ -3,31 +3,50 @@ import PropTypes from 'prop-types';
 
 const SelectedList = ({
   selected, selectStars, addStar, sendClickData,
-}) => {
-  let count = 0;
-  return (
-    <div>
-      <p className="reviewBody">
-        Showing reviews:
-        {' '}
-        {selected.map((star) => (
-          <React.Fragment key={count++}>
-            <span
-              className="link starCountNum"
-              onClick={() => {
-                selectStars(Number(star)); addStar(Number(star));
-                sendClickData(`filter ${star} star reviews`);
-              }}
-            >
-              {star}
-              {' '}
-              STARS
-            </span>
+}) => (
+  <div>
+    <p className="reviewBody">
+      Showing reviews:
+      {' '}
+      {selected.map((star) => (
+        <React.Fragment key={star}>
+          <span
+            role="button"
+            tabIndex={0}
+            className="link starCountNum"
+            onKeyPress={() => {
+              selectStars(Number(star)); addStar(Number(star));
+              sendClickData(`filter ${star} star reviews`);
+            }}
+            onClick={() => {
+              selectStars(Number(star)); addStar(Number(star));
+              sendClickData(`filter ${star} star reviews`);
+            }}
+          >
+            {star}
             {' '}
-          </React.Fragment>
-        ))}
-      </p>
-    </div>
-  );
+            STARS
+          </span>
+          {' '}
+        </React.Fragment>
+      ))}
+    </p>
+  </div>
+);
+
+SelectedList.propTypes = {
+  sendClickData: PropTypes.func.isRequired,
+  addStar: PropTypes.func.isRequired,
+  selectStars: PropTypes.func.isRequired,
+  selected: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+    ]),
+  ),
 };
+
+SelectedList.defaultProps = {
+  selected: [],
+};
+
 export default SelectedList;

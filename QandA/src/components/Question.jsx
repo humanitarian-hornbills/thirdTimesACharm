@@ -55,7 +55,7 @@ const Question = ({
             ) |
             {' '}
             <Button onClick={() => {
-              setTargetQ(question.question_id);
+              setTargetQ(question);
               setShowAnsModal((prev) => !prev);
             }}
             >

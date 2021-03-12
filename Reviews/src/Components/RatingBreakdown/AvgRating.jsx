@@ -11,7 +11,7 @@ const AvgRating = ({ ratings }) => {
   });
 
   const avgRating = (reviewTotal / reviewCount).toFixed(1);
-  const starNum = (avgRating / 5) * 75;
+  const starNum = (avgRating / 5) * 56;
 
   return (
     <div id="avgRatingBox">
@@ -28,6 +28,26 @@ const AvgRating = ({ ratings }) => {
       </div>
     </div>
   );
+};
+
+AvgRating.propTypes = {
+  ratings: PropTypes.shape({
+    1: PropTypes.string,
+    2: PropTypes.string,
+    3: PropTypes.string,
+    4: PropTypes.string,
+    5: PropTypes.string,
+  }),
+};
+
+AvgRating.defaultProps = {
+  ratings: PropTypes.shape({
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+    5: '',
+  }),
 };
 
 export default AvgRating;

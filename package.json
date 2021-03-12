@@ -5,11 +5,17 @@
   "main": "./src/index.jsx",
   "scripts": {
     "test": "jest",
-    "webpack": "webpack -w",
+    "webpack": "webpack --config webpack.dev.js -w",
+    "build": "webpack --config webpack.prod.js",
     "start": "nodemon server.js",
     "forever": "forever start server.js",
+<<<<<<< HEAD
     "stop":"forever stop server.js",
     "coverage": "jest --collectCoverage"
+=======
+    "coverage": "jest --collectCoverage",
+    "stop": "forever stopall"
+>>>>>>> c367b970bce318d1623b435dbcadfa8aa99caefa
   },
   "repository": {
     "type": "git",
@@ -37,16 +43,19 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.3.1",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.24.2",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
     "@types/eslint-scope": "^3.7.0",
     "axios": "^0.21.1",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "forever": "^3.0.4",
     "jquery": "^3.6.0",

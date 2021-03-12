@@ -1,21 +1,26 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Logo, Input, SearchIcon, Cart, QuanityTag, ShoppingCart
+  Logo, Input, SearchIcon, Cart, QuanityTag, ShoppingCart, InputSearch,
 } from '../../elements/Nav.element.jsx';
 
-const Nav = ({ quantitySizeSelected, getShoppingCartStatus }) => (
+const Nav = ({
+  quantitySizeSelected,
+  getShoppingCartStatus,
+
+}) => (
   <>
     <Logo>humanitarian-hornbills</Logo>
     <Input>
       <SearchIcon />
-      Search
+      <InputSearch placeholder="Search" />
     </Input>
     <ShoppingCart onClick={() => getShoppingCartStatus(true)}>
       <Cart />
       {quantitySizeSelected !== 0 && (
-        <QuanityTag>
-          {quantitySizeSelected}
-        </QuanityTag>
+      <QuanityTag>
+        {quantitySizeSelected}
+      </QuanityTag>
       )}
     </ShoppingCart>
   </>

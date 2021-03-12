@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
+const compression = require('compression');
 const api = require('./config.js');
 
 const app = express();
@@ -12,6 +13,8 @@ const answers = {};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, './public')));
 
@@ -124,9 +127,10 @@ app.post('/interactions', (req, res) => {
     },
   })
     .then((response) => {
-      res.send('Success')
+      console.log(response.config.data);
+      res.send(response.data);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 });
 
 // momo server

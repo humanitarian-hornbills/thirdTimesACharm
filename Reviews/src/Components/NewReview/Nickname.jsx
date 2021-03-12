@@ -22,6 +22,16 @@ const Nickname = ({ updateState, error, sendClickData }) => (
   </div>
 );
 
+Nickname.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Nickname.defaultProps = {
+  error: '',
+};
+
 export default Nickname;
 
 // class Nickname extends React.Component {

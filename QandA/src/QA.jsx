@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import QuestionsList from './components/QuestionsList.jsx';
 import SearchQuestions from './components/SearchQuestions.jsx';
@@ -14,7 +13,7 @@ const Div = styled.div`
   margin-top: 40px;
   left: 0;
   right: 0;
-  width: 70%;
+  width: 85%;
   height: 65%;
   font-family: sans-serif;
   padding-left: 20px;
@@ -29,9 +28,10 @@ const Global = createGlobalStyle`
   }
   `;
 
-const QA = () => {
-  const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState(null);
+const QA = ({ product }) => {
+  // const [products, setProducts] = useState([]);
+  const [productName, setProductName] = useState('');
+  // const [product, setProduct] = useState(null);
   const [questions, setQuestions] = useState({});
   const [questionsId, setQuestionsId] = useState([]);
   const [answers, setAnswers] = useState({});
@@ -41,7 +41,7 @@ const QA = () => {
   const [showAnsModal, setShowAnsModal] = useState(false);
   const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
   const [clickedReport, setClickedReport] = useState([]);
-  const [targetQ, setTargetQ] = useState(null);
+  const [targetQ, setTargetQ] = useState({});
 
   const randomProduct = (response) => (
     response[Math.floor(Math.random() * response.length)].id
@@ -51,10 +51,10 @@ const QA = () => {
   let randomId;
 
   const getQuestions = () => {
-    axios.get(`questions/${randomId}`)
+    axios.get(`questions/${product}`)
       .then((res) => {
         setQuestions(res.data);
-        const questionData = res.data[randomId].results;
+        const questionData = res.data[product].results;
         questionData.forEach((q) => {
           qIds.push(q.question_id);
         });
@@ -68,25 +68,20 @@ const QA = () => {
   useEffect(() => {
     axios.get('/products')
       .then((response) => {
-        setProducts(response.data);
-        randomId = randomProduct(response.data);
-        return setProduct(randomId);
-      })
-      .then(() => {
+        const { data } = response;
         getQuestions();
+        // setProducts(data);
+        for (const productInfo of data) {
+          if (productInfo.id === product) {
+            setProductName(productInfo.name);
+            break;
+          }
+        }
       })
-      // axios.get(`questions/${randomId}`))
-      // .then((res) => {
-      //   setQuestions(res.data);
-      //   const questionData = res.data[randomId].results;
-      //   questionData.forEach((q) => {
-      //     qIds.push(q.question_id);
-      //   });
-      //   setQuestionsId(qIds);
-      // })
       .catch((err) => {
         throw err;
       });
+    // getQuestions();
   }, []);
 
   const qAnswers = {};
@@ -114,10 +109,6 @@ const QA = () => {
     setAnswered(true);
   }
 
-  const searchQA = (target) => {
-    setSearch(target);
-  };
-
   const addQuestion = (nickname, email, content) => {
     axios.post('/question', {
       body: content, name: nickname, email, product_id: product,
@@ -131,12 +122,12 @@ const QA = () => {
       });
   };
 
-  const addAnswer = (qId, nickname, email, content, photos) => {
-    axios.post(`/answer/${qId}`, {
-      body: content, name: nickname, email, photos,
+  const addAnswer = (name, email, body, photos) => {
+    axios.post(`/answer/${targetQ.question_id}`, {
+      body, name, email, photos,
     })
       .then(() => {
-        console.log('success posting answer');
+        console.log('success posting answer', targetQ.question_id);
       })
       .catch((err) => {
         throw err;
@@ -146,10 +137,10 @@ const QA = () => {
   return (
     <div>
       <Div>
-        {answers[questionsId[0]] && console.log(product)}
+        {/* {answers[questionsId[0]] && console.log(product)} */}
         <strong>Questions & Answers</strong>
         {answers[questionsId[questionsId.length - 1]]
-          ? <SearchQuestions searchQA={searchQA} />
+          ? <SearchQuestions search={search} setSearch={setSearch} />
           // && (
           //   <QuestionsList
           //     questions={questions[product].results}
@@ -183,6 +174,7 @@ const QA = () => {
           <QuestionModal
             showModal={showQModal}
             setShowModal={setShowQModal}
+            productName={productName}
             addQuestion={addQuestion}
           />
         )}
@@ -191,6 +183,8 @@ const QA = () => {
           <AnswerModal
             showModal={showAnsModal}
             setShowModal={setShowAnsModal}
+            productName={productName}
+            targetQ={targetQ}
             addAnswer={addAnswer}
           />
         )}
@@ -199,6 +193,6 @@ const QA = () => {
   );
 };
 
-export default QA
+export default QA;
 
 // ReactDOM.render(<QA />, document.getElementById('app'));

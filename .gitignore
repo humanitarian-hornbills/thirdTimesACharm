@@ -4,7 +4,12 @@ config.js
 
 /public/bundle.js
 
+/public/bundle.js.LICENSE.txt
+
 agustinFEC.pem
 
 fec-key.pem
 
+.DS_Store
+
+coverage/

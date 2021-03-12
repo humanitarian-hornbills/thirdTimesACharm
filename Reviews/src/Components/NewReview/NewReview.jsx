@@ -179,89 +179,93 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-          <span
-            role="button"
-            tabIndex="0"
-            onKeyPress={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-            onClick={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-            className="rclose"
-          >
-            &times;
-          </span>
-          <div id="allNewReviewForms">
-            <NewReviewTop prodUrl={prodUrl} name={name} />
-            <div id="newReviewRateRec">
-              <Rating
+          <div id="scrollBarDiv">
+            <span
+              role="button"
+              tabIndex="0"
+              onKeyPress={() => { close(); this.clearState(); sendClickData('close new review window'); }}
+              onClick={() => { close(); this.clearState(); sendClickData('close new review window'); }}
+              className="rclose"
+            >
+              &times;
+            </span>
+            <div id="allNewReviewForms">
+              <NewReviewTop prodUrl={prodUrl} name={name} />
+              <div id="newReviewRateRec">
+                <Rating
+                  sendClickData={sendClickData}
+                  error={errors.rating}
+                  updateState={this.updateState}
+                />
+                <Recommend
+                  sendClickData={sendClickData}
+                  error={errors.recommend}
+                  updateState={this.updateState}
+                />
+              </div>
+              <Characteristics
                 sendClickData={sendClickData}
-                error={errors.rating}
-                updateState={this.updateState}
+                factors={factors}
+                updateCharacteristics={this.updateCharacteristics}
               />
-              <Recommend
-                sendClickData={sendClickData}
-                error={errors.recommend}
-                updateState={this.updateState}
-              />
+              <div className="text-danger">{errors.characteristics}</div>
+              <div className="reviewDivider" />
+              <h3 className="rSectionTitle">YOUR REVIEW</h3>
+              <div id="newReviewText">
+                <ReviewSummary
+                  sendClickData={sendClickData}
+                  error={errors.summary}
+                  updateState={this.updateState}
+                />
+                <ReviewBody
+                  sendClickData={sendClickData}
+                  error={errors.body}
+                  updateState={this.updateState}
+                />
+              </div>
+              <div>
+                {allPhotos.length < 5
+                  ? (
+                    <CoolButton sendClickData={sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
+                  )
+                  : <></>}
+                <AddPhoto
+                  sendClickData={sendClickData}
+                  hide={this.showAddPhotoModal}
+                  updateState={this.updateState}
+                  show={addPhotos}
+                />
+                {allPhotos.length
+                  ? (
+                    <>
+                      <DisplayPhotos
+                        sendClickData={sendClickData}
+                        photoModal={this.rModalPhoto}
+                        photos={allPhotos}
+                      />
+                      <PhotoModal src={rModalPhoto} />
+                    </>
+                  )
+                  : null}
+              </div>
+              <div className="reviewDivider" />
+              <h3 className="rSectionTitle">PERSONAL INFO</h3>
+              <div id="rPerInfo">
+                <Nickname
+                  sendClickData={sendClickData}
+                  error={errors.name}
+                  updateState={this.updateState}
+                />
+                <Email
+                  sendClickData={sendClickData}
+                  error={errors.email}
+                  updateState={this.updateState}
+                />
+              </div>
+              <div id="newReviewSubmit">
+                <CoolButton func={this.submitReview} name="SUBMIT" />
+              </div>
             </div>
-            <Characteristics
-              sendClickData={sendClickData}
-              factors={factors}
-              updateCharacteristics={this.updateCharacteristics}
-            />
-            <div className="text-danger">{errors.characteristics}</div>
-            <div className="reviewDivider" />
-            <h3 className="rSectionTitle">YOUR REVIEW</h3>
-            <div id="newReviewText">
-              <ReviewSummary
-                sendClickData={sendClickData}
-                error={errors.summary}
-                updateState={this.updateState}
-              />
-              <ReviewBody
-                sendClickData={sendClickData}
-                error={errors.body}
-                updateState={this.updateState}
-              />
-            </div>
-            <div>
-              {allPhotos.length < 5
-                ? (
-                  <CoolButton sendClickData={sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
-                )
-                : <></>}
-              <AddPhoto
-                sendClickData={sendClickData}
-                hide={this.showAddPhotoModal}
-                updateState={this.updateState}
-                show={addPhotos}
-              />
-              {allPhotos.length
-                ? (
-                  <>
-                    <DisplayPhotos
-                      sendClickData={sendClickData}
-                      photoModal={this.rModalPhoto}
-                      photos={allPhotos}
-                    />
-                    <PhotoModal src={rModalPhoto} />
-                  </>
-                )
-                : null}
-            </div>
-            <div className="reviewDivider" />
-            <h3 className="rSectionTitle">PERSONAL INFO</h3>
-            <div id="rPerInfo">
-              <Nickname
-                sendClickData={sendClickData}
-                error={errors.name}
-                updateState={this.updateState}
-              />
-              <Email
-                sendClickData={sendClickData}
-                error={errors.email}
-                updateState={this.updateState}
-              />
-            </div>
-            <CoolButton func={this.submitReview} name="SUBMIT" />
           </div>
         </section>
       </div>

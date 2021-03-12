@@ -11,7 +11,7 @@ const AvgRating = ({ ratings }) => {
   });
 
   const avgRating = (reviewTotal / reviewCount).toFixed(1);
-  const starNum = (avgRating / 5) * 75;
+  const starNum = (avgRating / 5) * 56;
 
   return (
     <div id="avgRatingBox">

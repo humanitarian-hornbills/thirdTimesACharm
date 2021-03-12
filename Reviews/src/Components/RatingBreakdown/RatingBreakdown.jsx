@@ -16,12 +16,13 @@ class RatingBreakdown extends React.Component {
   }
 
   addStar(num) {
-    if (this.state.selected.indexOf(num) === -1) {
+    const { selected } = this.state;
+    if (selected.indexOf(num) === -1) {
       this.setState({
-        selected: [...this.state.selected, num],
+        selected: [...selected, num],
       });
     } else {
-      const currentStars = this.state.selected;
+      const currentStars = selected;
       const index = currentStars.indexOf(num);
       currentStars.splice(index, 1);
       this.setState({
@@ -31,42 +32,54 @@ class RatingBreakdown extends React.Component {
   }
 
   clearFilters() {
-    this.props.clearStars();
+    const { clearStars } = this.props;
+    clearStars();
     this.setState({
       selected: [],
     });
   }
 
   render() {
+    const { ratings, selectStars, sendClickData } = this.props;
+    const { selected } = this.state;
     return (
       <div>
         <RatingSummary
-          ratings={this.props.ratings.ratings}
-          recommended={this.props.ratings.recommended}
+          ratings={ratings.ratings}
+          recommended={ratings.recommended}
         />
         <div className="ratingDivider" />
         <h3>RATING BREAKDOWN</h3>
-        {this.state.selected.length
+        {selected.length
           ? (
             <>
               <SelectedList
                 addStar={this.addStar}
-                selectStars={this.props.selectStars}
-                selected={this.state.selected}
-                sendClickData={this.props.sendClickData}
+                selectStars={selectStars}
+                selected={selected}
+                sendClickData={sendClickData}
               />
-              <p className="link reviewBody" onClick={() => { this.clearFilters(); this.props.sendClickData('clear rating filters'); }}>Clear all filters</p>
+              <button
+                id="clearRatingFliterBtn"
+                type="button"
+                className="link reviewBody"
+                onClick={() => { this.clearFilters(); sendClickData('clear rating filters'); }}
+              >
+                <p>
+                  Clear all filters
+                </p>
+              </button>
             </>
           )
           : <></>}
         <Breakdown
           addStar={this.addStar}
-          selectStars={this.props.selectStars}
-          ratings={this.props.ratings.ratings}
-          sendClickData={this.props.sendClickData}
+          selectStars={selectStars}
+          ratings={ratings.ratings}
+          sendClickData={sendClickData}
         />
         <div className="ratingDivider" />
-        <Factors factors={this.props.ratings.characteristics} />
+        <Factors factors={ratings.characteristics} />
       </div>
     );
   }

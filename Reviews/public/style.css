@@ -117,15 +117,29 @@ div.parent div {
 
 /* new review modal */
 #addReviewModal {
-  height: 700px;
-  overflow: auto;
-  display: inline-block;
+  height: 500px;
+  display: flex;
   z-index: 10;
+  border-radius: 10px;
+}
+
+#scrollBarDiv {
+  height: 490px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: inline-block;
+  margin: 0 auto;
+  flex-grow: 1;
+  position: relative;
 }
 
 #allNewReviewForms {
   margin: auto;
   width: 800px
+}
+
+#newReviewSubmit {
+  margin-bottom: 20px;
 }
 
 .reviewDivider {
@@ -279,10 +293,10 @@ input[type='radio']:checked {
 }
 
 .charItem {
-  width: 45%;
+  width: 40%;
   position: relative;
   display: inline-block;
-  margin-right: 33px;
+  margin-right: 73px !important;
   height: 105px;
   margin-bottom: 25px;
 }
@@ -601,7 +615,10 @@ font-size: 18px;
   font-size: 30px;
 }
 
-
+#clearRatingFliterBtn {
+  background-color: transparent;
+  border: none;
+}
 
 #sortBox {
   font-family: Helvetica, Arial, sans-serif;
@@ -658,8 +675,10 @@ font-size: 18px;
 
 /* Modal Content/Box */
 div.parent .modal-content {
+  position: relative;
   background-color: #fefefe;
   margin: 5% auto;
+  display: block;
   padding: 10px;
   border: 1px solid #888;
   width: fit-content;
@@ -681,19 +700,32 @@ div.parent .modal-content {
   max-width: 500px;
 }
 
+#pModal img:hover {
+  opacity: 1;
+  cursor: auto;
+}
+
 /* The Close Button */
 .pclose, .rclose {
-  color: #aaa;
-  float: right;
+  color: black;
+  background-color: transparent;
   font-size: 28px;
+  height:40px;
+  width: 40px;
   font-weight: bold;
+  z-index: 15;
+  position: absolute;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  right: 0;
 }
 
 .pclose:hover,
 .pclose:focus,
 .rclose:hover,
 .rclose:focus {
-  color: black;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
@@ -753,6 +785,7 @@ div.parent .modal-content {
 .abtn:hover {
   transition: 1s ease-in-out;
   background: red;
+  color: white
 }
 
 .abtn:hover svg {
@@ -765,6 +798,9 @@ div.parent .modal-content {
   font-weight: bold;
 }
 
+.abtn span:hover {
+  color: white;
+}
 
 .fade-in-section {
   opacity: 0;

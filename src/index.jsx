@@ -11,7 +11,7 @@ const products = [14931, 14932, 14034, 14296, 14807];
 const randomNum = Math.floor(Math.random() * products.length);
 const id = products[randomNum];
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   #app>div{
     box-sizing: border-box;
     margin: 30px 10%;
@@ -32,13 +32,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('app'),
 );
-
-// ReactDOM.render(
-//   <Products productId={id} />,
-//   document.getElementById('products'),
-// );
-
-// ReactDOM.render(
-//   <ReviewApp productId={id} />,
-//   document.getElementById('reviews'),
-// );

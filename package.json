@@ -8,7 +8,8 @@
     "webpack": "webpack -w",
     "start": "nodemon server.js",
     "forever": "forever start server.js",
-    "coverage": "jest --collectCoverage"
+    "coverage": "jest --collectCoverage",
+    "stop": "forever stopall"
   },
   "repository": {
     "type": "git",

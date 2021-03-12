@@ -7,6 +7,10 @@ const CoolButton = ({
     role="button"
     tabIndex="0"
     className="acontainer"
+    onKeyPress={() => {
+      { text ? sendClickData(text) : null; }
+      func();
+    }}
     onClick={() => {
       { text ? sendClickData(text) : null; }
       func();

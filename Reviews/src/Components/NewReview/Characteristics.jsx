@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CharItem from './CharItem.jsx';
 
-const Characteristics = ({updateCharacteristics, factors, sendClickData}) => {
+const Characteristics = ({ updateCharacteristics, factors, sendClickData }) => {
   const chars = {
     Fit: {
       1: 'Runs tight',
@@ -50,18 +50,31 @@ const Characteristics = ({updateCharacteristics, factors, sendClickData}) => {
 
   return (
     <div id="rChars">
-      {factors.map((factor, index) => (
+      {factors.map((factor) => (
         <CharItem
           options={chars[factor[0]]}
           name={factor[0]}
           updateCharacteristics={updateCharacteristics}
           charId={factor[1]}
-          key={index}
+          key={factor[0]}
           sendClickData={sendClickData}
         />
       ))}
     </div>
   );
+};
+
+Characteristics.propTypes = {
+  updateCharacteristics: PropTypes.func.isRequired,
+  factors: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ),
+  ).isRequired,
+  sendClickData: PropTypes.func.isRequired,
 };
 
 export default Characteristics;

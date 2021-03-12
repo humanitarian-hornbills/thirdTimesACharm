@@ -9,7 +9,12 @@ const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview, sendC
   <div className="reviewListItem">
     <ReviewTop review={review} />
     <ReviewBody review={review} photoModal={photoModal} sendClickData={sendClickData} />
-    <ReviewHelpful sendClickData={sendClickData} reportReview={reportReview} markAsHelpful={markAsHelpful} review={review} />
+    <ReviewHelpful
+      sendClickData={sendClickData}
+      reportReview={reportReview}
+      markAsHelpful={markAsHelpful}
+      review={review}
+    />
   </div>
 
 );

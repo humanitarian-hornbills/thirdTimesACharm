@@ -31,7 +31,7 @@ position: absolute;
 border: 4px solid #5c5c5f;
 border-radius: 15px;
 width: 60px;
-margin-top: -1.5%;
+margin-top: -0.9%;
 z-index:-1;
 
 `;

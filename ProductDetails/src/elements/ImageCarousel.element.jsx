@@ -22,10 +22,10 @@ cursor:pointer;
 export const ImageUnderline = styled.hr`
 position: absolute;
 border: 1px solid #DFDFDF;
-width:${(props) => (props.top ? '80%' : '44%')};
+width:${(props) => (props.top ? '69%' : '44%')};
 border-radius: 5px;
 top:${(props) => (props.top ? '4%' : '85%')};
-margin-left:${({ image }) => (image ? '13.5%' : '4%')};
+margin-left:${({ image }) => (image ? '13.5%' : '-1%')};
 `;
 export const LeftArrow = styled(ArrowLeftCircle)`
 position: absolute;

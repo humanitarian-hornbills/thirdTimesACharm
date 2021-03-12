@@ -4,9 +4,12 @@ import ReviewApp from '../Reviews/src/Components/ReviewApp.jsx';
 import Products from '../ProductDetails/src/components/Products.jsx';
 import RelatedProducts from '../RelatedProducts/src/components/RelatedProducts.jsx';
 import QA from '../QandA/src/QA.jsx';
+import FadeInSection from '../Reviews/src/Components/FadeIn.jsx';
 import {createGlobalStyle} from 'styled-components';
 
-const id = 14936;
+const products = [14931, 14932, 14034, 14296, 14807];
+const randomNum = Math.floor(Math.random() * products.length);
+const id = products[randomNum];
 
 export const GlobalStyle = createGlobalStyle`
   #app>div{
@@ -17,18 +20,18 @@ export const GlobalStyle = createGlobalStyle`
 
 const App = () => (
   <>
-    <Products />
+    <Products product={id}/>
     <RelatedProducts />
-    <QA />
-    <ReviewApp productId={id} />
+    <QA product={id} />
+    <FadeInSection productId={id} />
     <GlobalStyle />
   </>
-)
+);
 
-ReactDOM.render (
+ReactDOM.render(
   <App />,
-  document.getElementById('app')
-)
+  document.getElementById('app'),
+);
 
 // ReactDOM.render(
 //   <Products productId={id} />,

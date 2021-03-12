@@ -10,8 +10,8 @@ import Nickname from './Nickname.jsx';
 import Email from './Email.jsx';
 import DisplayPhotos from './DisplayPhotos.jsx';
 import PhotoModal from '../PhotoModal.jsx';
-import NewReviewTop from './NewReviewTop.jsx'
-import CoolButton from '../CoolButton.jsx'
+import NewReviewTop from './NewReviewTop.jsx';
+import CoolButton from '../CoolButton.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -83,11 +83,11 @@ class NewReview extends React.Component {
       delete newReview.errors;
       delete newReview.rModalPhoto;
       this.props.sendNewReview(newReview);
-      this.props.sendClickData('new review submitted')
+      this.props.sendClickData('new review submitted');
       this.clearState();
       this.props.close();
     } else {
-      this.props.sendClickData('new review not sent - missing data')
+      this.props.sendClickData('new review not sent - missing data');
     }
   }
 
@@ -101,14 +101,14 @@ class NewReview extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
-        this.props.sendClickData('close new review photo modal with X')
+        this.props.sendClickData('close new review photo modal with X');
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
     });
     window.onclick = (event) => {
       if (event.target === modal) {
-        this.props.sendClickData('close new review photo modal by clicking outside of modal')
+        this.props.sendClickData('close new review photo modal by clicking outside of modal');
         modal.style.display = 'none';
       }
     };
@@ -168,12 +168,20 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-          <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window') }} className="rclose">&times;</span>
+          <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }} className="rclose">&times;</span>
           <div id="allNewReviewForms">
             <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name} />
             <div id="newReviewRateRec">
-              <Rating sendClickData={this.props.sendClickData} error={this.state.errors.rating} updateState={this.updateState} />
-              <Recommend sendClickData={this.props.sendClickData} error={this.state.errors.recommend} updateState={this.updateState} />
+              <Rating
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.rating}
+                updateState={this.updateState}
+              />
+              <Recommend
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.recommend}
+                updateState={this.updateState}
+              />
             </div>
             <Characteristics
               sendClickData={this.props.sendClickData}
@@ -184,13 +192,21 @@ class NewReview extends React.Component {
             <div className="reviewDivider" />
             <h3 className="rSectionTitle">YOUR REVIEW</h3>
             <div id="newReviewText">
-              <ReviewSummary sendClickData={this.props.sendClickData} error={this.state.errors.summary} updateState={this.updateState} />
-              <ReviewBody sendClickData={this.props.sendClickData} error={this.state.errors.body} updateState={this.updateState} />
+              <ReviewSummary
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.summary}
+                updateState={this.updateState}
+              />
+              <ReviewBody
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.body}
+                updateState={this.updateState}
+              />
             </div>
             <div>
               {allPhotos.length < 5
                 ? (
-                  <CoolButton sendClickData={this.props.sendClickData} func={this.showAddPhotoModal} name={'ADD PHOTO(S)'} text={'add photo to new review'} />
+                  <CoolButton sendClickData={this.props.sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
                 )
                 : <></>}
               <AddPhoto
@@ -202,7 +218,11 @@ class NewReview extends React.Component {
               {allPhotos.length
                 ? (
                   <>
-                    <DisplayPhotos sendClickData={this.props.sendClickData} photoModal={this.rModalPhoto} photos={allPhotos} />
+                    <DisplayPhotos
+                      sendClickData={this.props.sendClickData}
+                      photoModal={this.rModalPhoto}
+                      photos={allPhotos}
+                    />
                     <PhotoModal src={this.state.rModalPhoto} />
                   </>
                 )
@@ -211,10 +231,18 @@ class NewReview extends React.Component {
             <div className="reviewDivider" />
             <h3 className="rSectionTitle">PERSONAL INFO</h3>
             <div id="rPerInfo">
-              <Nickname sendClickData={this.props.sendClickData} error={this.state.errors.name} updateState={this.updateState} />
-              <Email sendClickData={this.props.sendClickData} error={this.state.errors.email} updateState={this.updateState} />
+              <Nickname
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.name}
+                updateState={this.updateState}
+              />
+              <Email
+                sendClickData={this.props.sendClickData}
+                error={this.state.errors.email}
+                updateState={this.updateState}
+              />
             </div>
-            <CoolButton func={this.submitReview} name={'submit'} />
+            <CoolButton func={this.submitReview} name="SUBMIT" />
           </div>
         </section>
       </div>

@@ -6,6 +6,7 @@ display:grid;
 grid-template-columns:0.5fr 0.5fr 4fr 2.5fr 1fr;
 grid-template-rows: 0.5 0.5fr 0.5fr 3fr 1fr;
 row-gap:50px;
+column-gap:30px;
 
 `;
 
@@ -15,7 +16,7 @@ display:flex;
 flex-direction:row;
 justify-content: flex-end;
 align-items: flex-end;
-margin-top:1%;
+margin-top:-10%;
 `;
 
 export const Header = styled.div`

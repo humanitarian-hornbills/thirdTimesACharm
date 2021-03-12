@@ -7,7 +7,9 @@ import QA from '../QandA/src/QA.jsx';
 import FadeInSection from '../Reviews/src/Components/FadeIn.jsx';
 import {createGlobalStyle} from 'styled-components';
 
-const id = 14936;
+const products = [14931, 14932, 14034, 14296, 14807];
+const randomNum = Math.floor(Math.random() * products.length);
+const id = products[randomNum];
 
 export const GlobalStyle = createGlobalStyle`
   #app>div{
@@ -20,7 +22,7 @@ const App = () => (
   <>
     <Products />
     <RelatedProducts />
-    <QA />
+    <QA product={id} />
     <FadeInSection productId={id} />
     <GlobalStyle />
   </>

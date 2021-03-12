@@ -168,7 +168,15 @@ class NewReview extends React.Component {
     return (
       <div className={showHideClassName}>
         <section id="addReviewModal" className="modal-main">
-          <span role="close" onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }} className="rclose">&times;</span>
+          <span
+            role="button"
+            tabIndex="0"
+            onKeyPress={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }}
+            onClick={() => { this.props.close(); this.clearState(); this.props.sendClickData('close new review window'); }}
+            className="rclose"
+          >
+            &times;
+          </span>
           <div id="allNewReviewForms">
             <NewReviewTop prodUrl={this.props.prodUrl} name={this.props.name} />
             <div id="newReviewRateRec">

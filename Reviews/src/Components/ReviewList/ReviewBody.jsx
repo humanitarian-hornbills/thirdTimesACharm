@@ -29,7 +29,18 @@ const ReviewBody = ({ review, photoModal, sendClickData }) => (
 );
 
 ReviewBody.propTypes = {
-  // review: PropTypes.objectOf(),
+  review: PropTypes.shape({
+    summary: PropTypes.string,
+    body: PropTypes.string,
+    recommend: PropTypes.bool,
+    response: PropTypes.string,
+    photos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.string,
+      }),
+    ),
+  }),
   summary: PropTypes.string,
   body: PropTypes.string,
   sendClickData: PropTypes.func.isRequired,
@@ -39,7 +50,7 @@ ReviewBody.propTypes = {
 ReviewBody.defaultProps = {
   summary: '',
   body: '',
-  // review: {},
+  review: {},
 };
 
 export default ReviewBody;

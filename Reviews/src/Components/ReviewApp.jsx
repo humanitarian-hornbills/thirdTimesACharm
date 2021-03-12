@@ -244,11 +244,11 @@ class ReviewApp extends React.Component {
         [key, ratings.characteristics[key].id]
       ));
       return (
-        <div>
+        <div id="reviews">
           <h1>
             RATINGS &amp; REVIEWS
           </h1>
-          <div className="parent" id="reviews">
+          <div className="parent">
             <div id="ratingBox">
               <RatingBreakdown
                 clearStars={this.clearStars}

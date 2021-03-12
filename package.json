@@ -47,7 +47,6 @@
   "dependencies": {
     "@types/eslint-scope": "^3.7.0",
     "axios": "^0.21.1",
-    "compression": "^1.7.4",
     "express": "^4.17.1",
     "forever": "^3.0.4",
     "jquery": "^3.6.0",

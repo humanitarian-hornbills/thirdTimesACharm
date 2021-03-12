@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
 const App = () => (
   <>
-    <Products />
+    <Products product={id}/>
     <RelatedProducts />
     <QA product={id} />
     <FadeInSection productId={id} />

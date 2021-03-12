@@ -21,11 +21,12 @@ import {
 import { ImageUnderline } from '../elements/ImageCarousel.element.jsx';
 
 class Products extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const productId = this.props.product;
     this.state = {
       products: [],
-      id: 14807,
+      id: productId,
       product: {},
       styles: [],
       selectedStyleId: 0,
@@ -50,10 +51,6 @@ class Products extends React.Component {
     axios.get('/products')
       .then((response) => {
         this.setState({ products: response.data });
-        // if (this.state.products.length !== 0) {
-        //   const random = Math.floor(Math.random() * this.state.products.length);
-        //   this.setState({ id: this.state.products[random].id });
-        // }
       })
       .then(() => {
         axios.get(`/products/${this.state.id}`)

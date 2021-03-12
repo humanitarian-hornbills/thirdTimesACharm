@@ -12,4 +12,18 @@ const AvgRec = ({ recommended }) => {
   );
 };
 
+AvgRec.propTypes = {
+  recommended: PropTypes.shape({
+    true: PropTypes.string,
+    false: PropTypes.string,
+  }),
+};
+
+AvgRec.defaultProps = {
+  recommended: PropTypes.shape({
+    true: '',
+    false: '',
+  }),
+};
+
 export default AvgRec;

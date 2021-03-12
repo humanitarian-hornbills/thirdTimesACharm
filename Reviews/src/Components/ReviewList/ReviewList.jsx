@@ -9,11 +9,11 @@ const ReviewList = ({
   const useTheseReviews = allReviews.slice(0, reviewCount);
   return (
     <div id="reviewList">
-      {useTheseReviews.map((review, index) => (
+      {useTheseReviews.map((review) => (
         <ReviewListItem
           markAsHelpful={markAsHelpful}
           review={review}
-          key={index}
+          key={review.review_id}
           reportReview={reportReview}
           photoModal={photoModal}
           sendClickData={sendClickData}
@@ -21,6 +21,36 @@ const ReviewList = ({
       ))}
     </div>
   );
+};
+
+ReviewList.propTypes = {
+  reviewCount: PropTypes.number.isRequired,
+  markAsHelpful: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  reportReview: PropTypes.func.isRequired,
+  photoModal: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      review_id: PropTypes.number,
+      rating: PropTypes.number,
+      summary: PropTypes.string,
+      recommend: PropTypes.bool,
+      body: PropTypes.string,
+      date: PropTypes.string,
+      reviewer_name: PropTypes.string,
+      helpfulness: PropTypes.number,
+      photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          url: PropTypes.url,
+        }),
+      ),
+    }),
+  ),
+};
+
+ReviewList.defaultProps = {
+  reviews: {},
 };
 
 export default ReviewList;

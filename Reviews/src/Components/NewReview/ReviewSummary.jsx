@@ -16,4 +16,14 @@ const ReviewSummary = ({ updateState, error, sendClickData }) => (
   </div>
 );
 
+ReviewSummary.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+ReviewSummary.defaultProps = {
+  error: '',
+};
+
 export default ReviewSummary;

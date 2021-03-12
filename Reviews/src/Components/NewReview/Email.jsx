@@ -16,31 +16,14 @@ const Email = ({ updateState, error, sendClickData }) => (
   </div>
 );
 
+Email.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Email.defaultProps = {
+  error: '',
+};
+
 export default Email;
-
-// class Email extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       email: '',
-//     };
-
-//     this.handleChange = this.handleChange.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({ email: event.target.value });
-//     this.props.updateState({ email: event.target.value });
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <p>Email:</p>
-//         <input maxLength="60" type="email" value={this.state.email} onChange={this.handleChange} />
-//         <br />
-//         Limit 60 characters
-//       </div>
-//     );
-//   }
-// }

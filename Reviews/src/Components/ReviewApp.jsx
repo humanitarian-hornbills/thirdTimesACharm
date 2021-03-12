@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
@@ -299,5 +300,9 @@ class ReviewApp extends React.Component {
     );
   }
 }
+
+ReviewApp.propTypes = {
+  productId: PropTypes.number.isRequired,
+};
 
 export default ReviewApp;

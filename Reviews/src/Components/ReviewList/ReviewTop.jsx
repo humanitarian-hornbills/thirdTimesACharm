@@ -32,10 +32,4 @@ ReviewTop.propTypes = {
   }).isRequired,
 };
 
-// ReviewTop.propTypes = {
-//   rating: PropTypes.number.isRequired,
-//   reviewer_name: PropTypes.string.isRequired,
-//   date: PropTypes.string.isRequired,
-// };
-
 export default ReviewTop;

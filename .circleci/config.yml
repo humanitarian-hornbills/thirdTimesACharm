@@ -16,9 +16,8 @@ version: 2.1
 jobs:
   one:
     steps:
-      - checkout
-      - comand: cd ./ProductDetails
       - run: npm install
+      - run: npm run webpack
       - run: npm run test
 workflows:
   version: 2.1

@@ -5,15 +5,15 @@ import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
 import NewReview from './NewReview/NewReview.jsx';
 import PhotoModal from './PhotoModal.jsx';
-import styled from 'styled-components';
-import CoolButton from './CoolButton.jsx'
-import '../../public/css.js'
+import CoolButton from './CoolButton.jsx';
+import '../../public/css.js';
 
 class ReviewApp extends React.Component {
   constructor(props) {
     super(props);
+    const { productId } = this.props;
     this.state = {
-      productId: this.props.productId,
+      productId,
       productName: '',
       reviews: [],
       reviewCount: 2,
@@ -39,7 +39,8 @@ class ReviewApp extends React.Component {
   }
 
   componentDidMount() {
-    const prodId = this.state.productId;
+    const { productId } = this.state;
+    const prodId = productId;
     axios({
       method: 'get',
       url: '/reviews',
@@ -68,6 +69,7 @@ class ReviewApp extends React.Component {
   }
 
   getSort(val) {
+    const { reviews } = this.state;
     this.setState({
       currentSort: val,
     });
@@ -79,14 +81,15 @@ class ReviewApp extends React.Component {
     }
     if (val === 'relevant') {
       this.setState({
-        displayedReviews: this.state.reviews,
+        displayedReviews: reviews,
       });
     }
   }
 
   sortReviews(sort) {
+    const { reviews } = this.state;
     const sortedRevs = [];
-    const currRevs = this.state.reviews;
+    const currRevs = reviews;
 
     for (let i = 0; i < currRevs.length; i += 1) {
       const review = currRevs[i];
@@ -119,8 +122,9 @@ class ReviewApp extends React.Component {
   }
 
   showModal() {
+    const { newReview } = this.state;
     this.setState({
-      newReview: !this.state.newReview,
+      newReview: !newReview,
     });
   }
 
@@ -134,7 +138,7 @@ class ReviewApp extends React.Component {
     const newSpan = [];
     Object.keys(span).forEach((key) => {
       span[key].onclick = () => {
-        this.sendClickData('close photo modal with X')
+        this.sendClickData('close photo modal with X');
         modal.style.display = 'none';
       };
       newSpan.push(span[key]);
@@ -143,29 +147,31 @@ class ReviewApp extends React.Component {
       if (event.target === modal) {
         this.sendClickData('close photo modal by clicking outside of modal');
         modal.style.display = 'none';
-
       }
     };
   }
 
   seeMoreReviews() {
-    const newCount = this.state.reviewCount + 2;
+    const { reviewCount } = this.state;
+    const newCount = reviewCount + 2;
     this.setState({
       reviewCount: newCount,
     });
   }
 
   sendNewReview(obj) {
+    const { productId } = this.state;
     const newObj = obj;
-    newObj.product_id = this.state.productId;
+    newObj.product_id = productId;
     axios.post('/newReview', newObj)
       .then((response) => {
         console.log(response);
       });
   }
 
-  selectStars(num, action) {
-    const currentSelected = this.state.starsSelected;
+  selectStars(num) {
+    const { starsSelected } = this.state;
+    const currentSelected = starsSelected;
     if (currentSelected.indexOf(num) === -1) {
       currentSelected.push(num);
     } else {
@@ -180,15 +186,17 @@ class ReviewApp extends React.Component {
   }
 
   clearStars() {
-    this.getSort(this.state.currentSort);
+    const { currentSort } = this.state;
+    this.getSort(currentSort);
     this.setState({
       starsSelected: [],
     });
   }
 
   filterRevs(arr) {
+    const { reviews } = this.state;
     const displayedRevs = [];
-    this.state.reviews.forEach((review) => {
+    reviews.forEach((review) => {
       if (arr.indexOf(review.rating) !== -1) {
         displayedRevs.push(review);
       }
@@ -207,70 +215,76 @@ class ReviewApp extends React.Component {
   }
 
   sendClickData(ele) {
-    let currentTime = new Date()
-    currentTime = currentTime.toISOString()
+    let currentTime = new Date();
+    currentTime = currentTime.toISOString();
     const clickObj = {
       element: ele,
       widget: 'reviews',
-      time: currentTime
-    }
-    console.log(clickObj)
+      time: currentTime,
+    };
+    console.log(clickObj);
     axios({
       method: 'post',
       url: '/interactions',
       params: clickObj,
-    })
+    });
   }
 
   render() {
     console.log(this.state);
-    if (this.state.loaded) {
-      const allReviews = this.state.reviews;
-      const reviews = this.state.displayedReviews;
+    const {
+      loaded, reviews, displayedReviews, ratings,
+      starsSelected, productName, newReview, prodUrl, modalPhoto,
+    } = this.state;
+    if (loaded) {
+      const allReviews = reviews;
       const { reviewCount } = this.state;
-      const factors = Object.keys(this.state.ratings.characteristics).map((key) => (
-        [key, this.state.ratings.characteristics[key].id]
+      const factors = Object.keys(ratings.characteristics).map((key) => (
+        [key, ratings.characteristics[key].id]
       ));
       return (
         <div className="parent">
           <div id="ratingBox">
             <RatingBreakdown
               clearStars={this.clearStars}
-              starsSelected={this.state.starsSelected}
-              ratings={this.state.ratings}
+              starsSelected={starsSelected}
+              ratings={ratings}
               selectStars={this.selectStars}
               sendClickData={this.sendClickData}
             />
           </div>
           <div id="reviewBox">
-            <SortForm reviewCount={allReviews.length} getSort={this.getSort} sendClickData={this.sendClickData}/>
+            <SortForm
+              reviewCount={allReviews.length}
+              getSort={this.getSort}
+              sendClickData={this.sendClickData}
+            />
             <ReviewList
               seeMoreReviews={this.seeMoreReviews}
               reviewCount={reviewCount}
-              reviews={reviews}
+              reviews={displayedReviews}
               markAsHelpful={this.markAsHelpful}
               reportReview={this.reportReview}
               photoModal={this.photoModal}
               sendClickData={this.sendClickData}
             />
             <div id="mainButtons">
-            {allReviews.length > reviewCount
-              ?
-              <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name={'MORE REVIEWS'} text={'show more review button clicked'}/>
-              : <></>}
-              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name={'add review'} text={'add review button clicked'}/>
+              {allReviews.length > reviewCount
+                ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
+                : <></>}
+              <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
             </div>
             <NewReview
-              name={this.state.productName}
+              name={productName}
               factors={factors}
               close={this.showModal}
-              show={this.state.newReview}
+              show={newReview}
               sendNewReview={this.sendNewReview}
               photoModal={this.photoModal}
-              prodUrl={this.state.prodUrl}
+              prodUrl={prodUrl}
               sendClickData={this.sendClickData}
             />
-            <PhotoModal src={this.state.modalPhoto} />
+            <PhotoModal src={modalPhoto} />
           </div>
         </div>
       );

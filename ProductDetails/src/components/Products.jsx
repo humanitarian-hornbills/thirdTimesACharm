@@ -25,7 +25,7 @@ class Products extends React.Component {
     super();
     this.state = {
       products: [],
-      id: 0,
+      id: 14807,
       product: {},
       styles: [],
       selectedStyleId: 0,
@@ -50,10 +50,10 @@ class Products extends React.Component {
     axios.get('/products')
       .then((response) => {
         this.setState({ products: response.data });
-        if (this.state.products.length !== 0) {
-          const random = Math.floor(Math.random() * this.state.products.length);
-          this.setState({ id: this.state.products[random].id });
-        }
+        // if (this.state.products.length !== 0) {
+        //   const random = Math.floor(Math.random() * this.state.products.length);
+        //   this.setState({ id: this.state.products[random].id });
+        // }
       })
       .then(() => {
         axios.get(`/products/${this.state.id}`)
@@ -168,6 +168,7 @@ class Products extends React.Component {
               getFullScreenClicked={this.getFullScreenClicked}
               mainCurrent={this.state.mainCurrent}
               getMainCurrent={this.getMainCurrent}
+              getClickInteraction={this.getClickInteraction}
             />
           )}
         </Image>
@@ -183,6 +184,7 @@ class Products extends React.Component {
                 id={this.state.id}
                 getQuantitySizeSelected={this.getQuantitySizeSelected}
                 getMainCurrent={this.getMainCurrent}
+                getClickInteraction={this.getClickInteraction}
               />
             )}
         </Detail>

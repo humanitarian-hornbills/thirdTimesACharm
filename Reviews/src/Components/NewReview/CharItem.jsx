@@ -14,23 +14,27 @@ class CharItem extends React.Component {
     const { charId } = this.props;
     const charArr = [charId, Number(event.target.value)];
     this.setState({
-      checked: this.props.options[event.target.value]
-    })
+      checked: this.props.options[event.target.value],
+    });
     this.props.updateCharacteristics(charArr);
-    this.props.sendClickData(`selected ${this.props.options[event.target.value]} for ${this.props.name} characteristic`)
+    this.props.sendClickData(`selected ${this.props.options[event.target.value]} for ${this.props.name} characteristic`);
   }
 
   render() {
-    const {name, options} = this.props;
-    let count = 0
+    const { name, options } = this.props;
+    let count = 0;
     return (
       <div className="charItem">
-        <p>{name.toUpperCase()} <sup className="redA">*</sup></p>
+        <p>
+          {name.toUpperCase()}
+          {' '}
+          <sup className="redA">*</sup>
+        </p>
         <div className="checkCharVal">{this.state.checked}</div>
         <section className="radioRow" onChange={this.onChangeValue}>
           {Object.keys(options).map((key, index) => (
-            <div  key={count++}>
-              <input type="radio" value={key} name={name}/>
+            <div key={count++}>
+              <input type="radio" value={key} name={name} />
             </div>
           ))}
         </section>

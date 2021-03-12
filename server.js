@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, './public')));
 
-//agustin server
+// agustin server
 // 14932
 app.get('/reviews', (req, res) => {
   const prodId = req.query.id;
@@ -70,7 +70,6 @@ app.get('/meta', (req, res) => {
 
 app.post('/newReview', (req, res) => {
   const newReview = req.body;
-  console.log(newReview)
   axios({
     method: 'post',
     url: `${api.api}/reviews`,
@@ -85,7 +84,6 @@ app.post('/newReview', (req, res) => {
 });
 
 app.put('/helpful', (req, res) => {
-  console.log(req.body.id);
   const reviewId = req.body.id;
   axios({
     method: 'put',
@@ -101,7 +99,6 @@ app.put('/helpful', (req, res) => {
 });
 
 app.put('/report', (req, res) => {
-  console.log(req.body.id);
   const reviewId = req.body.id;
   axios({
     method: 'put',
@@ -118,7 +115,6 @@ app.put('/report', (req, res) => {
 
 app.post('/interactions', (req, res) => {
   const clickData = req.query;
-  console.log(clickData);
   axios({
     method: 'post',
     url: `${api.api}/interactions`,
@@ -128,30 +124,12 @@ app.post('/interactions', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response);
+      res.send('Success')
     })
-    .catch(err => console.log(err));
+    .catch(err => res.send(err));
 });
 
-
-// axios.get(`${api.api}/products`, {
-//   headers: {
-//     Authorization: api.TOKEN,
-//   },
-// })
-//   .then((response) => {
-//     products = response.data;
-//   })
-//   .catch((err) => console.log(err));
-
-//   if (products.length !== 0) {
-//     res.send(products);
-//   } else {
-//     res.sendStatus(500);
-//   }
-
-
-//momo server
+// momo server
 app.get('/products', (req, res) => {
   axios.get(`${api.api}/products`, {
     headers: {
@@ -215,7 +193,7 @@ app.get('/reviews/:id', (req, res) => {
     .catch((err) => res.sendStatus(400).send(err));
 });
 
-//jin server
+// jin server
 
 app.get('/products/:id/related', (req, res) => {
   const { id } = req.params;
@@ -242,7 +220,7 @@ app.get('/reviews/:productId', (req, res) => {
     });
 });
 
-//anna server
+// anna server
 
 app.get('/questions/:id', (req, res) => {
   const { id } = req.params;
@@ -475,7 +453,6 @@ app.put('/reportAns', (req, res) => {
     })
     .catch(() => res.sendStatus(404));
 });
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

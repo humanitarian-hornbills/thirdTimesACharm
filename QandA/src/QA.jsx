@@ -144,7 +144,7 @@ const QA = () => {
   };
 
   return (
-    <>
+    <div>
       <Div>
         {answers[questionsId[0]] && console.log(product)}
         <strong>Questions & Answers</strong>
@@ -195,7 +195,7 @@ const QA = () => {
           />
         )}
       <Global />
-    </>
+    </div>
   );
 };
 

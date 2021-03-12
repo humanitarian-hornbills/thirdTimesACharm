@@ -12,6 +12,7 @@ const ImageGallery = ({
   getFullScreenClicked,
   mainCurrent,
   getMainCurrent,
+  getClickInteraction,
 }) => {
   const [styles, setStyles] = useState([]);
 
@@ -35,6 +36,7 @@ const ImageGallery = ({
       getFullScreenClicked={getFullScreenClicked}
       mainCurrent={mainCurrent}
       getMainCurrent={getMainCurrent}
+      getClickInteraction={getClickInteraction}
     />
 
   );

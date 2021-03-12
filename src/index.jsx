@@ -5,12 +5,13 @@ import Products from '../ProductDetails/src/components/Products.jsx';
 import RelatedProducts from '../RelatedProducts/src/components/RelatedProducts.jsx';
 import QA from '../QandA/src/QA.jsx';
 import FadeInSection from '../Reviews/src/Components/FadeIn.jsx';
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const products = [14931, 14932, 14034, 14296, 14807];
 const randomNum = Math.floor(Math.random() * products.length);
 const id = products[randomNum];
 
+// eslint-disable-next-line import/prefer-default-export
 export const GlobalStyle = createGlobalStyle`
   #app>div{
     box-sizing: border-box;
@@ -20,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
 const App = () => (
   <>
-    <Products product={id}/>
+    <Products product={id} />
     <RelatedProducts />
     <QA product={id} />
     <FadeInSection productId={id} />

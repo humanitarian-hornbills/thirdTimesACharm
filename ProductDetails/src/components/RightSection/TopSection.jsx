@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
 import {
-  Reviews, Category, Name, OriginalPrice,
+  Reviews, Category, Name, OriginalPrice, Link
 } from '../../elements/RightSection/TopSection.element.jsx';
 
 // eslint-disable-next-line react/prop-types
@@ -46,6 +46,7 @@ const TopSection = ({
               name="rating"
             />
             <span style={{ margin: 5 }}>|</span>
+            <Link href="#reviews"> Read all reviews </Link>
           </Reviews>
         )
       }

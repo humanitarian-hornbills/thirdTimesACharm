@@ -18,12 +18,21 @@ border:1px solid black;
 margin-top:-8%;
 padding:5px;
 border: 1px solid #DFDFDF;
-color:#4b5666;
-letter-spacing:.06rem;
-font: 1rem/normal Avenir Book,sans-serif;
 text-align: left;
 height:35px;
+`;
 
+export const InputSearch = styled.input`
+width:80%;
+border:1px solid white;
+&:focus{
+    outline: none;  
+}
+&::-webkit-input-placeholder {
+    color:#4b5666;
+letter-spacing:.06rem;
+font: 1rem/normal Avenir Book,sans-serif;
+  }
 `;
 
 export const SearchIcon = styled(Search)`

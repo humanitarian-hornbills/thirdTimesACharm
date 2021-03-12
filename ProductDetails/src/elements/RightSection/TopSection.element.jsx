@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 export const Reviews = styled.div`
 margin-right:1%;
-&::after{
-  content:"Read all reviews";
+
+`;
+
+export const Link = styled.a`
+
   color: #167a92;
   padding:5px;
-  text-decoration:underline;
   font-size:14px;
 }
 `;

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReviewStars from './ReviewStars.jsx'
 
 const ReviewTop = ({ review }) => {
   const { rating, date, reviewer_name } = review;
@@ -25,10 +24,12 @@ const ReviewTop = ({ review }) => {
   );
 };
 
-// ReviewTop.propTypes = {
-//   rating: PropTypes.number.isRequired,
-//   reviewer_name: PropTypes.string.isRequired,
-//   date: PropTypes.string.isRequired,
-// };
+ReviewTop.propTypes = {
+  review: PropTypes.shape({
+    rating: PropTypes.number,
+    date: PropTypes.string,
+    reviewer_name: PropTypes.string,
+  }).isRequired,
+};
 
 export default ReviewTop;

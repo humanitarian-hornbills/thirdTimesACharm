@@ -5,7 +5,6 @@ import ReviewBody from './ReviewBody.jsx'
 import ReviewHelpful from './ReviewHelpful.jsx'
 
 const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview, sendClickData }) => (
-
   <div className="reviewListItem">
     <ReviewTop review={review} />
     <ReviewBody review={review} photoModal={photoModal} sendClickData={sendClickData} />
@@ -16,8 +15,34 @@ const ReviewListItem = ({ photoModal, review, markAsHelpful, reportReview, sendC
       review={review}
     />
   </div>
-
 );
+
+ReviewListItem.propTypes = {
+  photoModal: PropTypes.func.isRequired,
+  markAsHelpful: PropTypes.func.isRequired,
+  reportReview: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  review: PropTypes.shape({
+    review_id: PropTypes.number,
+    rating: PropTypes.number,
+    summary: PropTypes.string,
+    recommend: PropTypes.bool,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    reviewer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+    photos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.url,
+      }),
+    ),
+  }),
+};
+
+ReviewListItem.defaultProps = {
+  review: {},
+};
 
 export default ReviewListItem;
 

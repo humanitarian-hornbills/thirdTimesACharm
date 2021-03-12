@@ -11,18 +11,21 @@ class CharItem extends React.Component {
   }
 
   onChangeValue(event) {
-    const { charId } = this.props;
+    const {
+      charId, options, updateCharacteristics, sendClickData, name,
+    } = this.props;
     const charArr = [charId, Number(event.target.value)];
     this.setState({
-      checked: this.props.options[event.target.value],
+      checked: options[event.target.value],
     });
-    this.props.updateCharacteristics(charArr);
-    this.props.sendClickData(`selected ${this.props.options[event.target.value]} for ${this.props.name} characteristic`);
+    updateCharacteristics(charArr);
+    sendClickData(`selected ${options[event.target.value]} for ${name} characteristic`);
   }
 
   render() {
     const { name, options } = this.props;
-    let count = 0;
+    const { checked } = this.state;
+
     return (
       <div className="charItem">
         <p>
@@ -30,10 +33,10 @@ class CharItem extends React.Component {
           {' '}
           <sup className="redA">*</sup>
         </p>
-        <div className="checkCharVal">{this.state.checked}</div>
+        <div className="checkCharVal">{checked}</div>
         <section className="radioRow" onChange={this.onChangeValue}>
-          {Object.keys(options).map((key, index) => (
-            <div key={count++}>
+          {Object.keys(options).map((key) => (
+            <div key={`${key}name`}>
               <input type="radio" value={key} name={name} />
             </div>
           ))}
@@ -49,30 +52,18 @@ class CharItem extends React.Component {
   }
 }
 
-export default CharItem;
-{ /* <label >
+CharItem.propTypes = {
+  charId: PropTypes.number.isRequired,
+  options: PropTypes.shape({
+    1: PropTypes.string,
+    2: PropTypes.string,
+    3: PropTypes.string,
+    4: PropTypes.string,
+    5: PropTypes.string,
+  }).isRequired,
+  updateCharacteristics: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
-{this.props.options[1]}
-<br />
-<input type="radio" value="1" name={this.props.name} />
-</label>
-<label >
-{this.props.options[2]}
-<br />
-<input type="radio" value="2" name={this.props.name} />
-</label>
-<label >
-{this.props.options[3]}
-<br />
-<input type="radio" value="3" name={this.props.name} />
-</label>
-<label >
-{this.props.options[4]}
-<br />
-<input type="radio" value="4" name={this.props.name} />
-</label>
-<label >
-{this.props.options[5]}
-<br />
-<input type="radio" value="5" name={this.props.name} />
-</label> */ }
+export default CharItem;

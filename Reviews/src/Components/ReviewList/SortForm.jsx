@@ -17,6 +17,10 @@ const SortForm = ({ getSort, reviewCount, sendClickData }) => (
   </div>
 );
 
-
+SortForm.propTypes = {
+  getSort: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  reviewCount: PropTypes.number.isRequired,
+};
 
 export default SortForm;

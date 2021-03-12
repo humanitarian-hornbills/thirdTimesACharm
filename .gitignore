@@ -8,3 +8,6 @@ agustinFEC.pem
 
 fec-key.pem
 
+.DS_Store
+
+coverage/

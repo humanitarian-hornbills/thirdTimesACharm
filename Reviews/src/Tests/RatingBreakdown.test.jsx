@@ -72,6 +72,9 @@ test('adds breakdowns for each star', () => {
   expect(wrapper.find(BreakdownItem)).toHaveLength(5);
 });
 
+
+
+
 // describe('has buttons', () => {
 //   it('Should have a button', () => {
 //     const { wrapper } = setup();

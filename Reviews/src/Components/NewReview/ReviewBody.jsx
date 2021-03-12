@@ -12,12 +12,15 @@ class ReviewBody extends React.Component {
   }
 
   handleChange(event) {
+    const { updateState, sendClickData } = this.props;
     this.setState({ body: event.target.value });
-    this.props.updateState({ body: event.target.value });
-    this.props.sendClickData('new review body updated');
+    updateState({ body: event.target.value });
+    sendClickData('new review body updated');
   }
 
   render() {
+    const { body } = this.state;
+    const { error } = this.props;
     return (
       <div id="rBody">
         <p className="rTextTitle">
@@ -25,11 +28,11 @@ class ReviewBody extends React.Component {
           <sup className="redA">*</sup>
         </p>
         <textarea maxLength="1000" placeholder="Why did you like the product or not?" onChange={this.handleChange} />
-        {this.state.body.length < 50
+        {body.length < 50
           ? (
             <div className="rUnderText">
               Minimum required characters left:&nbsp;
-              {50 - this.state.body.length}
+              {50 - body.length}
             </div>
 
           )
@@ -38,49 +41,20 @@ class ReviewBody extends React.Component {
               Minimum Reached
             </div>
           )}
-        <div className="text-danger">{this.props.error}</div>
+        <div className="text-danger">{error}</div>
       </div>
     );
   }
 }
 
+ReviewBody.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+ReviewBody.defaultProps = {
+  error: '',
+};
+
 export default ReviewBody;
-// class ReviewBody extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       body: 'Why did you like the product or not?',
-//     };
-
-//     this.handleChange = this.handleChange.bind(this);
-//   }
-
-//   handleChange(event) {
-//     this.setState({ body: event.target.value });
-//     this.props.updateState({ body: event.target.value });
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <p>Review:</p>
-//         <textarea maxLength="1000" minLength="50" value={this.state.body} onChange={this.handleChange} />
-//         {this.state.body.length < 50
-//           ? (
-//             <>
-//               <br />
-//               Minimum required characters left:&nbsp;
-//               {50 - this.state.body.length}
-//             </>
-
-//           )
-//           : (
-//             <>
-//               <br />
-//               Minimum Reached
-//             </>
-//           )}
-//       </div>
-//     );
-//   }
-// }

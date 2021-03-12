@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CoolButton = ({
   func, text, name, sendClickData,
@@ -7,6 +8,10 @@ const CoolButton = ({
     role="button"
     tabIndex="0"
     className="acontainer"
+    onKeyPress={() => {
+      { text ? sendClickData(text) : null; }
+      func();
+    }}
     onClick={() => {
       { text ? sendClickData(text) : null; }
       func();
@@ -23,5 +28,17 @@ const CoolButton = ({
     </div>
   </div>
 );
+
+CoolButton.propTypes = {
+  func: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  sendClickData: PropTypes.func,
+  text: PropTypes.string,
+};
+
+CoolButton.defaultProps = {
+  text: '',
+  sendClickData: () => {},
+};
 
 export default CoolButton;

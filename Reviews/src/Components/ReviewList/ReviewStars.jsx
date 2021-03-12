@@ -13,4 +13,8 @@ const ReviewStars = ({ rating }) => {
   );
 };
 
+ReviewStars.propTypes = {
+  rating: PropTypes.number.isRequired,
+};
+
 export default ReviewStars;

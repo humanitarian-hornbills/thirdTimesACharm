@@ -91,6 +91,7 @@
   margin-right: 5px;
   display: grid;
   grid-template-rows: repeat(5 1fr);
+  /* overflow-y:visible; */
 
 }
 .card:hover{
@@ -110,9 +111,11 @@
 
 .category {
   color: #888;
+  font-size: 0.8rem;
 }
 .sale {
   text-decoration: line-through;
+  color: #888;
 }
 .price>:nth-child(2) {
   margin-left: 5px;
@@ -126,7 +129,7 @@
   height: 43px;
   overflow-x: auto;
   overflow-y: hidden;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 .thumbnail-row::-webkit-scrollbar{
   display:none;

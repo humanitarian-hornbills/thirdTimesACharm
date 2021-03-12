@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .container{
@@ -18,33 +18,33 @@ body {
 
 .related-products {
   display: grid;
-  grid-template-columns:1fr 1170px 1fr;
+  grid-template-columns: 1170px;
   grid-template-rows: 400px 400px;
   /* z-index: 1; */
 }
 @media (min-width: 1410px) {
   .related-products{
-    grid-template-columns: 1fr 1405px 1fr;
+    grid-template-columns:  1405px;
   }
 }
 @media (max-width: 1180px) {
   .related-products{
-    grid-template-columns: 1fr 935px 1fr;
+    grid-template-columns:  935px;
   }
 }
 @media (max-width: 945px) {
   .related-products{
-    grid-template-columns: 1fr 700px 1fr;
+    grid-template-columns:  700px;
   }
 }
 #related-list {
   /* position: relative; */
-  grid-area: 1/2/2/3;
+  grid-row: 1/2;
   z-index: 2;
   justify-content: center;
 }
 #outfit-list {
-  grid-area: 2/2/3/3;
+  grid-row: 2/3;
   /* margin-top: 400px; */
   /* z-index: 1; */
 }

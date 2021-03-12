@@ -12,7 +12,7 @@ const randomNum = Math.floor(Math.random() * products.length);
 const id = products[randomNum];
 
 // eslint-disable-next-line import/prefer-default-export
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   #app>div{
     box-sizing: border-box;
     margin: 30px 10%;

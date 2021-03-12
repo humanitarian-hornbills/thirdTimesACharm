@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BreakdownItem from './BreakdownItem.jsx'
+import BreakdownItem from './BreakdownItem.jsx';
 
-const Breakdown = ({ ratings, selectStars, addStar, sendClickData }) => {
+const Breakdown = ({
+  ratings, selectStars, addStar, sendClickData,
+}) => {
   const sortedArr = [];
   let reviewCount = 0;
-  Object.keys(ratings).forEach(key => {
+  Object.keys(ratings).forEach((key) => {
     reviewCount += Number(ratings[key]);
     const entry = [Number(key), Number(ratings[key])];
     sortedArr[Math.abs(Number(key) - 5)] = entry;

@@ -22,16 +22,16 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    const currentProductId = '14307';
-    axios.get(`/products/${currentProductId}/related`)
+    const {product} = this.props;
+    axios.get(`/products/${product}/related`)
       .then((res) => {
         this.setState({ relatedList: res.data });
       });
-    axios.get(`/products/${currentProductId}/styles`)
+    axios.get(`/products/${product}/styles`)
       .then((res) => {
         this.setState({ currentImg: res.data.results[0].photos[0].thumbnail_url });
       });
-    axios.get(`/products/${currentProductId}`)
+    axios.get(`/products/${product}`)
       .then((res) => {
         this.setState({ currentProduct: res.data });
       });

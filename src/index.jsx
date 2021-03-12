@@ -21,8 +21,13 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => (
   <>
+<<<<<<< HEAD
     <Products product={id} />
     <RelatedProducts />
+=======
+    <Products product={id}/>
+    <RelatedProducts product={id} />
+>>>>>>> 95632228 (fix scroll button behavior)
     <QA product={id} />
     <FadeInSection productId={id} />
     <GlobalStyle />

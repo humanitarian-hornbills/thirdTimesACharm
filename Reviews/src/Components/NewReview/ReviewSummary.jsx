@@ -5,6 +5,7 @@ const ReviewSummary = ({ updateState, error, sendClickData }) => (
   <div id="rSummary">
     <p className="rTextTitle">
       REVIEW SUMMARY:
+      {' '}
       <sup className="redA">*</sup>
     </p>
     <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { updateState({ summary: e.target.value }); sendClickData('new review summary updated'); }} />

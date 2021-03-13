@@ -29,7 +29,7 @@ class AddPhoto extends React.Component {
 
   render() {
     const { show, hide, sendClickData } = this.props;
-    const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+    const showHideClassName = show ? 'newPhotoModal display-block' : 'newPhotoModal display-none';
     const photoInputs = [];
     for (let i = 1; i < 6; i += 1) {
       photoInputs.push(

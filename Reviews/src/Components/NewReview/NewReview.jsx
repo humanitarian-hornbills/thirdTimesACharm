@@ -177,21 +177,9 @@ class NewReview extends React.Component {
     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
     const allPhotos = photos;
     return (
-      // <div className={showHideClassName}>
       <div>
         <section id="addReviewModal" className="modal-main">
-          {/* <div id="scrollBarDiv"> */}
-            {/* <section> */}
-              <div id="scrollBarDiv">
-            {/* <span
-              role="button"
-              tabIndex="0"
-              onKeyPress={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-              onClick={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-              className="rclose"
-            >
-              &times;
-            </span> */}
+          <div id="scrollBarDiv">
             <div id="allNewReviewForms">
               <NewReviewTop prodUrl={prodUrl} name={name} />
               <div id="newReviewRateRec">

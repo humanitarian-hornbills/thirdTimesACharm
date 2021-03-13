@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 const Nickname = ({ updateState, error, sendClickData }) => (
   <div id="rName">
-    <p>
+    <p className="rTextTitle">
       NICKNAME:
+      {' '}
       <sup className="redA">*</sup>
     </p>
     <input

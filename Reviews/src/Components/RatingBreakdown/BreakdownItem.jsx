@@ -11,7 +11,7 @@ const BreakdownItem = ({
         {pair[0]}
         &nbsp;STARS
       </div>
-      <div className="outerLine" style={{ width: 225 }}>
+      <div className="outerLine">
         <div className="innerLine" style={{ width: avg }} />
       </div>
       &nbsp;

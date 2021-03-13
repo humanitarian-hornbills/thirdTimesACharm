@@ -78,6 +78,11 @@ class NewReview extends React.Component {
     });
   }
 
+  close() {
+    const closeBtn = document.getElementById('modal-btn')
+    closeBtn.click();
+  }
+
   submitReview() {
     const { sendNewReview, close, sendClickData } = this.props;
     if (this.validate()) {
@@ -88,7 +93,7 @@ class NewReview extends React.Component {
       sendNewReview(newReview);
       sendClickData('new review submitted');
       this.clearState();
-      close();
+      this.close();
     } else {
       sendClickData('new review not sent - missing data');
     }
@@ -214,7 +219,7 @@ class NewReview extends React.Component {
                   updateState={this.updateState}
                 />
               </div>
-              <div>
+              <div id="addPhotoBtn">
                 {allPhotos.length < 5
                   ? (
                     <CoolButton sendClickData={sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
@@ -266,7 +271,6 @@ class NewReview extends React.Component {
 
 NewReview.propTypes = {
   show: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired,
   sendClickData: PropTypes.func.isRequired,
   prodUrl: PropTypes.string,
   name: PropTypes.string.isRequired,

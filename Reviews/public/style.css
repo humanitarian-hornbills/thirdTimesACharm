@@ -60,8 +60,7 @@ div.parent div {
 
 .reviewListItem {
   border-bottom: solid black 1px;
-  /* margin-bottom: 30px; */
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 20px;
 }
 
@@ -173,6 +172,11 @@ div.parent div {
 
 .modal-addPhotos {
   top:50%;
+  border-radius: 10px;
+}
+
+.modal-addPhotos .rSectionTitle {
+  margin-bottom: 15px;
 }
 
 /* new review add photo modal  */
@@ -180,6 +184,10 @@ div.parent div {
   position: absolute;
   width: 400px;
   /* margin-top: 30%; */
+}
+
+#addPhotoBtn {
+  margin-bottom: 15px;
 }
 
 .modal-addPhotos h3 {
@@ -468,6 +476,7 @@ font-size: 18px;
 }
 
 .reviewBody {
+  margin-top: 20px;
   font-weight: 200;
 }
 
@@ -580,11 +589,12 @@ font-size: 18px;
 
 }
 
-.ratingDivider {
+#ratingBox div .ratingDivider {
   height: 1px;
   width: 295px;
   background-color: #ebedee;
-  margin-top: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .factorData {
@@ -666,7 +676,7 @@ font-size: 18px;
 }
 
 /* image modal  */
-.pmodal {
+#reviewBox #mainButtons .pmodal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 10; /* Sit on top */
@@ -677,6 +687,7 @@ font-size: 18px;
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  margin: 0;
 }
 
 #addReviewModal .pmodal {
@@ -698,8 +709,8 @@ div.parent .modal-content {
 }
 
 #addReviewModal .modal-content {
-  margin: 60% auto;
-  z-index: 10;
+  margin: 5% auto;
+  z-index: 350;
 }
 
 #addReviewModal{
@@ -717,26 +728,32 @@ div.parent .modal-content {
 }
 
 /* The Close Button */
-.pclose, .rclose {
-  color: black;
+#mainButtons .pmodal .modal-content .pclose, .rclose {
+  position: fixed;
   background-color: transparent;
   font-size: 28px;
   height:40px;
   width: 40px;
   font-weight: bold;
   z-index: 15;
-  position: absolute;
+  font-family: Helvetica, Arial, sans-serif;
+  content: '\274c';
+  position: fixed;
+  color: red;
+  top: 30px;
+  right: 30px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   right: 0;
+  z-index: 20;
 }
 
 .pclose:hover,
 .pclose:focus,
 .rclose:hover,
 .rclose:focus {
-  color: red;
+  color: black;
   text-decoration: none;
   cursor: pointer;
 }
@@ -755,12 +772,10 @@ div.parent .modal-content {
   flex-grow: 1;
 }
 
-
 .acontainer {
   width: 200px;
   height: 50px;
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -796,7 +811,6 @@ div.parent .modal-content {
 .abtn:hover {
   transition: 1s ease-in-out;
   background: red;
-  color: white
 }
 
 .abtn:hover svg {
@@ -809,7 +823,8 @@ div.parent .modal-content {
   font-weight: bold;
 }
 
-.abtn span:hover {
+.abtn:hover span {
+  transition: 1s ease-in-out;
   color: white;
 }
 
@@ -826,31 +841,7 @@ div.parent .modal-content {
   visibility: visible;
 }
 
-
-/* tetsing  */
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-} */
-
-
-/* .section{
-  position: relative;
-  width: 100%;
-  display: block;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-.full-height{
-  min-height: 100vh;
-} */
+/* new add review modal function */
 
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked){
@@ -863,7 +854,7 @@ div.parent .modal-content {
   font-weight: bold;
   font-size: 15px;
   height: 50px;
-  transition: all 200ms linear;
+  transition: all 1s ease-in-out;
   width: 200px;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -888,7 +879,7 @@ div.parent .modal-content {
 }
 .modal-btn:not(:checked) + label:hover{
   background-color:white;
-  color: red;
+  color: black;
 }
 .modal-btn:checked + label .uil,
 .modal-btn:not(:checked) + label .uil{
@@ -907,27 +898,28 @@ div.parent .modal-content {
   text-align: center;
   line-height: 30px;
   font-size: 18px;
-  background-color: red;
-  color: black;
+  background-color: transparent;
+  color: red;
   font-family: FontAwesome;
-  content: '\f057';
-  box-shadow: 0 12px 25px 0 rgba(16,39,112,.25);
-  transition: all 200ms linear;
+  content: '\f00d';
+  font-size: 30px;
+  transition: all 1s ease-in-out;
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
 }
 .modal-btn:checked + label:hover:after,
 .modal-btn:not(:checked) + label:hover:after{
-  background-color: #102770;
-  color: #ffeba7;
+  color: black;
+
 }
 .modal-btn:checked + label:after{
-  transition: opacity 300ms 300ms ease, transform 300ms 300ms ease, background-color 250ms linear, color 250ms linear;
+  transition: opacity 300ms 300ms ease-in-out, transform 300ms 300ms ease-in-out, background-color 250ms ease-in-out, color 250ms ease-in-out;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
+
 .modal{
   position: fixed;
   display: block;
@@ -937,7 +929,7 @@ div.parent .modal-content {
   flex-wrap: wrap;
   -ms-flex-pack: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -949,6 +941,7 @@ div.parent .modal-content {
   opacity: 0;
   transition: opacity 250ms 700ms ease;
 }
+
 .modal-btn:checked ~ .modal{
   pointer-events: auto;
   opacity: 1;
@@ -959,7 +952,6 @@ div.parent .modal-content {
   display: block;
   height: 500px;
   width: 1000px;
-  /* max-width: 800px; */
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -967,9 +959,9 @@ div.parent .modal-content {
   overflow: hidden;
   padding-bottom: 20px;
   background-color: #fff;
-    -ms-flex-item-align: center;
-    align-self: center;
-    box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
+  -ms-flex-item-align: center;
+  align-self: center;
+  box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
@@ -981,6 +973,10 @@ div.parent .modal-content {
   transition: opacity 250ms 500ms ease, transform 350ms 500ms ease;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 @media screen and (max-width: 500px) {
 	.modal-wrap {
 		width: calc(100% - 40px);
@@ -989,4 +985,21 @@ div.parent .modal-content {
 	.modal-wrap p {
 	  padding: 15px 20px 0 20px;
 	}
+}
+
+/* width */
+#scrollBarDiv::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#scrollBarDiv::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+#scrollBarDiv::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
 }

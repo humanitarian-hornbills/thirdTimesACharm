@@ -58,7 +58,7 @@ class AddPhoto extends React.Component {
             &times;
           </span>
           <h3 className="rSectionTitle">ADD PHOTOS</h3>
-          <div>ENTER THE URLs TO YOUR IMAGES BELOW</div>
+          <p className=".rTextTitle">ENTER THE URLs TO YOUR IMAGES BELOW</p>
           <div id="newReviewPhotoInputs">
             <form>
               {photoInputs}

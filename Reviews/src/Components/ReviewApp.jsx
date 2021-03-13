@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
@@ -30,7 +31,6 @@ class ReviewApp extends React.Component {
 
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
     this.getSort = this.getSort.bind(this);
-    this.showModal = this.showModal.bind(this);
     this.sendNewReview = this.sendNewReview.bind(this);
     this.markAsHelpful = this.markAsHelpful.bind(this);
     this.reportReview = this.reportReview.bind(this);
@@ -122,16 +122,10 @@ class ReviewApp extends React.Component {
     });
   }
 
-  showModal() {
-    const { newReview } = this.state;
-    this.setState({
-      newReview: !newReview,
-    });
-  }
-
   photoModal(src) {
     const modal = document.getElementById('pModal');
     const span = document.getElementsByClassName('pclose');
+    const photo = document.getElementsByClassName('pModalPhoto')[0];
     this.setState({
       modalPhoto: src,
     });
@@ -144,6 +138,10 @@ class ReviewApp extends React.Component {
       };
       newSpan.push(span[key]);
     });
+    photo.onclick = (event) => {
+      this.sendClickData('close photo modal by clicking photo');
+      modal.style.display = 'none';
+    };
     window.onclick = (event) => {
       if (event.target === modal) {
         this.sendClickData('close photo modal by clicking outside of modal');
@@ -166,7 +164,7 @@ class ReviewApp extends React.Component {
     newObj.product_id = productId;
     axios.post('/newReview', newObj)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       });
   }
 
@@ -231,6 +229,18 @@ class ReviewApp extends React.Component {
     });
   }
 
+  stopScrolling() {
+    const { newReview } = this.state;
+    if (!newReview) {
+      $('body').addClass('modal-open');
+    } else {
+      $('body').removeClass('modal-open');
+    }
+    this.setState({
+      newReview: !newReview,
+    });
+  }
+
   render() {
     console.log(this.state);
     const {
@@ -277,10 +287,8 @@ class ReviewApp extends React.Component {
                 {allReviews.length > reviewCount
                   ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
                   : <></>}
-
                 <div className="section full-height">
-                  <input className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
-
+                  <input onClick={() => { this.sendClickData('review modal'); this.stopScrolling(); }} className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
                   <label htmlFor="modal-btn">
                     NEW REVIEW
                   </label>
@@ -289,7 +297,6 @@ class ReviewApp extends React.Component {
                       <NewReview
                         name={productName}
                         factors={factors}
-                        close={this.showModal}
                         show={newReview}
                         sendNewReview={this.sendNewReview}
                         photoModal={this.photoModal}

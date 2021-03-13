@@ -13,9 +13,9 @@ const ReviewPhotos = ({ photos, photoModal, sendClickData }) => {
     />
   ));
   return (
-    <>
+    <span className="reviewBody">
       {allPhotos}
-    </>
+    </span>
   );
 };
 

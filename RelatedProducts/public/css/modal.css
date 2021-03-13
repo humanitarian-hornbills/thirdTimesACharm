@@ -82,7 +82,7 @@
     transform:translateX(-30px) skewX(-5deg) scaleX(.9);
   }
   100% {
-    transform:translateX(130%) skewX(30deg) scaleX(1.3);
+    transform:translateX(150%) skewX(30deg) scaleX(1.3);
   }
 }
 

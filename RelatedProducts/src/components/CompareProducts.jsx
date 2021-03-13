@@ -5,7 +5,6 @@ const CompareProducts = ({ compareProduct, currentProduct, compareStyle, current
   // const currentFeatures = currentProduct
   let productFeatures = []
   if (currentProduct && compareProduct) {
-    console.log(currentProduct, compareProduct)
     let compareProductFeatures = {};
     compareProduct.features.forEach((feature) => {
       compareProductFeatures[feature.feature] = feature.value;
@@ -13,23 +12,43 @@ const CompareProducts = ({ compareProduct, currentProduct, compareStyle, current
 
     productFeatures = currentProduct.features.map((feature) => {
       if (compareProductFeatures[feature.feature]) {
-        return (<div><div>feature.feature</div> <div>compareProductFeatures[feature.feature]</div></div>)
+        return (<tr><td>{feature.feature}</td><td>{feature.value}</td> <td>{compareProductFeatures[feature.feature]}</td></tr>)
       }
-      return (<div><div>{feature.feature}</div><div>Unknown</div></div>)
-
+      return (<tr><td>{feature.feature}</td><td>{feature.value}</td><td>N/A</td></tr>)
     })
-    console.log(productFeatures)
   }
   return (
     <div id="compare-modal" className="compare-modal">
       <div id="modal-content" className="modal-content">
         <span id="close">&times;</span>
-        <div>Compare Products</div>
+        <div className="modal-title">Compare Products</div>
         <div className="compare">
-        {productFeatures}
+          {(currentProduct && compareProduct) &&
+            (
+              <table>
+                <tr>
+                  <th></th>
+                  <th>{currentProduct.name}</th>
+                  <th>{compareProduct.name}</th>
+                </tr>
+                <tr>
+                  <td>Category</td>
+                  <td>{currentProduct.category}</td>
+                  <td>{compareProduct.category}</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>{currentProduct.default_price}</td>
+                  <td>{compareProduct.default_price}</td>
+                </tr>
+                {productFeatures}
+              </table>
+            )}
+
+
+
         </div>
       </div>
-
     </div>
   )
 };

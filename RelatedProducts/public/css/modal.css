@@ -86,8 +86,17 @@
   }
 }
 
+table{
+  text-align: center;
+  width: 100%;
+  border: 1px solid #888;
+  border-radius: 5px;
+  border-collapse: collapse;
+}
+th,td {
+  border: 1px solid #888;
 
-
+}
 
 #close {
   color: #888;
@@ -99,4 +108,11 @@
 #close:hover {
   color: black;
   cursor: pointer;
+}
+.modal-title{
+  text-align: center;
+  font-weight: bold;
+}
+tr >:nth-child(1) {
+  font-weight: bold;
 }

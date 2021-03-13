@@ -41,7 +41,7 @@ class AddPhoto extends React.Component {
             {i}
             :
             {' '}
-            <input id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
+            <input className="newRevPhotoInput" id={`p${i}`} name={i - 1} type="text" onChange={this.handleChange} />
           </label>
         </div>,
       );

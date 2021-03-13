@@ -224,7 +224,7 @@ class ReviewApp extends React.Component {
       $('body').addClass('modal-open');
     } else {
       $('body').removeClass('modal-open');
-      setTimeout(() => this.clearData(), 3000);
+      setTimeout(() => this.clearData(), 2000);
     }
     this.setState({
       newReview: !newReview,
@@ -233,8 +233,8 @@ class ReviewApp extends React.Component {
 
   clearData() {
     $('.radio-btn, .charRadios, .recRadios').prop('checked', false);
-    $('.newRevInput').val('');
-    $('.rNewPhoto').html('');
+    $('.newRevInput, .newRevPhotoInput').val('');
+    $('.newRevTempPhoto').html('');
   }
 
   render() {

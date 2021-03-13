@@ -6,7 +6,7 @@ const DisplayPhotos = ({ photos, photoModal, sendClickData }) => {
     <div
       role="button"
       tabIndex="0"
-      className="rNewPhoto"
+      className="rNewPhoto newRevTempPhoto"
       onClick={() => { photoModal(photo); sendClickData('new review added photo expanded'); }}
       onKeyPress={() => { photoModal(photo); sendClickData('new review added photo expanded'); }}
     >

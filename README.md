@@ -3,16 +3,23 @@
 [![Generic badge](https://img.shields.io/badge/react-16.14.0-yellowgreen.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/License-MIT-informational.svg)](https://shields.io/)
 
-
 # ThirdTimesACharm
 
-
-
-## Installation
+introduction
+## Setup
 
 ```bash
-npm install 
+$ cd thirdTimesACharm/
+$ npm install 
+$ npm run webpack
+$ npm run build
+$ npm run start
 ```
+
+## Features
+
+* individule widgets
+
 ## Version
 Current available version: **Version: 1.0.0**
 
@@ -20,6 +27,7 @@ Current available version: **Version: 1.0.0**
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Authors
+| Name                | Github                         | Email                     |Widget |
 | Name                | Github                         | Email                     |Widget |
 | --------------------|:------------------------------:| -----------------------   |------:|
 | Agustin Feliciano   |https://github.com/gusfel       |agustinjfeliciano@gmail.com|Reviews|

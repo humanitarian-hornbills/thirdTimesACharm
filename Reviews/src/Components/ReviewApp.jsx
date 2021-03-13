@@ -244,11 +244,11 @@ class ReviewApp extends React.Component {
         [key, ratings.characteristics[key].id]
       ));
       return (
-        <div>
+        <div id="reviews">
           <h1>
             RATINGS &amp; REVIEWS
           </h1>
-          <div className="parent" id="reviews">
+          <div className="parent">
             <div id="ratingBox">
               <RatingBreakdown
                 clearStars={this.clearStars}
@@ -277,19 +277,30 @@ class ReviewApp extends React.Component {
                 {allReviews.length > reviewCount
                   ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
                   : <></>}
-                <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
+
+                <div className="section full-height">
+                  <input className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
+
+                  <label htmlFor="modal-btn">
+                    NEW REVIEW
+                  </label>
+                  <div className="modal">
+                    <div className="modal-wrap">
+                      <NewReview
+                        name={productName}
+                        factors={factors}
+                        close={this.showModal}
+                        show={newReview}
+                        sendNewReview={this.sendNewReview}
+                        photoModal={this.photoModal}
+                        prodUrl={prodUrl}
+                        sendClickData={this.sendClickData}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <PhotoModal src={modalPhoto} />
               </div>
-              <NewReview
-                name={productName}
-                factors={factors}
-                close={this.showModal}
-                show={newReview}
-                sendNewReview={this.sendNewReview}
-                photoModal={this.photoModal}
-                prodUrl={prodUrl}
-                sendClickData={this.sendClickData}
-              />
-              <PhotoModal src={modalPhoto} />
             </div>
           </div>
         </div>

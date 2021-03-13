@@ -12,7 +12,7 @@ class Card extends React.Component {
     this.state = {
       // name: 'Product name',
       imgs: [],
-      coverImg: ['./img/img-test.png'],
+      coverImg: ['./img/img-test.gif'],
       rating: 0,
       salePrice: null,
       thumbnailVisible: false,

@@ -830,7 +830,7 @@ div.parent .modal-content {
 } */
 
 
-.section{
+/* .section{
   position: relative;
   width: 100%;
   display: block;
@@ -843,7 +843,7 @@ div.parent .modal-content {
 }
 .full-height{
   min-height: 100vh;
-}
+} */
 
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked){

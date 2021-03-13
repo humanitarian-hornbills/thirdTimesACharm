@@ -3,8 +3,8 @@ import Card from './Card.jsx';
 import ScrollBtn from './ScrollBtn.jsx';
 
 const RelatedList = ({ onCompare, relatedList, currentProduct }) => {
-  const handleCompare = (id) => {
-    onCompare(id);
+  const handleCompare = (id, styles, cardProduct) => {
+    onCompare(id, styles, cardProduct);
   };
   const list = relatedList.map((item) => (
     <Card onClick={handleCompare} key={item} id={item} list="relatedList" currentProduct={currentProduct} />

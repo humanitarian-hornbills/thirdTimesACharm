@@ -15,19 +15,14 @@ const id = products[randomNum];
 const GlobalStyle = createGlobalStyle`
   #app>div{
     box-sizing: border-box;
-    margin: 30px 10%;
+    margin: 80px 10%;
   }
 `;
 
 const App = () => (
   <>
-<<<<<<< HEAD
-    <Products product={id} />
-    <RelatedProducts />
-=======
     <Products product={id}/>
     <RelatedProducts product={id} />
->>>>>>> 95632228 (fix scroll button behavior)
     <QA product={id} />
     <FadeInSection productId={id} />
     <GlobalStyle />

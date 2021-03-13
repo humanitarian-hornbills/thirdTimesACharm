@@ -16,6 +16,7 @@ class Card extends React.Component {
       rating: 0,
       salePrice: null,
       thumbnailVisible: false,
+      styles: null,
       cardProduct: { name: '', category: '', default_price: '' },
       // price: 0,
     };
@@ -38,6 +39,7 @@ class Card extends React.Component {
         this.setState({
           imgs: images,
           coverImg: images,
+          styles: res.data,
         });
         axios.get(`/products/${id}`)
           .then((response) => {
@@ -50,9 +52,10 @@ class Card extends React.Component {
   }
 
   handleClick(e) {
+    const { styles, cardProduct } = this.state;
     e.preventDefault();
     const { id } = this.props;
-    this.props.onClick(id);
+    this.props.onClick(id, styles, cardProduct);
   }
 
   handleOnMouseEnter() {
@@ -111,10 +114,10 @@ class Card extends React.Component {
               </span>
             )}
           {salePrice && (
-          <span>
-            $
-            {salePrice}
-          </span>
+            <span>
+              $
+              {salePrice}
+            </span>
           )}
         </div>
         <div className="rating">

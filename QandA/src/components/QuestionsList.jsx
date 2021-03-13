@@ -25,8 +25,8 @@ const Button = styled.button`
 
 const QuestionsList = ({
   productData, answers, setAnswers, search, setShowQModal, setShowAnsModal,
-  clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
-  setTargetQ,
+  helpfulQ, setHelpfulQ, reportQ, setReportQ, helpfulAnswer, setHelpfulAnswer,
+  reportAnswer, setReportAnswer, setTargetQ,
 }) => {
   let questions;
   if (productData) {
@@ -72,16 +72,21 @@ const QuestionsList = ({
                       && (
                         <Question
                           key={question.question_id}
+                          productId={productData.product_id}
                           question={question}
                           answersQ={answersQ}
                           setAnswers={setAnswers}
                           findInQ={false}
                           search={search}
                           setShowAnsModal={setShowAnsModal}
-                          clickedAnsHelpful={clickedAnsHelpful}
-                          setClickedAnsHelpful={setClickedAnsHelpful}
-                          clickedReport={clickedReport}
-                          setClickedReport={setClickedReport}
+                          helpfulQ={helpfulQ}
+                          setHelpfulQ={setHelpfulQ}
+                          reportQ={reportQ}
+                          setReportQ={setReportQ}
+                          helpfulAnswer={helpfulAnswer}
+                          setHelpfulAnswer={setHelpfulAnswer}
+                          reportAnswer={reportAnswer}
+                          setReportAnswer={setReportAnswer}
                           setTargetQ={setTargetQ}
                         />
                       )

@@ -115,7 +115,6 @@ class RelatedProducts extends React.Component {
       currentStyle,
     } = this.state;
     return (
-      <div className="warper-div">
       <div className="related-products">
         <RelatedList
           onCompare={this.handleCompare}
@@ -135,8 +134,6 @@ class RelatedProducts extends React.Component {
           currentStyle={currentStyle}
           currentProduct={currentProduct}
         />
-      </div>
-
       </div>
     );
   }

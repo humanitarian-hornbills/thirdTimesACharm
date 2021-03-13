@@ -39,16 +39,14 @@ const QA = ({ product }) => {
   const [search, setSearch] = useState('');
   const [showQModal, setShowQModal] = useState(false);
   const [showAnsModal, setShowAnsModal] = useState(false);
-  const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
-  const [clickedReport, setClickedReport] = useState([]);
+  // const [showImgModal, setShowImgModal] = useState(false);
+  const [helpfulQ, setHelpfulQ] = useState([]);
+  const [reportQ, setReportQ] = useState([]);
+  const [helpfulAnswer, setHelpfulAnswer] = useState([]);
+  const [reportAnswer, setReportAnswer] = useState([]);
   const [targetQ, setTargetQ] = useState({});
 
-  const randomProduct = (response) => (
-    response[Math.floor(Math.random() * response.length)].id
-  );
-
   const qIds = [];
-  let randomId;
 
   const getQuestions = () => {
     axios.get(`questions/${product}`)
@@ -114,7 +112,6 @@ const QA = ({ product }) => {
       body: content, name: nickname, email, product_id: product,
     })
       .then(() => {
-        // getQuestions();
         console.log('success posting question');
       })
       .catch((err) => {
@@ -154,16 +151,19 @@ const QA = ({ product }) => {
           ? (
             <QuestionsList
               productData={questions[product]}
-              questionsId={questionsId}
               answers={answers}
               setAnswers={setAnswers}
               search={search}
               setShowQModal={setShowQModal}
               setShowAnsModal={setShowAnsModal}
-              clickedAnsHelpful={clickedAnsHelpful}
-              setClickedAnsHelpful={setClickedAnsHelpful}
-              clickedReport={clickedReport}
-              setClickedReport={setClickedReport}
+              helpfulQ={helpfulQ}
+              setHelpfulQ={setHelpfulQ}
+              reportQ={reportQ}
+              setReportQ={setReportQ}
+              helpfulAnswer={helpfulAnswer}
+              setHelpfulAnswer={setHelpfulAnswer}
+              reportAnswer={reportAnswer}
+              setReportAnswer={setReportAnswer}
               setTargetQ={setTargetQ}
             />
           )
@@ -188,11 +188,19 @@ const QA = ({ product }) => {
             addAnswer={addAnswer}
           />
         )}
+      {/* {showImgModal
+        && (
+          <ImageModal
+            showModal={showImgModal}
+            setShowModal={setShowImgModal}
+            productName={productName}
+            targetQ={targetQ}
+            addAnswer={addAnswer}
+          />
+        )} */}
       <Global />
     </div>
   );
 };
 
 export default QA;
-
-// ReactDOM.render(<QA />, document.getElementById('app'));

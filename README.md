@@ -8,8 +8,11 @@
 
 
 
+## Installation
 
-
+```bash
+npm install 
+```
 ## Version
 Current available version: **Version: 1.0.0**
 

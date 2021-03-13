@@ -277,8 +277,15 @@ class ReviewApp extends React.Component {
                 {allReviews.length > reviewCount
                   ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
                   : <></>}
-                <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
-              </div>
+
+          <div className="section full-height">
+            <input className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
+
+            <label htmlFor="modal-btn">
+              NEW REVIEW
+            </label>
+            <div className="modal">
+              <div className="modal-wrap">
               <NewReview
                 name={productName}
                 factors={factors}
@@ -289,9 +296,35 @@ class ReviewApp extends React.Component {
                 prodUrl={prodUrl}
                 sendClickData={this.sendClickData}
               />
+              </div>
+            </div>
+                {/* <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" /> */}
+              </div>
+              {/* <NewReview
+                name={productName}
+                factors={factors}
+                close={this.showModal}
+                show={newReview}
+                sendNewReview={this.sendNewReview}
+                photoModal={this.photoModal}
+                prodUrl={prodUrl}
+                sendClickData={this.sendClickData}
+              /> */}
               <PhotoModal src={modalPhoto} />
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+          </div>
+
+
         </div>
       );
     }

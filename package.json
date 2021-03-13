@@ -9,8 +9,8 @@
     "build": "webpack --config webpack.prod.js",
     "start": "nodemon server.js",
     "forever": "forever start server.js",
-    "coverage": "jest --collectCoverage",
-    "stop": "forever stopall"
+    "stop":"forever stop server.js",
+    "coverage": "jest --collectCoverage"
   },
   "repository": {
     "type": "git",

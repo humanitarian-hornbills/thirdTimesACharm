@@ -15,14 +15,18 @@ body {
   scroll-behavior: smooth;
   margin-top: 20px;
 }
-
+/* .warpper-div{
+  display:flex;
+  justify-content: center;
+} */
 .related-products {
   display: grid;
-  grid-template-columns: 1170px;
+  /* padding-right: 20%; */
+  grid-template-columns: 100%;
   grid-template-rows: 400px 400px;
   /* z-index: 1; */
 }
-@media (min-width: 1410px) {
+/* @media (min-width: 1410px) {
   .related-products{
     grid-template-columns:  1405px;
   }
@@ -36,7 +40,7 @@ body {
   .related-products{
     grid-template-columns:  700px;
   }
-}
+} */
 #related-list {
   /* position: relative; */
   grid-row: 1/2;

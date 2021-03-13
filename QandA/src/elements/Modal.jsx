@@ -56,18 +56,18 @@ export const Form = styled.form`
   textarea {
     font-family: sans-serif;
   }
+  `;
 
-  button {
-    min-width: 40%;
-    height: 50px;
-    margin-top: 40px;
-    margin-left: 0;
-    margin-right: 20px;
-    font-size: 1.2rem;
-    padding: 10px;
-    background: white;
-    &:hover {
+export const Button = styled.button`
+  min-width: 30%;
+  height: 50px;
+  margin-top: 40px;
+  margin-left: 0;
+  margin-right: 20px;
+  font-size: 1.2rem;
+  padding: 10px;
+  background: white;
+  &:hover {
     cursor: pointer;
-    }
   }
   `;

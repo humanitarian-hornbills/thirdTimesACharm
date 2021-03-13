@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 
 const AnswersList = ({
-  answersQ, setAnswers, search, foundInQ, clickedAnsHelpful, setClickedAnsHelpful,
-  clickedReport, setClickedReport,
+  answersQ, qId, setAnswers, search, foundInQ, helpfulAnswer, setHelpfulAnswer,
+  reportAnswer, setReportAnswer,
 }) => {
   const [moreAns, setMoreAns] = useState(2);
   const [sortedAns, setSortedAns] = useState(answersQ);
@@ -19,12 +19,11 @@ const AnswersList = ({
 
   const seller = [];
 
-  for (let i = 0; i < filterAns.length - 1; i += 1) {
+  for (let i = 0; i < filterAns.length; i += 1) {
     const currentAns = filterAns[i];
     if (currentAns.answerer_name.toLowerCase() === 'seller') {
       seller.push(currentAns);
       filterAns.splice(i, 1);
-      console.log(true);
     }
   }
 
@@ -40,13 +39,14 @@ const AnswersList = ({
         && (
         <Answer
           key={answer.answer_id}
+          qId={qId}
           answersQ={answersQ}
           answer={answer}
           setAnswers={setAnswers}
-          clickedAnsHelpful={clickedAnsHelpful}
-          setClickedAnsHelpful={setClickedAnsHelpful}
-          clickedReport={clickedReport}
-          setClickedReport={setClickedReport}
+          helpfulAnswer={helpfulAnswer}
+          setHelpfulAnswer={setHelpfulAnswer}
+          reportAnswer={reportAnswer}
+          setReportAnswer={setReportAnswer}
         />
         )))}
       <>

@@ -44,7 +44,6 @@ div#ratingBox * {
   width: 10px;
 }
 
-/* Handle */
 #reviewList::-webkit-scrollbar-thumb {
   background: grey;
 }
@@ -191,7 +190,6 @@ div.parent div {
 .modal-addPhotos {
   position: absolute;
   width: 400px;
-  /* margin-top: 30%; */
 }
 
 #addPhotoBtn {
@@ -575,7 +573,6 @@ font-size: 18px;
 #avgRatingStars {
   position: relative;
   left: 5px;
-  /* bottom: 2px; */
 }
 
 #avgRecText {
@@ -584,7 +581,6 @@ font-size: 18px;
 
 #avgRatingBox {
   font-size: 12px;
-  /* background-color: #2ada71; */
   height: 80px;
   margin-bottom: 10px;
 }
@@ -607,7 +603,6 @@ font-size: 18px;
   display: inline-block;
   position: relative;
   width: 100%;
-  /* left: -10px; */
 }
 
 .factorLine {
@@ -993,11 +988,6 @@ body.modal-open {
 #scrollBarDiv::-webkit-scrollbar {
   width: 10px;
 }
-
-/* Track */
-/* #scrollBarDiv::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-} */
 
 /* Handle */
 #scrollBarDiv::-webkit-scrollbar-thumb {

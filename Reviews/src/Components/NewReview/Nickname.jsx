@@ -9,8 +9,10 @@ const Nickname = ({ updateState, error, sendClickData }) => (
       <sup className="redA">*</sup>
     </p>
     <input
+      className="newRevInput"
       maxLength="60"
       type="text"
+      placeholder="Example: jack543!"
       onChange={(e) => {
         updateState({ name: e.target.value });
         sendClickData('new review nickname updated');

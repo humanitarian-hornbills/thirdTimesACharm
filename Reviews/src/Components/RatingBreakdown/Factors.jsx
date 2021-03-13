@@ -14,15 +14,28 @@ const Factors = ({ factors }) => {
   const factorsToUse = [];
 
   Object.keys(factors).forEach((key) => {
-    factors[key].edges = factorOptions[key];
-    factorsToUse.push({ [key]: factors[key] });
+    const factorObj = factors[key];
+    factorObj.edges = factorOptions[key];
+    factorsToUse.push({ [key]: factorObj });
   });
 
   return (
     <div>
-      {factorsToUse.map((factor, index) => <FactorItem factor={factor} key={index} />)}
+      {factorsToUse.map((factor) => (
+        <FactorItem
+          factor={factor}
+          key={Object.keys(factor)[0]}
+        />
+      ))}
     </div>
   );
+};
+
+Factors.propTypes = {
+  factors: PropTypes.shape({
+    id: PropTypes.number,
+    value: PropTypes.string,
+  }).isRequired,
 };
 
 export default Factors;

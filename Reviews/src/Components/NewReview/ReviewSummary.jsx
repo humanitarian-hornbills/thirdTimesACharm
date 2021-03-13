@@ -8,7 +8,7 @@ const ReviewSummary = ({ updateState, error, sendClickData }) => (
       {' '}
       <sup className="redA">*</sup>
     </p>
-    <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { updateState({ summary: e.target.value }); sendClickData('new review summary updated'); }} />
+    <textarea className="newRevInput" maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { updateState({ summary: e.target.value }); sendClickData('new review summary updated'); }} />
     <br />
     <div className="rUnderText">
       Limit 60 characters

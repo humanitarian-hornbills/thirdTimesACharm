@@ -19,7 +19,7 @@ const Recommend = ({ updateState, error, sendClickData }) => {
       <sup className="redA">*</sup>
       <div id="recRadios" onChange={(e) => { onChangeValue(e); }}>
         <div id="yes">
-          <input type="radio" value="1" name="recommend" />
+          <input className="recRadios" type="radio" value="1" name="recommend" />
           <span>
             {' '}
             Yes

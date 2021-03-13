@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
@@ -122,21 +123,12 @@ class ReviewApp extends React.Component {
 
   photoModal(src) {
     const modal = document.getElementById('pModal');
-    const span = document.getElementsByClassName('pclose');
     const photo = document.getElementsByClassName('pModalPhoto')[0];
     this.setState({
       modalPhoto: src,
     });
     modal.style.display = 'block';
-    const newSpan = [];
-    Object.keys(span).forEach((key) => {
-      span[key].onclick = () => {
-        this.sendClickData('close photo modal with X');
-        modal.style.display = 'none';
-      };
-      newSpan.push(span[key]);
-    });
-    photo.onclick = (event) => {
+    photo.onclick = () => {
       this.sendClickData('close photo modal by clicking photo');
       modal.style.display = 'none';
     };
@@ -232,14 +224,20 @@ class ReviewApp extends React.Component {
       $('body').addClass('modal-open');
     } else {
       $('body').removeClass('modal-open');
+      setTimeout(() => this.clearData(), 3000);
     }
     this.setState({
       newReview: !newReview,
     });
   }
 
+  clearData() {
+    $('.radio-btn, .charRadios, .recRadios').prop('checked', false);
+    $('.newRevInput').val('');
+    $('.rNewPhoto').html('');
+  }
+
   render() {
-    console.log(this.state);
     const {
       loaded, reviews, displayedReviews, ratings,
       starsSelected, productName, newReview, prodUrl, modalPhoto,

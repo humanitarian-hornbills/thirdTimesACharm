@@ -8,8 +8,13 @@ const Email = ({ updateState, error, sendClickData }) => (
       {' '}
       <sup className="redA">*</sup>
     </p>
-    <input maxLength="60" type="email" onChange={(e) => { updateState({ email: e.target.value }); sendClickData('new review email address updated'); }} />
-    <br />
+    <input
+      placeholder="Example: jack@email.com"
+      className="newRevInput"
+      maxLength="60"
+      type="email"
+      onChange={(e) => { updateState({ email: e.target.value }); sendClickData('new review email address updated'); }}
+    />
     <div className="rUnderText">
       Limit 60 characters
     </div>

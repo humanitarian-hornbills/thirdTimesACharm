@@ -13,7 +13,8 @@ class AddPhoto extends React.Component {
   }
 
   handleChange(event) {
-    const { photos, sendClickData } = this.state;
+    const { photos } = this.state;
+    const { sendClickData } = this.props;
     const photoArr = photos;
     photoArr.push(event.target.value);
     sendClickData('add photo to new review add photo form');
@@ -58,7 +59,7 @@ class AddPhoto extends React.Component {
             <i className="fas fa-times" />
           </span>
           <h3 className="rSectionTitle">ADD PHOTOS</h3>
-          <p className=".rTextTitle">ENTER THE URLs TO YOUR IMAGES BELOW</p>
+          <p className="rTextTitle">ENTER THE URLs TO YOUR IMAGES BELOW</p>
           <div id="newReviewPhotoInputs">
             <form>
               {photoInputs}

@@ -37,7 +37,7 @@ class CharItem extends React.Component {
         <section className="radioRow" onChange={this.onChangeValue}>
           {Object.keys(options).map((key) => (
             <div key={`${key}name`}>
-              <input type="radio" value={key} name={name} />
+              <input className="charRadios" type="radio" value={key} name={name} />
             </div>
           ))}
         </section>

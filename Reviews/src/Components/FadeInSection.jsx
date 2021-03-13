@@ -13,6 +13,7 @@ const FadeInSection = ({ children }) => {
     return () => observer.unobserve(domRef.current);
   }, []);
   return (
+
     <div
       className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
       ref={domRef}
@@ -20,6 +21,10 @@ const FadeInSection = ({ children }) => {
       {children}
     </div>
   );
+};
+
+FadeInSection.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default FadeInSection;

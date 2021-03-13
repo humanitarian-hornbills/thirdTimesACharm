@@ -225,6 +225,15 @@ div.parent div {
   margin-bottom: 5px;
 }
 
+.modal-addPhotos .rTextTitle {
+  text-align: center;
+}
+
+.modal-addPhotos .rSectionTitle {
+  width: fit-content;
+  margin: 15px auto;
+}
+
 #newReviewTop {
   position: relative;
   margin-left: auto;
@@ -730,7 +739,7 @@ div.parent .modal-content {
 }
 
 /* The Close Button */
-.newPhotoModal .modal-addPhotos .pclose, .rclose {
+.newPhotoModal .modal-addPhotos .pclose {
   position: relative;
   background-color: transparent;
   height:40px;
@@ -739,19 +748,19 @@ div.parent .modal-content {
   vertical-align: middle;
   text-align: center;
   z-index: 350;
+  outline: none;
+  color: red;
 }
 
 .fa-times {
   font-weight: bold;
-  color: red;
+
   font-family: FontAwesome;
   font-size: 30px;
 }
 
-.pclose:hover,
-.pclose:focus,
-.rclose:hover,
-.rclose:focus {
+.newPhotoModal .modal-addPhotos .pclose:hover,
+.newPhotoModal .modal-addPhotos .pclose:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

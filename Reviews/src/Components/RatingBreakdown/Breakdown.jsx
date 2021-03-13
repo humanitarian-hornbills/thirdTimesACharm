@@ -7,10 +7,16 @@ const Breakdown = ({
 }) => {
   const sortedArr = [];
   let reviewCount = 0;
-  Object.keys(ratings).forEach((key) => {
-    reviewCount += Number(ratings[key]);
-    const entry = [Number(key), Number(ratings[key])];
-    sortedArr[Math.abs(Number(key) - 5)] = entry;
+  const nums = [1, 2, 3, 4, 5];
+  nums.forEach((num) => {
+    let entry;
+    if (ratings[num]) {
+      reviewCount += Number(ratings[num]);
+      entry = [num, Number(ratings[num])];
+    } else {
+      entry = [num, 0];
+    }
+    sortedArr[Math.abs(num - 5)] = entry;
   });
   return (
     <div>
@@ -52,11 +58,3 @@ Breakdown.defaultProps = {
 };
 
 export default Breakdown;
-
-//   "ratings": {
-//       "1": "5",
-//       "2": "8",
-//       "3": "15",
-//       "4": "8",
-//       "5": "3"
-//   },

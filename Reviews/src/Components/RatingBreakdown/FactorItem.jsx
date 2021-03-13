@@ -30,11 +30,14 @@ const FactorItem = ({ factor }) => {
   );
 };
 
-// FactorItem.propTypes = {
-//   factor: PropTypes.shape({
-//     name: PropTypes.number.isRequired,
-
-//   })
-// }
+FactorItem.propTypes = {
+  factor: PropTypes.shape({
+    name: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.string,
+      ),
+    }),
+  }).isRequired,
+};
 
 export default FactorItem;

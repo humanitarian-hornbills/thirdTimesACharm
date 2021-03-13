@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
@@ -48,7 +47,6 @@ class ReviewApp extends React.Component {
       params: { id: prodId },
     })
       .then((data) => {
-        console.log(data);
         this.setState({
           reviews: data.data.results,
           productName: data.data.name,
@@ -221,7 +219,6 @@ class ReviewApp extends React.Component {
       widget: 'reviews',
       time: currentTime,
     };
-    console.log(clickObj);
     axios({
       method: 'post',
       url: '/interactions',

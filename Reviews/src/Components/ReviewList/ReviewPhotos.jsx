@@ -2,22 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ReviewPhotos = ({ photos, photoModal, sendClickData }) => {
-  let count = 0;
   const allPhotos = photos.map((photo) => (
-    <img
-      className="reviewBody"
-      alt=""
+    <div
+      role="button"
+      tabIndex="0"
+      className="rNewPhoto"
+      onKeyPress={() => { photoModal(photo.url); sendClickData('expand review photo'); }}
       onClick={() => { photoModal(photo.url); sendClickData('expand review photo'); }}
-      src={photo.url}
-      style={{ width: 50 }}
-      key={count++}
-    />
+      key={photo.url}
+    >
+      <img alt="" src={photo.url} />
+    </div>
   ));
   return (
-    <span className="reviewBody reviewPhotos">
+    <span className="reviewBody">
       {allPhotos}
     </span>
   );
+};
+
+ReviewPhotos.propTypes = {
+  photoModal: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  photos: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string,
+    }),
+  ),
+};
+
+ReviewPhotos.defaultProps = {
+  photos: [],
 };
 
 export default ReviewPhotos;

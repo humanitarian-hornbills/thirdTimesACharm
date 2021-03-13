@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import '../../public/css.js';
 
 const FadeInSection = ({ children }) => {
-  const [isVisible, setVisible] = React.useState(true);
+  const [isVisible, setVisible] = useState(true);
   const domRef = React.useRef();
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => setVisible(entry.isIntersecting));
     });

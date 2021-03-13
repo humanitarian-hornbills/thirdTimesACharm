@@ -393,13 +393,14 @@ font-size: 18px;
 }
 
 .rNewPhoto {
-  border: solid black 2px;
   margin: 0 2px;
   display: inline-block;
+  height: fit-content;
+  outline: none;
 }
 
 .rNewPhoto img {
-  width: 50px;
+  max-width: 50px;
 }
 
 /* new rating stars */

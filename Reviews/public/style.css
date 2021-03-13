@@ -10,12 +10,6 @@ font-family: Helvetica, Arial, sans-serif;
   text-decoration: underline;
   cursor: pointer;
 }
-/*
-label {
-  float: left;
-  padding: 0 1em;
-  text-align: center;
-} */
 
 .parent {
   display: flex;
@@ -35,7 +29,7 @@ div#ratingBox * {
 }
 
 #reviewBox {
-  width: auto;
+  width: 100%;
   margin-left: 20px;
   margin-top: 25px;
   height: 650px;
@@ -44,6 +38,19 @@ div#ratingBox * {
 #reviewList {
   height: 580px;
   overflow: auto;
+}
+
+#reviewList::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle */
+#reviewList::-webkit-scrollbar-thumb {
+  background: grey;
+}
+
+#reviewList::-webkit-scrollbar-thumb:hover {
+  background: #5f5e5e;
 }
 
 div.parent img {
@@ -177,6 +184,7 @@ div.parent div {
 
 .modal-addPhotos .rSectionTitle {
   margin-bottom: 15px;
+  text-align: center;
 }
 
 /* new review add photo modal  */
@@ -726,25 +734,22 @@ div.parent .modal-content {
 }
 
 /* The Close Button */
-#mainButtons .pmodal .modal-content .pclose, .rclose {
-  position: fixed;
+.newPhotoModal .modal-addPhotos .pclose, .rclose {
+  position: relative;
   background-color: transparent;
-  font-size: 28px;
   height:40px;
   width: 40px;
-  font-weight: bold;
-  z-index: 15;
-  font-family: Helvetica, Arial, sans-serif;
-  content: '\274c';
-  position: fixed;
-  color: red;
-  top: 30px;
-  right: 30px;
-  display: table-cell;
+  float: right;
   vertical-align: middle;
   text-align: center;
-  right: 0;
-  z-index: 20;
+  z-index: 350;
+}
+
+.fa-times {
+  font-weight: bold;
+  color: red;
+  font-family: FontAwesome;
+  font-size: 30px;
 }
 
 .pclose:hover,
@@ -895,7 +900,6 @@ div.parent .modal-content {
   height: 30px;
   text-align: center;
   line-height: 30px;
-  font-size: 18px;
   background-color: transparent;
   color: red;
   font-family: FontAwesome;
@@ -991,13 +995,15 @@ body.modal-open {
 }
 
 /* Track */
-#scrollBarDiv::-webkit-scrollbar-track {
+/* #scrollBarDiv::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
+} */
 
 /* Handle */
 #scrollBarDiv::-webkit-scrollbar-thumb {
   background: red;
-  border-radius: 10px;
+}
+
+#scrollBarDiv::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
 }

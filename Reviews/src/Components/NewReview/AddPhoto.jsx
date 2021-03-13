@@ -55,7 +55,7 @@ class AddPhoto extends React.Component {
             onClick={() => { hide(); sendClickData('close new review add photo modal'); }}
             className="pclose"
           >
-            &times;
+            <i className="fas fa-times" />
           </span>
           <h3 className="rSectionTitle">ADD PHOTOS</h3>
           <p className=".rTextTitle">ENTER THE URLs TO YOUR IMAGES BELOW</p>

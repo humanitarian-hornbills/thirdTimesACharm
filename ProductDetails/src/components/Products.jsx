@@ -64,6 +64,9 @@ class Products extends React.Component {
                 category, default_price, description, features, name, slogan,
               },
             });
+          })
+          .catch((err) => {
+            throw err;
           });
       }).then(() => {
         let currentTime = new Date();
@@ -80,8 +83,8 @@ class Products extends React.Component {
           .then((response) => {
             console.log(response);
           })
-          .catch((error) => {
-            console.log(error);
+          .catch((err) => {
+            throw err;
           });
       })
       .catch((err) => {
@@ -117,12 +120,10 @@ class Products extends React.Component {
     this.setState({ shoppingCart: status });
   }
 
-
   // eslint-disable-next-line class-methods-use-this
   getClickInteraction(ele) {
     this.setState({ clickElement: ele });
   }
-
 
   render() {
     return (

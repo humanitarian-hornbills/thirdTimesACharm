@@ -10,7 +10,7 @@ export const Link = styled.a`
   color: #167a92;
   padding:5px;
   font-size:14px;
-}
+  transition:10s ease-in;
 `;
 
 export const Category = styled.h3`

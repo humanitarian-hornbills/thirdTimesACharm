@@ -28,7 +28,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Authors
 | Name                | Github                         | Email                     |Widget |
-| Name                | Github                         | Email                     |Widget |
 | --------------------|:------------------------------:| -----------------------   |------:|
 | Agustin Feliciano   |https://github.com/gusfel       |agustinjfeliciano@gmail.com|Reviews|
 | Anna Zhu            |https://github.com/laenalea     | zeehaychoo@gmail.com      |QandA  |

@@ -853,15 +853,11 @@ div.parent .modal-content {
 .modal-btn:checked + label,
 .modal-btn:not(:checked) + label{
   position: relative;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 15px;
-  line-height: 2;
   height: 50px;
   transition: all 200ms linear;
-  border-radius: 4px;
-  width: 240px;
-  letter-spacing: 1px;
+  width: 200px;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -879,13 +875,13 @@ div.parent .modal-content {
     align-self: center;
   border: none;
   cursor: pointer;
-  background-color: #102770;
-  color: #ffeba7;
-  box-shadow: 0 12px 35px 0 rgba(16,39,112,.25);
+  background-color: red;
+  color: white;
+  border: solid black 1px;
 }
 .modal-btn:not(:checked) + label:hover{
-  background-color: #ffeba7;
-  color: #102770;
+  background-color:white;
+  color: red;
 }
 .modal-btn:checked + label .uil,
 .modal-btn:not(:checked) + label .uil{
@@ -904,8 +900,8 @@ div.parent .modal-content {
   text-align: center;
   line-height: 30px;
   font-size: 18px;
-  background-color: #ffeba7;
-  color: #102770;
+  background-color: red;
+  color: black;
   font-family: FontAwesome;
   content: '\f057';
   box-shadow: 0 12px 25px 0 rgba(16,39,112,.25);

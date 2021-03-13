@@ -282,7 +282,7 @@ class ReviewApp extends React.Component {
             <input className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
 
             <label htmlFor="modal-btn">
-              Open Modal
+              NEW REVIEW
             </label>
             <div className="modal">
               <div className="modal-wrap">

@@ -15,14 +15,14 @@ const id = products[randomNum];
 const GlobalStyle = createGlobalStyle`
   #app>div{
     box-sizing: border-box;
-    margin: 30px 10%;
+    margin: 80px 10%;
   }
 `;
 
 const App = () => (
   <>
-    <Products product={id} />
-    <RelatedProducts />
+    <Products product={id}/>
+    <RelatedProducts product={id} />
     <QA product={id} />
     <FadeInSection productId={id} />
     <GlobalStyle />

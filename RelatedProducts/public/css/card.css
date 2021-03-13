@@ -149,3 +149,9 @@
   width: 40px;
   object-fit: cover;
 }
+
+#addSign{
+  font-size: 220px;
+  color: #888;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}

@@ -35,6 +35,9 @@
   transition: 0.8s ease;
   cursor: pointer;
 }
+.scroll-btn-hidden{
+  display: none;
+}
 
 
 @keyframes bounce-right {
@@ -61,7 +64,6 @@
 }
 
 .bounce-left {
-
   animation: bounce-left 1s ease;
   -webkit-animation: bounce-left 1s ease;
   -moz-animation: bounce-left 1s ease;

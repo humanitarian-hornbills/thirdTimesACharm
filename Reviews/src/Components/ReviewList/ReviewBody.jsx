@@ -13,7 +13,7 @@ const ReviewBody = ({ review, photoModal, sendClickData }) => (
     {review.recommend
       ? (
         <>
-          <p className="reviewBody">✓ I recommend this product</p>
+          <p className="reviewBody iRec">✓ I recommend this product</p>
         </>
       )
       : <></>}
@@ -21,8 +21,8 @@ const ReviewBody = ({ review, photoModal, sendClickData }) => (
       ? (
         <>
           <div className="response">
-            <p className="reviewBody"><b>Response From Seller:</b></p>
-            <p>{review.response}</p>
+            <p><b>Response From Seller:</b></p>
+            <p className="reviewBody">{review.response}</p>
           </div>
         </>
       )

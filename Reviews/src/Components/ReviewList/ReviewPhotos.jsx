@@ -5,6 +5,7 @@ const ReviewPhotos = ({ photos, photoModal, sendClickData }) => {
   let count = 0;
   const allPhotos = photos.map((photo) => (
     <img
+      className="reviewBody"
       alt=""
       onClick={() => { photoModal(photo.url); sendClickData('expand review photo'); }}
       src={photo.url}
@@ -13,7 +14,7 @@ const ReviewPhotos = ({ photos, photoModal, sendClickData }) => {
     />
   ));
   return (
-    <span className="reviewBody">
+    <span className="reviewBody reviewPhotos">
       {allPhotos}
     </span>
   );

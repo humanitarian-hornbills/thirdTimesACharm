@@ -470,7 +470,7 @@ font-size: 18px;
   font-size: 13px;
 }
 
-.nameDate {
+.nameDate, .iRec {
   font-size: 14px;
   color: gray;
 }
@@ -479,8 +479,6 @@ font-size: 18px;
   margin-top: 20px;
   font-weight: 200;
 }
-
-
 
 /* rating overview stars */
 .stars-outer {

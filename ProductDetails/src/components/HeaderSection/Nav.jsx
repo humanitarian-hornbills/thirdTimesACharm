@@ -10,7 +10,7 @@ const Nav = ({
 
 }) => (
   <>
-    <Logo>humanitarian-hornbills</Logo>
+    <Logo>ThirdTimesACharm </Logo>
     <Input>
       <SearchIcon />
       <InputSearch placeholder="Search" />
@@ -18,9 +18,9 @@ const Nav = ({
     <ShoppingCart onClick={() => getShoppingCartStatus(true)}>
       <Cart />
       {quantitySizeSelected !== 0 && (
-      <QuanityTag>
-        {quantitySizeSelected}
-      </QuanityTag>
+        <QuanityTag>
+          {quantitySizeSelected}
+        </QuanityTag>
       )}
     </ShoppingCart>
   </>

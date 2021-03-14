@@ -7,7 +7,7 @@ const FactorItem = ({ factor }) => {
   const small = factor[name].edges[0];
   const large = factor[name].edges[1];
   const middle = factor[name].edges[2];
-  const avg = ((value / 5) * 290) - 8.58;
+  const avg = ((value / 5) * 295) - 8.58;
 
   return (
     <div className="factorItem">
@@ -30,11 +30,14 @@ const FactorItem = ({ factor }) => {
   );
 };
 
-// FactorItem.propTypes = {
-//   factor: PropTypes.shape({
-//     name: PropTypes.number.isRequired,
-
-//   })
-// }
+FactorItem.propTypes = {
+  factor: PropTypes.shape({
+    name: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.string,
+      ),
+    }),
+  }).isRequired,
+};
 
 export default FactorItem;

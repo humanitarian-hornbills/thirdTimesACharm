@@ -9,8 +9,8 @@ const ReviewHelpful = ({
   const total = review.helpfulness;
   const nextTotal = total + 1;
   return (
-    <div className="reviewHelpful">
-      <p>
+    <div>
+      <p className="reviewHelpful reviewBody">
         Helpful? &nbsp;
         {!hClicked
           ? (

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import Rating from './Rating.jsx';
 import Recommend from './Recommend.jsx';
 import Characteristics from './Characteristics.jsx';
@@ -78,8 +79,13 @@ class NewReview extends React.Component {
     });
   }
 
+  close() {
+    const closeBtn = document.getElementById('modal-btn')
+    closeBtn.click();
+  }
+
   submitReview() {
-    const { sendNewReview, close, sendClickData } = this.props;
+    const { sendNewReview, sendClickData } = this.props;
     if (this.validate()) {
       const newReview = this.state;
       delete newReview.addPhotos;
@@ -88,7 +94,7 @@ class NewReview extends React.Component {
       sendNewReview(newReview);
       sendClickData('new review submitted');
       this.clearState();
-      close();
+      this.close();
     } else {
       sendClickData('new review not sent - missing data');
     }
@@ -97,19 +103,10 @@ class NewReview extends React.Component {
   rModalPhoto(src) {
     const { sendClickData } = this.props;
     const modal = document.getElementById('pModal');
-    const span = document.getElementsByClassName('pclose');
     this.setState({
       rModalPhoto: src,
     });
     modal.style.display = 'block';
-    const newSpan = [];
-    Object.keys(span).forEach((key) => {
-      span[key].onclick = () => {
-        sendClickData('close new review photo modal with X');
-        modal.style.display = 'none';
-      };
-      newSpan.push(span[key]);
-    });
     window.onclick = (event) => {
       if (event.target === modal) {
         sendClickData('close new review photo modal by clicking outside of modal');
@@ -169,29 +166,16 @@ class NewReview extends React.Component {
   render() {
     console.log(this.state);
     const {
-      show, close, sendClickData, prodUrl, name, factors,
+      sendClickData, prodUrl, name, factors,
     } = this.props;
     const {
       photos, errors, addPhotos, rModalPhoto,
     } = this.state;
-    const showHideClassName = show ? 'modal display-block' : 'modal display-none';
     const allPhotos = photos;
     return (
-      // <div className={showHideClassName}>
       <div>
         <section id="addReviewModal" className="modal-main">
-          {/* <div id="scrollBarDiv"> */}
-            {/* <section> */}
-              <div id="scrollBarDiv">
-            {/* <span
-              role="button"
-              tabIndex="0"
-              onKeyPress={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-              onClick={() => { close(); this.clearState(); sendClickData('close new review window'); }}
-              className="rclose"
-            >
-              &times;
-            </span> */}
+          <div id="scrollBarDiv">
             <div id="allNewReviewForms">
               <NewReviewTop prodUrl={prodUrl} name={name} />
               <div id="newReviewRateRec">
@@ -226,7 +210,7 @@ class NewReview extends React.Component {
                   updateState={this.updateState}
                 />
               </div>
-              <div>
+              <div id="addPhotoBtn">
                 {allPhotos.length < 5
                   ? (
                     <CoolButton sendClickData={sendClickData} func={this.showAddPhotoModal} name="ADD PHOTO(S)" text="add photo to new review" />
@@ -277,8 +261,6 @@ class NewReview extends React.Component {
 }
 
 NewReview.propTypes = {
-  show: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired,
   sendClickData: PropTypes.func.isRequired,
   prodUrl: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -290,6 +272,7 @@ NewReview.propTypes = {
       ]),
     ),
   ).isRequired,
+  sendNewReview: PropTypes.func.isRequired,
 };
 
 NewReview.defaultProps = {

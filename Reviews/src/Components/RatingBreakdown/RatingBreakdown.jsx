@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RatingSummary from './RatingSummary.jsx';
 import Breakdown from './Breakdown.jsx';
 import Factors from './Factors.jsx';
 import SelectedList from './SelectedList.jsx';
+import AvgRating from './AvgRating.jsx';
+import AvgRec from './AvgRec.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -44,10 +45,10 @@ class RatingBreakdown extends React.Component {
     const { selected } = this.state;
     return (
       <div>
-        <RatingSummary
-          ratings={ratings.ratings}
-          recommended={ratings.recommended}
-        />
+        <div id="ratingSummary">
+          <AvgRating ratings={ratings.ratings} />
+          <AvgRec recommended={ratings.recommended} />
+        </div>
         <div className="ratingDivider" />
         <h3>RATING BREAKDOWN</h3>
         {selected.length
@@ -84,6 +85,26 @@ class RatingBreakdown extends React.Component {
     );
   }
 }
+
+RatingBreakdown.propTypes = {
+  clearStars: PropTypes.func.isRequired,
+  selectStars: PropTypes.func.isRequired,
+  sendClickData: PropTypes.func.isRequired,
+  ratings: PropTypes.shape({
+    ratings: PropTypes.objectOf(
+      PropTypes.string,
+    ),
+    recommended: PropTypes.objectOf(
+      PropTypes.string,
+    ),
+    characteristics: PropTypes.objectOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+};
 
 export default RatingBreakdown;
 

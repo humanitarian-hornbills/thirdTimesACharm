@@ -1,7 +1,7 @@
 {
   "name": "thirdtimesacharm",
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "ISC",
   "description": "reviews module",
   "main": "./src/index.jsx",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "webpack --config webpack.prod.js",
     "start": "nodemon server.js",
     "forever": "forever start server.js",
-    "stop":"forever stop server.js",
+    "stop": "forever stop server.js",
     "coverage": "jest --collectCoverage"
   },
   "repository": {
@@ -18,7 +18,6 @@
     "url": "git+https://github.com/gusfel/thirdTimesACharm.git"
   },
   "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/gusfel/thirdTimesACharm/issues"
   },

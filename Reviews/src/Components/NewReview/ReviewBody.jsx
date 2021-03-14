@@ -25,9 +25,10 @@ class ReviewBody extends React.Component {
       <div id="rBody">
         <p className="rTextTitle">
           YOUR REVIEW:
+          {' '}
           <sup className="redA">*</sup>
         </p>
-        <textarea maxLength="1000" placeholder="Why did you like the product or not?" onChange={this.handleChange} />
+        <textarea className="newRevInput" maxLength="1000" placeholder="Why did you like the product or not?" onChange={this.handleChange} />
         {body.length < 50
           ? (
             <div className="rUnderText">

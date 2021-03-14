@@ -6,13 +6,13 @@ const BodyText = ({ text, sendClickData }) => {
   const first250 = text.slice(0, 250);
   if (text.length < 250) {
     return (
-      <div className="reviewBody">
-        <p>{first250}</p>
+      <div>
+        <p className="reviewBody">{first250}</p>
       </div>
     );
   }
   return (
-    <div className="reviewBody">
+    <div>
       {!expand
         ? (
           <>

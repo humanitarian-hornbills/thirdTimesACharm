@@ -65,7 +65,6 @@ app.get('/meta', (req, res) => {
 
 app.post('/newReview', (req, res) => {
   const newReview = req.body;
-  console.log(newReview)
   axios({
     method: 'post',
     url: `${keys.api}/reviews`,
@@ -113,20 +112,18 @@ app.put('/report', (req, res) => {
 
 app.post('/interactions', (req, res) => {
   const clickData = req.query;
-  console.log(clickData);
   axios({
     method: 'post',
     url: `${keys.api}/interactions`,
     data: clickData,
     headers: {
       Authorization: keys.TOKEN,
-      // 'Content-Type': 'application/json'
     },
   })
     .then((response) => {
       console.log(response);
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 app.listen(port, () => {

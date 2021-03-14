@@ -4,7 +4,7 @@ import Question from './Question.jsx';
 
 const QuestionsDiv = styled.div`
   overflow: scroll;
-  max-height: 500px;
+  max-height: 450px;
   margin: 0;
   margin-top: 20px;
   `;
@@ -20,6 +20,9 @@ const Button = styled.button`
   background: white;
   &:hover {
     cursor: pointer;
+    background: #e71b1b;
+    color: white;
+    border-color: #e71b1b;
   }
   `;
 

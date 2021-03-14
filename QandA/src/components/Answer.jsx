@@ -3,15 +3,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Photos from './Photos.jsx';
 
+const Div = styled.div`
+  margin-bottom: 15px;
+  line-height: 1.2;
+  `;
+
+const Span = styled.span`
+  color: #383636;
+  font-size: 14px;
+  `;
+
 const Button = styled.button`
-border: none;
-background: white;
-font-size: .95rem;
-&:hover {
-  cursor: pointer;
-  border-bottom: 1px solid black;
-}
-`;
+  border: none;
+  background: white;
+  color: #383636;
+  font-size: 14px;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+  `;
 
 const Answer = ({
   qId, answersQ, answer, setAnswers, helpfulAnswer, setHelpfulAnswer,
@@ -47,8 +58,8 @@ const Answer = ({
   };
 
   return (
-    <div>
-      <p>{answer.body}</p>
+    <Div>
+      <b>{answer.body}</b>
       {answer.photos.length > 0
         && <Photos photos={answer.photos} />}
       <p>
@@ -59,7 +70,7 @@ const Answer = ({
         {' '}
         {readableDate}
       </p>
-      <p>
+      <Span>
         Helpful?
         {'  '}
         {!clickedHelpful
@@ -76,9 +87,9 @@ const Answer = ({
         {'  '}
         {!clickedReport
           ? <Button onClick={() => handleClickReport()}>Report Answer</Button>
-          : <span>Reported Answer</span>}
-      </p>
-    </div>
+          : <span>Reported</span>}
+      </Span>
+    </Div>
   );
 };
 

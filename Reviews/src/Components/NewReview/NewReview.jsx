@@ -79,15 +79,6 @@ class NewReview extends React.Component {
     });
   }
 
-    //   const newSpan = [];
-    // Object.keys(span).forEach((key) => {
-    //   span[key].onclick = () => {
-    //     this.sendClickData('close photo modal with X');
-    //     modal.style.display = 'none';
-    //   };
-    //   newSpan.push(span[key]);
-    // });
-
   close() {
     const closeBtn = document.getElementById('modal-btn')
     closeBtn.click();
@@ -270,7 +261,6 @@ class NewReview extends React.Component {
 }
 
 NewReview.propTypes = {
-  show: PropTypes.bool.isRequired,
   sendClickData: PropTypes.func.isRequired,
   prodUrl: PropTypes.string,
   name: PropTypes.string.isRequired,

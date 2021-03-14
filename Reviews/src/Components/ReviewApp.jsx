@@ -29,6 +29,8 @@ class ReviewApp extends React.Component {
       prodUrl: null,
     };
 
+    this.newReviewElement = React.createRef();
+
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
     this.getSort = this.getSort.bind(this);
     this.sendNewReview = this.sendNewReview.bind(this);
@@ -234,7 +236,7 @@ class ReviewApp extends React.Component {
   clearData() {
     $('.radio-btn, .charRadios, .recRadios').prop('checked', false);
     $('.newRevInput, .newRevPhotoInput').val('');
-    $('.newRevTempPhoto').html('');
+    this.newReviewElement.current.clearState();
   }
 
   render() {
@@ -290,6 +292,7 @@ class ReviewApp extends React.Component {
                   <div className="modal">
                     <div className="modal-wrap">
                       <NewReview
+                        ref={this.newReviewElement}
                         name={productName}
                         factors={factors}
                         show={newReview}

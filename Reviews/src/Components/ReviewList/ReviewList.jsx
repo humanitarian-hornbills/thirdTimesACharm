@@ -1,24 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewListItem from './ReviewListItem.jsx';
+import FadeInSection from '../FadeInSection.jsx';
 
 const ReviewList = ({
   reviews, reviewCount, markAsHelpful, reportReview, photoModal, sendClickData,
 }) => {
-  const allReviews = reviews;
-  const useTheseReviews = allReviews.slice(0, reviewCount);
+  const useTheseReviews = reviews.slice(0, reviewCount);
+  const old = useTheseReviews.slice(0, useTheseReviews.length - 2);
+  const newRevs = useTheseReviews.slice(useTheseReviews.length - 2);
+
+  const revListItem = (review) => (
+    <ReviewListItem
+      markAsHelpful={markAsHelpful}
+      review={review}
+      key={review.review_id}
+      reportReview={reportReview}
+      photoModal={photoModal}
+      sendClickData={sendClickData}
+    />
+  );
+
+  const setUpReviews = (arr) => arr.map((review) => {
+    if (arr === newRevs) {
+      return (
+        <FadeInSection>
+          {revListItem(review)}
+        </FadeInSection>
+      );
+    }
+    return (
+      revListItem(review)
+    );
+  });
+
   return (
     <div id="reviewList">
-      {useTheseReviews.map((review) => (
-        <ReviewListItem
-          markAsHelpful={markAsHelpful}
-          review={review}
-          key={review.review_id}
-          reportReview={reportReview}
-          photoModal={photoModal}
-          sendClickData={sendClickData}
-        />
-      ))}
+      {setUpReviews(old)}
+      {setUpReviews(newRevs)}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import BodyText from './BodyText.jsx';
 
 const ReviewBody = ({ review, photoModal, sendClickData }) => (
   <div>
-    <p>
+    <p className="reviewBody">
       <b>{review.summary.toUpperCase()}</b>
     </p>
     <BodyText sendClickData={sendClickData} text={review.body} />
@@ -13,16 +13,18 @@ const ReviewBody = ({ review, photoModal, sendClickData }) => (
     {review.recommend
       ? (
         <>
-          <p className="reviewBody">✓ I recommend this product</p>
+          <p className="reviewBody iRec">✓ I recommend this product</p>
         </>
       )
       : <></>}
     {review.response
       ? (
-        <div className="response reviewBody">
-          <p><b>Response From Seller:</b></p>
-          <p>{review.response}</p>
-        </div>
+        <>
+          <div className="response">
+            <p><b>Response From Seller:</b></p>
+            <p className="reviewBody">{review.response}</p>
+          </div>
+        </>
       )
       : <div />}
   </div>

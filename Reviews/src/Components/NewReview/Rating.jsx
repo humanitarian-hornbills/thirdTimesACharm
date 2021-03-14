@@ -13,10 +13,12 @@ const Rating = ({ updateState, error, sendClickData }) => {
   }
   return (
     <div id="rRating">
-      YOUR OVERALL RATING
-      {' '}
-      <sup className="redA">*</sup>
-      <p>Please Select</p>
+      <p className="rTextTitle">
+        YOUR OVERALL RATING
+        {' '}
+        <sup className="redA">*</sup>
+      </p>
+      <p className="pSelect">Please Select</p>
       <form onChange={(e) => { updateState({ rating: Number(e.target.value) }); sendClickData(`new review rating set as ${e.target.value}`); }}>
         <div className="rating noborder">
           {allStars}

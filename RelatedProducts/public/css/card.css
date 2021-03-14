@@ -126,10 +126,10 @@
 .thumbnail-row{
   margin: 3px 1px;
   width: 230px;
-  height: 43px;
+  height: 45px;
   overflow-x: auto;
   overflow-y: hidden;
-  /* white-space: nowrap; */
+  white-space: nowrap;
 }
 .thumbnail-row::-webkit-scrollbar{
   display:none;
@@ -148,4 +148,10 @@
   height: 40px;
   width: 40px;
   object-fit: cover;
+}
+
+#addSign{
+  font-size: 220px;
+  color: #888;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }

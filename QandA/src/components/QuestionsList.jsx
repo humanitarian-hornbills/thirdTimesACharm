@@ -4,7 +4,7 @@ import Question from './Question.jsx';
 
 const QuestionsDiv = styled.div`
   overflow: scroll;
-  max-height: 500px;
+  max-height: 450px;
   margin: 0;
   margin-top: 20px;
   `;
@@ -20,13 +20,16 @@ const Button = styled.button`
   background: white;
   &:hover {
     cursor: pointer;
+    background: #e71b1b;
+    color: white;
+    border-color: #e71b1b;
   }
   `;
 
 const QuestionsList = ({
   productData, answers, setAnswers, search, setShowQModal, setShowAnsModal,
-  clickedAnsHelpful, setClickedAnsHelpful, clickedReport, setClickedReport,
-  setTargetQ,
+  helpfulQ, setHelpfulQ, reportQ, setReportQ, helpfulAnswer, setHelpfulAnswer,
+  reportAnswer, setReportAnswer, setTargetQ,
 }) => {
   let questions;
   if (productData) {
@@ -72,16 +75,21 @@ const QuestionsList = ({
                       && (
                         <Question
                           key={question.question_id}
+                          productId={productData.product_id}
                           question={question}
                           answersQ={answersQ}
                           setAnswers={setAnswers}
                           findInQ={false}
                           search={search}
                           setShowAnsModal={setShowAnsModal}
-                          clickedAnsHelpful={clickedAnsHelpful}
-                          setClickedAnsHelpful={setClickedAnsHelpful}
-                          clickedReport={clickedReport}
-                          setClickedReport={setClickedReport}
+                          helpfulQ={helpfulQ}
+                          setHelpfulQ={setHelpfulQ}
+                          reportQ={reportQ}
+                          setReportQ={setReportQ}
+                          helpfulAnswer={helpfulAnswer}
+                          setHelpfulAnswer={setHelpfulAnswer}
+                          reportAnswer={reportAnswer}
+                          setReportAnswer={setReportAnswer}
                           setTargetQ={setTargetQ}
                         />
                       )

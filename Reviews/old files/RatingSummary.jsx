@@ -10,4 +10,10 @@ const RatingSummary = ({ ratings, recommended }) => (
   </div>
 );
 
+RatingSummary.propTypes = {
+  ratings: PropTypes.shape({
+    
+  })
+}
+
 export default RatingSummary;

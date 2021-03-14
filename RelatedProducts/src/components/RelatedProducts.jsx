@@ -15,6 +15,7 @@ class RelatedProducts extends React.Component {
       currentImg: '',
       currentProduct: {},
       compareProduct: null,
+      currentStyle: null,
     };
     this.addToList = this.addToList.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
@@ -22,16 +23,19 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    const currentProductId = '14307';
-    axios.get(`/products/${currentProductId}/related`)
+    const { product } = this.props;
+    axios.get(`/products/${product}/related`)
       .then((res) => {
         this.setState({ relatedList: res.data });
       });
-    axios.get(`/products/${currentProductId}/styles`)
+    axios.get(`/products/${product}/styles`)
       .then((res) => {
-        this.setState({ currentImg: res.data.results[0].photos[0].thumbnail_url });
+        this.setState({
+          currentImg: res.data.results[0].photos[0].thumbnail_url,
+          currentStyle: res.data,
+        });
       });
-    axios.get(`/products/${currentProductId}`)
+    axios.get(`/products/${product}`)
       .then((res) => {
         this.setState({ currentProduct: res.data });
       });
@@ -42,17 +46,17 @@ class RelatedProducts extends React.Component {
     }
   }
 
-  handleCompare(id) {
+  handleCompare(id, styles, cardProduct) {
     const modal = document.getElementById('compare-modal');
     const modalContent = document.getElementById('modal-content');
     const closeBtn = document.getElementById('close');
-    axios.get(`./products/${id}`)
-      .then((res) => {
-        this.setState({
-          compareProduct: res.data,
-          currentProduct: this.state.currentProduct,
-        });
-      });
+    // axios.get(`./products/${id}`)
+    //   .then((res) => {
+    this.setState({
+      compareProduct: cardProduct,
+      compareStyle: styles,
+    });
+    //   });
     modal.style.display = 'block';
     modalContent.classList.remove('modal-run-out');
     modal.classList.remove('modal-background-out');
@@ -102,7 +106,13 @@ class RelatedProducts extends React.Component {
 
   render() {
     const {
-      relatedList, outfitList, currentImg, currentProduct, compareProduct,
+      relatedList,
+      outfitList,
+      currentImg,
+      currentProduct,
+      compareProduct,
+      compareStyle,
+      currentStyle,
     } = this.state;
     return (
       <div className="related-products">
@@ -120,6 +130,8 @@ class RelatedProducts extends React.Component {
         />
         <CompareProducts
           compareProduct={compareProduct}
+          compareStyle={compareStyle}
+          currentStyle={currentStyle}
           currentProduct={currentProduct}
         />
       </div>

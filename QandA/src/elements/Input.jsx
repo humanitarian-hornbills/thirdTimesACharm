@@ -8,6 +8,6 @@ export default styled.input`
   font-family: sans-serif;
   font-size: 1.2rem;
   color; #383a3b;
-  width: 96%;
+  width: 100%;
   height: 40px;
 `;

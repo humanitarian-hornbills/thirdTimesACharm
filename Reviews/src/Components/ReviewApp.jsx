@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import SortForm from './ReviewList/SortForm.jsx';
@@ -28,9 +29,10 @@ class ReviewApp extends React.Component {
       prodUrl: null,
     };
 
+    this.newReviewElement = React.createRef();
+
     this.seeMoreReviews = this.seeMoreReviews.bind(this);
     this.getSort = this.getSort.bind(this);
-    this.showModal = this.showModal.bind(this);
     this.sendNewReview = this.sendNewReview.bind(this);
     this.markAsHelpful = this.markAsHelpful.bind(this);
     this.reportReview = this.reportReview.bind(this);
@@ -48,7 +50,6 @@ class ReviewApp extends React.Component {
       params: { id: prodId },
     })
       .then((data) => {
-        console.log(data);
         this.setState({
           reviews: data.data.results,
           productName: data.data.name,
@@ -122,28 +123,17 @@ class ReviewApp extends React.Component {
     });
   }
 
-  showModal() {
-    const { newReview } = this.state;
-    this.setState({
-      newReview: !newReview,
-    });
-  }
-
   photoModal(src) {
     const modal = document.getElementById('pModal');
-    const span = document.getElementsByClassName('pclose');
+    const photo = document.getElementsByClassName('pModalPhoto')[0];
     this.setState({
       modalPhoto: src,
     });
     modal.style.display = 'block';
-    const newSpan = [];
-    Object.keys(span).forEach((key) => {
-      span[key].onclick = () => {
-        this.sendClickData('close photo modal with X');
-        modal.style.display = 'none';
-      };
-      newSpan.push(span[key]);
-    });
+    photo.onclick = () => {
+      this.sendClickData('close photo modal by clicking photo');
+      modal.style.display = 'none';
+    };
     window.onclick = (event) => {
       if (event.target === modal) {
         this.sendClickData('close photo modal by clicking outside of modal');
@@ -166,7 +156,7 @@ class ReviewApp extends React.Component {
     newObj.product_id = productId;
     axios.post('/newReview', newObj)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       });
   }
 
@@ -223,7 +213,6 @@ class ReviewApp extends React.Component {
       widget: 'reviews',
       time: currentTime,
     };
-    console.log(clickObj);
     axios({
       method: 'post',
       url: '/interactions',
@@ -231,8 +220,26 @@ class ReviewApp extends React.Component {
     });
   }
 
+  stopScrolling() {
+    const { newReview } = this.state;
+    if (!newReview) {
+      $('body').addClass('modal-open');
+    } else {
+      $('body').removeClass('modal-open');
+      setTimeout(() => this.clearData(), 2000);
+    }
+    this.setState({
+      newReview: !newReview,
+    });
+  }
+
+  clearData() {
+    $('.radio-btn, .charRadios, .recRadios').prop('checked', false);
+    $('.newRevInput, .newRevPhotoInput').val('');
+    this.newReviewElement.current.clearState();
+  }
+
   render() {
-    console.log(this.state);
     const {
       loaded, reviews, displayedReviews, ratings,
       starsSelected, productName, newReview, prodUrl, modalPhoto,
@@ -244,11 +251,11 @@ class ReviewApp extends React.Component {
         [key, ratings.characteristics[key].id]
       ));
       return (
-        <div>
+        <div id="reviews">
           <h1>
             RATINGS &amp; REVIEWS
           </h1>
-          <div className="parent" id="reviews">
+          <div className="parent">
             <div id="ratingBox">
               <RatingBreakdown
                 clearStars={this.clearStars}
@@ -277,19 +284,28 @@ class ReviewApp extends React.Component {
                 {allReviews.length > reviewCount
                   ? <CoolButton sendClickData={this.sendClickData} func={this.seeMoreReviews} name="MORE REVIEWS" text="show more review button clicked" />
                   : <></>}
-                <CoolButton sendClickData={this.sendClickData} func={this.showModal} name="ADD REVIEW" text="add review button clicked" />
+                <div className="section full-height">
+                  <input onClick={() => { this.sendClickData('review modal'); this.stopScrolling(); }} className="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
+                  <label htmlFor="modal-btn">
+                    NEW REVIEW
+                  </label>
+                  <div className="modal">
+                    <div className="modal-wrap">
+                      <NewReview
+                        ref={this.newReviewElement}
+                        name={productName}
+                        factors={factors}
+                        show={newReview}
+                        sendNewReview={this.sendNewReview}
+                        photoModal={this.photoModal}
+                        prodUrl={prodUrl}
+                        sendClickData={this.sendClickData}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <PhotoModal src={modalPhoto} />
               </div>
-              <NewReview
-                name={productName}
-                factors={factors}
-                close={this.showModal}
-                show={newReview}
-                sendNewReview={this.sendNewReview}
-                photoModal={this.photoModal}
-                prodUrl={prodUrl}
-                sendClickData={this.sendClickData}
-              />
-              <PhotoModal src={modalPhoto} />
             </div>
           </div>
         </div>

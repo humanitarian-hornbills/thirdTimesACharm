@@ -13,7 +13,7 @@ export const Background = styled.div`
 
 export const ModalWrapper = styled.div`
   width: 800px;
-  height: 500px;
+  height: 600px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
@@ -33,6 +33,9 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.8;
+  * {
+    margin-bottom: 10px;
+  }
   `;
 
 export const CloseModalBtn = styled(MdClose)`
@@ -51,23 +54,40 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  line-height: 1.8;
+  line-height: 1.5;
 
   textarea {
     font-family: sans-serif;
   }
 
-  button {
-    min-width: 40%;
-    height: 50px;
-    margin-top: 40px;
-    margin-left: 0;
-    margin-right: 20px;
-    font-size: 1.2rem;
-    padding: 10px;
-    background: white;
-    &:hover {
+  article {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  `;
+
+export const Button = styled.button`
+  min-width: 30%;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 0;
+  margin-right: 20px;
+  font-size: 1.2rem;
+  padding: 10px;
+  background: white;
+  &:hover {
     cursor: pointer;
-    }
+    background: #e71b1b;
+    color: white;
+    border-color: #e71b1b;
+  }
+  `;
+
+export const SmallButton = styled.button`
+  padding: 5px;
+  background: white;
+  &:hover {
+    cursor: pointer;
   }
   `;

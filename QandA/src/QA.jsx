@@ -8,23 +8,35 @@ import AnswerModal from './components/AnswerModal.jsx';
 
 const Div = styled.div`
   // position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
+  font-family: Helvetica, Arial, sans-serif;
+  /* margin-left: auto;
+  margin-right: auto; */
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
   left: 0;
   right: 0;
-  width: 85%;
+  width: 100%;
   height: 65%;
   font-family: sans-serif;
   padding-left: 20px;
   `;
 
+const Logo = styled.section`
+  font-family: 'Comfortaa', cursive;
+  font-size: 30rem;
+  color: #e71b1b;
+  display: flex;
+  flex-direction: column;
+  margin-top: 28%;
+  /* justify-content: space-between; */
+  align-items: space-between;
+  /* line-height: 1.8; */
+  `;
+
 const Global = createGlobalStyle`
   * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    // font-family: sans-serif;
   }
   `;
 
@@ -39,16 +51,14 @@ const QA = ({ product }) => {
   const [search, setSearch] = useState('');
   const [showQModal, setShowQModal] = useState(false);
   const [showAnsModal, setShowAnsModal] = useState(false);
-  const [clickedAnsHelpful, setClickedAnsHelpful] = useState([]);
-  const [clickedReport, setClickedReport] = useState([]);
+  // const [showImgModal, setShowImgModal] = useState(false);
+  const [helpfulQ, setHelpfulQ] = useState([]);
+  const [reportQ, setReportQ] = useState([]);
+  const [helpfulAnswer, setHelpfulAnswer] = useState([]);
+  const [reportAnswer, setReportAnswer] = useState([]);
   const [targetQ, setTargetQ] = useState({});
 
-  const randomProduct = (response) => (
-    response[Math.floor(Math.random() * response.length)].id
-  );
-
   const qIds = [];
-  let randomId;
 
   const getQuestions = () => {
     axios.get(`questions/${product}`)
@@ -114,7 +124,6 @@ const QA = ({ product }) => {
       body: content, name: nickname, email, product_id: product,
     })
       .then(() => {
-        // getQuestions();
         console.log('success posting question');
       })
       .catch((err) => {
@@ -138,36 +147,43 @@ const QA = ({ product }) => {
     <div>
       <Div>
         {/* {answers[questionsId[0]] && console.log(product)} */}
-        <strong>Questions & Answers</strong>
-        {answers[questionsId[questionsId.length - 1]]
-          ? <SearchQuestions search={search} setSearch={setSearch} />
-          // && (
-          //   <QuestionsList
-          //     questions={questions[product].results}
-          //     questionsId={questionsId}
-          //     answers={answers}
-          //   />
-          // )
-          : <div>Loading...</div>}
-        <br />
-        {answers[questionsId[questionsId.length - 1]]
-          ? (
-            <QuestionsList
-              productData={questions[product]}
-              questionsId={questionsId}
-              answers={answers}
-              setAnswers={setAnswers}
-              search={search}
-              setShowQModal={setShowQModal}
-              setShowAnsModal={setShowAnsModal}
-              clickedAnsHelpful={clickedAnsHelpful}
-              setClickedAnsHelpful={setClickedAnsHelpful}
-              clickedReport={clickedReport}
-              setClickedReport={setClickedReport}
-              setTargetQ={setTargetQ}
-            />
-          )
-          : <div>Loading...</div>}
+        <Logo>
+          <strong>?</strong>
+        </Logo>
+        <section>
+          {answers[questionsId[questionsId.length - 1]]
+            ? <SearchQuestions search={search} setSearch={setSearch} />
+            // && (
+            //   <QuestionsList
+            //     questions={questions[product].results}
+            //     questionsId={questionsId}
+            //     answers={answers}
+            //   />
+            // )
+            : <div>Loading...</div>}
+          <br />
+          {answers[questionsId[questionsId.length - 1]]
+            ? (
+              <QuestionsList
+                productData={questions[product]}
+                answers={answers}
+                setAnswers={setAnswers}
+                search={search}
+                setShowQModal={setShowQModal}
+                setShowAnsModal={setShowAnsModal}
+                helpfulQ={helpfulQ}
+                setHelpfulQ={setHelpfulQ}
+                reportQ={reportQ}
+                setReportQ={setReportQ}
+                helpfulAnswer={helpfulAnswer}
+                setHelpfulAnswer={setHelpfulAnswer}
+                reportAnswer={reportAnswer}
+                setReportAnswer={setReportAnswer}
+                setTargetQ={setTargetQ}
+              />
+            )
+            : <div>Loading...</div>}
+        </section>
       </Div>
       {showQModal
         && (
@@ -194,5 +210,3 @@ const QA = ({ product }) => {
 };
 
 export default QA;
-
-// ReactDOM.render(<QA />, document.getElementById('app'));

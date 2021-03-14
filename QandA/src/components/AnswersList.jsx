@@ -1,5 +1,22 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Answer from './Answer.jsx';
+
+const SmallButton = styled.button`
+width: auto;
+height: auto;
+/* margin-top: 40px;
+margin-left: 0;
+margin-right: 20px; */
+padding: 10px;
+background: white;
+&:hover {
+  cursor: pointer;
+  background: #e71b1b;
+  color: white;
+  border-color: #e71b1b;
+}
+`;
 
 const AnswersList = ({
   answersQ, qId, setAnswers, search, foundInQ, helpfulAnswer, setHelpfulAnswer,
@@ -51,7 +68,7 @@ const AnswersList = ({
         )))}
       <>
         {sortedAns.length - moreAns > 0
-          && <button type="button" onClick={() => setMoreAns(moreAns + 2)}>LOAD MORE ANSWERS</button>}
+          && <SmallButton type="button" onClick={() => setMoreAns(moreAns + 2)}>LOAD MORE ANSWERS</SmallButton>}
       </>
     </div>
   );

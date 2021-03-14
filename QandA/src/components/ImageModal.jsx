@@ -25,12 +25,6 @@ const ImageModal = ({ setShowModal, photos, setPhotos }) => {
               {'  '}
               <input type="url" placeholder="Photo URL link" onChange={(event) => setPhoto(event.target.value)} value={photo} />
             </span>
-            <small>
-              For privacy reasons, do not use your full name or email addresss.
-            </small>
-            {/* {photos.map((photo, index) => (
-              <Image key={`${photo}-${index}`} src={photo} alt="" width="100" height="100" />
-            ))} */}
             <Button type="submit">Submit</Button>
           </Form>
         </ModalContent>

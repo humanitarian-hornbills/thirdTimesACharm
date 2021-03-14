@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
-  Background, ModalWrapper, ModalContent, CloseModalBtn, Form, Button,
+  Background, ModalWrapper, ModalContent, CloseModalBtn, Form, Button, SmallButton,
 } from '../elements/Modal.jsx';
 import ImageModal from './ImageModal.jsx';
 
@@ -53,12 +53,14 @@ const AnswerModal = ({
               <small>
                 For authentication reasons, you will not be emailed.
               </small>
-              <button type="button" onClick={() => setShowImgModal((prev) => !prev)}>Add your photos</button>
-              <br />
-              {photos.length > 0
-                && photos.map((photo) => (
-                  <Image key={photo} src={photo} alt="" height="100" width="100" />
-                ))}
+              {photos.length < 5
+                && <SmallButton type="button" onClick={() => setShowImgModal((prev) => !prev)}>Add your photos</SmallButton>}
+              <article>
+                {photos.length > 0
+                  && photos.map((photo) => (
+                    <Image key={photo} src={photo} alt="" height="80" width="80" />
+                  ))}
+              </article>
               <textarea placeholder="Your answer here" value={answerContent} onChange={(event) => setAnswerContent(event.target.value)} rows="5" cols="50" maxLength="1000" required />
               <Button type="submit">Submit</Button>
             </Form>

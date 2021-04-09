@@ -1,4 +1,8 @@
-
+[![Generic badge](https://img.shields.io/badge/npm-7.5.3-<COLOR>.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/node-v15.10.0-orange.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/react-16.14.0-yellowgreen.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/License-MIT-informational.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/socket.io-orange.svg)](https://shields.io/)
 # ProductDetails
 The Overview module will be the top-most module on the Product Detail page.  The functionality contained within this module can be divided into several pieces:
 1. Image gallery to show the current product
